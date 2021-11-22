@@ -1,0 +1,36 @@
+div.tabs .tabs__buttons {
+    background: transparent;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: start;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.65);
+  }
+  
+  div.tabs .tabs__buttons .tabs__button {
+    min-width: 150px;
+    padding: 0.5rem 0;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  
+  div.tabs .tabs__buttons .tabs__button:hover {
+    font-weight: bold;
+  }
+  
+  div.tabs .tabs__buttons .tabs__button.active {
+    border-bottom: 2px solid #00a27a;
+    font-weight: bold;
+  }
+  
+  div.tabs .tabs__contents {
+    padding-top: 1rem;
+  }
+  

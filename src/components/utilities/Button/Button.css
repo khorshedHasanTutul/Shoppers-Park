@@ -1,0 +1,108 @@
+
+.monami-button .monami-button__icon
+{
+    width: 20px;
+}
+.monami-button.size-big > .monami-button__icon{
+    width: 1.5rem;
+}
+
+.monami-button:hover,
+.monami-button:focus
+{
+    cursor: pointer;
+}
+
+.monami-button.type-primary{
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    color: var(--text-secondary);
+}
+.monami-button.type-primary:hover{
+    background: var(--primary-dark);
+}
+.monami-button.type-primary:focus{
+    background: var(--primary);
+}
+
+.monami-button .type-secondary{
+    background: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.monami-button .type-success{
+    background: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.monami-button .type-info{
+    background: var(--info);
+    border: 1px solid var(--info);
+}
+
+.monami-button .type-warning{
+    background: var(--warning);
+    border: 1px solid var(--warning);
+}
+
+.monami-button .type-danger{
+    background: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+.monami-button .type-default{
+    background: var(--primary);
+    border: 1px solid var(--primary);
+}
+.monami-button .style-outline{
+    background: transparent;
+}
+.monami-button .style-text{
+    border: 1px solid transparent;
+}
+.monami-button .style-link{
+    border: 1px solid transparent;
+    height: auto;
+    width: min-content;
+}
+
+.monami-button.size-full{
+    width: 100%;
+}
+
+.monami-button .shape-right-angle{
+    border-radius: 0;
+}
+
+.monami-button .shape-oval{
+    border-radius: 50%;
+}
+
+
+.monami-button .type-primary.style-fill,
+.monami-button .type-primary
+{
+    background: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.monami-button.type-primary.style-outline{
+    border: 1px solid var(--primary);
+    background: transparent;
+}
+
+.monami-button.type-primary.style-outline.type-primary:hover,
+.monami-button.type-primary.style-outline.type-primary:focus
+{
+    background: var(--primary-light);
+}
+.monami-button.type-primary.style-outline.type-primary:active{
+    background: var(--primary);
+}
+.monami-button.size-normal.shape-square,
+.monami-button.size-normal.shape-square .monami-button__icon{
+    width: 30px;
+    height: 30px;
+}
+
+

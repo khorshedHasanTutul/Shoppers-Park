@@ -1,0 +1,12 @@
+.request-product-form{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: end;
+    gap: 1rem
+}
+
+@media screen and (max-width: 950px){
+    .request-product-form{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

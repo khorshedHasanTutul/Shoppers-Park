@@ -1,0 +1,9 @@
+.card {
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.20);
+    border-radius: 5px;
+    padding: 1rem;
+  }
+  div.pointer.card {
+    background: rgb(241, 241, 241);
+  }

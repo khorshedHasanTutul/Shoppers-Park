@@ -1,0 +1,11 @@
+.prescription-card{
+    border: 1px solid lightblue;
+}
+
+.prescription-card .kill-anchore{
+    transition: all 200ms ease-in-out;
+}
+.prescription-card .kill-anchore:hover{
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
