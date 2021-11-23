@@ -1926,6 +1926,7 @@ body{
 	  background: transparent;
 	  margin-top: 1px;
 	  border-right: 2px solid #DF2C8A;
+	  line-height: 39px;
   }
   
   .main-menu .nav-icon {
@@ -2166,13 +2167,13 @@ body{
 		bottom: 0;
 		left: 0;
 		transition: all .4s;
-		z-index: 9;
+		z-index: 99;
 	}
 
 	.alert-main-area h2 {
 		margin: 0;
 		padding: 0;
-		font-size: 26px;
+		font-size: 20px;
 		padding-bottom: 14px;
 	}
 
@@ -2251,10 +2252,10 @@ body{
 		background: #ffc107;
 		border: #ffc107;
 		color: #000;
+		font-weight: 400;
+		font-size: 16px;
+		font-family: 'Poppins', sans-serif !important;
 	}
-  
-  
-  
   
   
 	/****************** login registion css ******************/
@@ -4218,7 +4219,7 @@ body{
 	content: "";
 	top: 36px;
 	right: -10px;
-	/* background: url('/src/images/brand/back.png') no-repeat scroll 0 0 / 100% 100%; */
+	background: url('/src/img/back.png') no-repeat scroll 0 0 / 100% 100%;
 	width: 12px;
 	height: 7px;
 	z-index: 9;
@@ -4987,3 +4988,81 @@ body{
 	display: flex;
 	justify-content: space-between;
 }
+
+.about-us-main-page{
+	/* background: url('/src/components') no-repeat scroll 0 0 / 100% 100%; */
+	padding: 100px 0px;
+}
+.about-us-banner p {
+	text-align: left;
+	width: 55%;
+	font-size: 15px;
+}
+.about-us-banner h2 {
+	font-size: 30px;
+	margin-bottom: 10px;
+}
+
+.profile .mt-8 .Card_card__UHWzV div h4 {
+	text-align: left;
+	font-size: 20px;
+	margin-bottom: 0;
+}
+
+.profile .mt-8 .Card_card__UHWzV div p {
+	text-align: left;
+	font-size: 16px;
+}
+
+.Card_card__UHWzV.undefined {
+	background: white;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.20);
+	border-radius: 5px;
+	padding: 1rem;
+}
+.promise-img img {
+	width: 100%;
+	height: auto;
+}
+
+.our-promise-area {
+	padding-bottom: 50px;
+	overflow: hidden;
+}
+
+.our-team-main-flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	text-align: center;
+}
+
+.our-team-single {
+	flex: 0 0 24%;
+	border: 1px solid #ddd;
+	padding-bottom: 18px;
+}
+.our-team-single img {
+	width: 100%;
+	height: auto;
+}
+
+.meet-team-title {
+	text-align: center;
+	font-size: 36px;
+	margin-bottom: 20px;
+	color: #363636;
+}
+.our-team-area {
+	padding-bottom: 80px;
+}
+.our-team-single h2 {
+	font-size: 22px;
+	font-weight: 600;
+	display: block;
+	padding-bottom: 2px;
+}
+.our-team-single h6 {
+	font-size: 14px;
+}
+

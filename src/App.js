@@ -20,6 +20,7 @@ import SubSubCategoryWiseItem from './pages/SubSubCategoryWiseItem';
 import ProductDetails from './pages/ProductDetails';
 import Wishlist from './pages/Wishlist';
 import Profile from './pages/Profile';
+import About from './pages/About';
 
 
 function App() {
@@ -68,6 +69,9 @@ function App() {
           </Route>
           <Route path="/contact">
           <Contact />
+          </Route>
+          <Route path="/about">
+           <About></About>
           </Route>
           <Route path="/privacy">
           <Privacy />

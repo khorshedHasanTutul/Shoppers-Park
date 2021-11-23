@@ -12,7 +12,25 @@ const SubCategoryItem = ({categoryId,subCategoryId,subCategoryItemID}) => {
         rewindSpeed: 1500,
         speed: 1000,
         perPage:5,
-        width:'100%'
+        width:'100%',
+        breakpoints: {
+            375: {
+                perPage: 1,
+            },
+            575: {
+                perPage: 2,
+            },
+            768: {
+                perPage: 3,
+            },
+            992: {
+                perPage: 5,
+            },
+            1200: {
+                perPage: 5,
+            }
+      }
+        
     }
     const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
     const data=concatData.filter(item=>item.category_id==categoryId && item.subCategory_id==subCategoryId && item.subCategory_item_id==subCategoryItemID);

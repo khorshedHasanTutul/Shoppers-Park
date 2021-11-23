@@ -6,7 +6,7 @@ const ProfileSideBar = () => {
         <div className='profile-sidebar'>
             <div className='profile-user-info flex column justify-center align-center bg-background pt-16'>
                 <div className='img mb-8'> 
-                    <img src="/contents/assets/images/blog/member.1d0fea27.jpg" alt="" />
+                    <img src="/contents/assets/images/blog/member.jpg" alt="" />
                 </div>
                 <div className='t-center'>
                     <p className='t-14 mb-4'>01792855468</p>

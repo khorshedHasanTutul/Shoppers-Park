@@ -13,6 +13,24 @@ const FestivalCategoryProduct = () => {
         speed: 1000,
         perPage:5,
         width:'100%',
+        breakpoints: {
+            375: {
+                perPage: 1,
+            },
+            575: {
+                perPage: 2,
+            },
+            768: {
+                perPage: 3,
+            },
+            992: {
+                perPage: 5,
+            },
+            1200: {
+                perPage: 5,
+            }
+      }
+
 
     }
     const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
