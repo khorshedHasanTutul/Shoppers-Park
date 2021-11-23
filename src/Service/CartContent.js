@@ -1,19 +1,32 @@
 const CartService={};
 const WishService={};
+
 (function(){
-    const CartModel={TotalAmount:0,TotalItem:0,Items:[]};
+    var CartModel={TotalAmount:0,TotalItem:0,Items:[]};
+    
+    let getData=localStorage.getItem('cartModel');
+    if(getData){
+        getData=JSON.parse(getData);
+        getData.Items && (CartModel=getData);
+    }
 
     this.Get=function(){
-        return {TotalAmount:CartModel.TotalAmount,TotalItem:CartModel.TotalItem,Items:CartModel.Items};
+        return {...CartModel};
     };
-    this.Add=function(item){
-        CartModel.Items.push(item);
-        CartModel.TotalAmount+=item.MRP;
-        this.Refresh(this.Get());
 
+    this.Add=function(item){ 
+        console.log('cart',CartModel.Items)
+        CartModel.Items.push(item);
+        console.log('item',localStorage.getItem('cartModel'))
+        CartModel.TotalAmount+=item.MRP;
+        localStorage.setItem('cartModel',JSON.stringify(CartModel));
+        this.Refresh(this.Get());
     };
+
     this.Refresh=function(){}
+
 }).call(CartService);
+
 
 (function(){
     const wishModel={Items:[]};
