@@ -11,7 +11,24 @@ const CategoryProducts = () => {
         rewindSpeed: 1500,
         speed: 1000,
         perPage: 5,
-        width:'100%'
+        width:'100%',
+        breakpoints: {
+            375: {
+                perPage: 1,
+            },
+            575: {
+                perPage: 2,
+            },
+            768: {
+                perPage: 3,
+            },
+            992: {
+                perPage: 5,
+            },
+            1200: {
+                perPage: 5,
+            }
+      }
        
     }
     return (

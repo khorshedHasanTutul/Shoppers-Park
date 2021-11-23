@@ -10,7 +10,15 @@ const BrandsSuperDrug = () => {
         rewindSpeed: 1500,
         speed: 1000,
         perPage: 5,
-        width:'100%'
+        width:'100%',
+        breakpoints: {
+            375: {
+                perPage: 3,
+            },
+            575: {
+                perPage: 3,
+            },
+      }
 
     }
     return (

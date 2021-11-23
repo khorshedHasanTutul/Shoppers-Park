@@ -1,6 +1,5 @@
 import InputControl from "../../utilities/InputControl/InputControl";
 import Button from "../../utilities/Button/Button";
-// import plane from "../../../images/plane.ea6d3406.svg";
 import Card from '../../utilities/Card/Card';
 
 const Complain = () => {
