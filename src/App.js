@@ -20,6 +20,7 @@ import SubSubCategoryWiseItem from './pages/SubSubCategoryWiseItem';
 import ProductDetails from './pages/ProductDetails';
 import Wishlist from './pages/Wishlist';
 import Profile from './pages/Profile';
+import Payment from './pages/CheckOut';
 
 
 function App() {
@@ -80,6 +81,9 @@ function App() {
           </Route>
           <Route path="/return">
           <ReturnPolicy />
+          </Route>
+          <Route path="/checkout" >
+            <Payment />
           </Route>
           <Route path="/*" >
           <ErrorPage />
