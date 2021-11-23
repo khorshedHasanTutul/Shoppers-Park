@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { CartService } from '../../Service/CartContent';
 import CartTableItem from './CartTableItem';
+import { Link } from 'react-router-dom';
 
 const ContentCart = ({closeCart}) => {
     const [cartModel, referesh] = useState(CartService.Get());
@@ -34,8 +35,8 @@ const ContentCart = ({closeCart}) => {
                             </div>
                         </div>
                         <div class="cart-footer">
-                            <button id="checkout-button" class="btn btn-success pull-left">Order Now</button>
-                            <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>6, 550.05</span></span>
+                            <Link to={'/checkout'} id="checkout-button" class="btn btn-success pull-left">Order Now</Link>
+                            <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>{cartModel.TotalAmount}</span></span>
                             <a class="block-btn-card">
                                 <i class="fa fa-shopping-cart fa-2x pull-right"></i>
                                 <div class="clearfix"></div>

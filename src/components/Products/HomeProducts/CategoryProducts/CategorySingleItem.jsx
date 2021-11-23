@@ -2,14 +2,14 @@ import React from 'react'
 import {  } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { callBack } from '../../../../Service/AppService'
-import { cartAddedButton } from '../../../../Service/CartContent'
+import { cartAddedButton, WishAddedButton } from '../../../../Service/CartContent'
 
-const CategorySingleItem = ({item,cartStore}) => {
+const CategorySingleItem = ({item}) => {
     return (
 
             <div class="single-product-catagory-item">
                 <div class="hover-eff-product">
-                    <a title="Add to Wishlist" href="#">
+                    <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)}>
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                     </a>
                 </div>

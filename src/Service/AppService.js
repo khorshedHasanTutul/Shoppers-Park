@@ -441,5 +441,31 @@ const productdetailsAllData={
 
     ]
 }
+const Checkout={
+    TabData:[
+        {
+            id:1,
+            tabText:"01. Summary"
+        },
+        {
+            id:2,
+            tabText:"02. Address"
+        },
+        {
+            id:3,
+            tabText:"03. Payment"
+        }
+    ],
+    DelivaryStatus:[
+        {
+            id:1,
+            text:"Inside Dhaka"
+        },
+        {
+            id:2,
+            text:"Outside Dhaka"
+        }
+    ]
+}
 
-export {BlogService,callBack,RecentPosts,BrandService,ReleatedPOst,BlogData,BlogCommentData,HalloweenSlider,Priivacy,BrandData,Offers,ocassionCategory,productdetailsAllData};
+export {BlogService,callBack,RecentPosts,BrandService,ReleatedPOst,BlogData,BlogCommentData,HalloweenSlider,Priivacy,BrandData,Offers,ocassionCategory,productdetailsAllData,Checkout};
