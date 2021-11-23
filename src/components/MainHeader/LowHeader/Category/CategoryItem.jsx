@@ -9,7 +9,7 @@ const CategoryItem = () => {
     return (
         <>
         <li class="sd-nav__item sd-nav__item--level-2">
-            <a title="New In" href="new-in.html">New In <i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true"></i></a>
+            <Link title="New In" to="/newinShop">New In <i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true"></i></Link>
         </li>
 
         {
