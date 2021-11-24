@@ -2182,8 +2182,6 @@ body{
 			margin: 0 auto;
 		}
 	
-
-
 	.alert-for-all-web .alert-main-area {
 		text-align: center;
 	}
@@ -5115,7 +5113,7 @@ body{
 	color: #fff;
 	font-size: 15px;
 	font-weight: 600;
-	display: flex;
+	/* display: flex; */
 	align-items: center;
 	transition: 0.6s;
 	cursor: pointer;

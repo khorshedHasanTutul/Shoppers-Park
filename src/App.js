@@ -22,6 +22,7 @@ import Wishlist from './pages/Wishlist';
 import Profile from './pages/Profile';
 import About from './pages/About';
 import Payment from './pages/CheckOut';
+import NewInShop from './pages/NewInShop';
 
 
 
@@ -65,6 +66,9 @@ function App() {
           </Route>
           <Route path="/product/:id">
           <ProductDetails />
+          </Route>
+          <Route path="/newinShop">
+            <NewInShop />
           </Route>
           <Route path="/wishlist">
           <Wishlist />

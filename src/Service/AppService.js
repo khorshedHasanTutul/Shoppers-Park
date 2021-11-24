@@ -467,5 +467,45 @@ const Checkout={
         }
     ]
 }
+const NewInProduct={
+    Banner:
+        {
+            id:1,
+            image:"/contents/assets/images/nn1.png"
+        }
+        
+}
+const ReturnPolicy={
+    headertext:"Return Policy: ",
+    list:[
+        {
+            id:1,
+            text:"Wrong medicine provided."
+        },
+        {
+            id:1,
+            text:"Wrong medicine provided."
+        },
+        {
+            id:1,
+            text:"Wrong medicine provided."
+        },
+        {
+            id:1,
+            text:"Wrong medicine provided."
+        }
+    ],
+    paragraphtext:[
+        {
+            text:"Note: Customers must check the product before NOC signing."
+        },
+        {
+            text:"Note: Customers must check the product before NOC signing."
+        },
+        {
+            text:"Note: Customers must check the product before NOC signing."
+        }
+    ]
+}
 
-export {BlogService,callBack,RecentPosts,BrandService,ReleatedPOst,BlogData,BlogCommentData,HalloweenSlider,Priivacy,BrandData,Offers,ocassionCategory,productdetailsAllData,Checkout};
+export {BlogService,ReturnPolicy,NewInProduct,callBack,RecentPosts,BrandService,ReleatedPOst,BlogData,BlogCommentData,HalloweenSlider,Priivacy,BrandData,Offers,ocassionCategory,productdetailsAllData,Checkout};

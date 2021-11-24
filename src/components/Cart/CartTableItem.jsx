@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CartTableItem = ({data}) => {
+
     return (
          <>
         {
            
-            data.map(item=>(
+            data.Items.map(item=>(
                  <tr class="close">
             <td class="card-title-heading">
                 <Link to={'/product/'+item.Id}>

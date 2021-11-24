@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartService } from '../../Service/CartContent';
 import AddressForm from '../AddressForm/AddressForm';
+import Address from './Address/Address';
 import CheckOutHeader from './CheckOutHeader';
 import CheckOutTabs from './CheckOutTabs';
 import Payment from './Payment/Payment';
@@ -10,9 +11,20 @@ import ProductSummary from './ProductSummary/ProductSummary';
 const PaymentParent = () => {
     const data=CartService.Get();
     const [tabinfo, settabinfo] = useState(0)
+    const [ShippingCost, setShippingCost] = useState()
     
     const tabInformation=(item)=>{
         settabinfo(item)
+    }
+    const proceedFunction=(ProductSummary)=>{
+        setShippingCost(ProductSummary)
+        if(ProductSummary>0)
+        settabinfo(1)
+        else
+        alert('Please Select a Shipping Zone')
+    }
+    const proceedOrder=()=>{
+        settabinfo(2)
     }
     return (
         <>
@@ -31,17 +43,17 @@ const PaymentParent = () => {
                             <CheckOutTabs tabInformation={tabInformation}/>
                         
                             <span class="card-shiping-item"> Your shopping cart contains:
-                             <small>{data.Items.length} Product</small>
+                             <small>{data.length} Product</small>
                              </span>
                             {
-                                (tabinfo==0)&& <ProductSummary data={data}/>
+                                (tabinfo==0)&& <ProductSummary data={data} proceedFunction={proceedFunction}/>
                             }
                            
                            {
-                               (tabinfo==1)&& <AddressForm />
+                               (tabinfo==1)&& <Address proceedOrder={proceedOrder}/>
                            }
                            {
-                               (tabinfo==2)&& <Payment />
+                               (tabinfo==2)&& <Payment ShippingCost={ShippingCost}/>
                            }
                             {/* AddressComponentLoaded */}
 
