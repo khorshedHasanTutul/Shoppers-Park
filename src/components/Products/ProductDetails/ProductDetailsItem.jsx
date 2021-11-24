@@ -3,9 +3,10 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import React, { useState } from 'react';
-import { BrandData } from '../../../Service/AppService';
+import { BrandData, callBack } from '../../../Service/AppService';
 import appData from '../../DataSource/appData';
 import { Link } from 'react-router-dom';
+import { WishAddedButton } from '../../../Service/CartContent';
 
 const ProductDetailsItem = ({product_id}) => {
     const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
@@ -81,8 +82,8 @@ const ProductDetailsItem = ({product_id}) => {
                                                     <h5>Add to Cart</h5>
                                                  </div>
                                               </a>
-                                              <div class="wishlist-btn">
-                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i>Add to wishlist</a>
+                                              <div class="wishlist-btn" onClick={callBack(WishAddedButton,item)}>
+                                                <a ><i class="fa fa-heart-o" aria-hidden="true"></i>Add to wishlist</a>
                                               </div>
                                             </div>
                                         </div>

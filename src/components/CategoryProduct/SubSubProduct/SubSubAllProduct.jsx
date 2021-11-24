@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../Service/AppService';
-import { cartAddedButton } from '../../../Service/CartContent';
+import { cartAddedButton, WishAddedButton } from '../../../Service/CartContent';
 import appData from '../../DataSource/appData';
 
 const SubSubAllProduct = ({categoryId,subCategoryId,subItemId}) => {
@@ -16,8 +16,8 @@ const SubSubAllProduct = ({categoryId,subCategoryId,subItemId}) => {
             
             data.map(item=>(
                  <div class="single-product-catagory-item">
-        <div class="hover-eff-product">
-            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+        <div class="hover-eff-product" onClick={callBack(WishAddedButton,item)}>
+            <a title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
         </div>
         <Link to={'/product/'+item.Id}>
         {

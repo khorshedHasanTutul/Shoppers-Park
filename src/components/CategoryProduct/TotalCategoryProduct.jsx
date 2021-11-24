@@ -4,6 +4,7 @@ import SliderComponent from '../utilities/Slider/SliderComponent';
 import ProductSingleItem from './ProductSingleItem';
 
 const TotalCategoryProduct = ({category_id,subCategory_id}) => {
+    
     const options={
         rewind: true,
         type: 'loop',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { callBack, Checkout } from '../../Service/AppService';
 
 const CheckOutTabs = ({tabInformation}) => {
@@ -6,8 +6,9 @@ const CheckOutTabs = ({tabInformation}) => {
     return (
         <ul class="tabs">
             {
+    
                 data.map((item,index)=>(
-                    <li class="tab"><label for="tab7" onClick={callBack(tabInformation,index)} >{item.tabText}</label></li>
+                    <li class="tab"><label for="tab7" onClick={callBack(tabInformation,index)} >{item.tabText}</label></li> 
                 ))
             }
         </ul>

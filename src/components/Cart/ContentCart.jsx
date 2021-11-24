@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 const ContentCart = ({closeCart}) => {
     const [cartModel, referesh] = useState(CartService.Get());
     CartService.Refresh=referesh;
-    console.log(cartModel)
-    
+
     return (
         <div class="cart-box-view">
                     <div class="cart-box-inner-view">
@@ -16,7 +15,7 @@ const ContentCart = ({closeCart}) => {
                                 <img src="/contents/assets/images/add-cart.png" alt="img" />
                                 <strong class="car-box-title SearchFont">
                                     {
-                                        (cartModel.length>0)?<span>{cartModel.length}</span>:''
+                                        (cartModel.Items.length>0)?<span>{cartModel.Items.length}</span>:''
                                     }
                                     
                                     <span> Item</span>

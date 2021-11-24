@@ -7,38 +7,38 @@ function callBack(func,...params){
   }
   const month=["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-const RecentPosts=[
-    {
-        id:1,
-        image:"/contents/assets/images/blog/b1.jpg",
-        title:"A companion for extra sleeping",
-        created_date:new Date().toLocaleDateString()
-    },
-    {
-        id:2,
-        image:"/contents/assets/images/blog/b1.jpg",
-        title:"A companion for extra sleeping",
-        created_date:new Date().toLocaleDateString()
-    },
-    {
-        id:3,
-        image:"/contents/assets/images/blog/b1.jpg",
-        title:"A companion for extra sleeping",
-        created_date:new Date().toLocaleDateString()
-    },
-    {
-        id:4,
-        image:"/contents/assets/images/blog/b1.jpg",
-        title:"A companion for extra sleeping",
-        created_date:new Date().toLocaleDateString()
-    },
-    {
-        id:5,
-        image:"/contents/assets/images/blog/b1.jpg",
-        title:"A companion for extra sleeping",
-        created_date:new Date().toLocaleDateString()
-    }
-]
+// const RecentPosts=[
+//     {
+//         id:1,
+//         image:"/contents/assets/images/blog/b1.jpg",
+//         title:"A companion for extra sleeping",
+//         created_date:new Date().toLocaleDateString()
+//     },
+//     {
+//         id:2,
+//         image:"/contents/assets/images/blog/b1.jpg",
+//         title:"A companion for extra sleeping",
+//         created_date:new Date().toLocaleDateString()
+//     },
+//     {
+//         id:3,
+//         image:"/contents/assets/images/blog/b1.jpg",
+//         title:"A companion for extra sleeping",
+//         created_date:new Date().toLocaleDateString()
+//     },
+//     {
+//         id:4,
+//         image:"/contents/assets/images/blog/b1.jpg",
+//         title:"A companion for extra sleeping",
+//         created_date:new Date().toLocaleDateString()
+//     },
+//     {
+//         id:5,
+//         image:"/contents/assets/images/blog/b1.jpg",
+//         title:"A companion for extra sleeping",
+//         created_date:new Date().toLocaleDateString()
+//     }
+// ]
 
 const BlogCommentData=[
     {
@@ -91,6 +91,7 @@ const BlogData=[
         image:"/contents/assets/images/e1220-morefrom-contraceptive-pinkgif.gif",
         date:new Date().getDate(),
         month:month[new Date().getMonth()] ,
+        created_at:(new Date().getDate()+10)
     },
     {
         id:2,
@@ -103,6 +104,7 @@ const BlogData=[
         image:"/contents/assets/images/e1220-morefrom-contraceptive-pinkgif.gif",
         date:new Date().getDate(),
         month:month[new Date().getMonth()] ,
+        created_at:(new Date().getDate()-5)
     },
     {
         id:3,
@@ -115,6 +117,7 @@ const BlogData=[
         image:"/contents/assets/images/e1220-morefrom-contraceptive-pinkgif.gif",
         date:new Date().getDate(),
         month:month[new Date().getMonth()] ,
+        created_at:(new Date().getDate()+7)
     },
     {
         id:4,
@@ -127,6 +130,7 @@ const BlogData=[
         image:"/contents/assets/images/e1220-morefrom-contraceptive-pinkgif.gif",
         date:new Date().getDate(),
         month:month[new Date().getMonth()] ,
+        created_at:(new Date().getDate()+7)
     },
     {
         id:5,
@@ -139,6 +143,7 @@ const BlogData=[
         image:"/contents/assets/images/e1220-morefrom-contraceptive-pinkgif.gif",
         date:new Date().getDate(),
         month:month[new Date().getMonth()] ,
+        created_at:(new Date().getDate()+7)
     },
     {
         id:6,
@@ -151,6 +156,7 @@ const BlogData=[
         image:"/contents/assets/images/e1220-morefrom-contraceptive-pinkgif.gif",
         date:new Date().getDate(),
         month:month[new Date().getMonth()] ,
+        created_at:(new Date().getDate()+7)
     }
 ];
 
@@ -467,12 +473,14 @@ const Checkout={
         }
     ]
 }
-const NewInProduct={
+const NewInPage={
     Banner:
         {
             id:1,
             image:"/contents/assets/images/nn1.png"
-        }
+        },
+    HeaderAreaText:"new in shop by category",
+    ProductAreaHeader :"TOP NEW IN PRODUCTS"
         
 }
 const ReturnPolicy={
@@ -508,4 +516,4 @@ const ReturnPolicy={
     ]
 }
 
-export {BlogService,ReturnPolicy,NewInProduct,callBack,RecentPosts,BrandService,ReleatedPOst,BlogData,BlogCommentData,HalloweenSlider,Priivacy,BrandData,Offers,ocassionCategory,productdetailsAllData,Checkout};
+export {BlogService,ReturnPolicy,NewInPage,callBack,BrandService,ReleatedPOst,BlogData,BlogCommentData,HalloweenSlider,Priivacy,BrandData,Offers,ocassionCategory,productdetailsAllData,Checkout};

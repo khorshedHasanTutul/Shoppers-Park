@@ -7,6 +7,9 @@
     .site-notification {
         left: -300%;
     }
+    .container{
+        max-width: 90%;
+    }
 
 }
 @media all and (max-width:1299px){
@@ -194,7 +197,6 @@
     }
     .mobile-menu-for-home > ul > li > a > i {
         font-size: 20px;
-        margin-right: ;
         width: 30px;
     }
     .mobile-height-area {
