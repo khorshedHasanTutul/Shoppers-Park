@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { callBack } from '../../Service/AppService';
+import { ButoonInc, CartService, RemoveItem } from '../../Service/CartContent';
 
 const CartTableItem = ({data}) => {
 
@@ -24,20 +26,22 @@ const CartTableItem = ({data}) => {
                     <div class="qty-holder">
                         <a href="#" class="qty-dec-btn" title="Dec">-</a>
                         <input type="text" name="product_qty" id="product_qty" class="qty-input" value="1" />
-                        <a href="#" class="qty-inc-btn" title="Inc">+</a>
+                        <a class="qty-inc-btn" title="Inc" onClick={callBack(ButoonInc,item)}>+</a>
                     </div>
                 </div>
             </td>
             <td class="amount-for-popup">
                 <span class="SearchFont SearchDelPrice">
-                    <del>৳ </del>
-                    <del class="add-postion">2, 450.00</del>
+                    {(item.Ds>0)? <del>৳</del> :<span>৳</span>} 
+                    {
+                        (item.Ds>0) && <del class="add-postion">{item.Ds}</del>
+                    }
                     <br />
-                    <span class="SearchFont SearchPrice">2, 200.05</span>
+                    <span class="SearchFont SearchPrice">{item.MRP}</span>
                 </span>
             </td>
             <td class="amount-inner-crose">
-                <a href="#"><i class="fa fa-times text-danger"></i></a>
+                <a onClick={callBack(RemoveItem,item)}><i class="fa fa-times text-danger"></i></a>
             </td>
         </tr>
             ))

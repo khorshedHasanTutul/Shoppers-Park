@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../Service/AppService';
+import { CartService, RemoveItem } from '../../../Service/CartContent';
 
 const TableSingleItem = ({data}) => {
+    const [CartContent, setCartContent] = useState(CartService.Get())
+    CartService.Refresh=setCartContent;
     const [count, setcount] = useState(1)
     const Increment=(item)=>{ 
           console.log(item)
     }
-    // const Decrement=()=>{
-    //     if(count>1) setstate(count-1) 
-    // }
     
     return (
         <>
         {
-            data.Items.map(item=>(
+            CartContent.Items.map(item=>(
                 <tr>
                 <td class="cart_product">
                     <a href="#"><img src={item.image} alt="img" /></a>
@@ -43,7 +43,7 @@ const TableSingleItem = ({data}) => {
                       </div>
                 </td>
                 <td class="price"><span>{item.MRP*count}</span></td>
-                <td class="action"><a href="#"><img src="/contents/assets/images/delete_icon.png" alt="" /></a></td>
+                <td class="action"><a onClick={callBack(RemoveItem,item)}><img src="/contents/assets/images/delete_icon.png" alt="" /></a></td>
             </tr>
             ))
         }

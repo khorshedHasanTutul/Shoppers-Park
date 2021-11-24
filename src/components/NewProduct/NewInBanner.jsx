@@ -1,8 +1,8 @@
 import React from 'react';
-import { NewInProduct } from '../../Service/AppService';
+import { NewInPage } from '../../Service/AppService';
 
 const NewInBanner = () => {
-    const data=NewInProduct.Banner;
+    const data=NewInPage.Banner;
     return (
         <section class="new-in-banner-area">
         <div class="container">

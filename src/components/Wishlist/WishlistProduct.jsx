@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../Service/AppService';
-import { cartAddedButton } from '../../Service/CartContent';
+import { cartAddedButton, WishRemoveItem } from '../../Service/CartContent';
 
 const WishlistProduct = ({data}) => {
     return (
@@ -14,15 +14,17 @@ const WishlistProduct = ({data}) => {
                     {
                         data.map(item=>(
                             <div class="single-product-catagory-item">
-                            <div class="wishlist-cross-btn">
-                                <a href="#"><i class="fa fa-times" aria-hidden="true"></i>
+                            <div class="wishlist-cross-btn" onClick={callBack(WishRemoveItem,item)}>
+                                <a><i class="fa fa-times" aria-hidden="true" ></i>
                                     removed</a>
                             </div>
                             {/* <div class="hover-eff-product">
                                 <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                             </div> */}
                             <Link to={'/product/'+item.Id}>
-                                <div class="group-price-drag"><span class="product-new-drag">15% </span></div>
+                            {
+                            item.Ds>0 ? <div class="group-price-drag"><span class="product-new-drag">{item.Ds>0 ? item.Ds:''}{item.Ds>0 ? '%':''} </span></div> : ''
+                            }
                                 <img src={item.image} alt="img" />
                                 <div class="catagory-overly-main-bg">
                                     <div class="catagory-product-overly">
