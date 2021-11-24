@@ -20,7 +20,7 @@ const FestivalCategoryProduct = () => {
             575: {
                 perPage: 2,
             },
-            768: {
+            991: {
                 perPage: 3,
             },
             992: {

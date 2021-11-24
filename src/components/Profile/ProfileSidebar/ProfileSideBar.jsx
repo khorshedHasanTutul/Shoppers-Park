@@ -1,4 +1,4 @@
-// import user from '../../../images/blog/member.1d0fea27.jpg';
+
 import SideBarLinks from '../SideBarLinks/SideBarLinks';
 
 const ProfileSideBar = () => {

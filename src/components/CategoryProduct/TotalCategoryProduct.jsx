@@ -19,7 +19,7 @@ const TotalCategoryProduct = ({category_id,subCategory_id}) => {
             575: {
                 perPage: 2,
             },
-            768: {
+            991: {
                 perPage: 3,
             },
             992: {
