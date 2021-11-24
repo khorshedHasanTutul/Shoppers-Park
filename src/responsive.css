@@ -7,13 +7,31 @@
     .site-notification {
         left: -300%;
     }
+
+}
+@media all and (max-width:1299px){
+      /*product details add wishlist page css */
+      .product-desc-right-content .catagory-overly-main-bg .btn_cart {
+        width: 135px;
+    }
+    .wishlist-btn > a {
+        font-size: 14px;
+        padding: 8px 8px;
+    }
+
+    .add-product-wishlist-main-page .single-product-catagory-item {
+        margin: 0px 4px 20px 3px;
+        flex: 0 0 19%;
+    }
+    .hover-eff-product img {
+        width: 16px;
+    }
+    .hover-eff-product > a i {
+        font-size: 16px;
+    }
 }
 
-
 @media all and (max-width:1200px){
-	.container {
-        max-width: 1120px;
-    }
     .site-notification {
         left: -300%;
     }
@@ -39,9 +57,6 @@
     }
     .shop-drag-comntent p {
         width: 265px;
-    }
-	.container {
-        max-width: 960px;
     }
     .support-service-single-item::after {
         display: none;
@@ -81,12 +96,7 @@
     .all-brands-drag-img a img {
         width: 115px;
     }
-    .owl-nav button.owl-prev {
-        left: 0px;
-    }
-    .owl-nav button.owl-next {
-        right: 0px;
-    }
+
     .banner-inner-product-single {
         flex: 0 0 23%;
     }
@@ -147,25 +157,7 @@
         flex: 0 0 60%;
     }
 
-    /*product details add wishlist page css */
-    .product-desc-right-content .catagory-overly-main-bg .btn_cart {
-        width: 135px;
-    }
-    .wishlist-btn > a {
-        font-size: 14px;
-        padding: 8px 8px;
-    }
-
-    .add-product-wishlist-main-page .single-product-catagory-item {
-        margin: 0px 4px 20px 3px;
-        flex: 0 0 19%;
-    }
-    .hover-eff-product img {
-        width: 16px;
-    }
-    .hover-eff-product > a i {
-        font-size: 16px;
-    }
+    
 
 
 }
@@ -345,11 +337,6 @@
         justify-content: start;
     }
 
-
-
-    .container {
-        max-width: 720px;
-    }
     .single-product-add {
         flex: 0 0 45%;
         margin: 10px;
@@ -460,82 +447,15 @@
     }
 
    /* hollowen page css */
-      .mobile-holloween-menu{
+    .mobile-holloween-menu{
         display: block;
     }
     .hollowen-nav-icon{
         display: block;
     }
 
-    .holloween-catagory-inner.halloweenFix {
-        position: inherit;
-        top: 0px;
-        z-index: 1;
-        width: 40%;
-    }
-    .holloween-catagory-inner.halloweenFix.halloweenFix2 {
-        position: inherit;
-        top: 0px;
-        z-index: 1;
-        width: 40%;
-    }
 
-    .shop-by-catagory-holloween > ul{
-        display: block;
-    }
-    .holloween-catagory-left{
-        position: fixed;
-		top: 0px;
-		width: 40%;
-		height: 100%;
-		z-index: 9999;
-		background: #fff;
-		left: 0;
-		-webkit-transition: 0.5s;
-		-o-transition: 0.5s;
-		transition: 0.5s;
-		opacity: 1;
-        overflow-y: auto;
-    }
 
-    .off-canvasx {
-		left: -100%;
-		-webkit-transition: 0.5s;
-		-o-transition: 0.5s;
-		transition: 0.5s;
-	}
-    .mobile-holloween-menu {
-        display: flex;
-        justify-content: space-between;
-        background: #F5F5F5;
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    .hollowen-nav-icon > small {
-        border: 1px solid #DF2C8A;
-        padding: 5px 18px;
-        color: #000;
-    }
-    .hollowen-nav-icon > span {
-        float: right;
-        font-size: 40px;
-        color: #000;
-        position: relative;
-        right: 0px;
-        float: right;
-        left: 0px;
-        bottom: 0;
-        background: #EDEDED;
-        z-index: 10101010;
-        width: 40px;
-        text-align: center;
-        height: 40px;
-        line-height: 40px;
-    }
-    .shop-by-catagory-holloween {
-        margin-bottom: 10px;
-        border: none;
-    }
     .holloween-content-body-right {
         flex: 0 0 100%;
     }
@@ -570,7 +490,7 @@
         flex: 0 0 68%;
     }
     .product-d-left-img {
-        flex: 0 0 41%;
+        flex: 0 0 38%;
     }
     .product-desc-right-content {
         flex: 0 0 24%;
@@ -679,10 +599,17 @@
         display: flex;
         flex-direction: column;
     }
+    .checkout-main-area .address-btn-group {
+        flex-direction: inherit;
+    }
     .add-right-content div h3 {
         text-align: left;
         font-size: 18px;
     }
+
+}
+
+@media all and (max-width:900px){
     .prescription-form .grid {
         display: flex !important;
         flex-direction: column !important;
@@ -691,23 +618,37 @@
         display: flex;
     }
     .profile-sidebar {
-        position: relative;
-        left: -22px;
-        width: 150px;
+        position: relative !important;
+        left: -38px !important;
+        width: 190px !important;
     }
-    .r-tabs__link {
-        padding: 0.5em;
+    .profile .body {
+        margin-left: 0px;
+        width: 75%;
     }
-
-
-
-
+    .custom-table-row {
+        overflow-x: auto;
+    }
 }
 
 @media all and (max-width:767px){
-	.container {
-        max-width: 540px;
+    .r-tabs__link {
+        padding: 0.3em;
+        font-size: 14px;
     }
+    .custom-table-row {
+        overflow-x: auto;
+    }
+    .profile .body {
+        margin-top: 25px;
+    }
+    .profile {
+        padding-bottom: 30px;
+    }
+    .Card_card__UHWzV.undefined .t-14 {
+        text-align: left;
+    }
+
     .main-menu {
         width: 50%;
     }
@@ -848,7 +789,7 @@
     }
     
     /* holloween page css */
-    .holloween-slider-left {
+    /* .holloween-slider-left {
         flex: 0 0 100%;
     }
     .holloween-slider-right {
@@ -868,7 +809,7 @@
     .what-is-halloweens-single {
         flex: 0 0 100%;
         margin-bottom: 30px;
-    }
+    } */
 
     /* blog page css */
     .blog-recent-post-right {
@@ -1014,15 +955,49 @@
 
 }
 
-@media all and (max-width:575px){
-    .container {
-        width: 90%;
-        max-width: 90%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
+@media all and (max-width:700px){
+    .prescription-form .grid {
+        display: flex !important;
+
     }
+    .profile {
+        display: flex;
+    }
+    .profile-sidebar {
+        position: static !important;
+        left: inherit !important;
+        width: 100% !important;
+    }
+    .profile .body {
+        margin-left: 0px;
+        width: 100%;
+    }
+}
+
+@media all and (max-width:575px){
+    .user-profile-form {
+        display: flex;
+        flex-direction: column;
+    }
+    .profile .mt-8 .Card_card__UHWzV div p {
+        font-size: 14px;
+    }
+    .profile {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .r-tabs {
+        flex-direction: column;
+    }
+    .order-invoice-ea .custom-row-top {
+        align-items: start;
+        flex-direction: column;
+    }
+    .span4 {
+        margin-bottom: 15px;
+    }
+
+
     .single-product-catagory-item {
         flex: 0 0 100% !important;
     }
@@ -1150,7 +1125,7 @@
     }
 
     /* holloween page css */
-    .holloween-catagory-left {
+    /* .holloween-catagory-left {
         width: 60%;
     }
     .holloween-catagory-inner.halloweenFix {
@@ -1158,7 +1133,7 @@
     }
     .holloween-catagory-inner.halloweenFix.halloweenFix2 {
         width: 60%;
-    }
+    } */
     .tranding-h-single-slide {
         flex: 0 0 46%;
         text-align: center;

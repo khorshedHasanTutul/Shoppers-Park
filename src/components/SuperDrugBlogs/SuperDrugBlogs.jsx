@@ -19,10 +19,10 @@ const SuperDrugBlogs = () => {
             575: {
                 perPage: 1,
             },
-            576: {
+            767: {
                 perPage: 2,
             },
-            768: {
+            991: {
                 perPage: 3,
             },
       }

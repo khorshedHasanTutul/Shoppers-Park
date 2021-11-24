@@ -26,24 +26,23 @@
     transform: translate(-50%, -50%);
 }
 
-.popup__title{
-    padding: 0.5rem 0.5rem;
-    background: var(--primary);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-   
+.popup__title {
+	padding: 0.5rem 0.5rem;
+	background: #DF2C8A;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
+
 .popup__title > h2{
     font-weight: 500;
     font-size: 1.25rem;
-    color: var(--text-secondary);
+    color: #fff;
     padding-bottom: 0.25rem;
 }
 .popup__title > div{
     background: var(--primary-dark);
-    color: var(--text-secondary);
+    color: #fff;
     padding: 1px 4px 4px 3px;
     border-radius: 50%;
 }
