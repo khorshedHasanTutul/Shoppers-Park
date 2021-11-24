@@ -2182,8 +2182,6 @@ body{
 			margin: 0 auto;
 		}
 	
-
-
 	.alert-for-all-web .alert-main-area {
 		text-align: center;
 	}
@@ -5002,6 +5000,10 @@ body{
 	font-size: 14px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fde532026851d6a24eb3831f9fd009e361863275
 /**************************************/
 /************ check out  Area*************/
 /************************************/
@@ -5115,7 +5117,7 @@ body{
 	color: #fff;
 	font-size: 15px;
 	font-weight: 600;
-	display: flex;
+	/* display: flex; */
 	align-items: center;
 	transition: 0.6s;
 	cursor: pointer;

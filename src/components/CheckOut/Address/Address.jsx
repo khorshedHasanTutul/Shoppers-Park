@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { callBack } from '../../../Service/AppService';
 
-const Address = () => {
+const Address = ({proceedOrder}) => {
     return (
         <div class="tab-content checkout-main-tab-content">
                                 {/* <!-- product desc review information --> */}
@@ -92,8 +94,8 @@ const Address = () => {
                                         </div>
                                     </div>
                                     <div class="cart_navigation">
-                                        <a class="prev-btn" href="/"><i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i> Continue shopping</a>
-                                        <a class="next-btn"> Proceed to order <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
+                                        <Link class="prev-btn" to="/"><i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i> Continue shopping</Link>
+                                        <a class="next-btn" onClick={callBack(proceedOrder)}> Proceed to order <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
                                     </div>    
                                 </div>
                                 {/* <!-- product desc review information  --> */}

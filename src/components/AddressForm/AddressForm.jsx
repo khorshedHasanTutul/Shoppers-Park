@@ -2,10 +2,12 @@
 import InputControl from "../utilities/InputControl/InputControl";
 import "./AddressForm.css";
 import AddressList from "./AddressList";
+import { Link } from 'react-router-dom';
 
 const AddressForm = () => {
   
   return (
+    <>
     <div className="admin-all-detalics">
       <div className="add-left-content mb-16">
       <h3 className="t-uppercase t-14 mb-8">Your contact information</h3>
@@ -115,9 +117,15 @@ const AddressForm = () => {
       <div className="add-right-content">
       <AddressList></AddressList>
       </div>
+      
     </div>
-   
+     <div class="cart_navigation">
+     <Link class="prev-btn" to="/"><i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i> Continue shopping</Link>
+     <a class="next-btn"> Proceed to order <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
+ </div>  
+     </>
   );
+
 };
 
 export default AddressForm;

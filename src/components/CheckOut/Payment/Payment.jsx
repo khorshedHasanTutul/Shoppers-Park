@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { callBack } from '../../../Service/AppService';
+import { CartService } from '../../../Service/CartContent';
+import PopUpModal from './PopUpModal';
 
-const Payment = () => {
+const Payment = ({ShippingCost}) => {
+    const data=CartService.Get();
+    const [OrderStatus, setproceedOrder] = useState(false)
+    const proceedOrder=()=>{
+        setproceedOrder(true)
+    }
+    
     return (
         <div class="tab-content checkout-main-tab-content">
                                 <div class="discount-cupon-payment">
@@ -18,11 +27,11 @@ const Payment = () => {
                                             <tbody>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3">Amount (tax incl.)</td>
-                                                    <td class="summary-details-p" colspan="2">3350</td>
+                                                    <td class="summary-details-p" colspan="2">{data.TotalAmount}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3">Delivery Charge</td>
-                                                    <td class="summary-details-p" colspan="2">80</td>
+                                                    <td class="summary-details-p" colspan="2">{ShippingCost}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3">Discount</td>
@@ -30,7 +39,7 @@ const Payment = () => {
                                                 </tr>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3"><strong>Total Amount </strong></td>
-                                                    <td class="summary-details-p" colspan="2"><strong>3430</strong></td>
+                                                    <td class="summary-details-p" colspan="2"><strong>{data.TotalAmount+ShippingCost}</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -59,7 +68,10 @@ const Payment = () => {
                                         </div>
                                         <div class="cart_navigation">
                                           <Link class="prev-btn" to="/"><i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i> Continue shopping</Link>
-                                          <a class="next-btn"> Order Now <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
+                                          <a class="next-btn" onClick={callBack(proceedOrder)}> Order Now <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
+                                          {
+                                              (OrderStatus)&& <PopUpModal />
+                                          }
                                         </div>
                                     </div> 
                                 </div>
