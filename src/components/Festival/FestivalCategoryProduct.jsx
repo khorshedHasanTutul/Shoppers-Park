@@ -33,10 +33,7 @@ const FestivalCategoryProduct = () => {
 
 
     }
-    const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
-
-    
-    
+    const concatData=appData.categoryProducts;
     return (
         <>
         {
@@ -56,8 +53,18 @@ const FestivalCategoryProduct = () => {
 
                {
                             (item=concatData.filter(item2=>(item2.FestivalCategory_id==item.category_id))).length>0 &&
-                            <SliderComponent options={options} data={item} Template={FestivalProSingleItem} />
-                        }
+                            <>
+                            {
+                                (item.length>=5)&& <SliderComponent options={options} data={item} Template={FestivalProSingleItem} />
+                            }
+                            {
+                                 (item.length<5)&&
+                                 (item.map(item=>(
+                                     <FestivalProSingleItem item={item}/>
+                                 )))
+                            }
+                            </>
+                }
 
                 {/* <!-- single item --> */}
                 {/* <!-- next prev --> */}

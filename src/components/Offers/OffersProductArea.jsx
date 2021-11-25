@@ -5,7 +5,8 @@ import SliderComponent from '../utilities/Slider/SliderComponent';
 import OffersProductSingleItem from './OffersProductSingleItem';
 const OffersProductArea = () => {
     const headingArea=Offers.OffersProductArea.HeaderAreaText;
-    const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
+    const data=appData.categoryProducts.filter(item=>item.offer_status==true);
+    data.sort((a,b)=>b.Ds-a.Ds);
     
     const options={
         rewind: true,
@@ -44,19 +45,24 @@ const OffersProductArea = () => {
                 {/* <!-- common heading --> */}
                 {/* <!-- single product catagory main area --> */}
                 {
-                    appData.ShopCategory.map(item=>(
+
                         <div class="product-catagory-main-flex owl-slider-perk">
                     <div class="product-catagory-inner-flex owl-slider-perk-items">
                         {/* <!-- single item --> */}
-                        {
-                            (item=concatData.filter(item2=>(item2.category_id==item.categoryId && item2.offer_status==true))).length>0 &&
-                            <SliderComponent options={options} data={item} Template={OffersProductSingleItem} />
-                        }
+                            {
+                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={OffersProductSingleItem} />
+                            }
+                            {
+                                 (data.length<5)&&
+                                 (data.map(item=>(
+                                     <OffersProductSingleItem item={item}/>
+                                 )))
+                            }
+                        
                         
                         {/* <!-- next prev --> */}
                     </div>
                 </div>
-                    ))
                 }
                 
                 {/* <!-- single product catagory main area --> */}

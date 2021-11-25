@@ -1,7 +1,40 @@
 import React from 'react';
 import { Offers } from '../../Service/AppService';
+import SliderComponent from '../utilities/Slider/SliderComponent';
+import OffersHeaderSliderItem from './OffersHeaderSliderItem';
+
 
 const OffersHeader = () => {
+
+    const options={
+        rewind: true,
+        type: 'loop',
+        autoplay: true,
+        rewindSpeed: 1500,
+        speed: 1000,
+        perPage: 1,
+        width:'100%',
+        breakpoints: {
+            375: {
+                perPage: 1,
+            },
+            575: {
+                perPage: 2,
+            },
+            991: {
+                perPage: 3,
+            },
+            992: {
+                perPage: 5,
+            },
+            1200: {
+                perPage: 5,
+            }
+      }
+       
+    }
+
+    const data=Offers.OffersHeader.SliderInfo;
 
     return (
         <section class="top-offer-slider-area section-padding">
@@ -12,11 +45,7 @@ const OffersHeader = () => {
             <div class="top-offer-slider owl-slider-perk">
                 <div class="top-offer-slider-inner-flex owl-slider-perk-items">
                     {/* <!-- single item --> */}
-                    <div class="top-offer-sliter-item">
-                        <a href="#">
-                            <img src={Offers.OffersHeader.image} alt="img" />
-                        </a>
-                    </div>
+                    <SliderComponent options={options} data={data} Template={OffersHeaderSliderItem} />
                 </div>
             </div>
         </div>

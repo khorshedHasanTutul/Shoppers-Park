@@ -5,7 +5,7 @@ import { BlogService } from '../../../Service/AppService';
 
 const BlogSingleItem = ({callBack,categoryId}) => {
     const [blog, setState] = useState({Item:[],CategoryId:categoryId});
-    var blogList=blog.Item;
+    var blogList=blog.Item; 
 
     BlogService.Get(blog.CategoryId,function(list){
         // console.log(['categoryId',blog.CategoryId,list,blogList]);

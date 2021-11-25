@@ -32,7 +32,7 @@ const NewInProduct = () => {
             }
       }
     }
-    const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
+    const concatData=appData.categoryProducts;
     const date=new Date().getDate();
     const data=concatData.filter(item=>(item.created_at-date<=7)? item : '')
     return (
@@ -44,7 +44,16 @@ const NewInProduct = () => {
                 <div class="product-catagory-main-flex owl-slider-perk">
                     <div class="product-catagory-inner-flex owl-slider-perk-items">
                         {/* <!-- single item --> */}
-                        <SliderComponent data={data} options={options} Template={ProductSingleItem} />
+                       
+                        {
+                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={ProductSingleItem} />
+                            }
+                            {
+                                 (data.length<5)&&
+                                 (data.map(item=>(
+                                     <ProductSingleItem item={item}/>
+                                 )))
+                            }
                         {/* <!-- next prev --> */}
                     </div>
                 </div>

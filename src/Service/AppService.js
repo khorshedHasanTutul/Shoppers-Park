@@ -79,7 +79,9 @@ const BlogCommentData=[
 ]
 
 
-const BlogData=[
+const BlogData={
+    HeaderAreaText:"SHOP YOUR WAY WITH SuperPark",
+    BlogArea:[
     {
         id:1,
         category_id:1,
@@ -158,7 +160,10 @@ const BlogData=[
         month:month[new Date().getMonth()] ,
         created_at:(new Date().getDate()+7)
     }
-];
+]
+
+}
+
 
 const Priivacy={
     header:"What personal data we collect and why we collect it",
@@ -330,9 +335,9 @@ const BlogService={
     Get:function(categoryId,func){
 
         if(categoryId){
-            func(BlogData.filter((item)=>{return item.category_id===categoryId;}));
+            func(BlogData.BlogArea.filter((item)=>{return item.category_id===categoryId;}));
         }else{
-            func(BlogData);
+            func(BlogData.BlogArea);
         }
     }
 };
@@ -340,34 +345,50 @@ const BlogService={
 const Offers={
    OffersHeader:{
         text:"Top Offers",
-        image:"/contents/assets/images/offer/e1121_TopOffersGS_LighterLifeFast.jpg"
+        SliderInfo:[
+            {
+                image:"/contents/assets/images/offer/e1121_TopOffersGS_LighterLifeFast.jpg",
+                url:"/product/668f1e62-a58e-43dd-9ec0-0013dbb70d42c"
+            },
+            {
+                image:"/contents/assets/images/offer/e1121_TopOffersGS_LighterLifeFast.jpg",
+                url:"/category/1"
+            },
+        ]
     },
     OffersBanner:{
         header:"UNMISSABLE BEAUTY OFFERS",
+        
         offersImage:[
         {
-            
+            url:"/product/668f1e62-a58e-43dd-9ec0-0013dbb70d42c",
             image:"contents/assets/images/offer/o2.png"
         },
         {
+            url:"/product/f317f99e-603d-44f5-995e-002c82ca9f45c",
             image:"contents/assets/images/offer/o2.png"
         },
         {
+            url:"/product/f317f99e-603d-44f5-995e-002c82ca9f45c",
             image:"contents/assets/images/offer/o2.png"
         },
         {
+            url:"/product/668f1e62-a58e-43dd-9ec0-0013dbb70d42c",
             image:"contents/assets/images/offer/o2.png"
         },
         {
+            url:"/product/668f1e62-a58e-43dd-9ec0-0013dbb70d42c",
             image:"contents/assets/images/offer/o2.png"
         },
         {
+            url:"/product/f317f99e-603d-44f5-995e-002c82ca9f45c",
             image:"contents/assets/images/offer/o2.png"
         }
     ]
     },
     OffersProductArea:{
-        HeaderAreaText:"top discounted offers"
+        HeaderAreaText:"top discounted offers",
+        buttonText:"Shop All TopOffers",
     }
 
 }
