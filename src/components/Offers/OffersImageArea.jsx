@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Offers } from '../../Service/AppService';
 
 
@@ -18,9 +19,9 @@ const OffersImageArea = () => {
                 {
                     data.offersImage.map(item=>(
                         <div class="single-item-inner-left">
-                        <a href="#">
+                        <Link to={item.url}>
                             <img src={item.image} alt="img" />
-                        </a>
+                        </Link>
                     </div>
                     ))
                 }

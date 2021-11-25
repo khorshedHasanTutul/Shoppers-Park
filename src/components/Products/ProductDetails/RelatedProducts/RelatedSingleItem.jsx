@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import appData from '../../../DataSource/appData';
 
 const RelatedSingleItem = ({product_id}) => {
-    const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
+    const concatData=appData.categoryProducts;
     const productData=concatData.find(item=>item.Id===product_id);
     console.log(['productData',productData])
     const data=concatData.filter(item=>item.category_id===productData.category_id && item.brand_id===productData.brand_id);

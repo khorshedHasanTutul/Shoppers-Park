@@ -40,7 +40,7 @@ function App() {
           <Route path="/brands" exact>
                <Brands />
           </Route>
-          <Route path="/offers">
+          <Route path="/Offers">
              <TopOffers />
           </Route>
           <Route path="/festival">

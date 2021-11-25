@@ -32,7 +32,7 @@ const SubCategoryItem = ({categoryId,subCategoryId,subCategoryItemID}) => {
       }
         
     }
-    const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
+    const concatData=appData.categoryProducts;
     const data=concatData.filter(item=>item.category_id==categoryId && item.subCategory_id==subCategoryId && item.subCategory_item_id==subCategoryItemID);
     return (
         <div class="product-catagory-main-flex owl-slider-perk">
@@ -40,9 +40,15 @@ const SubCategoryItem = ({categoryId,subCategoryId,subCategoryItemID}) => {
                 
                     <div class="product-catagory-inner-flex owl-slider-perk-items">
                         {/* <!-- single item --> */}
-                        {
-                            (data.length>0)&&  <SliderComponent options={options} data={data} Template={SubSingleItem} />
-                        }
+                       {
+                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={SubSingleItem} />
+                            }
+                            {
+                                 (data.length<5)&&
+                                 (data.map(item=>(
+                                     <SubSingleItem item={item}/>
+                                 )))
+                            }
                        
                     </div>
             

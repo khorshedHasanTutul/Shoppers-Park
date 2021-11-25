@@ -1,12 +1,12 @@
 import React from 'react'
-import Offers from '../components/Offers/Offers';
+import OffersParent from '../components/Offers/OffersParent';
 import Parks from '../components/Parks/Parks';
 
 const TopOffers = () => {
     return (
         <>
         <Parks />
-        <Offers />
+        <OffersParent />
         </>
     )
 }

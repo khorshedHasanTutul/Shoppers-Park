@@ -5,7 +5,7 @@ import { cartAddedButton, WishAddedButton } from '../../../Service/CartContent';
 import appData from '../../DataSource/appData';
 
 const BrandSingleProItem = ({data}) => {
-    const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
+    const concatData=appData.categoryProducts;
     const brandData=concatData.filter(item=>item.brand_id===data.brand_id);
 
     return (

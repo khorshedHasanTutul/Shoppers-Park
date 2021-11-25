@@ -44,7 +44,16 @@ const NewInShopCategory = () => {
            <div class="tranding-holloween-slider-main owl-slider-perk">
                <div class="tranding-holloween-slider-flex owl-slider-perk-items">
                    {/* <!-- single item --> */}
-                   <SliderComponent data={data} options={options} Template={CategorySingleItem} />
+                  
+                            {
+                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={CategorySingleItem} />
+                            }
+                            {
+                                 (data.length<5)&&
+                                 (data.map(item=>(
+                                     <CategorySingleItem item={item}/>
+                                 )))
+                            }
                </div>
            </div>
         </div>

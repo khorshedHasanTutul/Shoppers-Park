@@ -963,6 +963,10 @@ body{
   .shop-all-offer-btn:hover small{
 	  background: #333;
   }
+
+  .tranding-right-now-home.catagory-product-area .shop-all-offer-btn {
+	margin: 0 auto;
+}
   
   
   /**************************************/
@@ -4011,8 +4015,12 @@ body{
 	width: 100px;
 }
 
+.catagory-main-product-area {
+	padding-top: 40px;
+}
+
 .single-banner-slider{
-	height: 450px;
+	height: 485px;
 }
 
 .catagory-product-area.view-all-sub-catagory .catagory-main-product-area {

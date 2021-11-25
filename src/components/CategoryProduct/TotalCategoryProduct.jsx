@@ -31,7 +31,7 @@ const TotalCategoryProduct = ({category_id,subCategory_id}) => {
             }
       }
     }
-    const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
+    const concatData=appData.categoryProducts;
     const data=concatData.filter(item=>(item.category_id==category_id && item.subCategory_id==subCategory_id))
     return (
         <>
@@ -40,8 +40,15 @@ const TotalCategoryProduct = ({category_id,subCategory_id}) => {
                         <div class="product-catagory-inner-flex owl-slider-perk-items">
                             {/* <!-- single item --> */}
                             {
-                                (data.length>0)&& <SliderComponent options={options} data={data} Template={ProductSingleItem} />
+                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={ProductSingleItem} />
                             }
+                            {
+                                 (data.length<5)&&
+                                 (data.map(item=>(
+                                     <ProductSingleItem item={item}/>
+                                 )))
+                            }
+        
                             
                         </div> 
                 </div>

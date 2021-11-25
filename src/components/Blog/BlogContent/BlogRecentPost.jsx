@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { BlogData} from '../../../Service/AppService'
 const BlogRecentPost = () => {
     const date=new Date().getDate();
-    const data=BlogData.filter(item=>(item.created_at-date<=7)? item : '')
+    const data=BlogData.BlogArea.filter(item=>(item.created_at-date<=7)? item : '')
     return (
        
         <div class="blog-recent-post">

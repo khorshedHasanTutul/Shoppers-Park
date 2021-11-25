@@ -597,7 +597,7 @@ var appData = {
             subCategory_id:1,
             subCategory_item_id:2,
             offer_status:true,
-            FestivalCategory_id:1,
+            FestivalCategory_id:null,
             created_at:(new Date().getDate()+11)
           },
           {
@@ -618,7 +618,7 @@ var appData = {
             subCategory_id:1,
             subCategory_item_id:3,
             offer_status:false,
-            FestivalCategory_id:2,
+            FestivalCategory_id:null,
             created_at:(new Date().getDate()-7)
           },
           {
@@ -660,7 +660,7 @@ var appData = {
             subCategory_id:1,
             subCategory_item_id:5,
             offer_status:false,
-            FestivalCategory_id:1,
+            FestivalCategory_id:null,
             created_at:(new Date().getDate()-7)
           },
           {
@@ -681,7 +681,7 @@ var appData = {
             subCategory_id:1,
             subCategory_item_id:4,
             offer_status:true,
-            FestivalCategory_id:2,
+            FestivalCategory_id:null,
             created_at:(new Date().getDate()-7)
           },
           {
@@ -702,7 +702,7 @@ var appData = {
             subCategory_id:3,
             subCategory_item_id:1,
             offer_status:false,
-            FestivalCategory_id:2,
+            FestivalCategory_id:null,
             created_at:(new Date().getDate()-7)
           },
           {
@@ -765,11 +765,9 @@ var appData = {
             subCategory_id:4,
             subCategory_item_id:5,
             offer_status:true,
-            FestivalCategory_id:2,
+            FestivalCategory_id:null,
             created_at:(new Date().getDate())
-          }
-        ],
-        TrandingProducts: [
+          },
           {
             Id: "8edcd73d-f733-4552-a870-0002a314f1ed",
             Nm: "ELTROXIN",
@@ -1036,9 +1034,11 @@ var appData = {
         ShopCategory:[
           {
             categoryId:1,
+            categoryVisible:true,
             created_at:(new Date().getDate()+10),
             categoryName:"Make Up",
             image:"/contents/assets/images/halloween/n1.png",
+            buttonText:"Shop All",
             subCategory:[
               { 
                 subCategory_id:1,
@@ -1232,9 +1232,11 @@ var appData = {
            },
            {
             categoryId:2,
+            categoryVisible:true,
             created_at:(new Date().getDate()+7),
             image:"/contents/assets/images/halloween/n1.png",
             categoryName:"Skin",
+            buttonText:"Shop All",
             subCategory:[
               { 
                 subCategory_id:1, 
@@ -1426,112 +1428,6 @@ var appData = {
               }
             ]
            }
-          // {
-          //   categoryName:"Skin",
-          //   subCategory:[
-          //     {
-          //       subCategoryName:"Foundation",
-          //       subCategoryItem:[
-          //         {
-          //           itemName:"Foundation"
-          //         },
-          //         {
-          //           itemName:"Concealer"
-          //         },
-          //         {
-          //           itemName:"Colour Corrector"
-          //         },
-          //         {
-          //           itemName:"BB Cream"
-          //         },
-          //         {
-          //           itemName:"CC Cream"
-          //         },
-          //         {
-          //           itemName:"Primers"
-          //         },
-          //         {
-          //           itemName:"Powders"
-          //         },
-          //         {
-          //           itemName:"Setting Sprays"
-          //         },
-          //         {
-          //           itemName:"Bronzer"
-          //         },
-          //         {
-          //           itemName:"Contour"
-          //         },
-          //         {
-          //           itemName:"Highlighter"
-          //         },
-          //         {
-          //           itemName:"Blusher"
-          //         },
-          //         {
-          //           itemName:"Face Makeup Brushes"
-          //         }
-          //       ]
-          //     }
-          //   ]
-          // },
-          // {
-          //   categoryName:"Hair",
-          //   subCategory:[
-          //     {
-          //       subCategoryName:"Concealer",
-          //       subCategoryItem:[
-          //         {
-          //           itemName:"Foundation"
-          //         },
-          //         {
-          //           itemName:"Concealer"
-          //         },
-          //         {
-          //           itemName:"Colour Corrector"
-          //         },
-          //         {
-          //           itemName:"BB Cream"
-          //         },
-          //         {
-          //           itemName:"CC Cream"
-          //         },
-          //         {
-          //           itemName:"Primers"
-          //         },
-          //         {
-          //           itemName:"Powders"
-          //         },
-          //         {
-          //           itemName:"Setting Sprays"
-          //         },
-          //         {
-          //           itemName:"Bronzer"
-          //         },
-          //         {
-          //           itemName:"Contour"
-          //         },
-          //         {
-          //           itemName:"Highlighter"
-          //         },
-          //         {
-          //           itemName:"Blusher"
-          //         },
-          //         {
-          //           itemName:"Face Makeup Brushes"
-          //         }
-          //       ]
-          //     }
-          //   ]
-          // },
-          // {
-          //   categoryName:"Perfumes",
-          //   subCategory:[
-          //     {
-          //       subCategoryName:"Colour Corrector"
-          //     }
-          //   ]
-          // }
         ]
     
   };

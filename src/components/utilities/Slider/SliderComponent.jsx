@@ -10,6 +10,7 @@ const SliderComponent = ({data,options,Template}) => {
                     <SplideSlide key={item.id || index}>
                         <Template item={item} />
                     </SplideSlide>
+                   
                 ))
             }
         </Splide>

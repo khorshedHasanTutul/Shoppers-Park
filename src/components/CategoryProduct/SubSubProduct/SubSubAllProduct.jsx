@@ -6,7 +6,7 @@ import appData from '../../DataSource/appData';
 
 const SubSubAllProduct = ({categoryId,subCategoryId,subItemId}) => {
     
-    const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
+    const concatData=appData.categoryProducts;
     const data=concatData.filter(item=>item.category_id==categoryId.categoryId && item.subCategory_id==subCategoryId.subCategory_id && item.subCategory_item_id==subItemId.subCategory_item);
     
     return (

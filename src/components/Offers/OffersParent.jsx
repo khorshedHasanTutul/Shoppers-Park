@@ -3,7 +3,7 @@ import OffersHeader from './OffersHeader';
 import OffersImageArea from './OffersImageArea';
 import OffersProductArea from './OffersProductArea';
 
-const Offers = () => {
+const OffersParent = () => {
 
     return (
         <>
@@ -14,4 +14,4 @@ const Offers = () => {
     );
 };
 
-export default Offers;
+export default OffersParent;
