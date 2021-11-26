@@ -4,7 +4,7 @@ import "./Tabs.css";
 const Tabs = ({ labels, activeTabIndex, stackpoint, children, onTabSwitch }) => {
   // props validation
   activeTabIndex =
-    activeTabIndex > labels.length - 1 ? labels.length - 1 : activeTabIndex;
+  activeTabIndex > labels.length - 1 ? labels.length - 1 : activeTabIndex;
   activeTabIndex = activeTabIndex < 0 ? 0 : activeTabIndex;
   
   if(labels.length !== children.length){
@@ -39,8 +39,6 @@ const Tabs = ({ labels, activeTabIndex, stackpoint, children, onTabSwitch }) => 
   const prev = () => {
     setActiveTab(prevState => --prevState);
   }
-
-
 
   return (
     <div class="tabs">

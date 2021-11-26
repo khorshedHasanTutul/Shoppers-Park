@@ -11,8 +11,8 @@ const SubCategoryProductHeader = ({categoryId,subCategoryId}) => {
                 <div class="container">
                     <nav aria-label="breadcrumb" class="breadcrumb-main">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">{categoryData.categoryName}</a></li>
+                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
+                            <li class="breadcrumb-item"><Link to={'/category/'+categoryId}>{categoryData.categoryName}</Link></li>
                             <li class="breadcrumb-item active" aria-current="page">{subCategoryData.subCategoryName}</li>
                         </ul>
                     </nav>

@@ -6,7 +6,6 @@ const BrandSingleNumberItem = () => {
     const data=BrandData.filter(func);
     function func(item){
         item=item.brand_name.toUpperCase().trim().charAt(0);
-        console.log(item)
         if(item>='0' && item<='9')
         return item
     }

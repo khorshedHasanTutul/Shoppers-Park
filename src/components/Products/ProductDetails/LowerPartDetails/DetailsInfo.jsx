@@ -10,8 +10,7 @@ const DetailsInfo = ({product_id}) => {
             <h4>Product Specification</h4>
             {
                 (data)&& <p>{data.info}</p>
-            }
-           
+            } 
         </div>
         {/* <!-- product desc review information --> */}
     </div>

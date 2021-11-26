@@ -18,17 +18,14 @@ const CategoryItem = () => {
             <Link title="Make Up" to={'/category/'+categoryItem.categoryId}>{categoryItem.categoryName}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true"></i></Link>
             <ul class="loaded mega-menu mega-menu2">
                 <li class="sd-nav__section-wrapper">
-                    <a href="#">View all {categoryItem.categoryName}</a>
+                    <Link to={'/category/'+categoryItem.categoryId}>View all{categoryItem.categoryName}</Link>
                     <SubCategory  categoryItem={categoryItem}/>
                 </li>
             </ul>
         </li>
             ))
         }
-
         
-
-
         </>
     )
 }

@@ -8,7 +8,7 @@ const CheckOutTabs = ({tabInformation}) => {
             {
     
                 data.map((item,index)=>(
-                    <li class="tab"><label for="tab7" onClick={callBack(tabInformation,index)} >{item.tabText}</label></li> 
+                    <li class="tab"><label for={'tab'+(index+7)} onClick={callBack(tabInformation,index)} >{item.tabText}</label></li> 
                 ))
             }
         </ul>

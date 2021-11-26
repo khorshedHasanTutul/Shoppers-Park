@@ -9,23 +9,28 @@ const BrandBody = () => {
     function setfoundData(item){
         var value=item;
         item=item.target.text.toLowerCase();
-        const foundData=BrandData.filter(item2=>item2.brand_name.trim().toLowerCase().charAt(0)==item);
+        var foundData;
+        if(item=='0-9'){
+            foundData=BrandData.filter(item2=>item2.brand_name.trim().charAt(0)<=9)
+        }
+        else{
+            foundData=BrandData.filter(item2=>item2.brand_name.trim().toLowerCase().charAt(0)==item );
+        }
         if(foundData.length<=0){
             setfoundBrand(true)
         }
         else{
-          var element=document.getElementById('brandSort-'+value.target.text)
-        //   var data= element.nextElementSibling;
-        //   data.className+=' '
-        //   data.className+='brand-click-padding';
-          element.scrollIntoView(); 
+        var element=document.getElementById('brandSort-'+value.target.text)
+        const yOffset = -100; 
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({top: y, behavior: 'smooth'});
         }
     }
     function closeModal(){
         setfoundBrand(false)
     }
     function classAdding(evt,item){
-        setfoundData(item)
+         setfoundData(item)
     }
 
     return (

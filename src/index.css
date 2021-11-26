@@ -1990,7 +1990,7 @@ body{
 	}
 	
 	/* As we cannot replace the numbers with variables or calls to element properties, the number of this selector parts is our tab count limit */
-	.tabbed [type="radio"]:nth-of-type(1):checked ~ .tabs .tab:nth-of-type(1) label, .tabbed [type="radio"]:nth-of-type(2):checked ~ .tabs .tab:nth-of-type(2) label, .tabbed [type="radio"]:nth-of-type(3):checked ~ .tabs .tab:nth-of-type(3) label, .tabbed [type="radio"]:nth-of-type(4):checked ~ .tabs .tab:nth-of-type(4) label, .tabbed [type="radio"]:nth-of-type(5):checked ~ .tabs .tab:nth-of-type(5) label {
+	.tabbed [type="radio"]:nth-of-type(0):checked ~ .tabs .tab:nth-of-type(0) label,.tabbed [type="radio"]:nth-of-type(1):checked ~ .tabs .tab:nth-of-type(1) label, .tabbed [type="radio"]:nth-of-type(2):checked ~ .tabs .tab:nth-of-type(2) label, .tabbed [type="radio"]:nth-of-type(3):checked ~ .tabs .tab:nth-of-type(3) label, .tabbed [type="radio"]:nth-of-type(4):checked ~ .tabs .tab:nth-of-type(4) label, .tabbed [type="radio"]:nth-of-type(5):checked ~ .tabs .tab:nth-of-type(5) label,.tabbed [type="radio"]:nth-of-type(6):checked ~ .tabs .tab:nth-of-type(6) label {
 	  border-bottom-color: #DF2C8A;
 	  border-top-color: #DF2C8A;
 	  background: #DF2C8A;
@@ -2000,7 +2000,9 @@ body{
 	.tabbed [type="radio"]:nth-of-type(1):checked ~ .tab-content:nth-of-type(1),
 	.tabbed [type="radio"]:nth-of-type(2):checked ~ .tab-content:nth-of-type(2),
 	.tabbed [type="radio"]:nth-of-type(3):checked ~ .tab-content:nth-of-type(3),
-	.tabbed [type="radio"]:nth-of-type(4):checked ~ .tab-content:nth-of-type(4) {
+	.tabbed [type="radio"]:nth-of-type(4):checked ~ .tab-content:nth-of-type(4),
+	.tabbed [type="radio"]:nth-of-type(5):checked ~ .tab-content:nth-of-type(5),
+	.tabbed [type="radio"]:nth-of-type(6):checked ~ .tab-content:nth-of-type(6) {
 	  display: block;
 	}
   

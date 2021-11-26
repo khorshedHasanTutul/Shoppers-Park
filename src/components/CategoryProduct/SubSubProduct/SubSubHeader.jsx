@@ -10,8 +10,8 @@ const SubSubHeader = ({categoryId,subCategoryId,subItemId}) => {
                     <nav aria-label="breadcrumb" class="breadcrumb-main">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                            <li class="breadcrumb-item"><a href="#">{categoryId.categoryName}</a></li>
-                            <li class="breadcrumb-item"><a href="#">{subCategoryId.subCategoryName}</a></li>
+                            <li class="breadcrumb-item"><Link to={'/category/'+categoryId.categoryId}>{categoryId.categoryName}</Link></li>
+                            <li class="breadcrumb-item"><Link to={'/subcategory/'+categoryId.categoryId+'/'+subCategoryId.subCategory_id}>{subCategoryId.subCategoryName}</Link></li>
                             <li class="breadcrumb-item active" aria-current="page">{subItemId.itemName}</li>
                         </ul>
                     </nav>
