@@ -7,9 +7,7 @@ import BrandSingleProductpage from './BrandSingleProductpage';
 const BrandCatSinglePage = () => {
     const {id}=useParams();
     const data=BrandData.find(item=>item.brand_id===parseInt(id) );
-    console.log(['dataman',data])
     return (
-        
         <>
         <BrandCatItemHeader data={data}/>
         <BrandSingleProductpage data={data}/>

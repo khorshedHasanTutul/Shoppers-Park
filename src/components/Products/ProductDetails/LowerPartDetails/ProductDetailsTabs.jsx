@@ -1,17 +1,17 @@
 import React from 'react';
 import { callBack, productdetailsAllData } from '../../../../Service/AppService';
 
-const ProductDetailsTabs = ({itemOPen}) => {
+const ProductDetailsTabs = ({itemOPen,tabsData}) => {
     return (
         <ul class="tabs">
             {
                 productdetailsAllData.Tabinfo.map((item,index)=>(
                     <>
-                    <li class="tab" onClick={callBack(itemOPen,index)}><label>{item.text}</label></li>
+                    <li class="tab" onClick={callBack(itemOPen,index)}><label for={'tab'+(index+4)}>{item.text}</label></li>
                     </>
                 ))
             }
-    </ul>
+        </ul>
     );
 };
 

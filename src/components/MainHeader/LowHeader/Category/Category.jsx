@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import HeaderLinksitem from '../LowHeaderLinks/HeaderLinksitem';
 import CategoryItem from './CategoryItem';
 
@@ -29,13 +30,13 @@ const Category = () => {
                             <div class="mobile-menu-for-home">
                                 <ul>
                                     <li>
-                                        <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+                                        <Link to="/"><i class="fa fa-home" aria-hidden="true"></i>Home</Link>
                                     </li>
                                     <li>
                                         <a href="#demo-modal"><i class="fa fa-user" aria-hidden="true"></i>Login to my account</a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</a>
+                                        <Link to="/wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</Link>
                                     </li>
                                 </ul>
                             </div>

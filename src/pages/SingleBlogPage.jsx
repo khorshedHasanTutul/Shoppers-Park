@@ -7,7 +7,7 @@ import { BlogData } from '../Service/AppService';
 const SingleBlogPage = () => {
     const {id}=useParams();
     let Blogs=
-    BlogData.filter((blogItem)=>
+    BlogData.BlogArea.filter((blogItem)=>
          blogItem.id===+id
     )
 

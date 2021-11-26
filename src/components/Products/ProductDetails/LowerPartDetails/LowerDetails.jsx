@@ -15,11 +15,12 @@ const LowerDetails = () => {
         <div class="product-desc-review-information-main">
                                     <div class="page-content">
                                         <div class="tabbed">
-                                            <input type="radio" id="tab4" name="css-tabs" checked="" />
-                                            <input type="radio" id="tab5" name="css-tabs" />
-                                            <input type="radio" id="tab6" name="css-tabs" />
-            
-                                            <ProductDetailsTabs itemOPen={itemOPen} />
+                                       
+                                        <input type="radio" id="tab4" name="css-tabs" defaultChecked/>
+                                        <input type="radio" id="tab5" name="css-tabs" />
+                                        <input type="radio" id="tab6" name="css-tabs" />
+
+                                            <ProductDetailsTabs itemOPen={itemOPen} tabsData={tabsData} />
                                         {
                                             (tabsData==0)&&  <DetailsInfo product_id={id}/>
                                         }

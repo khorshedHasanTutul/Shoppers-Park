@@ -6,7 +6,7 @@ import SearchTemplate from './SearchTemplate';
 const SearchProduct = ({SearchValue,closeSearch}) => {
 
     const lowerSearchvalue=SearchValue.toLowerCase();
-    const allProduct=appData.categoryProducts.concat(appData.TrandingProducts);
+    const allProduct=appData.categoryProducts;
     const filterData=allProduct.filter(item=>item.Nm.toLowerCase().includes(lowerSearchvalue));
     const data=(filterData.length>5)?filterData.slice(0,5):filterData;
 
