@@ -536,5 +536,43 @@ const ReturnPolicy={
         }
     ]
 }
-
-export {BlogService,ReturnPolicy,NewInPage,callBack,BrandService,ReleatedPOst,BlogData,BlogCommentData,HalloweenSlider,Priivacy,BrandData,Offers,ocassionCategory,productdetailsAllData,Checkout};
+const Notification={
+    notificationList:[
+        {
+            id:1,
+            name:"Tutul",
+            content:"Hello Aladin How are you Boy.",
+            image:"/contents/assets/images/blog/member.jpg",
+            time:"25 minuties ago"
+        },
+        {
+            id:2,
+            name:"Aladin",
+            content:"Hello Aladin How are you Boy.",
+            image:"/contents/assets/images/blog/member.jpg",
+            time:"25 minuties ago"
+        },
+        {
+            id:3,
+            name:"Van Helcing",
+            content:"Hello Aladin How are you Boy.",
+            image:"/contents/assets/images/blog/member.jpg",
+            time:"25 minuties ago"
+        },
+        {
+            id:4,
+            name:"Dracula",
+            content:"Hello Aladin How are you Boy.",
+            image:"/contents/assets/images/blog/member.jpg",
+            time:"25 minuties ago"
+        },
+        {
+            id:5,
+            name:"Genie",
+            content:"Hello Aladin How are you Boy.",
+            image:"/contents/assets/images/blog/member.jpg",
+            time:"25 minuties ago"
+        },
+    ]
+}
+export {BlogService,Notification,ReturnPolicy,NewInPage,callBack,BrandService,ReleatedPOst,BlogData,BlogCommentData,HalloweenSlider,Priivacy,BrandData,Offers,ocassionCategory,productdetailsAllData,Checkout};

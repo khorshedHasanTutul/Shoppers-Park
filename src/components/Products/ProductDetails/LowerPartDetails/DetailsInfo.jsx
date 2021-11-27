@@ -2,7 +2,7 @@ import React from 'react';
 import { productdetailsAllData } from '../../../../Service/AppService';
 
 const DetailsInfo = ({product_id}) => {
-    const data=productdetailsAllData.productDetails.find(item=>item.id==product_id);
+    const data=productdetailsAllData.productDetails.find(item=>item.id===product_id);
     return (
         <div class="tab-content detalis-page-tab-content">
         {/* <!-- product desc review information --> */}

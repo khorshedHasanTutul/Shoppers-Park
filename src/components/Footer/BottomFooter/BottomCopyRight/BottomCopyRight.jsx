@@ -6,7 +6,7 @@ const BottomCopyRight = () => {
         <section class="copy-right-area">
         <div class="container">
             <div class="footer-copy-right">
-                <p>Pharmacy Software & Website Developed By - <a target="_blank" href="https://iqrasys.com/">{appData.BottomCopyRight.text}</a></p>
+                <p>Pharmacy Software & Website Developed By - <a target="_blank" rel="noreferrer" href="https://iqrasys.com/">{appData.BottomCopyRight.text}</a></p>
                 <a href="tel:01778-772327">(Mob: {appData.BottomCopyRight.mobile})</a>
             </div>
         </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import BlogRelatedPost from './BlogRelatedPost';
 
 const BlogItem = ({blogs}) => {
-    console.log(blogs)
     return (
         <>
         {
@@ -20,7 +19,7 @@ const BlogItem = ({blogs}) => {
             
             <div class="shop-drag-comntent">
                 <div class="meta-author">
-                    <span>Posted by <small><a href="#">{item.postedBy}</a> </small></span>
+                    <span>Posted by <small><a href>{item.postedBy}</a> </small></span>
                 </div>
                 <h3>{item.postName}</h3>
                 <p>

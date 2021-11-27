@@ -1,7 +1,6 @@
 import React from 'react';
 import appData from '../../../DataSource/appData';
 import SearchPortal from './SearchPortal';
-import SearchTemplate from './SearchTemplate';
 
 const SearchProduct = ({SearchValue,closeSearch}) => {
 

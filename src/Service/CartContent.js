@@ -15,7 +15,7 @@ const WishService={};
     };
 
     function ifExists(item){
-        const foundData=CartModel.Items.find(item2=>item2.Id==item.Id);
+        const foundData=CartModel.Items.find(item2=>item2.Id===item.Id);
         if(foundData) return true;
         return false;
     }
@@ -33,7 +33,7 @@ const WishService={};
     };
     this.Remove=function(item){
         if(ifExists(item)){
-            const index=CartModel.Items.findIndex(item2=>item2.Id==item.Id);
+            const index=CartModel.Items.findIndex(item2=>item2.Id===item.Id);
             CartModel.Items.splice(index,1);
             this.Refresh(this.Get());
         }
@@ -65,7 +65,7 @@ const WishService={};
     }
 
     function ifExists(item){
-        const foundData=WishModel.Items.find(item2=>item2.Id==item.Id);
+        const foundData=WishModel.Items.find(item2=>item2.Id===item.Id);
         if(foundData) return true;
         return false;
     }
@@ -89,7 +89,7 @@ const WishService={};
 
     this.Remove=function(item){
         if(ifExists(item)){
-            const index=WishModel.Items.findIndex(item2=>item2.Id==item.Id);
+            const index=WishModel.Items.findIndex(item2=>item2.Id===item.Id);
             WishModel.Items.splice(index,1);
             this.Refresh(this.Get());
         }

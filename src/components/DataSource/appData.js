@@ -1,6 +1,4 @@
 import { faFacebookF,faYoutube,faTwitter,faInstagram} from "@fortawesome/free-brands-svg-icons"
-import { useParams } from "react-router";
-import SubCategory from "../MainHeader/LowHeader/Category/SubCategory";
 
 var appData = {
     TopCategories: [

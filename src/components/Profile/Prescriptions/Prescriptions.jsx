@@ -1,7 +1,7 @@
 import PrescriptionForm from "../PrescriptionForm/PrescriptionForm";
 import PrescriptionCard from "../PrescriptionCard/PrescriptionCard";
 import "./Prescriptions.css";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useState } from "react";
 import Popup from "../../utilities/Popup/Popup";
 import PrescriptionSaved from "../../Profile/PrescriptionSaved/PrescriptionSaved";
 import { useHistory } from "react-router";

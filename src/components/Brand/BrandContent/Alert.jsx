@@ -9,7 +9,7 @@ const Alert = ({closeModal}) => {
                     <h2>No Brand Found</h2>
                     <button class="warning" onClick={closeModal}>Ok</button>
                 </div>  
-                <a href="#" class="modal__close" onClick={closeModal}>&times;</a>
+                <a href class="modal__close" onClick={closeModal}>&times;</a>
             </div>
         </div>
         </div>

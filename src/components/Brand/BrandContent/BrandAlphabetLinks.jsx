@@ -9,7 +9,7 @@ const BrandAlphabetLinks = ({classAdding}) => {
             {
                 BrandsLetter.map(item=>(
                     <li id={'id-'+item} class="greyout" onClick={callBack(classAdding,item)}>
-                        <a class="scroll-down">{item}</a>
+                        <a class="scroll-down" href>{item}</a>
                     </li>
                 ))
             }

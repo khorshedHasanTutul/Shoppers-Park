@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import appData from '../DataSource/appData';
 
 const CategoryProductHeader = ({categoryId}) => {
-        const data=appData.ShopCategory.find(item=>item.categoryId==categoryId);
+    const catId=parseInt(categoryId)
+        const data=appData.ShopCategory.find(item=>item.categoryId===catId);
         
     return (
         <section class="breadcrumb-main-area">

@@ -1,23 +1,13 @@
-import React, { useState } from 'react';
-import RegistrationModal from './RegistrationModal';
+import React from 'react';
 
-const LoginModal = ({closeModal}) => {
-    const [registration, setregistration] = useState(false)
-    const registrationModal=(e)=>{
-        e.preventDefault();
-        setregistration(prevstate => !prevstate)
-    }
-    // const 
-    const functionClose=(e)=>{
-        registrationModal(e);
-    }
+const ForgetPasswordModal = () => {
     return (
-        <div class="modal">
+        <div id="demo-modal3" class="modal">
 		    <div class="modal__content">
                 <div class="login-main-area">
                     <div class="login-info-from">
                         <form>
-                            <h2>LogIn to Shopper Perk</h2>
+                            <h2>Reset Password</h2>
                             <div class="login-info-inner-content">
                                 <div class="custom-input">
                                     <label for="mobile">Mobile Number</label>
@@ -27,25 +17,26 @@ const LoginModal = ({closeModal}) => {
                                     <label for="password">Password</label>
                                     <input type="password" name="" id="password" required="" />
                                 </div>
-                                <a class="forgot-pass" href="#demo-modal3">Forgot Password?</a>
+                                <div class="custom-input">
+                                    <label for="password">Retype Password</label>
+                                    <input type="password" name="" id="password" required="" />
+                                </div>
                                 <div class="login-submit">
-                                    <input type="submit" value="Login" />
+                                    <input type="submit" value="Reset Password" />
+                                    <a href="#demo-modal4">Reset Password</a>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="dont-have-account">
-                        <p>Don't have account ?</p>
-                        <a href onClick={functionClose}>Create Account</a>
+                        <p>Already a member?</p>
+                        <a href="#demo-modal">LogIn</a>
                     </div>
-                    {
-                        (registration)&& <RegistrationModal close={registrationModal}/>
-                    }
                 </div>
-		        <a onClick={closeModal} href class="modal__close">&times;</a>
+		        <a href class="modal__close">&times;</a>
 		    </div>
-		 </div>
+		 </div> 
     );
 };
 
-export default LoginModal;
+export default ForgetPasswordModal;

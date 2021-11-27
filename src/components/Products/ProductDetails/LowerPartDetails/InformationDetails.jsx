@@ -2,9 +2,9 @@ import React from 'react';
 import appData from '../../../DataSource/appData';
 
 const InformationDetails = ({product_id}) => {
-    const conactData=appData.categoryProducts.concat(appData.TrandingProducts);
-    const data=conactData.find(item=>item.Id==product_id);
-    const categoryData=appData.ShopCategory.find(item=>item.categoryId==data.category_id);
+    const conactData=appData.categoryProducts;
+    const data=conactData.find(item=>item.Id===product_id);
+    const categoryData=appData.ShopCategory.find(item=>item.categoryId===data.category_id);
     
     return (
         <div class="tab-content detalis-page-tab-content">

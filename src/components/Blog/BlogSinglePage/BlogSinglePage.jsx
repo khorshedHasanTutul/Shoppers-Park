@@ -1,13 +1,7 @@
 import React from 'react';
-import { callBack, ReleatedPOst } from '../../../Service/AppService';
-import SliderComponent from '../../utilities/Slider/SliderComponent';
-import BlogCategory from '../BlogContent/BlogCategory';
 import BlogRecentPost from '../BlogContent/BlogRecentPost';
-import BlogSingleItem from '../BlogContent/BlogSingleItem';
 import BlogComment from './BlogComment';
 import BlogItem from './BlogItem';
-import BlogRelatedPost from './BlogRelatedPost';
-import BlogSingleCategory from './BlogSingleCategory';
 import Nerwblogbrad from './Nerwblogbrad';
 
 const BlogSinglePage = ({blogs}) => {
@@ -21,10 +15,10 @@ const BlogSinglePage = ({blogs}) => {
     //     data.filter(func);
     // }
 
-    function onCategoryClick(item){
-        console.log(['itemtutul',item])
-        // itemContext.Refresh(item.categoryId);
-    };
+    // function onCategoryClick(item){
+    //     console.log(['itemtutul',item])
+    //     // itemContext.Refresh(item.categoryId);
+    // };
 
     return (
         <div>

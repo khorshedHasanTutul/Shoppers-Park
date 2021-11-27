@@ -52,7 +52,7 @@ const FestivalCategoryProduct = () => {
                 {/* <!-- single item --> */}
 
                {
-                            (item=concatData.filter(item2=>(item2.FestivalCategory_id==item.category_id))).length>0 &&
+                            (item=concatData.filter(item2=>(item2.FestivalCategory_id===item.category_id))).length>0 &&
                             <>
                             {
                                 (item.length>=5)&& <SliderComponent options={options} data={item} Template={FestivalProSingleItem} />

@@ -33,7 +33,10 @@ const SubCategoryItem = ({categoryId,subCategoryId,subCategoryItemID}) => {
         
     }
     const concatData=appData.categoryProducts;
-    const data=concatData.filter(item=>item.category_id==categoryId && item.subCategory_id==subCategoryId && item.subCategory_item_id==subCategoryItemID);
+    const catId=parseInt(categoryId)
+    const subcatId=parseInt(subCategoryId)
+    const subItemId=parseInt(subCategoryItemID)
+    const data=concatData.filter(item=>item.category_id===catId && item.subCategory_id===subcatId && item.subCategory_item_id===subItemId);
     return (
         <div class="product-catagory-main-flex owl-slider-perk">
             {

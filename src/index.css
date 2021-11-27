@@ -748,7 +748,7 @@ body{
   /******** parfume menu css *******/
   .sdg-perfumenavigation-class .loaded.mega-menu.mega-menu2{
 	  display: flex;
-	  justify-content: start;
+	  justify-content: flex-start;
   }
   
   .sdg-perfumenavigation-class .sd-nav__section-wrapper {
@@ -1022,7 +1022,7 @@ body{
   
   .product-catagory-inner-flex {
 	  display: flex;
-	  justify-content: start;
+	  justify-content: flex-start;
 	  align-items: center;
 	  align-content: center;
 	  flex-wrap: wrap;
@@ -1448,7 +1448,7 @@ body{
   .footer-widget-single.f-widget-4 .shiping-system {
 	  display: flex;
 	  flex-direction: column;
-	  align-items: start;
+	  align-items: flex-start;
   }
   .footer-widget-single.f-widget-4 .shiping-system h2{
 	  padding-top: 15px;
@@ -2541,7 +2541,7 @@ body{
 			  padding-bottom: 50px;
 		  }
 		  .brand-single-product-details-area .product-catagory-inner-flex {
-			  justify-content: start;
+			  justify-content: flex-start;
 		  }
   
 		  .brand-single-product-details-area .single-product-catagory-item {
@@ -2554,7 +2554,7 @@ body{
 		  }
   
 		  .shop-now-single-area .product-catagory-inner-flex {
-			  justify-content: start;
+			  justify-content: flex-start;
 		  }
 		  .shop-now-single-area .single-product-catagory-item {
 			  flex: 0 0 19.1%;
@@ -2784,7 +2784,7 @@ body{
 			  flex: 0 0 19.1%;
 		  }
 		  .add-product-wishlist-main-page .product-catagory-inner-flex {
-			  justify-content: start;
+			  justify-content: flex-start;
 		  }
 		  .add-product-wishlist-main-page .catagory-product-area {
 			  padding-top: 0px;
@@ -3060,7 +3060,7 @@ body{
 
 
 .blog-single-page .blog-view-left .shop-way-superdrag-inner-flex {
-	justify-content: start;
+	justify-content: flex-start;
 }
 .blog-single-page .blog-view-left .shop-way-superdrag-single-item {
 	flex: 0 0 47%;
@@ -4086,7 +4086,7 @@ body{
   
   .r-tabs{
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 	align-items: center;
 	border-bottom: 1px solid var(--background);
 	margin-bottom: 1rem;
@@ -4265,7 +4265,7 @@ body{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr) !important;
 	grid-template-rows: auto;
-	align-items: start;
+	align-items: flex-start;
   }
   @media screen and (max-width: 650px) {
 	.address-btn-group{
@@ -4525,7 +4525,7 @@ body{
   .flex.justify-end {
 	-webkit-box-pack: end;
 	-ms-flex-pack: end;
-	justify-content: end;
+	justify-content: flex-end;
   }
   
   .g-8 {
@@ -5163,7 +5163,7 @@ body{
 /* radio button css */
 .order-outside-inside-flex {
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 	text-align: left;
 	border: 1px solid #ddd;
@@ -5467,4 +5467,108 @@ body{
 .checkout-main-area {
 	overflow: hidden;
 	padding-bottom: 50px;
+}
+
+
+/* //Notification */
+
+.site-notification {
+	/* display: none; */
+	position: absolute;
+	background: #fff;
+	box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+	width: 260px;
+	z-index: 99;
+	padding: 10px;
+	top: 33px;
+	left: -165px;
+}
+
+
+/* 14/11/21 css */
+.noti-sb img {
+	width: 100%;
+	height: auto;
+}
+.notifaction-single-area {
+	padding-top: 20px;
+	padding-bottom: 50px;
+}
+.notifaction-main-flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.notifaction-inner-left {
+	flex: 0 0 75%;
+}
+.notifaction-inner-right {
+	flex: 0 0 24%;
+}
+.read-more-people-list-items {
+	display: flex;
+	margin-bottom: 20px;
+	background: #fff;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+	padding: 10px;
+	border-left: 2px solid #DF2C8A;
+}
+.read-more-noti-sb img {
+	width: 100%;
+	height: auto;
+}
+.read-more-noti-sb {
+	flex: 0 0 82px;
+	overflow: hidden;
+}
+.read-more-noti-sb img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.read-more-notification-name {
+	padding-left: 12px;
+}
+.read-more-notification-name p{
+	text-align: left;
+}
+#showHide {
+	cursor: pointer;
+	color: #DF2C8A;
+}
+.read-more-notification-name .name {
+	font-weight: 600;
+	font-size: 15px;
+}
+
+/* read more opt */
+.more {
+	display: none;
+  }
+.btns {
+	color: blue;
+	cursor: pointer;
+}
+  .service-item.open .more {
+	display: inline;
+  }
+
+  .service-item.open .dots {
+	display: none;
+  }
+
+  .notifaction-inner-left h2 {
+	font-size: 22px;
+	padding-bottom: 20px;
+	position: relative;
+}
+.notifaction-inner-left h2::after {
+	position: absolute;
+	content: "";
+	width: 60px;
+	height: 3px;
+	background: #DF2C8A;
+	left: 0;
+	bottom: 15px;
 }

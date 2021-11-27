@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../Service/AppService';
-import { ButoonInc, CartService, RemoveItem } from '../../Service/CartContent';
+import { ButoonInc, RemoveItem } from '../../Service/CartContent';
 
 const CartTableItem = ({data}) => {
 
@@ -24,9 +24,9 @@ const CartTableItem = ({data}) => {
             <td class="card-plus-minuse">
                 <div class="attributes input-group bootstrap-touchspin">
                     <div class="qty-holder">
-                        <a href="#" class="qty-dec-btn" title="Dec">-</a>
+                        <a href class="qty-dec-btn" title="Dec">-</a>
                         <input type="text" name="product_qty" id="product_qty" class="qty-input" value="1" />
-                        <a class="qty-inc-btn" title="Inc" onClick={callBack(ButoonInc,item)}>+</a>
+                        <a class="qty-inc-btn" title="Inc" onClick={callBack(ButoonInc,item)} href>+</a>
                     </div>
                 </div>
             </td>
@@ -41,7 +41,7 @@ const CartTableItem = ({data}) => {
                 </span>
             </td>
             <td class="amount-inner-crose">
-                <a onClick={callBack(RemoveItem,item)}><i class="fa fa-times text-danger"></i></a>
+                <a onClick={callBack(RemoveItem,item)} href><i class="fa fa-times text-danger"></i></a>
             </td>
         </tr>
             ))

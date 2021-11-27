@@ -7,7 +7,7 @@ const BannerTemplate = ({item}) => {
                     <div class="banner-slider-main-flex owl-slider-perk-items">
     
                         <div class="single-banner-slider">
-                            <a href="#"><img src={item.image} alt="img" /></a>
+                            <a href><img src={item.image} alt="img" /></a>
                         </div>
 
                     </div>

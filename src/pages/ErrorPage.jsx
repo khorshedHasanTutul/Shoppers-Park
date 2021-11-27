@@ -1,5 +1,4 @@
 import React from 'react';
-import { faMeh } from '@fortawesome/free-solid-svg-icons'
 
 const ErrorPage = () => {
     return (

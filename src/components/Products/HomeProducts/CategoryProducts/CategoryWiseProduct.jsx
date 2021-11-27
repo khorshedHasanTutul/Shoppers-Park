@@ -5,7 +5,7 @@ import SliderComponent from '../../../utilities/Slider/SliderComponent';
 import CategorySingleItem from './CategorySingleItem';
 
 const CategoryWiseProduct = ({item}) => {
-    const data=appData.categoryProducts.filter(item2=>item2.category_id==item.categoryId && item.categoryVisible==true)
+    const data=appData.categoryProducts.filter(item2=>item2.category_id===item.categoryId && item.categoryVisible===true)
     const options={
         rewind: true,
         type: 'loop',

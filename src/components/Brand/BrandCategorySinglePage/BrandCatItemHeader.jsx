@@ -1,8 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { BrandData } from '../../../Service/AppService';
-import appData from '../../DataSource/appData';
 
 const BrandCatItemHeader = ({data}) => {
     // const {id}=useParams();

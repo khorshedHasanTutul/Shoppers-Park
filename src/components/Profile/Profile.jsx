@@ -4,7 +4,7 @@ import ChangePassword from "../AuthForms/ChangePassword/ChangePassword";
 import Card from '../utilities/Card/Card';
 
 import "./Profile.css";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 
 const Profile = () => {
   const [isPopupOpened, setIsPopupOPened] = useState(false);

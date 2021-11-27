@@ -68,7 +68,7 @@ const Payment = ({ShippingCost}) => {
                                         </div>
                                         <div class="cart_navigation">
                                           <Link class="prev-btn" to="/"><i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i> Continue shopping</Link>
-                                          <a class="next-btn" onClick={callBack(proceedOrder)}> Order Now <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
+                                          <a class="next-btn" onClick={callBack(proceedOrder)} href> Order Now <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
                                           {
                                               (OrderStatus)&& <PopUpModal />
                                           }

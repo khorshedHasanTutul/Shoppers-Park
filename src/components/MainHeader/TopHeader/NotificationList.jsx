@@ -1,11 +1,11 @@
 import React from 'react';
 import NotificationSingleItem from './NotificationSingleItem';
 
-const NotificationList = () => {
+const NotificationList = ({notificationList}) => {
     return (
         <div class="site-notification">
         <h2>Notifications</h2>
-       <NotificationSingleItem />
+       <NotificationSingleItem notificationList={notificationList}/>
     
     </div>
     );

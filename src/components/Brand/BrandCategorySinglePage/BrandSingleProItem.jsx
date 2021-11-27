@@ -14,7 +14,7 @@ const BrandSingleProItem = ({data}) => {
             brandData.map(item=>(
                 <div class="single-product-catagory-item">
                      <div class="hover-eff-product" onClick={callBack(WishAddedButton,item)}>
-                    <a title="Add to Wishlist">
+                    <a title="Add to Wishlist" href>
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                     </a>
                 </div>

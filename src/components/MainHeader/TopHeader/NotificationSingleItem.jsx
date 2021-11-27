@@ -1,51 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Notification } from '../../../Service/AppService';
 
-const NotificationSingleItem = () => {
+const NotificationSingleItem = ({notificationList}) => {
+    const data=Notification.notificationList;
     return (
         <div class="people-list-content">
-        <div class="people-list-items">
-            <a href="#" class="super-notifa">
-                <span class="noti-sb">sb</span>
+            {
+                data.map(item=>(
+                    <div class="people-list-items">
+            <Link to={'/notification'} class="super-notifa" onClick={notificationList}>
+                {/* <span class="noti-sb">{item.image}</span> */}
+                <img src={item.image} alt="img" class="noti-sb" />
             <div class="notification-name">
-                <p class="name">Adilan David</p>
-                <p>Incoming call received from</p>
+                <p class="name">{item.name}</p>
+                <p>{item.content}</p>
             </div>
-            </a>
-            <div class="notification-time">25 minutes ago</div>
+            </Link>
+            <div class="notification-time">{item.time}</div>
         </div>
-        <div class="people-list-items">
-            <a href="#" class="super-notifa">
-            <span class="noti-sb">sb</span>
-            <div class="notification-name">
-                <p class="name">Adilan David</p>
-                <p>Incoming call received from</p>
-            </div>
-        </a>
-        <div class="notification-time">25 minutes ago</div>
-        </div>
-
-        <div class="people-list-items">
-        <a href="#" class="super-notifa">
-        <span class="noti-sb">sb</span>
-        <div class="notification-name">
-            <p class="name">Adilan David</p>
-            <p>Incoming call received from</p>
-        </div>
-        </a>
-        <div class="notification-time">25 minutes ago</div>
-        </div>
-
-        <div class="people-list-items">
-        <a href="#" class="super-notifa">
-        <span class="noti-sb">sb</span>
-        <div class="notification-name">
-            <p class="name">Adilan David</p>
-            <p>Incoming call received from</p>
-        </div>
-        </a>
-        <div class="notification-time">25 minutes ago</div>
-        </div>
-
+                ))
+            }
+        
     </div>
     );
 };
