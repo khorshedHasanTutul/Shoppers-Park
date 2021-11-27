@@ -1,7 +1,6 @@
 import React from 'react'
 import appData from '../DataSource/appData';
 import Slider from '../utilities/Slider/Slider';
-import BannerTemplate from './BannerTemplate/BannerTemplate';
 
 export const Banner = () => {
     const data=appData.BannerImage;

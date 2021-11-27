@@ -9,7 +9,7 @@ const BottomPayments = () => {
             {
                 appData.BottomPayments.map((payments)=>(
                     <li>
-                    <a href="#"><img src={payments.img} alt="img" /></a>
+                    <a href><img src={payments.img} alt="img" /></a>
                 </li>
                 ))
             }

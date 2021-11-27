@@ -10,11 +10,11 @@ const BrandBody = () => {
         var value=item;
         item=item.target.text.toLowerCase();
         var foundData;
-        if(item=='0-9'){
+        if(item==='0-9'){
             foundData=BrandData.filter(item2=>item2.brand_name.trim().charAt(0)<=9)
         }
         else{
-            foundData=BrandData.filter(item2=>item2.brand_name.trim().toLowerCase().charAt(0)==item );
+            foundData=BrandData.filter(item2=>item2.brand_name.trim().toLowerCase().charAt(0)===item );
         }
         if(foundData.length<=0){
             setfoundBrand(true)

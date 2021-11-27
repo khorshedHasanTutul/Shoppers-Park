@@ -121,7 +121,7 @@ const AddressForm = () => {
     </div>
      <div class="cart_navigation">
      <Link class="prev-btn" to="/"><i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i> Continue shopping</Link>
-     <a class="next-btn"> Proceed to order <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
+     <a class="next-btn" href> Proceed to order <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
  </div>  
      </>
   );

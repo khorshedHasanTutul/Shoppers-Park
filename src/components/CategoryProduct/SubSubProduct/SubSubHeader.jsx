@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import appData from '../../DataSource/appData';
 
 const SubSubHeader = ({categoryId,subCategoryId,subItemId}) => {
     

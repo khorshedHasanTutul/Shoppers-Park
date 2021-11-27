@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import appData from '../../DataSource/appData';
 
 const SubCategoryProductHeader = ({categoryId,subCategoryId}) => {
-    const categoryData=appData.ShopCategory.find(item=>item.categoryId==categoryId);
-    const subCategoryData=categoryData.subCategory.find(item=>item.subCategory_id==subCategoryId);
+    const catId=parseInt(categoryId)
+    const subcatId=parseInt(subCategoryId)
+    const categoryData=appData.ShopCategory.find(item=>item.categoryId===catId);
+    const subCategoryData=categoryData.subCategory.find(item=>item.subCategory_id===subcatId);
   
     return (
         <section class="breadcrumb-main-area">

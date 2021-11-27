@@ -9,7 +9,7 @@ const CategorySingleItem = ({item}) => {
 
             <div class="single-product-catagory-item">
                 <div class="hover-eff-product">
-                    <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)}>
+                    <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)} href>
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                     </a>
                 </div>

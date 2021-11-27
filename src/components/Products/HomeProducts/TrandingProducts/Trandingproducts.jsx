@@ -7,7 +7,7 @@ import TrandingProductItem from './TrandingProductItem';
 
 const Trandingproducts = () => {
     const textContent=Offers.OffersProductArea;
-    const data=appData.categoryProducts.filter(item=>item.offer_status==true);
+    const data=appData.categoryProducts.filter(item=>item.offer_status===true);
     data.sort((a,b)=>b.Ds-a.Ds);
     const options={
         rewind: true,

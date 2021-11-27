@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { BlogService } from '../../../Service/AppService';
+import React from 'react'
 import BlogCategory from './BlogCategory';
 import BlogRecentPost from './BlogRecentPost';
 import BlogSingleItem from './BlogSingleItem';
@@ -8,10 +7,8 @@ export const BlogBody = () => {
     var itemContext;
     function itemCallback(ctx){
         itemContext =ctx;
-        console.log('itemContext',itemContext)
     };
     function onCategoryClick(item,evt){
-        console.log(['item',item,this,evt]);
         itemContext.Refresh(item.categoryId);
     };
     return (
@@ -30,18 +27,18 @@ export const BlogBody = () => {
                        <nav class="pagenation-for-web" aria-label="Page navigation example">
                            <ul class="pagination">
                                <li class="page-item">
-                               <a class="page-link" href="#" aria-label="Previous">
+                               <a class="page-link" href aria-label="Previous">
                                    <span aria-hidden="true">&laquo;</span>
                                    <span class="sr-only">Previous</span>
                                </a>
                                </li>
-                               <li class="page-item"><a class="page-link" href="#">1</a></li>
+                               <li class="page-item"><a class="page-link" href>1</a></li>
                                <li class="page-item active">
-                               <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a> 
+                               <a class="page-link" href>2 <span class="sr-only">(current)</span></a> 
                                </li>
-                               <li class="page-item"><a class="page-link" href="#">3</a></li>
+                               <li class="page-item"><a class="page-link" href>3</a></li>
                                <li class="page-item">
-                               <a class="page-link" href="#" aria-label="Next">
+                               <a class="page-link" href aria-label="Next">
                                    <span aria-hidden="true">&raquo;</span>
                                    <span class="sr-only">Next</span>
                                </a>

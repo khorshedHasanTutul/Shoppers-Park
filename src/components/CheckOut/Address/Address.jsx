@@ -58,13 +58,13 @@ const Address = ({proceedOrder}) => {
                                                         <div class="all-address-save-btn">
                                                             <div class="chosse-your-fvt-btn">
                                                                 <ul>
-                                                                    <li class="active"><a href="#">Home</a></li>
-                                                                    <li><a href="#">Office</a></li>
-                                                                    <li><a href="#">Home Town</a></li>
+                                                                    <li class="active"><a href>Home</a></li>
+                                                                    <li><a href>Office</a></li>
+                                                                    <li><a href>Home Town</a></li>
                                                                 </ul>
                                                             </div>
                                                             <div class="chosse-another-address">
-                                                                <a href="#">Save as Home Address</a>
+                                                                <a href>Save as Home Address</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -95,7 +95,7 @@ const Address = ({proceedOrder}) => {
                                     </div>
                                     <div class="cart_navigation">
                                         <Link class="prev-btn" to="/"><i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i> Continue shopping</Link>
-                                        <a class="next-btn" onClick={callBack(proceedOrder)}> Proceed to order <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
+                                        <a class="next-btn" onClick={callBack(proceedOrder)} href> Proceed to order <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
                                     </div>    
                                 </div>
                                 {/* <!-- product desc review information  --> */}

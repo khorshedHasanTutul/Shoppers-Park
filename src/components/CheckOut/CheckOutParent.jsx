@@ -54,15 +54,15 @@ const PaymentParent = () => {
                              <small>{data.length} Product</small>
                              </span>
                             {
-                                (tabinfo==0)&& <ProductSummary data={data} proceedFunction={proceedFunction}/>
+                                (tabinfo===0)&& <ProductSummary data={data} proceedFunction={proceedFunction}/>
                             }
                            
                            {
-                               (tabinfo==1)&& <Address proceedOrder={proceedOrder}/>
+                               (tabinfo===1)&& <Address proceedOrder={proceedOrder}/>
                            }
                             {/* AddressComponentLoaded */}
                            {
-                               (tabinfo==2)&& <Payment ShippingCost={ShippingCost}/>
+                               (tabinfo===2)&& <Payment ShippingCost={ShippingCost}/>
                            }
                             {/* PaymentComponentLoaded */}
 

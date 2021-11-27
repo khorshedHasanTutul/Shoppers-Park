@@ -17,7 +17,7 @@ const TableSingleItem = ({data}) => {
             CartContent.Items.map(item=>(
                 <tr>
                 <td class="cart_product">
-                    <a href="#"><img src={item.image} alt="img" /></a>
+                    <a href><img src={item.image} alt="img" /></a>
                 </td>
                 <td class="cart_description">
                     <p class="product-name"><Link to={'/product/'+item.Id}>{item.Nm}</Link></p>
@@ -43,7 +43,7 @@ const TableSingleItem = ({data}) => {
                       </div>
                 </td>
                 <td class="price"><span>{item.MRP*count}</span></td>
-                <td class="action"><a onClick={callBack(RemoveItem,item)}><img src="/contents/assets/images/delete_icon.png" alt="" /></a></td>
+                <td class="action"><a onClick={callBack(RemoveItem,item)} href><img src="/contents/assets/images/delete_icon.png" alt="" /></a></td>
             </tr>
             ))
         }

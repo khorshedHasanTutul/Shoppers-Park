@@ -13,10 +13,10 @@ const Category = () => {
           
         <div className="nav-icon" onClick={toggleClass}><i className="fa fa-bars"></i></div>
         <div className={`main-menu ${isActive && 'off-canvas'}`} >
-                            <a href="#" class="nav-icon"><span onClick={toggleClass}>×</span></a>
+                            <a href class="nav-icon"><span onClick={toggleClass}>×</span></a>
                             <ul>
                                 <li class="dropdown">
-                                    <a href="#">Shop Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
+                                    <a href>Shop Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
                                     <ul class="dropdownmenu mega-menu">
                                         {/* start inner mega menu shop */}
                                         <CategoryItem />

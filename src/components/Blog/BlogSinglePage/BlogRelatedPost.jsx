@@ -4,9 +4,8 @@ import SliderComponent from '../../utilities/Slider/SliderComponent';
 import BlogRelatedItem from './BlogRelatedItem';
 
 const BlogRelatedPost = ({category_id,id}) => {
-    console.log(['iddd',id])
-    const Related_Product=BlogData.BlogArea.filter((blogItem)=>blogItem.category_id==category_id && blogItem.id!=id);
-    console.log(['releated product',Related_Product])
+   
+    const Related_Product=BlogData.BlogArea.filter((blogItem)=>blogItem.category_id===category_id && blogItem.id!==id);
     const options={
         rewind: true,
         type: 'slide',

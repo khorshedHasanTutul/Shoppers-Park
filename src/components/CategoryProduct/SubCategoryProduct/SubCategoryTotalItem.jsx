@@ -3,8 +3,10 @@ import appData from '../../DataSource/appData';
 import SubCategoryItem from './SubCategoryItem';
 
 const SubCategoryTotalItem = ({categoryId,subCategoryId}) => {
-    const categoryData=appData.ShopCategory.find(item=>item.categoryId==categoryId);
-    const subcategoryData=categoryData.subCategory.find(item=>item.subCategory_id==subCategoryId);
+    const catId=parseInt(categoryId)
+    const subcatId=parseInt(subCategoryId)
+    const categoryData=appData.ShopCategory.find(item=>item.categoryId===catId);
+    const subcategoryData=categoryData.subCategory.find(item=>item.subCategory_id===subcatId);
     return (
         <>
         {

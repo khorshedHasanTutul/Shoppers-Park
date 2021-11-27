@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./SideBarLinks.css";
-import { useHistory, useNavigate } from "react-router";
+import { useHistory} from "react-router";
 
 const SideBarLinks = () => {
   const history = useHistory();

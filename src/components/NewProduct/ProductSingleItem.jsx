@@ -7,7 +7,7 @@ const ProductSingleItem = ({item}) => {
     return (
         <div class="single-product-catagory-item">
         <div class="hover-eff-product">
-            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            <a title="Add to Wishlist" href> <i class="fa fa-heart-o" aria-hidden="true"> </i></a>
         </div>
         <Link to={'/product/'+item.Id}>
         {

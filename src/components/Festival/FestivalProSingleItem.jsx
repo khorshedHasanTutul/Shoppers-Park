@@ -8,7 +8,7 @@ const FestivalProSingleItem = ({item}) => {
     return (
         <div class="single-product-catagory-item">
         <div class="hover-eff-product" onClick={callBack(WishAddedButton,item)}>
-            <a title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            <a title="Add to Wishlist" href> <i class="fa fa-heart-o" aria-hidden="true"> </i></a>
         </div>
         <Link to={'/product/'+item.Id}>
         {

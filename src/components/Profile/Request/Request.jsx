@@ -7,7 +7,7 @@ import Hightlight from "../../utilities/Hightlight/Hightlight"
 
 const Request = () => {
   const [products, setProducts] = useState([]);
-  const [description, setDescription] = useState('');
+  // const [description, setDescription] = useState('');
 
   const addProductHandler = (product) => {
     setProducts(prevState => [...prevState, product]);
@@ -17,15 +17,15 @@ const Request = () => {
     setProducts(prevState => prevState.filter(p => p.id !== id));
   }
 
-  const descriptionHandler = ({target}) => {
-    setDescription(target.value);
-  }
+  // const descriptionHandler = ({target}) => {
+  //   setDescription(target.value);
+  // }
 
   const submitHandler = () => {
     console.log({
       products,
       prescription: 'NOT IMPLEMENTED THIS FEATURE YET!',
-      description,
+      // description,
       orderFrom: 'REQUEST ORDER'
     });
   }

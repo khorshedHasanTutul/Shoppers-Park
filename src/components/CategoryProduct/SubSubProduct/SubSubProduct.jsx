@@ -6,11 +6,14 @@ import SubSubHeader from './SubSubHeader';
 
 const SubSubProduct = () => {
     const {categoryId}=useParams();
+    const catid=parseInt(categoryId)
     const {subCategoryId}=useParams();
+    const subcatid=parseInt(subCategoryId);
     const {subItemId}=useParams();
-    const categoryData=appData.ShopCategory.find(item=>item.categoryId==categoryId);
-    const subcategoryData=categoryData.subCategory.find(item=>item.subCategory_id==subCategoryId);
-    const subItemData=subcategoryData.subCategoryItem.find(item=>item.subCategory_item==subItemId);
+    const subsubcatid=parseInt(subItemId);
+    const categoryData=appData.ShopCategory.find(item=>item.categoryId ===catid);
+    const subcategoryData=categoryData.subCategory.find(item=>item.subCategory_id===subcatid);
+    const subItemData=subcategoryData.subCategoryItem.find(item=>item.subCategory_item===subsubcatid);
 
     
     return (

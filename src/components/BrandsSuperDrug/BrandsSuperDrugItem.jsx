@@ -4,7 +4,7 @@ const BrandsSuperDrugItem = ({item}) => {
     return (
         <div class="all-brands-superdrag-single-item">
         <div class="all-brands-drag-img">
-            <a href="#">
+            <a href>
                 <img src={item.image} alt="img" />
             </a>
         </div>

@@ -22,13 +22,13 @@ const LowerDetails = () => {
 
                                             <ProductDetailsTabs itemOPen={itemOPen} tabsData={tabsData} />
                                         {
-                                            (tabsData==0)&&  <DetailsInfo product_id={id}/>
+                                            (tabsData===0)&&  <DetailsInfo product_id={id}/>
                                         }
                                         {
-                                            (tabsData==1)&&  <InformationDetails  product_id={id}/>
+                                            (tabsData===1)&&  <InformationDetails  product_id={id}/>
                                         }
                                         {
-                                             (tabsData==2)&&  <ReviewContent />
+                                             (tabsData===2)&&  <ReviewContent />
                                         }
                                        
                                            

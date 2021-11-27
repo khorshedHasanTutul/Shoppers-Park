@@ -1,5 +1,5 @@
 import { MainHeader } from './components/MainHeader/MainHeader';
-import { Route, Switch, useParams } from 'react-router';
+import { Route, Switch} from 'react-router';
 import Home from './pages/Home';
 import Footer from './components/Footer/Footer';
 import ShoppingCart from './components/Cart/ShoppingCart';
@@ -23,6 +23,7 @@ import Profile from './pages/Profile';
 import About from './pages/About';
 import Payment from './pages/CheckOut';
 import NewInShop from './pages/NewInShop';
+import Notifications from './pages/Notifications';
 
 
 
@@ -69,6 +70,9 @@ function App() {
           </Route>
           <Route path="/newinShop">
             <NewInShop />
+          </Route>
+          <Route path="/notification" exact>
+            <Notifications />
           </Route>
           <Route path="/wishlist">
           <Wishlist />

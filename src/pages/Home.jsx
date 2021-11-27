@@ -1,10 +1,8 @@
 import React from 'react'
 import Banner from '../components/Banner/Banner';
 import BrandsSuperDrug from '../components/BrandsSuperDrug/BrandsSuperDrug';
-import DiscountProductShop from '../components/DiscountProductShop/DiscountProductShop';
 
 import Notice from '../components/Notice/Notice';
-import OffersProductArea from '../components/Offers/OffersProductArea';
 import Parks from '../components/Parks/Parks';
 import CategoryProducts from '../components/Products/HomeProducts/CategoryProducts/CategoryProducts';
 import Trandingproducts from '../components/Products/HomeProducts/TrandingProducts/Trandingproducts';
@@ -20,7 +18,6 @@ const Home = () => {
         <Trandingproducts />
         <SuperDrugBlogs />
         <BrandsSuperDrug />
-        {/* <DiscountProductShop /> */}
         </>
     )
 }

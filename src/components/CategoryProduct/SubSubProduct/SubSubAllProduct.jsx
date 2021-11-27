@@ -7,7 +7,7 @@ import appData from '../../DataSource/appData';
 const SubSubAllProduct = ({categoryId,subCategoryId,subItemId}) => {
     
     const concatData=appData.categoryProducts;
-    const data=concatData.filter(item=>item.category_id==categoryId.categoryId && item.subCategory_id==subCategoryId.subCategory_id && item.subCategory_item_id==subItemId.subCategory_item);
+    const data=concatData.filter(item=>item.category_id===categoryId.categoryId && item.subCategory_id===subCategoryId.subCategory_id && item.subCategory_item_id===subItemId.subCategory_item);
     
     return (
         <>
@@ -17,7 +17,7 @@ const SubSubAllProduct = ({categoryId,subCategoryId,subItemId}) => {
             data.map(item=>(
                  <div class="single-product-catagory-item">
         <div class="hover-eff-product" onClick={callBack(WishAddedButton,item)}>
-            <a title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            <a title="Add to Wishlist" href> <i class="fa fa-heart-o" aria-hidden="true"></i></a>
         </div>
         <Link to={'/product/'+item.Id}>
         {

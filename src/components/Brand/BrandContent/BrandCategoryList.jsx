@@ -4,7 +4,7 @@ import BrandSingleItem from './BrandSingleItem';
 import BrandSingleNumberItem from './BrandSingleNumberItem';
 
 const BrandCategoryList = ({classAdding}) => {
-    const letters=[],numbers=[];
+    const letters=[];
     BrandData.forEach(element => {
         element=element.brand_name.toUpperCase().trim().charAt(0);
         if(element>='A' && element<='Z')
@@ -20,7 +20,7 @@ const BrandCategoryList = ({classAdding}) => {
             { 
                 uniqueLetters.map((number)=>(
                     <>
-                    <a id={'brandSort-'+number} ></a>
+                    <a id={'brandSort-'+number} href> </a>
                     <div class="brandLetterContainer">
                         <div class="brandLetter">{number}</div>
                             <ul class="brandLetterLinks">
@@ -30,7 +30,7 @@ const BrandCategoryList = ({classAdding}) => {
                     </>
                 ))   
             }
-             <a id="brandSort-0-9"></a>
+             <a id="brandSort-0-9" href> </a>
 
             <div class="brandLetterContainer">
                 <div class="brandLetter">0-9</div>

@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../Service/AppService';
-import AddressForm from '../../AddressForm/AddressForm';
 import DelivaryStatus from './DelivaryStatus';
 import TableSingleItem from './TableSingleItem';
 
 const ProductSummary = ({data, proceedFunction}) => {
-    var checkValue=0;
      const [ProductSummary, setProductSummary] = useState(0)
      const statusFunction=(index)=>{
-        (index==0)? setProductSummary(50):setProductSummary(120)
+        (index===0)? setProductSummary(50):setProductSummary(120)
      }
     
     return (
@@ -59,7 +57,7 @@ const ProductSummary = ({data, proceedFunction}) => {
                     </div>
                     <div class="cart_navigation">
                       <Link class="prev-btn" to="/"><i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i> Continue shopping</Link>
-                      <a class="next-btn" onClick={callBack(proceedFunction,ProductSummary) }> Proceed to checkout <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
+                      <a class="next-btn" onClick={callBack(proceedFunction,ProductSummary) } href> Proceed to checkout <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>

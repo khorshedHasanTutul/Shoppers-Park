@@ -32,7 +32,7 @@ const TotalCategoryProduct = ({category_id,subCategory_id}) => {
       }
     }
     const concatData=appData.categoryProducts;
-    const data=concatData.filter(item=>(item.category_id==category_id && item.subCategory_id==subCategory_id))
+    const data=concatData.filter(item=>(item.category_id===category_id && item.subCategory_id===subCategory_id))
     return (
         <>
         {

@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
-import { BlogService } from '../../../Service/AppService';
+import React from 'react'
 import appData from '../../DataSource/appData';
-import BlogSingleItem from './BlogSingleItem';
 import { callBack } from '../../../Service/AppService';
 
 const BlogCategory = ({OnItemClick}) => {
@@ -16,7 +14,7 @@ const data=appData.ShopCategory;
                        <ul>
                            {
                                data.map((category)=>(
-                                <li><a  onClick={callBack(OnItemClick,category)} >{category.categoryName}</a></li>
+                                <li><a  onClick={callBack(OnItemClick,category)} href>{category.categoryName}</a></li>
                                ))
                            }
                           

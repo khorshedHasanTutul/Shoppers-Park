@@ -5,7 +5,7 @@ import SliderComponent from '../utilities/Slider/SliderComponent';
 import OffersProductSingleItem from './OffersProductSingleItem';
 const OffersProductArea = () => {
     const headingArea=Offers.OffersProductArea.HeaderAreaText;
-    const data=appData.categoryProducts.filter(item=>item.offer_status==true);
+    const data=appData.categoryProducts.filter(item=>item.offer_status===true);
     data.sort((a,b)=>b.Ds-a.Ds);
     
     const options={

@@ -9,10 +9,11 @@ import { Link } from 'react-router-dom';
 import { WishAddedButton } from '../../../Service/CartContent';
 
 const ProductDetailsItem = ({product_id}) => {
-    const concatData=appData.categoryProducts.concat(appData.TrandingProducts);
-    const item=concatData.find(item=>item.Id==product_id);
-    const categoryData=appData.ShopCategory.find(item2=>item2.categoryId==item.category_id);
-    const brandData=BrandData.find(brand=>brand.brand_id==item.brand_id);
+    const concatData=appData.categoryProducts;
+    const item=concatData.find(item=>item.Id ===product_id);
+    console.log('item',item)
+    const categoryData=appData.ShopCategory.find(item2=>item2.categoryId ===item.category_id );
+    const brandData=BrandData.find(brand=>brand.brand_id  ===item.brand_id );
     const [count, setstate] = useState(1);
     const Increment=()=>{ 
         setstate(count+1)    
@@ -45,7 +46,7 @@ const ProductDetailsItem = ({product_id}) => {
                                                     <input type="radio" id="star1" name="rate" value="1" />
                                                     <label for="star1" title="text">1 star</label>
                                                 </div>
-                                                <a href="#">No Review</a>
+                                                <a href>No Review</a>
                                             </div>
                                             <div class="basket-add">
                                                 <span class="item__price item__price--now">৳{(parseInt(item.MRP)%2!==0)?(item.MRP*count):(item.MRP * count).toFixed(2)}</span>
@@ -56,7 +57,7 @@ const ProductDetailsItem = ({product_id}) => {
                                             </div>
                                             <div class="pd-brand-ctg">
                                                 <ul>
-                                                    <li>Category :<Link to={'/category/'+item.category_id}>{categoryData.categoryName}</Link></li>
+                                                    <li>Category :<Link to={'/category/'+ item.category_id}>{categoryData.categoryName}</Link></li>
                                                     <li>Brand :<Link to={'/brands/'+item.brand_id}>{brandData.brand_name}</Link></li>
                                                 </ul>
                                             </div>
@@ -76,14 +77,14 @@ const ProductDetailsItem = ({product_id}) => {
                                               </div>
                                               
                                               <div class="pro-add-wish-flex">
-                                              <a href="#">
+                                              <a href>
                                                 <div class="btn_cart">
                                                    <FontAwesomeIcon icon={faShoppingCart} />
                                                     <h5>Add to Cart</h5>
                                                  </div>
                                               </a>
                                               <div class="wishlist-btn" onClick={callBack(WishAddedButton,item)}>
-                                                <a ><i class="fa fa-heart-o" aria-hidden="true"></i>Add to wishlist</a>
+                                                <a href><i class="fa fa-heart-o" aria-hidden="true"></i>Add to wishlist</a>
                                               </div>
                                             </div>
                                         </div>

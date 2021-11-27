@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react';
 import ContentCart from './ContentCart';
 import MiniCart from './MiniCart';
-import { CartService } from '../../Service/CartContent';
 import { useLocation } from 'react-router';
 
 const ShoppingCart = () => {
