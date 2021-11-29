@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { CartService } from '../../Service/CartContent';
 import AddressForm from '../AddressForm/AddressForm';
-import Address from './Address/Address';
+import Address from '../CheckOut/Address/Address'
+// import Address from './Address/Address';
 import CheckOutHeader from './CheckOutHeader';
 import CheckOutTabs from './CheckOutTabs';
 import Payment from './Payment/Payment';
 import ProductSummary from './ProductSummary/ProductSummary';
+
 
 const PaymentParent = () => {
     const data=CartService.Get();
@@ -60,7 +62,9 @@ const PaymentParent = () => {
                            
                            {
                                (tabinfo===1)&&
+                                //   <Address proceedOrder={proceedOrder}/>
                                <AddressForm proceedOrder={proceedOrder} />
+                            
                            }
                             {/* AddressComponentLoaded */}
                            {
