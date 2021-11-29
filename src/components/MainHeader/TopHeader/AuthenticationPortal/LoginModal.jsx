@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import RegistrationModal from './RegistrationModal';
 
-const LoginModal = ({closeModal}) => {
-    const [registration, setregistration] = useState(false)
-    const registrationModal=(e)=>{
-        e.preventDefault();
-        setregistration(prevstate => !prevstate)
-    }
-    // const 
-    const functionClose=(e)=>{
-        registrationModal(e);
-    }
+const LoginModal = ({CreateAccount,forgetPassModal}) => {
+    // const [registration, setregistration] = useState(false)
+    // const registrationModal=(e)=>{
+    //     e.preventDefault();
+    //     setregistration(prevstate => !prevstate)
+    // }
+    // const functionClose=(e)=>{
+    //     registrationModal(e);
+    // }
     return (
-        <div class="modal">
-		    <div class="modal__content">
-                <div class="login-main-area">
+        <>
                     <div class="login-info-from">
                         <form>
                             <h2>LogIn to Shopper Perk</h2>
@@ -27,7 +24,7 @@ const LoginModal = ({closeModal}) => {
                                     <label for="password">Password</label>
                                     <input type="password" name="" id="password" required="" />
                                 </div>
-                                <a class="forgot-pass" href="#demo-modal3">Forgot Password?</a>
+                                <a class="forgot-pass" href onClick={forgetPassModal}>Forgot Password?</a>
                                 <div class="login-submit">
                                     <input type="submit" value="Login" />
                                 </div>
@@ -36,15 +33,9 @@ const LoginModal = ({closeModal}) => {
                     </div>
                     <div class="dont-have-account">
                         <p>Don't have account ?</p>
-                        <a href onClick={functionClose}>Create Account</a>
+                        <a href onClick={CreateAccount}>Create Account</a>
                     </div>
-                    {
-                        (registration)&& <RegistrationModal close={registrationModal}/>
-                    }
-                </div>
-		        <a onClick={closeModal} href class="modal__close">&times;</a>
-		    </div>
-		 </div>
+        </>
     );
 };
 

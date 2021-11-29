@@ -3,7 +3,8 @@ import appData from '../DataSource/appData';
 import TotalCategoryProduct from './TotalCategoryProduct';
 
 const TotalCategoryItem = ({categoryId}) => {
-    const data=appData.ShopCategory.find(item=>(item.categoryId===parseInt(categoryId))?item.subCategory :'');
+    const catId=parseInt(categoryId)
+    const data=appData.ShopCategory.find(item=>(item.categoryId===catId)?item.subCategory :'');
     return (
         <section class="catagory-product-area view-all-sub-catagory">
         <div class="container">

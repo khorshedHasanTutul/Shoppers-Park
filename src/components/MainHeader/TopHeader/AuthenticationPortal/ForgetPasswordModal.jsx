@@ -1,10 +1,8 @@
 import React from 'react';
 
-const ForgetPasswordModal = () => {
+const ForgetPasswordModal = ({OtpModal,loginModalOpen}) => {
     return (
-        <div id="demo-modal3" class="modal">
-		    <div class="modal__content">
-                <div class="login-main-area">
+                <div>
                     <div class="login-info-from">
                         <form>
                             <h2>Reset Password</h2>
@@ -22,20 +20,18 @@ const ForgetPasswordModal = () => {
                                     <input type="password" name="" id="password" required="" />
                                 </div>
                                 <div class="login-submit">
-                                    <input type="submit" value="Reset Password" />
-                                    <a href="#demo-modal4">Reset Password</a>
+                                    {/* <input type="submit" value="Reset Password" /> */}
+                                    <a href onClick={OtpModal}>Reset Password</a>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="dont-have-account">
                         <p>Already a member?</p>
-                        <a href="#demo-modal">LogIn</a>
+                        <a href onClick={loginModalOpen}>LogIn</a>
                     </div>
                 </div>
-		        <a href class="modal__close">&times;</a>
-		    </div>
-		 </div> 
+		       
     );
 };
 

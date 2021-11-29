@@ -3,9 +3,45 @@ import InputControl from "../utilities/InputControl/InputControl";
 import "./AddressForm.css";
 import AddressList from "./AddressList";
 import { Link } from 'react-router-dom';
+import {useState } from 'react';
 
 const AddressForm = () => {
-  
+  const [phone, setPhone] = useState('');
+  const [phoneIsTouched, setPhoneIsTouched] = useState(false);
+
+  const phoneIsValid = phone.length !== 0;
+  const phoneInputIsInvalid = phoneIsTouched && !phoneIsValid;
+
+  let formIsValid = false;
+  if(phoneIsValid){
+    formIsValid = true;
+  }
+
+  const phoneChangeHandler = ({target}) => {
+    setPhone(target.value.trim());
+  } 
+
+  const phoneBlurHandler = () => {
+    setPhoneIsTouched(true);
+  }
+
+  const submitHandler = () => {
+
+    if(!phoneIsValid){
+      setPhoneIsTouched(true);
+    }
+
+    if(!formIsValid){
+      alert('Form validation failed');
+      return false;
+    }
+
+    console.log({phone});
+
+    setPhone('');
+    setPhoneIsTouched(false);
+  }
+
   return (
     <>
     <div className="admin-all-detalics">
@@ -17,6 +53,10 @@ const AddressForm = () => {
             label={"Phone Number"}
             required
             className="brick"
+            error={phoneInputIsInvalid && 'Phone number is required'}
+            value={phone}
+            onChange={phoneChangeHandler}
+            onBlur={phoneBlurHandler}
           />
         </div>
         <div className="form__control mb-16">
@@ -102,7 +142,9 @@ const AddressForm = () => {
           <button className="brick fill primary t-16 ">Office</button>
           <button className="brick fill primary t-16 ">Home Town</button>
           <div>
-            <button className="brick fill secondary t-16 mb-8 save-btn">
+            <button className="brick fill secondary t-16 mb-8 save-btn"
+              onClick={submitHandler}
+            >
               Save Address
             </button>
             <div>
