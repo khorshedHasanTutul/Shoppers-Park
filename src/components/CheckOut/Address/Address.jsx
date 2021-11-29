@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { callBack } from '../../../Service/AppService';
+import { callBack, Checkout } from '../../../Service/AppService';
+import AddressFrom from './AddressFrom';
 
 const Address = ({proceedOrder}) => {
     return (
@@ -8,68 +9,9 @@ const Address = ({proceedOrder}) => {
                                 {/* <!-- product desc review information --> */}
                                 <div class="cart-add-tab-content">
                                     <div class="checkout-address-information-main">
-                                        <span>Please Check your Shipping Informations</span>
+                                        <span>{Checkout.ShippingAddress.addressHeaderText}</span>
                                         <div class="address-info-inner-flex">
-                                            <div class="address-info-from">
-                                                <form>
-                                                    <div class="address-info-inner-content">
-                                                        <div class="custom-input">
-                                                            <label for="name">Name</label>
-                                                            <input type="text" name="" id="name" required="" />
-                                                        </div>
-                                                        <div class="custom-input">
-                                                            <label for="mobile">Mobile</label>
-                                                            <input type="text" name="" id="mobile" required="" />
-                                                        </div>
-                                                        <div class="custom-input">
-                                                            <label for="email">Email</label>
-                                                            <input type="text" name="" id="email" required="" />
-                                                        </div>
-                                                        <div class="address-inner-select-item">
-                                                            <div class="custom-input">
-                                                                <label for="district">Select District</label>
-                                                                <select id="district">
-                                                                    <option value="">Dhake</option>
-                                                                    <option value="">Rangpur</option>
-                                                                    <option value="">Dinajpur</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="custom-input">
-                                                                <label for="district">Select Division</label>
-                                                                <select id="district">
-                                                                    <option value="">Dhake</option>
-                                                                    <option value="">Rangpur</option>
-                                                                    <option value="">Dinajpur</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="custom-input">
-                                                                <label for="district">Select Area</label>
-                                                                <select id="district">
-                                                                    <option value="">Dhake</option>
-                                                                    <option value="">Rangpur</option>
-                                                                    <option value="">Dinajpur</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="address-textarea">
-                                                            <label for="message">Address</label>
-                                                            <textarea class="effect2" name="" id="message" required=""></textarea> 
-                                                        </div>
-                                                        <div class="all-address-save-btn">
-                                                            <div class="chosse-your-fvt-btn">
-                                                                <ul>
-                                                                    <li class="active"><a href>Home</a></li>
-                                                                    <li><a href>Office</a></li>
-                                                                    <li><a href>Home Town</a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="chosse-another-address">
-                                                                <a href>Save as Home Address</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                          <AddressFrom />
 
                                             <div class="address-info-right-default">
                                                 <h2>Saved Addresses</h2>

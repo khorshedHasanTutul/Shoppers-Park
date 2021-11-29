@@ -1,10 +1,8 @@
 import React from 'react';
 
-const RegistrationModal = ({close}) => {
+const RegistrationModal = ({loginModalOpen}) => {
     return (
-        <div class="modal">
-        <div class="modal__content">
-            <div class="login-main-area">
+            <div>
                 <div class="login-info-from">
                     <form>
                         <h2>registration to Shopper Perk</h2>
@@ -29,12 +27,9 @@ const RegistrationModal = ({close}) => {
                 </div>
                 <div class="dont-have-account">
                     <p>Already a member?</p>
-                    <a href>LogIn</a>
+                    <a href onClick={loginModalOpen}>LogIn</a>
                 </div>
-            </div>
-            <a href class="modal__close" onClick={close}>&times;</a>
-        </div>
-     </div> 
+            </div> 
     );
 };
 

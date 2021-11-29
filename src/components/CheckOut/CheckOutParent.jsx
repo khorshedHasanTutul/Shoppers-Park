@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CartService } from '../../Service/CartContent';
+import AddressForm from '../AddressForm/AddressForm';
 import Address from './Address/Address';
 import CheckOutHeader from './CheckOutHeader';
 import CheckOutTabs from './CheckOutTabs';
@@ -58,7 +59,8 @@ const PaymentParent = () => {
                             }
                            
                            {
-                               (tabinfo===1)&& <Address proceedOrder={proceedOrder}/>
+                               (tabinfo===1)&&
+                               <AddressForm proceedOrder={proceedOrder} />
                            }
                             {/* AddressComponentLoaded */}
                            {

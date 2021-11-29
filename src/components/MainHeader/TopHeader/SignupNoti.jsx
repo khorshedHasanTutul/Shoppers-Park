@@ -8,18 +8,19 @@ import NotificationList from './NotificationList'
 import LoginModal from './AuthenticationPortal/LoginModal'
 import { Notification } from '../../../Service/AppService'
 import { WishService } from '../../../Service/CartContent'
+import ModalPOpUp from './AuthenticationPortal/ModalPOpUp'
 
 const SignupNoti = () => {
     const [notification, setnotification] = useState(false)
-    const [Login, setLoginModal] = useState(false)
+    const [Modal, setModal] = useState(false)
     
     const notificationList=()=>{
         setnotification(prevstate => !prevstate)
     }
 
-    const loginModal=(e)=>{
+    const ModalOpen=(e)=>{
         e.preventDefault();
-        setLoginModal(prevstate => !prevstate)
+        setModal(prevstate => !prevstate)
     }
     const notiData=Notification.notificationList;
     const [wishData, setwishData] = useState(WishService.Get())
@@ -50,14 +51,13 @@ const SignupNoti = () => {
                             <span>Wishlist</span>
                         </div>
                         <div class="busket-icon">
-                           
                             <FontAwesomeIcon icon={faHeart} />
                             <span>{wishData.Items.length}</span>
                         </div>
                     </Link>
                 </li>
                 <li>
-                    <div onClick={loginModal}>
+                    <div onClick={ModalOpen}>
                     <div className="header-nwl-hover">
                             <span>Login/SignUp</span>
                         </div>
@@ -71,7 +71,7 @@ const SignupNoti = () => {
         </div>
     </div>
     {
-        (Login)&& <LoginModal closeModal={loginModal}/>
+        (Modal)&& <ModalPOpUp ModalOpen={ModalOpen}/>
     }
     </>
     )

@@ -492,7 +492,11 @@ const Checkout={
             id:2,
             text:"Outside Dhaka"
         }
-    ]
+    ],
+    ShippingAddress:{
+        addressHeaderText:"Please Check your Shipping Informations",
+    }
+       
 }
 const NewInPage={
     Banner:

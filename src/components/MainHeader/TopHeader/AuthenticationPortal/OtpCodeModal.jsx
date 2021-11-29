@@ -1,10 +1,9 @@
 import React from 'react';
 
-const OtpCodeModal = () => {
+const OtpCodeModal = ({loginModalOpen,forgetPassModal}) => {
     return (
-        <div id="demo-modal4" class="modal">
-        <div class="modal__content">
-            <div class="login-main-area">
+        
+            <div>
                 <div class="login-info-from">
                     <form>
                         <h2>Please Enter Your Otp Code</h2>
@@ -14,8 +13,8 @@ const OtpCodeModal = () => {
                                 <input type="text" name="" id="mobile" required="" />
                             </div>
                             <div class="login-submit">
-                               <input type="submit" value="Next" /> 
-                                <a href="#demo-modal">Next</a>
+                               {/* <input type="submit" value="Next" />  */}
+                                <a href onClick={loginModalOpen}>Next</a>
                             </div>
                             <div class="time-clock-otp">
                                 <i class="fa fa-clock-o display-time" aria-hidden="true"></i>
@@ -25,12 +24,9 @@ const OtpCodeModal = () => {
                 </div>
                 <div class="dont-have-account">
                     <p>Don't Receved Otp Code</p>
-                    <a href="#demo-modal3">Resent</a>
+                    <a href onClick={forgetPassModal}>Resent</a>
                 </div>
             </div> 
-            <a href class="modal__close">&times;</a>
-        </div>
-     </div> 
     );
 };
 
