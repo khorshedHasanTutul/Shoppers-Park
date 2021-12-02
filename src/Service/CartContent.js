@@ -99,6 +99,8 @@ const WishService={};
     this.Refresh=function(){}
 }).call(WishService);
 
+
+
 const cartAddedButton=(item,evt)=>{
     evt.preventDefault();
     CartService.Add(item);
