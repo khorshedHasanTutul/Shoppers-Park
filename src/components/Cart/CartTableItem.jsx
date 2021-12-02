@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../Service/AppService';
-import { ButoonInc, RemoveItem } from '../../Service/CartContent';
+import { ButoonDec, ButoonInc, RemoveItem } from '../../Service/CartContent';
 
 const CartTableItem = ({data}) => {
 
@@ -9,7 +9,7 @@ const CartTableItem = ({data}) => {
          <>
         {
            
-            data.Items.map(item=>(
+            data.Items.map((item,index)=>(
                  <tr class="close">
             <td class="card-title-heading">
                 <Link to={'/product/'+item.Id}>
@@ -24,8 +24,8 @@ const CartTableItem = ({data}) => {
             <td class="card-plus-minuse">
                 <div class="attributes input-group bootstrap-touchspin">
                     <div class="qty-holder">
-                        <a href class="qty-dec-btn" title="Dec">-</a>
-                        <input type="text" name="product_qty" id="product_qty" class="qty-input" value="1" />
+                        <a href class="qty-dec-btn" title="Dec" onClick={callBack(ButoonDec,item)}>-</a>
+                        <input type="text" name="product_qty" id="product_qty" class="qty-input" value={data.qty[index]} />
                         <a class="qty-inc-btn" title="Inc" onClick={callBack(ButoonInc,item)} href>+</a>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ const CartTableItem = ({data}) => {
                         (item.Ds>0) && <del class="add-postion">{item.Ds}</del>
                     }
                     <br />
-                    <span class="SearchFont SearchPrice">{item.MRP}</span>
+                    <span class="SearchFont SearchPrice">{data.MRP[index]}</span>
                 </span>
             </td>
             <td class="amount-inner-crose">

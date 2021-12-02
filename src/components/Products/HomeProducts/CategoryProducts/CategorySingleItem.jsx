@@ -30,10 +30,10 @@ const CategorySingleItem = ({item}) => {
                                 }
                                 
                             </div>
-                            <div class="btn_cart" onClick={callBack(cartAddedButton,item)}>
+                            <a onClick={callBack(cartAddedButton,item)} href class="btn_cart" >
                                 <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
-                                <h5>Add to Cart</h5>
-                            </div>
+                                <h5 >Add to Cart</h5>
+                            </a>
                         </div>
                     </Link>
                     </div>
