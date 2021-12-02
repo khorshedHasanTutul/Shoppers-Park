@@ -495,7 +495,21 @@ const Checkout={
     ],
     ShippingAddress:{
         addressHeaderText:"Please Check your Shipping Informations",
-    }
+    },
+    SavingAddressTabData:[
+        {
+            id:1,
+            text:"Home",
+        },
+        {
+            id:2,
+            text:"Office",
+        },
+        {
+            id:1,
+            text:"Home Town",
+        },
+    ]
        
 }
 const NewInPage={

@@ -1,23 +1,29 @@
+import { Checkout } from "../../Service/AppService";
 import Card from "../utilities/Card/Card";
 
-const AddressList = () => {
+const AddressList = ({addressSaved,addressButtonIndex,phone,email,name,district,division,area}) => {
+  const data=Checkout.SavingAddressTabData;
   return (
     <div>
       <h3 className="t-uppercase t-14 mb-8">Saved Addresses</h3>
+      {
+        data.map((item,index)=>(
+          (addressSaved)&&
+          (index===addressButtonIndex)?
+          <Card className="mb-16 hover-card pointer">
+        <h4 className="t-16 t-bold mb-8">{item.text}</h4>
+        <p className=" mb-4">{name}({phone})</p>
+        <p className="mb-4">{email}</p>
+        <p>{district },{division }, {area}</p>
+      </Card>:
       <Card className="mb-16 hover-card pointer">
-        <h4 className="t-16 t-bold mb-8">HOME</h4>
-        <p className=" mb-4">Iqrasys Solution(01723658452)</p>
-        <p className="mb-4">Mirpur 12, Dhaka City, Dhaka</p>
-        <p>House 858, Road 12, Avenue 3, Mirpur DOHS</p>
+          <p>No Address saved in {item.text} slot</p>
       </Card>
-      <Card className="mb-16 hover-card pointer">
-        <h4 className="t-16 t-bold mb-8">OFFICE</h4>
-        <p>No Address saved in Office slot</p>
-      </Card>
-      <Card className="mb-16 hover-card pointer">
-        <h4 className="t-16 t-bold mb-8">HOME TOWN</h4>
-        <p>No Address saved in Home Town slot</p>
-      </Card>
+      
+        ))
+      }
+      {
+      }
     </div>
   );
 };

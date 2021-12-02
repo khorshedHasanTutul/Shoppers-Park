@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { CartService } from '../../Service/CartContent';
 import AddressForm from '../AddressForm/AddressForm';
-import Address from '../CheckOut/Address/Address'
-// import Address from './Address/Address';
 import CheckOutHeader from './CheckOutHeader';
 import CheckOutTabs from './CheckOutTabs';
 import Payment from './Payment/Payment';
@@ -17,7 +15,7 @@ const PaymentParent = () => {
     const tabInformation=(item)=>{
         settabinfo(item)
     }
-    const proceedFunction=(ProductSummary)=>{
+    const proceedFunction=(ProductSummary,)=>{
         window.scrollTo({
             top: 100,
             left: 100,
@@ -29,7 +27,8 @@ const PaymentParent = () => {
         else
         alert('Please Select a Shipping Zone')
     }
-    const proceedOrder=()=>{
+    const proceedOrder=(evt)=>{
+        console.log(['evt=>',evt])
         window.scrollTo({
             top: 100,
             left: 100,
@@ -63,7 +62,7 @@ const PaymentParent = () => {
                            {
                                (tabinfo===1)&&
                                 //   <Address proceedOrder={proceedOrder}/>
-                               <AddressForm proceedOrder={proceedOrder} />
+                               <AddressForm proceedOrder={proceedOrder}  />
                             
                            }
                             {/* AddressComponentLoaded */}
