@@ -6,12 +6,11 @@ import React, { useState } from 'react';
 import { BrandData, callBack } from '../../../Service/AppService';
 import appData from '../../DataSource/appData';
 import { Link } from 'react-router-dom';
-import { WishAddedButton } from '../../../Service/CartContent';
+import { ButoonDec, ButoonInc, cartAddedButton, cartSingleButtonAdd, WishAddedButton } from '../../../Service/CartContent';
 
 const ProductDetailsItem = ({product_id}) => {
     const concatData=appData.categoryProducts;
     const item=concatData.find(item=>item.Id ===product_id);
-    console.log('item',item)
     const categoryData=appData.ShopCategory.find(item2=>item2.categoryId ===item.category_id );
     const brandData=BrandData.find(brand=>brand.brand_id  ===item.brand_id );
     const [count, setstate] = useState(1);
@@ -77,7 +76,7 @@ const ProductDetailsItem = ({product_id}) => {
                                               </div>
                                               
                                               <div class="pro-add-wish-flex">
-                                              <a href>
+                                              <a href onClick={callBack(cartSingleButtonAdd,item,count)}>
                                                 <div class="btn_cart">
                                                    <FontAwesomeIcon icon={faShoppingCart} />
                                                     <h5>Add to Cart</h5>

@@ -1,123 +1,160 @@
-const CartService={};
-const WishService={};
+import { Redirect } from "react-router";
 
-(function(){
-    var CartModel={TotalAmount:0,TotalItem:0,Items:[]};
-    
-    let getData=localStorage.getItem('cartModel');
+const CartService = {};
+const WishService = {};
 
-    if(getData){
-        getData=JSON.parse(getData);
-        getData.Items && (CartModel=getData);
+(function () {
+    var CartModel = { TotalAmount: 0, TotalItem: 0, Items: [], qty: [], MRP: [] };
+
+    let getData = localStorage.getItem('cartModel');
+
+    if (getData) {
+        getData = JSON.parse(getData);
+        getData.Items && (CartModel = getData);
     }
-    this.Get=function(){
-        return {...CartModel};
+    this.Get = function () {
+        return { ...CartModel };
     };
 
-    function ifExists(item){
-        const foundData=CartModel.Items.find(item2=>item2.Id===item.Id);
-        if(foundData) return true;
+    function ifExists(item) {
+        const foundData = CartModel.Items.find(item2 => item2.Id === item.Id);
+        if (foundData) return true;
         return false;
     }
-    this.Add=function(item){
+    this.Add = function (item) {
+        if (ifExists(item)) {
+            alert('Already in your Cart.');
+        } else {
+            CartModel.Items.push(item);
+            CartModel.qty.push(1);
+            CartModel.MRP.push(item.MRP)
+            CartModel.TotalAmount += item.MRP;
+            localStorage.setItem('cartModel', JSON.stringify(CartModel));
+            this.Refresh(this.Get());
+        }
+
+    };
+    this.SingleAdd=function(item,count){
         if(ifExists(item)){
             alert('Already in your Cart.');
         }
         else{
             CartModel.Items.push(item);
-            CartModel.TotalAmount+=item.MRP;
-            localStorage.setItem('cartModel',JSON.stringify(CartModel));
+            CartModel.qty.push(count);
+            CartModel.MRP.push(item.MRP*count);
+            CartModel.TotalAmount=CartModel.TotalAmount+(item.MRP*count);
+            localStorage.setItem('cartModel', JSON.stringify(CartModel));
             this.Refresh(this.Get());
         }
-       
-    };
-    this.Remove=function(item){
-        if(ifExists(item)){
-            const index=CartModel.Items.findIndex(item2=>item2.Id===item.Id);
-            CartModel.Items.splice(index,1);
+    }
+    this.Remove = function (item) {
+        if (ifExists(item)) {
+            const index = CartModel.Items.findIndex(item2 => item2.Id === item.Id);
+            CartModel.Items.splice(index, 1);
+            CartModel.qty.splice(index,1);
+            CartModel.MRP.splice(index,1);
+            CartModel.TotalAmount=CartModel.MRP.reduce(function(a, b){
+                return a + b;
+            }, 0);
             this.Refresh(this.Get());
         }
-        localStorage.setItem('cartModel',JSON.stringify(CartModel));
+        localStorage.setItem('cartModel', JSON.stringify(CartModel));
         return CartModel.Items;
     }
-    this.Update=function(item){
-        console.log('buttonClicked')
-        // const index=CartModel.Items.findIndex(item2=>item2.Id==item.Id);
-        // const MRP= CartModel.Items[index].MRP;
-        // if(ifExists(item)){
-        //     this.Refresh(this.Get());
-        // }
-        // localStorage.setItem('cartModel',JSON.stringify(CartModel));
-        // return CartModel.Items;
+    this.increment = function (item) {
+        var index = CartModel.Items.findIndex(item2 => item2.Id == item.Id);
+        CartModel.TotalAmount=CartModel.TotalAmount+CartModel.Items[index].MRP;
+        CartModel.MRP[index] = CartModel.Items[index].MRP + CartModel.MRP[index];
+        CartModel.qty[index] = CartModel.qty[index] + 1;
+       
+        this.Refresh(this.Get());
+        localStorage.setItem('cartModel', JSON.stringify(CartModel));
+        return CartModel.Items;
     }
-    this.Refresh=function(){}
+    this.decrement = function (item) {
+        const index = CartModel.Items.findIndex(item2 => item2.Id == item.Id);
+        CartModel.TotalAmount=CartModel.TotalAmount+CartModel.Items[index].MRP;
+        CartModel.MRP[index] = CartModel.MRP[index] - CartModel.Items[index].MRP;
+        CartModel.qty[index] = CartModel.qty[index] - 1;
+        this.Refresh(this.Get());
+        localStorage.setItem('cartModel', JSON.stringify(CartModel));
+        return CartModel.Items;
+    }
+    this.Refresh = function () { }
 
 }).call(CartService);
 
 
-(function(){
-    var WishModel={Items:[]};
-    let getData=localStorage.getItem('wishModel');
+(function () {
+    var WishModel = { Items: [] };
+    let getData = localStorage.getItem('wishModel');
 
-    if(getData){
-        getData=JSON.parse(getData);
-        getData.Items && (WishModel=getData);
+    if (getData) {
+        getData = JSON.parse(getData);
+        getData.Items && (WishModel = getData);
     }
 
-    function ifExists(item){
-        const foundData=WishModel.Items.find(item2=>item2.Id===item.Id);
-        if(foundData) return true;
+    function ifExists(item) {
+        const foundData = WishModel.Items.find(item2 => item2.Id === item.Id);
+        if (foundData) return true;
         return false;
     }
 
 
-    this.Get=function(){
-        return {Items:WishModel.Items};
+    this.Get = function () {
+        return { Items: WishModel.Items };
     };
 
-    this.Add=function(item){
-        if(ifExists(item)){
+    this.Add = function (item) {
+        if (ifExists(item)) {
             alert('Already in your Wishlist.');
-        }
-        else{
+        } else {
             WishModel.Items.push(item);
-            localStorage.setItem('wishModel',JSON.stringify(WishModel));
+            localStorage.setItem('wishModel', JSON.stringify(WishModel));
             this.Refresh(this.Get());
         }
-       
+
     };
 
-    this.Remove=function(item){
-        if(ifExists(item)){
-            const index=WishModel.Items.findIndex(item2=>item2.Id===item.Id);
-            WishModel.Items.splice(index,1);
+    this.Remove = function (item) {
+        if (ifExists(item)) {
+            const index = WishModel.Items.findIndex(item2 => item2.Id === item.Id);
+            WishModel.Items.splice(index, 1);
             this.Refresh(this.Get());
         }
-        localStorage.setItem('wishModel',JSON.stringify(WishModel));
+        localStorage.setItem('wishModel', JSON.stringify(WishModel));
         return WishModel.Items;
     }
-    this.Refresh=function(){}
+    this.Refresh = function () { }
 }).call(WishService);
 
 
 
-const cartAddedButton=(item,evt)=>{
-    evt.preventDefault();
+const cartAddedButton = (item, e) => {
+    e.preventDefault();
     CartService.Add(item);
 }
-const WishAddedButton=(item,evt)=>{
+
+const WishAddedButton = (item, evt) => {
     evt.preventDefault();
     WishService.Add(item);
 }
-const RemoveItem=(item,evt)=>{
+const RemoveItem = (item, evt) => {
     evt.preventDefault();
     CartService.Remove(item);
 }
-const WishRemoveItem=(item,evt)=>{
+const WishRemoveItem = (item, evt) => {
     evt.preventDefault();
     WishService.Remove(item);
 }
-const ButoonInc=(item,evt)=>{
-    CartService.Update(item);
+const cartSingleButtonAdd=(item,count,evt)=>{
+    evt.preventDefault();
+    CartService.SingleAdd(item,count)
 }
-export {cartAddedButton,ButoonInc,WishRemoveItem,CartService,WishAddedButton,WishService,RemoveItem}
+const ButoonInc = (item, evt) => {
+    CartService.increment(item, evt);
+}
+const ButoonDec = (item, evt) => {
+    CartService.decrement(item, evt);
+}
+export { cartAddedButton,cartSingleButtonAdd, ButoonInc, ButoonDec, WishRemoveItem, CartService, WishAddedButton, WishService, RemoveItem }

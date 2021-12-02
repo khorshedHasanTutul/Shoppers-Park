@@ -25,10 +25,10 @@ const ProductSingleItem = ({item}) => {
                                 }
                                 
                             </div>
-                <div class="btn_cart" onClick={callBack(cartAddedButton,item)}>
+                <a href class="btn_cart" onClick={callBack(cartAddedButton,item)}>
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     <h5>Add to Cart</h5>
-                </div>
+                </a>
             </div>
         </Link>
     </div>
