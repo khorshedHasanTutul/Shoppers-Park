@@ -37,7 +37,7 @@ const ContentCart = ({closeCart}) => {
                         </div>
                         <div class="cart-footer">
                             <Link to={'/checkout'} onClick={closeCart}  id="checkout-button" class="btn btn-success pull-left">Order Now</Link>
-                            <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>{cartModel.TotalAmount}</span></span>
+                            <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>{(cartModel.TotalAmount.toFixed(2))}</span></span>
                             <a class="block-btn-card" href>
                                 <i class="fa fa-shopping-cart fa-2x pull-right"></i>
                                 <div class="clearfix"></div>

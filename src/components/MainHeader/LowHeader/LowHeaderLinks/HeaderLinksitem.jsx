@@ -5,7 +5,7 @@ const HeaderLinksitem = () => {
     const links=[
         {
             name:'Home',
-            to:'/'
+            to:'/home'
 
         },
         {

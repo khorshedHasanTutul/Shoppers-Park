@@ -1,15 +1,6 @@
-import React, { useState } from 'react';
-import RegistrationModal from './RegistrationModal';
+import React from 'react';
 
 const LoginModal = ({CreateAccount,forgetPassModal}) => {
-    // const [registration, setregistration] = useState(false)
-    // const registrationModal=(e)=>{
-    //     e.preventDefault();
-    //     setregistration(prevstate => !prevstate)
-    // }
-    // const functionClose=(e)=>{
-    //     registrationModal(e);
-    // }
     return (
         <>
                     <div class="login-info-from">

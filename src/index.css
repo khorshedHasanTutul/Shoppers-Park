@@ -4090,9 +4090,9 @@ select::-ms-expand {
   width: 100px;
 }
 
-.catagory-main-product-area {
+/* .catagory-main-product-area {
   padding-top: 40px;
-}
+} */
 
 .single-banner-slider {
   height: 485px;
@@ -5204,7 +5204,7 @@ div.brick.label.default {
 }
 
 .order-detail-content .action a img {
-  width: 12px;
+  width: 20px;
   height: auto;
 }
 
@@ -5664,4 +5664,14 @@ div.brick.label.default {
 
 .activetab {
   border-bottom-color: #df2c8a !important;
+}
+
+/* Tutul adding Css */
+/* 4093Line Comment Category product area */
+.no-product-found {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bolder;
+	font-style: revert;
+	color: deeppink;
 }

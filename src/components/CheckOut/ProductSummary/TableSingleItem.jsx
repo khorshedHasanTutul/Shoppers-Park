@@ -1,31 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../Service/AppService';
-import { ButoonDec, ButoonInc, CartService, RemoveItem } from '../../../Service/CartContent';
+import { ButoonDec, ButoonInc, RemoveItem } from '../../../Service/CartContent';
+import TableItemCategoryBrand from './TableItemCategoryBrand';
 
 const TableSingleItem = ({data}) => {
-    const [CartContent, setCartContent] = useState(CartService.Get())
-    CartService.Refresh=setCartContent;
-    // const [count, setcount] = useState(1)
-    // const Increment=(item)=>{ 
-    //       console.log(item)
-    // }
-    
     return (
         <>
         {
-            CartContent.Items.map((item,index)=>(
+            data.Items.map((item,index)=>(
                 <tr>
                 <td class="cart_product">
                     <a href><img src={item.image} alt="img" /></a>
                 </td>
-                <td class="cart_description">
-                    <p class="product-name"><Link to={'/product/'+item.Id}>{item.Nm}</Link></p>
-                    <small class="cart_ref">Category : XYZ</small>
-                    <br />
-                    <small>Brand: LPC </small>
-                </td>
-                <td class="price"><span>৳ {item.MRP}</span></td>
+              <TableItemCategoryBrand item={item} />
+                <td class="price"><span>৳ {(item.MRP).toFixed(2)}</span></td>
                 <td class="qty">
                     <div class="input-group product_qty">
                         <input type="text" class="form-control no-padding add-color text-center height-25" maxlength="3" value={data.qty[index]} />
@@ -42,7 +31,7 @@ const TableSingleItem = ({data}) => {
                         </span>
                       </div>
                 </td>
-                <td class="price"><span>{data.MRP[index]}</span></td>
+                <td class="price"><span>{(data.MRP[index].toFixed(2))}</span></td>
                 <td class="action"><a onClick={callBack(RemoveItem,item)} href><img src="/contents/assets/images/delete_icon.png" alt="" /></a></td>
             </tr>
             

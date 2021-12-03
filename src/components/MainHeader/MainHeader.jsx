@@ -15,7 +15,7 @@ export const MainHeader = () => {
         <section className={`header-area ${scroll && 'toggle_ones'}`}>
             <div class="container">
                 <div class="header-main-area">
-                    <TopHeader />
+                    <TopHeader/>
                     <LowHeader />
                 </div>
             </div>

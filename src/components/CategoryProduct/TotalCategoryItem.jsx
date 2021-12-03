@@ -1,6 +1,6 @@
 import React from 'react';
 import appData from '../DataSource/appData';
-import TotalCategoryProduct from './TotalCategoryProduct';
+import CategorySubItemProductList from './CategorySubItemProductList';
 
 const TotalCategoryItem = ({categoryId}) => {
     const catId=parseInt(categoryId)
@@ -11,28 +11,10 @@ const TotalCategoryItem = ({categoryId}) => {
         {
             
             data.subCategory.map(subCategory_item=>(
-                
-                        <div class="catagory-main-product-area">
-                    {/* <!-- common heading --> */}
-                    <div class="hompe-common-title">
-                        <h2>{subCategory_item.subCategoryName}</h2>
-                        <div class="my-header-underline"></div>
-                    </div>
-                    {/* <!-- common heading --> */}
-                    {/* <!-- single product catagory main area --> */}
-                    
-                    <TotalCategoryProduct category_id={categoryId} subCategory_id={subCategory_item.subCategory_id}/>
+                <CategorySubItemProductList categoryId={categoryId} subCategory_item={subCategory_item}/> 
 
-                    {/* <!-- single product catagory main area --> */}
-                </div>
-                    ))
-                
-                
-            
+                    )) 
         }
-            {/* <!-- repeat sub catagory single --> */}
-           
-             {/* <!-- repeat sub catagory single --> */}
       
         </div>
     </section>
