@@ -30,14 +30,14 @@ const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
               </tr>
             </thead>
             <tbody>
-              <TableSingleItem data={data} />
+              <TableSingleItem data={CartContent} />
             </tbody>
             <tfoot>
               <tr>
                 <td colspan="2" rowspan="2"></td>
                 <td colspan="3">Total Amount (tax incl.)</td>
                 <td colspan="2">
-                  ৳ <span>{CartContent.TotalAmount}</span>
+                  ৳ <span>{(CartContent.TotalAmount.toFixed(2))}</span>
                 </td>
               </tr>
               <tr>
@@ -52,7 +52,7 @@ const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
                 </td>
                 <td colspan="3">
                   <strong>
-                    ৳ <span>{data.TotalAmount + ProductSummary}</span>
+                    ৳ <span>{(CartContent.TotalAmount + ProductSummary).toFixed(2)}</span>
                   </strong>
                 </td>
               </tr>
@@ -67,7 +67,7 @@ const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
               </form>
             </div>
             <div class="cart_navigation">
-              <Link class="prev-btn" to="/">
+              <Link class="prev-btn" to="/home">
                 <i
                   class="fa fa-angle-left check-ang-left"
                   aria-hidden="true"

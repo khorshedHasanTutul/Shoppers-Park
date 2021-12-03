@@ -10,11 +10,6 @@ const HeaderSearch = () => {
     const getInputValue=(evt)=>{
         evt.preventDefault();
         setSearchValue(evt.target.value);
-        // Window.addEventListener('click',function(){
-        //     evt.target.value='';
-        // })
-
-
     }
     const closeSearch=(evt)=>{
         setSearchValue('');

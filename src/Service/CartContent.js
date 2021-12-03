@@ -1,5 +1,3 @@
-import { Redirect } from "react-router";
-
 const CartService = {};
 const WishService = {};
 
@@ -27,8 +25,15 @@ const WishService = {};
         } else {
             CartModel.Items.push(item);
             CartModel.qty.push(1);
-            CartModel.MRP.push(item.MRP)
-            CartModel.TotalAmount += item.MRP;
+           if(item.Ds>0){
+               let productPrice=(item.MRP-((item.MRP)*item.Ds)/100);
+               CartModel.MRP.push(productPrice);
+               CartModel.TotalAmount += productPrice;
+           }
+           else{
+               CartModel.MRP.push(item.MRP);
+               CartModel.TotalAmount += item.MRP;
+           } 
             localStorage.setItem('cartModel', JSON.stringify(CartModel));
             this.Refresh(this.Get());
         }
@@ -41,12 +46,20 @@ const WishService = {};
         else{
             CartModel.Items.push(item);
             CartModel.qty.push(count);
-            CartModel.MRP.push(item.MRP*count);
-            CartModel.TotalAmount=CartModel.TotalAmount+(item.MRP*count);
+            if(item.Ds>0){
+                let productPrice=(item.MRP-((item.MRP)*item.Ds)/100);
+                CartModel.MRP.push(productPrice*count);
+                CartModel.TotalAmount=CartModel.TotalAmount+(productPrice*count);
+            }
+            else{
+                  CartModel.MRP.push(item.MRP*count);
+                  CartModel.TotalAmount=CartModel.TotalAmount+(item.MRP*count);
+            }
             localStorage.setItem('cartModel', JSON.stringify(CartModel));
             this.Refresh(this.Get());
         }
     }
+
     this.Remove = function (item) {
         if (ifExists(item)) {
             const index = CartModel.Items.findIndex(item2 => item2.Id === item.Id);
@@ -61,20 +74,41 @@ const WishService = {};
         localStorage.setItem('cartModel', JSON.stringify(CartModel));
         return CartModel.Items;
     }
+
     this.increment = function (item) {
-        var index = CartModel.Items.findIndex(item2 => item2.Id == item.Id);
-        CartModel.TotalAmount=CartModel.TotalAmount+CartModel.Items[index].MRP;
-        CartModel.MRP[index] = CartModel.Items[index].MRP + CartModel.MRP[index];
+        var index = CartModel.Items.findIndex(item2 => item2.Id === item.Id);
+        if(item.Ds>0){
+            let product_price=CartModel.Items[index].MRP
+            product_price=(product_price-((product_price)*item.Ds)/100);
+            CartModel.TotalAmount=CartModel.TotalAmount+product_price;
+            CartModel.MRP[index] =product_price + CartModel.MRP[index];
+
+        }
+        else{
+            CartModel.TotalAmount=CartModel.TotalAmount+CartModel.Items[index].MRP;
+            CartModel.MRP[index] = CartModel.Items[index].MRP + CartModel.MRP[index];
+        }
+        
         CartModel.qty[index] = CartModel.qty[index] + 1;
        
         this.Refresh(this.Get());
         localStorage.setItem('cartModel', JSON.stringify(CartModel));
         return CartModel.Items;
     }
+
     this.decrement = function (item) {
-        const index = CartModel.Items.findIndex(item2 => item2.Id == item.Id);
-        CartModel.TotalAmount=CartModel.TotalAmount+CartModel.Items[index].MRP;
-        CartModel.MRP[index] = CartModel.MRP[index] - CartModel.Items[index].MRP;
+        const index = CartModel.Items.findIndex(item2 => item2.Id === item.Id);
+        if(item.Ds>0){
+            let product_price=CartModel.Items[index].MRP;
+            product_price=(product_price-((product_price)*item.Ds)/100);
+            CartModel.TotalAmount=CartModel.TotalAmount-product_price;
+            CartModel.MRP[index] = CartModel.MRP[index] - product_price;
+        }
+        else{
+            CartModel.TotalAmount=CartModel.TotalAmount-CartModel.Items[index].MRP;
+            CartModel.MRP[index] = CartModel.MRP[index] - CartModel.Items[index].MRP;
+        }
+        
         CartModel.qty[index] = CartModel.qty[index] - 1;
         this.Refresh(this.Get());
         localStorage.setItem('cartModel', JSON.stringify(CartModel));

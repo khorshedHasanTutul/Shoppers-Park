@@ -17,9 +17,12 @@ const CartTableItem = ({data}) => {
                 </Link>
                 <br />
                 {
-                    (item.Ds>0)?<del class="SearchDelPrice SearchDelPriceDel1">৳ {item.Ds}</del>:''
+                    (item.Ds>0)?<del class="SearchDelPrice SearchDelPriceDel1">৳ {item.MRP}</del>:''
                 }
-                <strong class="SearchPrice SearchDelPriceDel2">৳ {item.MRP}</strong>
+                {
+                    (item.Ds>0) ? <strong class="SearchPrice SearchDelPriceDel2">৳{(item.MRP-((item.MRP)*item.Ds)/100).toFixed(2)}</strong>:
+                    <strong class="SearchPrice SearchDelPriceDel2">৳{item.MRP.toFixed(2)}</strong>
+                }
             </td>
             <td class="card-plus-minuse">
                 <div class="attributes input-group bootstrap-touchspin">
@@ -34,10 +37,10 @@ const CartTableItem = ({data}) => {
                 <span class="SearchFont SearchDelPrice">
                     {(item.Ds>0)? <del>৳</del> :<span>৳</span>} 
                     {
-                        (item.Ds>0) && <del class="add-postion">{item.Ds}</del>
+                        (item.Ds>0) && <del class="add-postion">{(item.MRP*data.qty[index]).toFixed(2)}</del>
                     }
                     <br />
-                    <span class="SearchFont SearchPrice">{data.MRP[index]}</span>
+                    <span class="SearchFont SearchPrice">{(data.MRP[index].toFixed(2))}</span>
                 </span>
             </td>
             <td class="amount-inner-crose">

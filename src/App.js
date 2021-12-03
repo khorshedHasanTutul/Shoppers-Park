@@ -6,7 +6,6 @@ import ShoppingCart from './components/Cart/ShoppingCart';
 import Brands from './pages/Brands';
 import Blog from './pages/Blog';
 import TopOffers from './pages/TopOffers';
-import Halloween from './pages/Festival';
 import ErrorPage from './pages/ErrorPage';
 import SingleBlogPage from './pages/SingleBlogPage';
 import Contact from './pages/Contact';
@@ -24,18 +23,17 @@ import About from './pages/About';
 import Payment from './pages/CheckOut';
 import NewInShop from './pages/NewInShop';
 import Notifications from './pages/Notifications';
+import Festival from './pages/Festival';
 
 
 
 function App() {
-
   return (
     <div className="App all-wapper-overflow">
-      <MainHeader />
+      <MainHeader/>
       <main className="banner-slider-area">
         <Switch>
-
-          <Route path="/" exact>
+          <Route path="/home" exact>
             <Home />
           </Route>
           <Route path="/brands" exact>
@@ -45,7 +43,7 @@ function App() {
              <TopOffers />
           </Route>
           <Route path="/festival">
-             <Halloween />
+             <Festival />
           </Route>
           <Route path="/blog" exact>
               <Blog />
@@ -75,7 +73,7 @@ function App() {
             <Notifications />
           </Route>
           <Route path="/wishlist">
-          <Wishlist />
+          <Wishlist/>
           </Route>
           <Route path="/contact">
           <Contact />

@@ -24,8 +24,12 @@ const CategorySingleItem = ({item}) => {
                                 <h4>{item.Nm}</h4>
                             </div>
                             <div class="basket-add">
-                                <span class="item__price item__price--now">৳{item.MRP}</span>
-                                {item.Ds>0 ? <span class="price product-price"><del class="cross_price">৳ {item.Ds}</del></span> :
+                                {
+                                    (item.Ds>0)?<span class="item__price item__price--now">৳{(item.MRP-((item.MRP)*item.Ds)/100).toFixed(2)}</span>:
+                                    <span class="item__price item__price--now">৳{item.MRP}</span>
+                                }
+                               
+                                {item.Ds>0 ? <span class="price product-price"><del class="cross_price">৳ {item.MRP}</del></span> :
                                 ''
                                 }
                                 

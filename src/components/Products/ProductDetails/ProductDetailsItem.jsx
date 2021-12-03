@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { BrandData, callBack } from '../../../Service/AppService';
 import appData from '../../DataSource/appData';
 import { Link } from 'react-router-dom';
-import { ButoonDec, ButoonInc, cartAddedButton, cartSingleButtonAdd, WishAddedButton } from '../../../Service/CartContent';
+import {cartSingleButtonAdd, WishAddedButton } from '../../../Service/CartContent';
 
 const ProductDetailsItem = ({product_id}) => {
     const concatData=appData.categoryProducts;
@@ -47,13 +47,18 @@ const ProductDetailsItem = ({product_id}) => {
                                                 </div>
                                                 <a href>No Review</a>
                                             </div>
+                                            
                                             <div class="basket-add">
-                                                <span class="item__price item__price--now">৳{(parseInt(item.MRP)%2!==0)?(item.MRP*count):(item.MRP * count).toFixed(2)}</span>
-                                                {item.Ds>0 ? <span class="price product-price"><del class="cross_price">৳ {item.Ds}</del></span> :
-                                                ''
-                                                }
-            
-                                            </div>
+                                {
+                                    (item.Ds>0)?<span class="item__price item__price--now">৳{((item.MRP-((item.MRP)*item.Ds)/100)*count).toFixed(2)}</span>:
+                                    <span class="item__price item__price--now">৳{(item.MRP*count).toFixed(2)}</span>
+                                }
+                               
+                                {item.Ds>0 ? <span class="price product-price"><del class="cross_price">৳ {(item.MRP*count).toFixed(2)}</del></span> :
+                                ''
+                                }
+                                
+                            </div>
                                             <div class="pd-brand-ctg">
                                                 <ul>
                                                     <li>Category :<Link to={'/category/'+ item.category_id}>{categoryData.categoryName}</Link></li>

@@ -9,7 +9,7 @@ const LowHeader = () => {
             
             <div class="wishlist-offer">
                 <ul>
-                 <Link to="/">Request a Order</Link>
+                 <Link to="/profile/request">Request a Order</Link>
                 </ul>
             </div>
             

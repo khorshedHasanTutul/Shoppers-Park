@@ -23,7 +23,7 @@ const WishlistParent = () => {
                         (Wishlist.Items.length>0) && 
                     <div class="add-product-wishlist-main-page">
                          <h3>Your products wishlist</h3>
-                          <WishlistProduct data={Wishlist.Items}/>
+                          <WishlistProduct/>
                      </div>
                     }
                      

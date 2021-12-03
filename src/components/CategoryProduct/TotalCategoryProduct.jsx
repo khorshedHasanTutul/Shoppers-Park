@@ -35,6 +35,14 @@ const TotalCategoryProduct = ({category_id,subCategory_id}) => {
     const catId=parseInt(category_id);
     const subCatId=parseInt(subCategory_id)
     const data=concatData.filter(item=>(item.category_id===catId && item.subCategory_id===subCatId))
+    if(data.length===0){
+        return (
+            <div class="no-product-found">
+                <h6>"No Product Found!"</h6>
+            </div>
+        );
+    }
+    else
     return (
         <>
         {

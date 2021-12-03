@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-// import logo from '../../../images/sp.jpeg'
+import appData from '../../DataSource/appData';
 
 const HeaderLogo = () => {
     return (
         <div>
             <div class="header-top-logo">
-            <Link to={"/"}><img src="/contents/assets/images/sp.jpeg" alt="logo_img" /></Link>
+            <Link to={"/home"}><img src={appData.HeaderData.Headerlogo.img} alt="logo_img" /></Link>
             </div>
         </div>
     )

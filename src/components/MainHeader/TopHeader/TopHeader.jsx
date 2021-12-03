@@ -8,7 +8,7 @@ const TopHeader = () => {
         <div class="header-top-flex">
             <HeaderLogo />
             <HeaderSearch />
-            <SignupNoti />
+            <SignupNoti/>
         </div>
     )
 }

@@ -8,6 +8,7 @@ const Payment = ({ShippingCost}) => {
     const data=CartService.Get();
     const [OrderStatus, setproceedOrder] = useState(false)
     const proceedOrder=()=>{
+        localStorage.clear();
         setproceedOrder(true)
     }
     
@@ -27,7 +28,7 @@ const Payment = ({ShippingCost}) => {
                                             <tbody>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3">Amount (tax incl.)</td>
-                                                    <td class="summary-details-p" colspan="2">{data.TotalAmount}</td>
+                                                    <td class="summary-details-p" colspan="2">{(data.TotalAmount).toFixed(2)}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3">Delivery Charge</td>
@@ -39,7 +40,7 @@ const Payment = ({ShippingCost}) => {
                                                 </tr>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3"><strong>Total Amount </strong></td>
-                                                    <td class="summary-details-p" colspan="2"><strong>{data.TotalAmount+ShippingCost}</strong></td>
+                                                    <td class="summary-details-p" colspan="2"><strong>{(data.TotalAmount+ShippingCost).toFixed(2)}</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>

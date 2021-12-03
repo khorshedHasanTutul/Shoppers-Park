@@ -10,7 +10,7 @@ const WishlistNoProduct = () => {
             <p>You don't have any products in the wishlist yet.</p>
             <p>You will find a lot of interesting products on our "Shop" page.</p>
             <div class="shop-all-offer-btn">
-                <Link to="/">Return to shop</Link>
+                <Link to="/home">Return to shop</Link>
             </div>
             
         </div>

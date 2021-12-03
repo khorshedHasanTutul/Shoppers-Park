@@ -1,20 +1,25 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-const HeaderLinks = ({links}) => {
-    return (
-        <>
-        {links.map((link) => (
-            <li><NavLink  to={link.to} activeStyle={{
-                color: '#DF2C8A'
-              }} exact >{link.name}</NavLink></li>
-          ))}
-        </>
-        
-    )
-}
+const HeaderLinks = ({ links }) => {
+  return (
+    <>
+      {links.map((link) => (
+        <li>
+          <NavLink
+            to={link.to}
+            activeStyle={{
+              color: "#DF2C8A",
+            }}
+          >
+            {link.name}
+          </NavLink>
+        </li>
+      ))}
+    </>
+  );
+};
 export default HeaderLinks;
-
 
 // style={({ isActive }) => {
 //   return {

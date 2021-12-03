@@ -20,8 +20,9 @@ const BlogRecentPost = () => {
                             <h6>{item.postName}</h6>
                         </div>
                         <div class="inner-sub-blog-desc">
-                            <time class="recent-posts-time">{item.created_at}</time>
-                            <span>1 Comment</span>
+                            <span>Posted By</span>
+                            <time class="recent-posts-time">{item.postedBy}</time>
+                            {/* <span>1 Comment</span> */}
                         </div>
                     </div>
                  </Link>
