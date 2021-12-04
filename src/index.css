@@ -5162,7 +5162,7 @@ div.brick.label.default {
 }
 
 .order-detail-content .cart_product > a > img {
-  width: 100%;
+  width: 60%;
   height: auto;
 }
 
@@ -5183,7 +5183,7 @@ div.brick.label.default {
 }
 
 .order-detail-content .price {
-  text-align: end;
+  text-align: center;
   font-size: 15px;
   color: #000;
   font-weight: 400;
@@ -5193,7 +5193,7 @@ div.brick.label.default {
   margin: 0 auto;
 }
 .order-detail-content .qty .input-group.product_qty > input {
-  display: block;
+  /* display: block; */
   margin: 0 auto;
   margin-bottom: 10px;
 }
@@ -5204,8 +5204,9 @@ div.brick.label.default {
 }
 
 .order-detail-content .action a img {
-  width: 20px;
+  width: 12px;
   height: auto;
+  background-color: antiquewhite;
 }
 
 .cart_navigation {
@@ -5674,4 +5675,11 @@ div.brick.label.default {
 	font-weight: bolder;
 	font-style: revert;
 	color: deeppink;
+}
+
+.product-details-activeTab{
+  border-bottom-color: #df2c8a !important;
+  border-top-color: #df2c8a !important;
+  background: #df2c8a !important;
+  color: #fff !important;
 }

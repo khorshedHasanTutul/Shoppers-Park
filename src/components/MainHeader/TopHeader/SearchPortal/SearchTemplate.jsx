@@ -36,8 +36,9 @@ const SearchTemplate = ({item,closeSearch}) => {
               </div>
               <div class="result-card__details--actions">
                 <button onClick={callBack(cartAddedButton,item)}>
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                  Add to Cart
+                <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
+                <strong onClick={closeSearch}> Add to Cart</strong>
+                 
                 </button>
               </div>
             </div>
