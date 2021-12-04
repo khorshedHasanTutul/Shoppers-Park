@@ -4,7 +4,7 @@ import TotalCategoryProduct from './TotalCategoryProduct';
 
 const CategorySubItemProductList = ({categoryId,subCategory_item}) => {
     const data=appData.categoryProducts.filter(item=>item.category_id==categoryId && item.subCategory_id==subCategory_item.subCategory_id);
-    if(data.length==0){
+    if(data.length===0){
         return false;
     }
     else

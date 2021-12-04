@@ -33,6 +33,9 @@ function App() {
       <MainHeader/>
       <main className="banner-slider-area">
         <Switch>
+        <Route path='/' exact>
+            <Home />
+          </Route>
           <Route path="/home" exact>
             <Home />
           </Route>

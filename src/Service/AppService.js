@@ -3,7 +3,7 @@ function callBack(func,...params){
     return function (evt) {
       params.push(evt);
       func.apply(this,params);
-    //   evt.preventDefault();
+      evt.preventDefault();
     }
   }
   const month=["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]

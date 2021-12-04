@@ -8,9 +8,6 @@ import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './pages/ScrollToTop';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 
-
- 
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

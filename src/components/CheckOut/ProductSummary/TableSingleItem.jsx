@@ -17,12 +17,12 @@ const TableSingleItem = ({data}) => {
                 <td class="price"><span>৳ {(item.MRP).toFixed(2)}</span></td>
                 <td class="qty">
                     <div class="input-group product_qty">
-                        <input type="text" class="form-control no-padding add-color text-center height-25" maxlength="3" value={data.qty[index]} />
-                        <span class="input-group-btn">
+                    <span class="input-group-btn">
                             <button class="btn btn-white btn-minus" type="button" onClick={callBack(ButoonDec,item)}>
                             <i class="fa fa-minus" aria-hidden="true"></i>
                           </button>
                         </span>
+                        <input type="text" class="form-control no-padding add-color text-center height-25" maxlength="3" value={data.qty[index]} />
                         
                          <span class="input-group-btn">
                               <button class="btn btn-red btn-plus" type="button" onClick={callBack(ButoonInc,item)}>

@@ -26,31 +26,31 @@ const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
                 <th>Unit price</th>
                 <th>Qty</th>
                 <th>Total</th>
-                <th class="action"></th>
+                <th class="action">Remove</th>
               </tr>
             </thead>
             <tbody>
               <TableSingleItem data={CartContent} />
             </tbody>
             <tfoot>
-              <tr>
+              {/* <tr>
                 <td colspan="2" rowspan="2"></td>
-                <td colspan="3">Total Amount (tax incl.)</td>
+                <td colspan="3">Total Amount</td>
                 <td colspan="2">
                   ৳ <span>{(CartContent.TotalAmount.toFixed(2))}</span>
                 </td>
-              </tr>
-              <tr>
+              </tr> */}
+              {/* <tr>
                 <td colspan="3">Delivery Charge</td>
                 <td colspan="2">
                   ৳ <span>{ProductSummary}</span>
                 </td>
-              </tr>
+              </tr> */}
               <tr>
-                <td colspan="5">
+                <td colspan="4">
                   <strong>Total</strong>
                 </td>
-                <td colspan="3">
+                <td colspan="4">
                   <strong>
                     ৳ <span>{(CartContent.TotalAmount + ProductSummary).toFixed(2)}</span>
                   </strong>
@@ -74,6 +74,7 @@ const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
                 ></i>{" "}
                 Continue shopping
               </Link>
+              
               <a
                 class="next-btn"
                 onClick={callBack(proceedFunction, ProductSummary)}

@@ -23,6 +23,7 @@ const PaymentParent = () => {
 
   const tabInformation = (index, item, evt) => {
     var element = document.getElementsByClassName("tab");
+    console.log(element,'hello')
     for (let i = 0; i < element.length; i++) {
       element[i].children[0].classList.remove("activetab");
     }
@@ -99,7 +100,7 @@ const PaymentParent = () => {
                   <span class="card-shiping-item">
                     {" "}
                     Your shopping cart contains:
-                    <small>{data.length} Product</small>
+                    <small>{data.Items.length} Product</small>
                   </span>
                   {tabinfo === 0 && (
                     <ProductSummary
