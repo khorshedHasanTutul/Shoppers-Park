@@ -32,7 +32,8 @@ const TableSingleItem = ({data}) => {
                       </div>
                 </td>
                 <td class="price"><span>{(data.MRP[index].toFixed(2))}</span></td>
-                <td class="action"><a onClick={callBack(RemoveItem,item)} href><img src="/contents/assets/images/delete_icon.png" alt="" /></a></td>
+                <td class="action"><a onClick={callBack(RemoveItem,item)} href><i class="fa fa-times" aria-hidden="true"></i>
+</a></td>
             </tr>
             
             ))

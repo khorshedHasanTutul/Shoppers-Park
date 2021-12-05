@@ -9,7 +9,8 @@ export const Banner = () => {
         type: 'loop',
         autoplay: true,
         rewindSpeed: 1000,
-        speed: 500
+        speed: 500,
+        pauseOnHover:false
     }
     return (
         <section class="banner-slider-index-item">

@@ -8,10 +8,10 @@ import TableSingleItem from "./TableSingleItem";
 const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
   const [CartContent, setCartContent] = useState(CartService.Get());
   CartService.Refresh = setCartContent;
-  const [ProductSummary, setProductSummary] = useState(0);
-  const statusFunction = (index) => {
-    index === 0 ? setProductSummary(50) : setProductSummary(120);
-  };
+  // const [ProductSummary, setProductSummary] = useState(0);
+  // const statusFunction = (index) => {
+  //   index === 0 ? setProductSummary(50) : setProductSummary(120);
+  // };
 
   return (
     <div class="tab-content checkout-main-tab-content">
@@ -52,20 +52,40 @@ const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
                 </td>
                 <td colspan="4">
                   <strong>
-                    ৳ <span>{(CartContent.TotalAmount + ProductSummary).toFixed(2)}</span>
+                    ৳ <span>{(CartContent.TotalAmount).toFixed(2)}</span>
                   </strong>
                 </td>
               </tr>
             </tfoot>
           </table>
           <div class="row-custom">
-            <div class="order-inside-outside-main">
+            {/* <div class="order-inside-outside-main">
               <form>
                 <div class="order-outside-inside-flex">
                   <DelivaryStatus statusFunction={statusFunction} />
                 </div>
               </form>
+            </div> */}
+
+            <div className="shaping-address-saveing-row">
+              <div className="shapping-address-inner-content">
+                <div className="location-ad-icon">
+                   <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </div>
+                <div className="saving-address-content">
+                  
+                  <small>jakma</small>
+                  <small>01745789321</small>
+                  <span><aside>Home</aside></span>
+                  <span>jakma@gmail.com</span>
+                  <span>Tangail,Dhaka, Mirpur 0000</span>
+                </div>
+              </div>
+              <div className="saving-ad-btn">
+                <button>Change</button>
+              </div>
             </div>
+
             <div class="cart_navigation">
               <Link class="prev-btn" to="/home">
                 <i
@@ -77,7 +97,7 @@ const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
               
               <a
                 class="next-btn"
-                onClick={callBack(proceedFunction, ProductSummary)}
+                onClick={callBack(proceedFunction)}
                 href
               >
                 {" "}

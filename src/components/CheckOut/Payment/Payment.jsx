@@ -4,7 +4,7 @@ import { callBack } from '../../../Service/AppService';
 import { CartService } from '../../../Service/CartContent';
 import PopUpModal from './PopUpModal';
 
-const Payment = ({ShippingCost}) => {
+const Payment = () => {
     const data=CartService.Get();
     const [OrderStatus, setproceedOrder] = useState(false)
     const proceedOrder=()=>{
@@ -32,15 +32,19 @@ const Payment = ({ShippingCost}) => {
                                                 </tr>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3">Delivery Charge</td>
-                                                    <td class="summary-details-p" colspan="2">{ShippingCost}</td>
+                                                    <td class="summary-details-p" colspan="2">ShippingCost</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3">Discount</td>
                                                     <td class="summary-details-p" colspan="2">0</td>
                                                 </tr>
                                                 <tr>
+                                                    <td class="summary-details-p" colspan="3">Discount 2</td>
+                                                    <td class="summary-details-p" colspan="2">0</td>
+                                                </tr>
+                                                <tr>
                                                     <td class="summary-details-p" colspan="3"><strong>Total Amount </strong></td>
-                                                    <td class="summary-details-p" colspan="2"><strong>{(data.TotalAmount+ShippingCost).toFixed(2)}</strong></td>
+                                                    <td class="summary-details-p" colspan="2"><strong>{(data.TotalAmount).toFixed(2)}</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>

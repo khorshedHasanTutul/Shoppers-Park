@@ -9,7 +9,7 @@ import ProductSummary from "./ProductSummary/ProductSummary";
 const PaymentParent = () => {
   const data = CartService.Get();
   const [tabinfo, settabinfo] = useState(0);
-  const [ShippingCost, setShippingCost] = useState();
+  // const [ShippingCost, setShippingCost] = useState();
 
   //   const activeButtonAddress = (index, event) => {
   //     setaddressButtonIndex(index);
@@ -23,7 +23,6 @@ const PaymentParent = () => {
 
   const tabInformation = (index, item, evt) => {
     var element = document.getElementsByClassName("tab");
-    console.log(element,'hello')
     for (let i = 0; i < element.length; i++) {
       element[i].children[0].classList.remove("activetab");
     }
@@ -31,21 +30,18 @@ const PaymentParent = () => {
     settabinfo(index);
   };
 
-  const proceedFunction = (ProductSummary) => {
+  const proceedFunction = () => {
     window.scrollTo({
       top: 100,
       left: 100,
       behavior: "smooth",
     });
-    setShippingCost(ProductSummary);
-    if (ProductSummary > 0) {
       settabinfo(1);
       var element = document.getElementsByClassName("tab");
       for (let i = 0; i < element.length; i++) {
         element[i].children[0].classList.remove("activetab");
       }
       element[1].children[0].className += " activetab";
-    } else alert("Please Select a Shipping Zone");
   };
   const proceedOrder = (phone, email, name, district, division, area) => {
     // if (phone.length === 0) alert("Please Enter Your Phone");
@@ -111,12 +107,13 @@ const PaymentParent = () => {
                   )}
 
                   {tabinfo === 1 && (
-                    //   <Address proceedOrder={proceedOrder}/>
                     <AddressForm proceedOrder={proceedOrder} />
                   )}
                   {/* AddressComponentLoaded */}
-                  {tabinfo === 2 && <Payment ShippingCost={ShippingCost} />}
+
+                  {tabinfo === 2 && <Payment />}
                   {/* PaymentComponentLoaded */}
+
                 </div>
               </div>
             </div>

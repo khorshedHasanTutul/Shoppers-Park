@@ -36,7 +36,7 @@ const CategoryWiseProduct = ({item}) => {
     return (
         <>
         {
-            (data.length>0) &&  <div class="catagory-main-product-area">
+            (data.length>0) &&  <div class="catagory-main-product-area home-single-product-catagory-item">
                 {/* <!-- common heading --> */}
                 <div class="hompe-common-title">
                     <h2>{item.categoryName}</h2>

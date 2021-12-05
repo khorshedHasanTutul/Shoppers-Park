@@ -5,7 +5,6 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import NotificationList from './NotificationList'
-import LoginModal from './AuthenticationPortal/LoginModal'
 import { Notification } from '../../../Service/AppService'
 import { WishService } from '../../../Service/CartContent'
 import ModalPOpUp from './AuthenticationPortal/ModalPOpUp'
@@ -52,7 +51,10 @@ const SignupNoti = () => {
                         </div>
                         <div class="busket-icon">
                             <FontAwesomeIcon icon={faHeart} />
-                            <span>{wishData.Items.length}</span>
+                            {
+                                (wishData.Items.length>0)? <span>{wishData.Items.length}</span>:''
+                            }
+                           
                         </div>
                     </Link>
                 </li>
