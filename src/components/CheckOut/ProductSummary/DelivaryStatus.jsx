@@ -7,10 +7,11 @@ const DelivaryStatus = ({statusFunction}) => {
         <>
         {
             data.map((item,index)=>(
-            <p>
-            <input type="radio" id={item.id} name="radio-group"  onClick={callBack(statusFunction,index)}/>
-            <label for={item.id}>{item.text}</label>
-            </p>
+                <div></div>
+            // <p>
+            // <input type="radio" id={item.id} name="radio-group"  onClick={callBack(statusFunction,index)}/>
+            // <label for={item.id}>{item.text}</label>
+            // </p>
             ))
         }
         </>
