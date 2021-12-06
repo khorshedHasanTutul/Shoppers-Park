@@ -1,14 +1,40 @@
-import React from 'react';
+import { cleanup } from '@testing-library/react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../Service/AppService';
-import { cartAddedButton, WishAddedButton } from '../../Service/CartContent';
+import { cartAddedButton, WishAddedButton, WishRemoveItem, WishService } from '../../Service/CartContent';
 
 const OffersProductSingleItem = ({item}) => {
+    const [selectedWish, setselectedWish] = useState(false)
+    const Wishlist=WishService.Get();
+    var findItem=Wishlist.Items.find(item2=>item2.Id===item.Id);
+    // useEffect(() => {
+    //     if(findItem){
+    //         setselectedWish(true);
+    //     }
+    //     return () => {
+    //       cleanup();
+    //     }
+    // }, [selectedWish,findItem])
+    const refreshHeart=()=>{
+        setselectedWish(prevState=>!prevState)
+    }
+
     return (
         <div class="single-product-catagory-item">
-                            <div class="hover-eff-product" onClick={callBack(WishAddedButton,item)}>
-                                <a title="Add to Wishlist" href> <i class="fa fa-heart-o" aria-hidden="true"></i> </a>
-                            </div>
+                           
+
+<div class="hover-eff-product">
+                    {
+                      (!selectedWish && !findItem)?
+                      <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)} href>
+                      <i class="fa fa-heart-o" aria-hidden="true" onClick={refreshHeart}></i>
+                      </a>:
+                       <a title="Remove Wish Item" href onClick={callBack(WishRemoveItem,item)}>
+                       <i class="fa fa-heart" aria-hidden="true" onClick={refreshHeart}></i>
+                       </a>
+                    }
+</div>
                             <Link to={'/product/'+item.Id}>
                             {
                             item.Ds>0 ? <div class="group-price-drag"><span class="product-new-drag">{item.Ds>0 ? item.Ds:''}{item.Ds>0 ? '%':''} </span></div> : ''

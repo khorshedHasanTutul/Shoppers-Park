@@ -880,7 +880,7 @@ var appData = {
           },
           {
             Id: "02defa41-158b-4d2d-90bd-0024c0d8b226",
-            Nm: "HIMALAYA ANTI-WRINKLE",
+            Nm: "beauty Cream",
             GN: "BEAUTY CREAM",
             St: "50 GM",
             Ct: "CREAM (TOILETIES)",

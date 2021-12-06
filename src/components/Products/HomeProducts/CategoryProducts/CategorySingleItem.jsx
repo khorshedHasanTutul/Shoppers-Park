@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {  } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { callBack } from '../../../../Service/AppService'
@@ -8,13 +8,17 @@ const CategorySingleItem = ({item}) => {
     const [selectedWish, setselectedWish] = useState(false)
     const Wishlist=WishService.Get();
     var findItem=Wishlist.Items.find(item2=>item2.Id===item.Id);
-    if(findItem){
-       
-    }
+    useEffect(() => {
+        if(findItem){
+            setselectedWish(true);
+        }
+        return () => {
+          
+        }
+    }, [selectedWish,findItem])
     const refreshHeart=()=>{
         setselectedWish(prevState=>!prevState)
     }
-    console.log('selectedWish=>',selectedWish)
     return (
 
             <div class="single-product-catagory-item">
