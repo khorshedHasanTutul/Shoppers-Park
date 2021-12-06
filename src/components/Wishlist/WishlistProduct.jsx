@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../Service/AppService';
 import { cartAddedButton, WishRemoveItem, WishService } from '../../Service/CartContent';
@@ -6,6 +6,13 @@ import { cartAddedButton, WishRemoveItem, WishService } from '../../Service/Cart
 const WishlistProduct = () => {
     const [wishRemove, setwishRemove] = useState(WishService.Get())
     WishService.Refresh=setwishRemove;
+
+    useEffect(() => {
+       setwishRemove(WishService.Get())
+        return () => {
+            
+        }
+    }, [setwishRemove])
     return (
         <section class="catagory-product-area">
         <div class="catagory-main-product-area">
@@ -16,10 +23,10 @@ const WishlistProduct = () => {
                     {
                         wishRemove.Items.map(item=>(
                             <div class="single-product-catagory-item">
-                            {/* <div class="wishlist-cross-btn" onClick={callBack(WishRemoveItem,item)}>
+                            <div class="wishlist-cross-btn" onClick={callBack(WishRemoveItem,item)}>
                                 <a href><i class="fa fa-times" aria-hidden="true" ></i>
                                     removed</a>
-                            </div> */}
+                            </div>
                             {/* <div class="hover-eff-product">
                                 <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                             </div> */}

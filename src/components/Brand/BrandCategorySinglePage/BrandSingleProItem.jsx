@@ -1,23 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../Service/AppService';
-import { cartAddedButton, WishAddedButton } from '../../../Service/CartContent';
+import { cartAddedButton, WishAddedButton, WishRemoveItem, WishService } from '../../../Service/CartContent';
 import appData from '../../DataSource/appData';
 
 const BrandSingleProItem = ({data}) => {
     const concatData=appData.categoryProducts;
     const brandData=concatData.filter(item=>item.brand_id===data.brand_id);
+    const [selectedWish, setselectedWish] = useState(false)
+    
+    const Wishlist=WishService.Get();
+    var findItem=Wishlist.Items.find(item2=>item2.Id===brandData.Id);
+    if(brandData.length>1){
+        
+    }
+
+    useEffect(() => {
+        if(findItem){
+            setselectedWish(true);
+        }
+        return () => {
+          
+        }
+    }, [selectedWish,findItem])
+    const refreshHeart=()=>{
+        setselectedWish(prevState=>!prevState)
+    }
+
 
     return (
         <>
         {
             brandData.map(item=>(
                 <div class="single-product-catagory-item">
-                     <div class="hover-eff-product" onClick={callBack(WishAddedButton,item)}>
-                    <a title="Add to Wishlist" href>
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    </a>
-                </div>
+                     <div class="hover-eff-product">
+                    {
+                      (!selectedWish && !findItem)?
+                      <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)} href>
+                      <i class="fa fa-heart-o" aria-hidden="true" onClick={refreshHeart}></i>
+                      </a>:
+                       <a title="Remove Wish Item" href onClick={callBack(WishRemoveItem,item)}>
+                       <i class="fa fa-heart" aria-hidden="true" onClick={refreshHeart}></i>
+                       </a>
+                    }
+</div>
         <Link to={'/product/'+item.Id}>
         {
             item.Ds>0 ? <div class="group-price-drag"><span class="product-new-drag">{item.Ds>0 ? item.Ds:''}{item.Ds>0 ? '%':''} </span></div> : ''

@@ -7,6 +7,7 @@ const OffersProductArea = () => {
     const headingArea=Offers.OffersProductArea.HeaderAreaText;
     const data=appData.categoryProducts.filter(item=>item.offer_status===true);
     data.sort((a,b)=>b.Ds-a.Ds);
+    console.log('offersProduct=>',data)
     
     const options={
         rewind: true,
