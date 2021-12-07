@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../Service/AppService';
 import { cartAddedButton, WishRemoveItem, WishService } from '../../Service/CartContent';
@@ -6,13 +6,6 @@ import { cartAddedButton, WishRemoveItem, WishService } from '../../Service/Cart
 const WishlistProduct = () => {
     const [wishRemove, setwishRemove] = useState(WishService.Get())
     WishService.Refresh=setwishRemove;
-
-    useEffect(() => {
-       setwishRemove(WishService.Get())
-        return () => {
-            
-        }
-    }, [setwishRemove])
     return (
         <section class="catagory-product-area">
         <div class="catagory-main-product-area">
