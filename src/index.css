@@ -2391,6 +2391,7 @@ a {
   color: #0969da;
   font-size: 14px;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .login-submit > input,
@@ -2431,6 +2432,7 @@ a {
   color: #0969da;
   font-size: 16px;
   font-weight: 400;
+  cursor: pointer;
 }
 .dont-have-account a:hover {
   text-decoration: underline;
@@ -4192,6 +4194,7 @@ select::-ms-expand {
   transition: all 200ms ease-in;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
+  cursor: pointer;
 }
 
 .profile-sidebar {

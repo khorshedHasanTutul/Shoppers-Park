@@ -1,12 +1,16 @@
 import { NavLink } from "react-router-dom";
 import "./SideBarLinks.css";
 import { useHistory} from "react-router";
+import { useContext } from "react";
+import authContext from "../../../Store/auth-context";
 
 const SideBarLinks = () => {
   const history = useHistory();
+  const authCtx=useContext(authContext)
 
   const logout = () => {
-    history.push("/");
+    authCtx.logout();
+    history.replace("/");
   };
   
 

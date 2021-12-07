@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartService } from '../../Service/CartContent';
 import CartTableItem from './CartTableItem';
 import { Link } from 'react-router-dom';
+import authContext from '../../Store/auth-context';
 
 const ContentCart = ({closeCart}) => {
+    const authCtx=useContext(authContext)
     const [cartModel, referesh] = useState(CartService.Get());
     CartService.Refresh=referesh;
+
     const productFound=(evt)=>{
         
         if(cartModel.Items.length===0){
@@ -13,6 +16,9 @@ const ContentCart = ({closeCart}) => {
             alert('Please Select at least one product');
             return false;
         }
+        // else if(authCtx.isLoggedIn!==true){
+
+        // }
         else{
             closeCart();
         }

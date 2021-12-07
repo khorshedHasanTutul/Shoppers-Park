@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import NotificationList from './NotificationList'
 import { Notification } from '../../../Service/AppService'
 import { WishService } from '../../../Service/CartContent'
 import ModalPOpUp from './AuthenticationPortal/ModalPOpUp'
+import authContext from '../../../Store/auth-context'
 
 const SignupNoti = () => {
     const [notification, setnotification] = useState(false)
     const [Modal, setModal] = useState(false)
+    const authCtx = useContext(authContext);
+    const history = useHistory();
     
     const notificationList=()=>{
         setnotification(prevstate => !prevstate)
@@ -19,7 +22,12 @@ const SignupNoti = () => {
 
     const ModalOpen=(e)=>{
         e.preventDefault();
-        setModal(prevstate => !prevstate)
+        if(!authCtx.isLoggedIn){
+            setModal(prevstate => !prevstate)
+            return
+        }
+        history.push('/profile');
+        
     }
     const notiData=Notification.notificationList;
     const [wishData, setwishData] = useState(WishService.Get())
