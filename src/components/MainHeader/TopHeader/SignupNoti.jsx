@@ -19,15 +19,22 @@ const SignupNoti = () => {
     const notificationList=()=>{
         setnotification(prevstate => !prevstate)
     }
+    const modalCloseHandler=()=>{
+        setModal(false)
+    }
 
     const ModalOpen=(e)=>{
         e.preventDefault();
         if(!authCtx.isLoggedIn){
-            setModal(prevstate => !prevstate)
+            setModal(true)
             return
         }
-        history.push('/profile');
+        else
+        {
+             history.push('/profile'); 
+        }
         
+         
     }
     const notiData=Notification.notificationList;
     const [wishData, setwishData] = useState(WishService.Get())
@@ -81,7 +88,7 @@ const SignupNoti = () => {
         </div>
     </div>
     {
-        (Modal)&& <ModalPOpUp ModalOpen={ModalOpen}/>
+        (Modal)&& <ModalPOpUp ModalOpen={modalCloseHandler}/>
     }
     </>
     )

@@ -24,7 +24,7 @@ const ModalPOpUp = ({ModalOpen}) => {
         <div class="modal__content">
         <div class="login-main-area">
             {
-                (ModalCmp===0)&& <LoginModal CreateAccount={CreateAccount} forgetPassModal={forgetPassModal}/>
+                (ModalCmp===0)&& <LoginModal CreateAccount={CreateAccount} forgetPassModal={forgetPassModal} ModalOpen={ModalOpen}/>
             }
             {
                 (ModalCmp===1)&& <RegistrationModal loginModalOpen={loginModalOpen}/>

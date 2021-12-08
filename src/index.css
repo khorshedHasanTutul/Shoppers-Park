@@ -1839,6 +1839,7 @@ table td {
   text-align: center;
   vertical-align: middle;
   transition: 0.6s;
+  cursor: pointer;
 }
 .qty-holder a:hover {
   color: #31b086;
@@ -1873,6 +1874,7 @@ table td {
   text-align: center;
   vertical-align: middle;
   transition: 0.6s;
+  cursor: pointer;
 }
 .qty-holder a:hover {
   color: #31b086;
