@@ -3,8 +3,12 @@ import "./AddressForm.css";
 import AddressList from "./AddressList";
 import { Link } from "react-router-dom";
 import { callBack } from "../../Service/AppService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SavingAddressTab from "./SavingAddressTab";
+import DatalistAddress from "./DropDown";
+import { http } from "../../Service/httpService";
+import { endpoints } from "../../lib/endpoints";
+import Select from "../utilities/Select/Select";
 
 const AddressForm = ({ proceedOrder }) => {
   //Phone validation
@@ -43,33 +47,34 @@ const AddressForm = ({ proceedOrder }) => {
     setphoneTouched(true);
   };
 
-  //Email Validation
+  // Email Validation
   const [email, setemail] = useState("");
-  const [emailisTouched, setemailTouched] = useState(false);
-  const [emailIsValidated, setemailIsValidated] = useState(false);
+  // const [emailisTouched, setemailTouched] = useState(false);
+  // const [emailIsValidated, setemailIsValidated] = useState(false);
+  console.log(email);
 
   const emailChangeHandler = ({ target }) => {
     setemail(target.value.trim());
   };
-  var emailValidated = email.match(
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  );
-  if (emailValidated !== null) {
-    emailValidated = true;
-  }
-  const emailIsTouched = () => {
-    setemailTouched(true);
-  };
-  var emailLength = email.length !== 0;
-  if (
-    (emailisTouched && !emailLength) ||
-    (!emailisTouched && emailIsValidated)
-  ) {
-    var emailValidityMessage = "Email field is required!";
-  }
-  if (emailisTouched && email.length > 0 && emailValidated !== true) {
-    emailValidityMessage = "Email Format is Invalid!";
-  }
+  // var emailValidated = email.match(
+  //   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  // );
+  // if (emailValidated !== null) {
+  //   emailValidated = true;
+  // }
+  // const emailIsTouched = () => {
+  //   setemailTouched(true);
+  // };
+  // var emailLength = email.length !== 0;
+  // if (
+  //   (emailisTouched && !emailLength) ||
+  //   (!emailisTouched && emailIsValidated)
+  // ) {
+  //   var emailValidityMessage = "Email field is required!";
+  // }
+  // if (emailisTouched && email.length > 0 && emailValidated !== true) {
+  //   emailValidityMessage = "Email Format is Invalid!";
+  // }
 
   //Name Validity
   const [name, setname] = useState("");
@@ -88,12 +93,12 @@ const AddressForm = ({ proceedOrder }) => {
   }
 
   //district validation
-  const [district, setdistrice] = useState("");
+  const [district, setdistrict] = useState("");
   const [districtTouched, setdistrictTouched] = useState(false);
   const [districtValidity, setdistrictValidity] = useState(false);
 
   const districtChangeHandler = ({ target }) => {
-    setdistrice(target.value);
+    setdistrict(target.value);
   };
   const districtisTouched = () => {
     setdistrictTouched(true);
@@ -150,8 +155,8 @@ const AddressForm = ({ proceedOrder }) => {
   const saveHandler = () => {
     phoneTouched &&
     typeof phoneValidityMessage === "undefined" &&
-    emailisTouched &&
-    typeof emailValidityMessage === "undefined" &&
+    // emailisTouched &&
+    // typeof emailValidityMessage === "undefined" &&
     nameTouched &&
     typeof nameValidityMessage === "undefined" &&
     districtTouched &&
@@ -163,7 +168,7 @@ const AddressForm = ({ proceedOrder }) => {
       ? setaddressSaved(true)
       : alert("Form Validation Error");
     setPhoneFormValidation(true);
-    setemailIsValidated(true);
+    // setemailIsValidated(true);
     setnameValidated(true);
     setdistrictValidity(true);
     setdivisionValidity(true);
@@ -172,7 +177,7 @@ const AddressForm = ({ proceedOrder }) => {
 
   //saving Address Button index State
 
-  const [addressButtonIndex, setaddressButtonIndex] = useState("");
+  const [addressButtonIndex, setaddressButtonIndex] = useState(0);
 
   // element[0].childNodes[0].classList.add('active')
   const activeButtonAddress = (index, event) => {
@@ -184,6 +189,115 @@ const AddressForm = ({ proceedOrder }) => {
     event.target.className += " active";
     setaddressSaved(false);
   };
+
+  //DropDown OPtions Address
+  const [divisions, setDivisions] = useState([]);
+  const [districts, setDistricts] = useState([]);
+
+  const getDivisions = () => {
+    http.get({
+      url: endpoints.division,
+      before: () => {
+        console.log("function started");
+      },
+      successed: (data) => {
+        const transformedDistricts = [];
+
+    data.Data[0].forEach(district => {
+        transformedDistricts.push({
+            id: district[1],
+            name: district[0]
+        });
+    })
+    console.log(transformedDistricts)
+        setDivisions(transformedDistricts);
+      },
+      failed: () => {
+        console.log("failed");
+      },
+      always: () => {
+        console.log("request end");
+      },
+    });
+  };
+
+  const getDistricts = (divisionId) => {
+    http.post({
+      url: endpoints.getDistricts,
+      payload: {
+        PageNumber: 1,
+        PageSize: 1000,
+        filter: [{ Operation: 0, field: "ProvinceId", value: divisionId }],
+      },
+      before: () => {
+        console.log("Getting Districts");
+      },
+      successed: (data) => {
+        const transformedDistricts = [];
+
+        data.Data[0].forEach(district => {
+            transformedDistricts.push({
+                id: district[1],
+                name: district[0],
+                charge: district[2]
+            });
+        })
+        setDistricts(transformedDistricts);
+      },
+      failed: () => {
+        console.log("failed");
+      },
+      always: () => {
+        console.log("Got Districts");
+      },
+    });
+  };
+
+  const getAreas = (districtId) => {
+    http.post({
+      url: endpoints.getAreas,
+      payload: {
+        PageNumber: 1,
+        PageSize: 1000,
+        filter: [{ Operation: 0, field: "ProvinceId", value: districtId }],
+      },
+      before: () => {
+        console.log("Getting Areas");
+      },
+      successed: (data) => {
+        const transformedDistricts = [];
+
+        data.Data[0].forEach(area => {
+            transformedDistricts.push({
+                id: area[0],
+                name: area[0],
+                charge: area[2]
+            });
+        })
+        setarea(transformedDistricts);
+      },
+      failed: () => {
+        console.log("failed");
+      },
+      always: () => {
+        console.log("Got Districts");
+      },
+    });
+  };
+
+
+  const divisionSelectHandler = (division) => {
+    console.log({division})
+    getDistricts(division.id);
+  };
+  const districtSelectHandler=(area) =>{
+    console.log({area})
+    getAreas(area.id)
+  }
+
+  useEffect(() => {
+    getDivisions();
+  }, []);
 
   return (
     <>
@@ -208,10 +322,10 @@ const AddressForm = ({ proceedOrder }) => {
               label={"Email"}
               required
               className="brick"
-              error={emailValidityMessage}
+              // error={emailValidityMessage}
               value={email}
               onChange={emailChangeHandler}
-              onBlur={emailIsTouched}
+              // onBlur={emailIsTouched}
             />
           </div>
           <div className="form__control mb-16">
@@ -227,28 +341,17 @@ const AddressForm = ({ proceedOrder }) => {
             />
           </div>
           <div className="grid-3 mb-16 g-8">
-            <div className="form__control profile-arrow">
-              <InputControl
-                name={"district"}
-                label={"Select District"}
-                required
-                list="districts"
-                className="brick"
-                error={districtValidityMessage}
-                value={district}
-                onChange={districtChangeHandler}
-                onBlur={districtisTouched}
-              />
-            </div>
-            <datalist id="districts">
-              <option value="Tangail" />
-              <option value="Khulna" />
-              <option value="Faridpur" />
-              <option value="Noahkhali" />
-              <option value="Gazipur" />
-            </datalist>
-
-            <div className="form__control profile-arrow">
+            <Select 
+            label={'Division'}
+            name={'division'}
+            config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
+            onSelect={divisionSelectHandler}
+            options={divisions}
+            previewText={'select Division'} 
+            error={divisionValidityMessage}
+            onBlur={divisionisTouched}
+            />
+            {/* <div className="form__control profile-arrow">
               <InputControl
                 name={"division"}
                 label={"Select Divison"}
@@ -261,14 +364,23 @@ const AddressForm = ({ proceedOrder }) => {
                 onBlur={divisionisTouched}
               />
             </div>
-            <datalist id="divisions">
-              <option value="Dhaka" />
-              <option value="Barisal" />
-              <option value="Chittagong" />
-              <option value="Rangpur" />
-              <option value="Sylhet" />
-            </datalist>
-            <div className="form__control profile-arrow">
+            <DatalistAddress
+              dataset={divisions}
+              id={"divisions"}
+              onSelect={divisionSelectHandler}
+            /> */}
+
+          <Select 
+                label={'District'}
+                name={'district'}
+                config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
+                onSelect={districtSelectHandler}
+                options={districts || []}
+                previewText={'select Division first'} 
+                error={districtValidityMessage}
+                onBlur={districtisTouched}
+              />
+            {/* <div className="form__control profile-arrow">
               <InputControl
                 name={"area"}
                 label={"Select Area"}
@@ -287,7 +399,17 @@ const AddressForm = ({ proceedOrder }) => {
               <option value="Mirpur 0010" />
               <option value="Mirpur 0011" />
               <option value="Mirpur 0100" />
-            </datalist>
+            </datalist> */}
+            <Select 
+                label={'Area'}
+                name={'area'}
+                config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
+                onSelect={()=>{}}
+                options={area || []}
+                previewText={'select District first'} 
+                error={areaValidityMessage}
+                onBlur={areaisTouched}
+              />
           </div>
           <div className="form__control mb-16">
             <div className="form__control--text-area">
@@ -353,7 +475,6 @@ const AddressForm = ({ proceedOrder }) => {
           )}
         >
           {" "}
-          
           Proceed to order{" "}
           <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i>
         </a>

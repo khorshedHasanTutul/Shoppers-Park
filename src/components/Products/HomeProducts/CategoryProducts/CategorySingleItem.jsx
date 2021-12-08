@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import { callBack } from '../../../../Service/AppService'
 import { cartAddedButton, WishAddedButton, WishRemoveItem, WishService } from '../../../../Service/CartContent'
 
-const CategorySingleItem = ({item}) => {
+const CategorySingleItem = ({item,wishItemsGet}) => {
     const [selectedWish, setselectedWish] = useState(false)
-    const Wishlist=WishService.Get();
-    var findItem=Wishlist.Items.find(item2=>item2.Id===item.Id);
+    // const Wishlist=WishService.Get();
+    var findItem=wishItemsGet.Items.find(item2=>item2.Id===item.Id);
     useEffect(() => {
         if(findItem){
             setselectedWish(true);
@@ -27,10 +27,10 @@ const CategorySingleItem = ({item}) => {
                     {
                       (!selectedWish && !findItem)?
                       <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)} href>
-                      <i class="fa fa-heart-o" aria-hidden="true" onClick={refreshHeart}></i>
+                      <i class="fa fa-heart-o"  onClick={refreshHeart}></i>
                       </a>:
                        <a title="Remove Wish Item" href onClick={callBack(WishRemoveItem,item)}>
-                       <i class="fa fa-heart" aria-hidden="true" onClick={refreshHeart}></i>
+                       <i class="fa fa-heart"  onClick={refreshHeart}></i>
                        </a>
                     }
                 </div>

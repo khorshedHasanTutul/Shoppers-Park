@@ -5,7 +5,7 @@ import appData from '../../../DataSource/appData';
 import SliderComponent from '../../../utilities/Slider/SliderComponent';
 import TrandingProductItem from './TrandingProductItem';
 
-const Trandingproducts = () => {
+const Trandingproducts = ({wishItemsGet}) => {
     const textContent=Offers.OffersProductArea;
     const data=appData.categoryProducts.filter(item=>item.offer_status===true);
     data.sort((a,b)=>b.Ds-a.Ds);
@@ -51,7 +51,7 @@ const Trandingproducts = () => {
                             <div class="product-catagory-inner-flex owl-slider-perk-items">
                                 {/* <!-- single item --> */}
 
-                             <SliderComponent options={options} data={data} Template={TrandingProductItem} />
+                             <SliderComponent options={options} data={data} Template={TrandingProductItem} wishItemsGet={wishItemsGet}/>
                                 <div class="shop-all-offer-btn">
                                     <Link to="/offers">{textContent.buttonText}</Link>
                                 </div>

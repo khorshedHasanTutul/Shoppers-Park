@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router";
 import { endpoints } from "../../../../lib/endpoints";
 import { http } from "../../../../Service/httpService";
 import authContext from "../../../../Store/auth-context";
 
-const LoginModal = ({ CreateAccount, forgetPassModal }) => {
+const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen }) => {
   const [phonenumber, setphonenumber] = useState("");
   const [password, setpassword] = useState("");
   const authCtx = useContext(authContext);
+  const history=useHistory();
 
   const phoneNumberChangeHandler = ({ target }) => {
     setphonenumber(target.value);
@@ -35,9 +37,12 @@ const LoginModal = ({ CreateAccount, forgetPassModal }) => {
           email: data.Email,
           phone: data.Phone,
         });
+         history.push('/profile')
+        ModalOpen();
+       
       },
       failed: (data, msg) => {
-        console.log(msg);
+       alert("Phone or Password doesn't match.")
       },
       always: () => {
         console.log(`request end`);

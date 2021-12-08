@@ -3,7 +3,7 @@ import appData from '../../../DataSource/appData';
 import CategoryWiseProduct from './CategoryWiseProduct';
 
 
-const CategoryProducts = () => {
+const CategoryProducts = ({wishItemsGet}) => {
     const categoryData=appData.ShopCategory;
 
     return (
@@ -11,7 +11,7 @@ const CategoryProducts = () => {
             {
                 categoryData.map(item=>(
                     <div class="container">
-                        <CategoryWiseProduct item={item}/>
+                        <CategoryWiseProduct item={item} wishItemsGet={wishItemsGet}/>
                     </div>
                 ))
             }

@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../../Service/AppService';
-import { cartAddedButton, WishAddedButton, WishRemoveItem, WishService } from '../../../../Service/CartContent';
+import { cartAddedButton, WishAddedButton, WishRemoveItem } from '../../../../Service/CartContent';
 
 
-const TrandingProductItem = ({item}) => {
+const TrandingProductItem = ({item,wishItemsGet}) => {
     const [selectedWish, setselectedWish] = useState(false)
-    const Wishlist=WishService.Get();
-    var findItem=Wishlist.Items.find(item2=>item2.Id===item.Id);
-    // useEffect(() => {
-    //     if(findItem){
-    //         setselectedWish(true);
-    //     }
-    //     return () => {
+    // const Wishlist=WishService.Get();
+    var findItem=wishItemsGet.Items.find(item2=>item2.Id===item.Id);
+    useEffect(() => {
+        if(findItem){
+            setselectedWish(true);
+        }
+        return () => {
           
-    //     }
-    // }, [selectedWish,findItem])
+        }
+    }, [selectedWish,findItem])
     const refreshHeart=()=>{
         setselectedWish(prevState=>!prevState)
     }

@@ -1,2 +1,5 @@
 const login='/CustomerArea/AppCustomer/Login';
-export const endpoints={login}
+const division="/AddressArea/Province/AutoComplete"
+const getDistricts="/AddressArea/District/AutoComplete"
+const getAreas="/AddressArea/Upazila/AutoComplete"
+export const endpoints={login,division, getDistricts,getAreas}
