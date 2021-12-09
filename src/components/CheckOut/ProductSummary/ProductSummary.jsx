@@ -5,7 +5,7 @@ import { CartService } from "../../../Service/CartContent";
 import DelivaryStatus from "./DelivaryStatus";
 import TableSingleItem from "./TableSingleItem";
 
-const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
+const ProductSummary = ({ data, proceedFunction, tabInformation,addressChangeHandler }) => {
   const [CartContent, setCartContent] = useState(CartService.Get());
   CartService.Refresh = setCartContent;
   // const [ProductSummary, setProductSummary] = useState(0);
@@ -82,7 +82,7 @@ const ProductSummary = ({ data, proceedFunction, tabInformation }) => {
                 </div>
               </div>
               <div className="saving-ad-btn">
-                <button>Change</button>
+                <button onClick={addressChangeHandler}>Change</button>
               </div>
             </div>
 

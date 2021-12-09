@@ -1,4 +1,4 @@
-// import getToken from "../helpers/token";
+import getToken from "../lib/token";
 
 const BASE_URL = 'https://finepharma.boniksoftware.com';
 
@@ -20,7 +20,7 @@ export const post = async (
         method: 'POST',
         headers: {
             'content-type': 'application/json',
-            // 'datacontent': await getToken(),
+            'datacontent': await getToken(),
             ...headers
         },
         body: JSON.stringify(payload)
@@ -63,7 +63,7 @@ export const get = async (
         method: 'GET',
         headers: {
             'content-type': 'application/json',
-            // 'datacontent': await getToken(),
+            'datacontent': await getToken(),
             ...headers
         },
     });
