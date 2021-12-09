@@ -179,10 +179,9 @@ const AddressForm = ({ proceedOrder }) => {
   };
   
   //saving Address Button index State
-
   const [addressButtonIndex, setaddressButtonIndex] = useState(0);
-  const [activeButtonText, setactiveButtonText] = useState('Home')
-
+  const [activeButtonText, setactiveButtonText] = useState('Home');
+  
   // element[0].childNodes[0].classList.add('active')
   const activeButtonAddress = (index,item, event) => {
     setactiveButtonText(item.text);
@@ -256,6 +255,8 @@ const AddressForm = ({ proceedOrder }) => {
     });
   };
 
+  console.log('transformedDistricts=>>>>>',district)
+
   const getAreas = (districtId) => {
     http.post({
       url: endpoints.getAreas,
@@ -296,10 +297,12 @@ const AddressForm = ({ proceedOrder }) => {
     setdivisionId(division.id)
     getDistricts(division.id);
   };
+
   const districtSelectHandler=(district) =>{
     setdistrictId(district.id)
     getAreas(district.id)
   }
+  
   const areaSelectHandler=(area)=>{
     setareaId(area.id)
   }
@@ -312,7 +315,12 @@ const AddressForm = ({ proceedOrder }) => {
 
   //getAddressList
   const [getAddressData,setgetAddressData] = useState([])
+  const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)
+  console.log('activeInputValue==>>>',activeInputValue)
 
+  // if(activeInputValue){
+  //   setphone(activeInputValue.Mobile)
+  // }
 
   const getAddress=()=>{
     http.post({
@@ -398,6 +406,7 @@ const AddressForm = ({ proceedOrder }) => {
             previewText={'select Division'} 
             error={divisionValidityMessage}
             onBlur={divisionisTouched}
+            selectedOption={divisionId}
             />
 
           <Select 

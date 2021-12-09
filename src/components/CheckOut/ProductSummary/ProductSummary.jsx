@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { callBack } from "../../../Service/AppService";
 import { CartService } from "../../../Service/CartContent";
-import DelivaryStatus from "./DelivaryStatus";
 import TableSingleItem from "./TableSingleItem";
 
-const ProductSummary = ({ data, proceedFunction, tabInformation,addressChangeHandler }) => {
+const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, tabInformation,addressChangeHandler }) => {
   const [CartContent, setCartContent] = useState(CartService.Get());
   CartService.Refresh = setCartContent;
-  // const [ProductSummary, setProductSummary] = useState(0);
-  // const statusFunction = (index) => {
-  //   index === 0 ? setProductSummary(50) : setProductSummary(120);
-  // };
+
 
   return (
     <div class="tab-content checkout-main-tab-content">
@@ -66,25 +62,28 @@ const ProductSummary = ({ data, proceedFunction, tabInformation,addressChangeHan
                 </div>
               </form>
             </div> */}
-
-            <div className="shaping-address-saveing-row">
+            {
+              (shippingInfoTab)&& 
+               <div className="shaping-address-saveing-row">
               <div className="shapping-address-inner-content">
                 <div className="location-ad-icon">
                    <i class="fa fa-map-marker" aria-hidden="true"></i>
                 </div>
                 <div className="saving-address-content">
                   
-                  <small>jakma</small>
-                  <small>01745789321</small>
+                  <small>{getAddressData[0].Name}</small>
+                  <small>{getAddressData[0].Mobile}</small>
                   <span><aside>Home</aside></span>
-                  <span>jakma@gmail.com</span>
-                  <span>Tangail,Dhaka, Mirpur 0000</span>
+                  <span>{getAddressData[0].Email}</span>
+                  <span>{getAddressData[0].Province + '-' + getAddressData[0].District + '-' + getAddressData[0].Upazila + '-' + getAddressData[0].Remarks}</span>
                 </div>
               </div>
               <div className="saving-ad-btn">
                 <button onClick={addressChangeHandler}>Change</button>
               </div>
             </div>
+            }
+           
 
             <div class="cart_navigation">
               <Link class="prev-btn" to="/home">
