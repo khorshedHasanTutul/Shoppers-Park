@@ -21,6 +21,20 @@ const PaymentParent = () => {
   //     setaddressSaved(false);
   //   };
 
+  const addressChangeHandler=()=>{
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });
+    settabinfo(1);
+    var element = document.getElementsByClassName("tab");
+      for (let i = 0; i < element.length; i++) {
+        element[i].children[0].classList.remove("activetab");
+      }
+      element[1].children[0].className += " activetab";
+  }
+
   const tabInformation = (index, item, evt) => {
     var element = document.getElementsByClassName("tab");
     for (let i = 0; i < element.length; i++) {
@@ -103,6 +117,7 @@ const PaymentParent = () => {
                       data={data}
                       proceedFunction={proceedFunction}
                       tabInformation={tabInformation}
+                      addressChangeHandler={addressChangeHandler}
                     />
                   )}
 

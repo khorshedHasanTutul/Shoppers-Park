@@ -51,6 +51,7 @@ const AuthContextProvider = ({ children }) => {
   const context = {
     login: loginHandler,
     logout:logoutHandler,
+    user:state.user,
     isLoggedIn: state.isLoggedIn,
   };
 

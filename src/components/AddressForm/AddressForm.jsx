@@ -3,12 +3,12 @@ import "./AddressForm.css";
 import AddressList from "./AddressList";
 import { Link } from "react-router-dom";
 import { callBack } from "../../Service/AppService";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SavingAddressTab from "./SavingAddressTab";
-import DatalistAddress from "./DropDown";
 import { http } from "../../Service/httpService";
 import { endpoints } from "../../lib/endpoints";
 import Select from "../utilities/Select/Select";
+import authContext from "../../Store/auth-context";
 
 const AddressForm = ({ proceedOrder }) => {
   //Phone validation
@@ -20,6 +20,7 @@ const AddressForm = ({ proceedOrder }) => {
   const phoneChangeHandler = ({ target }) => {
     setphone(target.value.trim());
   };
+  
   var phoneLength = phone.length !== 0;
   if (
     (phoneTouched && !phoneLength) ||
@@ -49,39 +50,16 @@ const AddressForm = ({ proceedOrder }) => {
 
   // Email Validation
   const [email, setemail] = useState("");
-  // const [emailisTouched, setemailTouched] = useState(false);
-  // const [emailIsValidated, setemailIsValidated] = useState(false);
-  console.log(email);
 
   const emailChangeHandler = ({ target }) => {
     setemail(target.value.trim());
   };
-  // var emailValidated = email.match(
-  //   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  // );
-  // if (emailValidated !== null) {
-  //   emailValidated = true;
-  // }
-  // const emailIsTouched = () => {
-  //   setemailTouched(true);
-  // };
-  // var emailLength = email.length !== 0;
-  // if (
-  //   (emailisTouched && !emailLength) ||
-  //   (!emailisTouched && emailIsValidated)
-  // ) {
-  //   var emailValidityMessage = "Email field is required!";
-  // }
-  // if (emailisTouched && email.length > 0 && emailValidated !== true) {
-  //   emailValidityMessage = "Email Format is Invalid!";
-  // }
-
   //Name Validity
   const [name, setname] = useState("");
   const [nameTouched, setnameTouched] = useState(false);
   const [nameValidated, setnameValidated] = useState(false);
   const nameChangeHandler = ({ target }) => {
-    setname(target.value.trim());
+    setname(target.value);
   };
   var nameLength = name.length !== 0;
 
@@ -93,13 +71,10 @@ const AddressForm = ({ proceedOrder }) => {
   }
 
   //district validation
-  const [district, setdistrict] = useState("");
+  const [district, setdistrict] = useState([]);
   const [districtTouched, setdistrictTouched] = useState(false);
   const [districtValidity, setdistrictValidity] = useState(false);
 
-  const districtChangeHandler = ({ target }) => {
-    setdistrict(target.value);
-  };
   const districtisTouched = () => {
     setdistrictTouched(true);
   };
@@ -111,13 +86,10 @@ const AddressForm = ({ proceedOrder }) => {
     var districtValidityMessage = "District field is required";
 
   //Division validation
-  const [division, setdivision] = useState("");
+  const [division, setdivision] = useState([]);
   const [divisionTouched, setdivisionTouched] = useState(false);
   const [divisionValidity, setdivisionValidity] = useState(false);
 
-  const divisionChangeHandler = ({ target }) => {
-    setdivision(target.value);
-  };
   const divisionisTouched = () => {
     setdivisionTouched(true);
   };
@@ -130,13 +102,10 @@ const AddressForm = ({ proceedOrder }) => {
 
   //Area validation
 
-  const [area, setarea] = useState("");
+  const [area, setarea] = useState([]);
   const [areaTouched, setareaTouched] = useState(false);
   const [areaValidity, setareaValidity] = useState(false);
 
-  const areaChangeHandler = ({ target }) => {
-    setarea(target.value);
-  };
   const areaisTouched = () => {
     setareaTouched(true);
   };
@@ -149,14 +118,16 @@ const AddressForm = ({ proceedOrder }) => {
   const addressChangeHandler = ({ target }) => {
     setaddress(target.value);
   };
+
   //Saving Address State
   const [addressSaved, setaddressSaved] = useState(false);
+  const authCtx=useContext(authContext);
+  console.log('authId=>',authCtx.login)
   //Saving Address Button
   const saveHandler = () => {
+    if(
     phoneTouched &&
     typeof phoneValidityMessage === "undefined" &&
-    // emailisTouched &&
-    // typeof emailValidityMessage === "undefined" &&
     nameTouched &&
     typeof nameValidityMessage === "undefined" &&
     districtTouched &&
@@ -164,23 +135,57 @@ const AddressForm = ({ proceedOrder }) => {
     divisionTouched &&
     typeof divisionValidityMessage === "undefined" &&
     areaTouched &&
-    typeof areaValidityMessage === "undefined"
-      ? setaddressSaved(true)
-      : alert("Form Validation Error");
+    typeof areaValidityMessage === "undefined")
+    {
+      setaddressSaved(true);
+      http.post({
+        url:endpoints.createAddress,
+        payload:{
+          CustomerId:'f33e9fba-e50b-4ba7-b296-f4f44a49ed2b',
+          DistrictId: districtId,
+          IsDefault: false,
+          Name: name,
+          ProvinceId: divisionId,
+          Type: activeButtonText,
+          UpazilaId: areaId,
+          email: email,
+          mobile: phone,
+          Remarks: address,
+        },
+        before:()=>{
+          console.log('submit adress Data')
+        },
+        successed:(data)=>{
+          console.log(data);
+          getAddress();
+        },
+        failed:()=>{
+          console.log('failed');
+        },
+        always:()=>{
+          console.log('request end')
+        }
+      })
+    }
+    else{
+      alert("Form Validation Error");
+    }
+    
     setPhoneFormValidation(true);
-    // setemailIsValidated(true);
     setnameValidated(true);
     setdistrictValidity(true);
     setdivisionValidity(true);
     setareaValidity(true);
   };
-
+  
   //saving Address Button index State
 
   const [addressButtonIndex, setaddressButtonIndex] = useState(0);
+  const [activeButtonText, setactiveButtonText] = useState('Home')
 
   // element[0].childNodes[0].classList.add('active')
-  const activeButtonAddress = (index, event) => {
+  const activeButtonAddress = (index,item, event) => {
+    setactiveButtonText(item.text);
     setaddressButtonIndex(index);
     var element = document.querySelectorAll(".address-btn-group");
     for (let i = 0; i < element[0].childNodes.length - 1; i++) {
@@ -189,10 +194,6 @@ const AddressForm = ({ proceedOrder }) => {
     event.target.className += " active";
     setaddressSaved(false);
   };
-
-  //DropDown OPtions Address
-  const [divisions, setDivisions] = useState([]);
-  const [districts, setDistricts] = useState([]);
 
   const getDivisions = () => {
     http.get({
@@ -210,7 +211,7 @@ const AddressForm = ({ proceedOrder }) => {
         });
     })
     console.log(transformedDistricts)
-        setDivisions(transformedDistricts);
+    setdivision(transformedDistricts);
       },
       failed: () => {
         console.log("failed");
@@ -220,6 +221,8 @@ const AddressForm = ({ proceedOrder }) => {
       },
     });
   };
+
+
 
   const getDistricts = (divisionId) => {
     http.post({
@@ -242,7 +245,7 @@ const AddressForm = ({ proceedOrder }) => {
                 charge: district[2]
             });
         })
-        setDistricts(transformedDistricts);
+        setdistrict(transformedDistricts);
       },
       failed: () => {
         console.log("failed");
@@ -259,7 +262,7 @@ const AddressForm = ({ proceedOrder }) => {
       payload: {
         PageNumber: 1,
         PageSize: 1000,
-        filter: [{ Operation: 0, field: "ProvinceId", value: districtId }],
+        filter: [{ Operation: 0, field: "DistrictId", value: districtId }],
       },
       before: () => {
         console.log("Getting Areas");
@@ -269,7 +272,7 @@ const AddressForm = ({ proceedOrder }) => {
 
         data.Data[0].forEach(area => {
             transformedDistricts.push({
-                id: area[0],
+                id: area[1],
                 name: area[0],
                 charge: area[2]
             });
@@ -285,19 +288,64 @@ const AddressForm = ({ proceedOrder }) => {
     });
   };
 
+  const [divisionId, setdivisionId] = useState('')
+  const [districtId, setdistrictId] = useState('')
+  const [areaId, setareaId] = useState('')
 
   const divisionSelectHandler = (division) => {
-    console.log({division})
+    setdivisionId(division.id)
     getDistricts(division.id);
   };
-  const districtSelectHandler=(area) =>{
-    console.log({area})
-    getAreas(area.id)
+  const districtSelectHandler=(district) =>{
+    setdistrictId(district.id)
+    getAreas(district.id)
+  }
+  const areaSelectHandler=(area)=>{
+    setareaId(area.id)
   }
 
   useEffect(() => {
     getDivisions();
+    getDistricts();
+    getAreas();
   }, []);
+
+  //getAddressList
+  const [getAddressData,setgetAddressData] = useState([])
+
+
+  const getAddress=()=>{
+    http.post({
+    url:endpoints.getAddress,
+    payload:{
+      PageNumber: 1,
+      PageSize: 3,
+      filter: [{
+          field: "CustomerId",
+          value: 'f33e9fba-e50b-4ba7-b296-f4f44a49ed2b',
+          "Operation": 0
+      }]
+    },
+    before:()=>{
+      console.log('get address started')
+    },
+    successed:(data)=>{
+      setgetAddressData(data.Data);
+    },
+    failed:()=>{
+      console.log('failed')
+    },
+    always:()=>{
+      console.log('end function')
+    }
+  })
+  } 
+  useEffect(() => {
+    getAddress();
+    return () => {
+    }
+  }, [])
+
 
   return (
     <>
@@ -346,65 +394,28 @@ const AddressForm = ({ proceedOrder }) => {
             name={'division'}
             config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
             onSelect={divisionSelectHandler}
-            options={divisions}
+            options={division}
             previewText={'select Division'} 
             error={divisionValidityMessage}
             onBlur={divisionisTouched}
             />
-            {/* <div className="form__control profile-arrow">
-              <InputControl
-                name={"division"}
-                label={"Select Divison"}
-                required
-                list="divisions"
-                className="brick"
-                error={divisionValidityMessage}
-                value={division}
-                onChange={divisionChangeHandler}
-                onBlur={divisionisTouched}
-              />
-            </div>
-            <DatalistAddress
-              dataset={divisions}
-              id={"divisions"}
-              onSelect={divisionSelectHandler}
-            /> */}
 
           <Select 
                 label={'District'}
                 name={'district'}
                 config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
                 onSelect={districtSelectHandler}
-                options={districts || []}
+                options={district || []}
                 previewText={'select Division first'} 
                 error={districtValidityMessage}
                 onBlur={districtisTouched}
               />
-            {/* <div className="form__control profile-arrow">
-              <InputControl
-                name={"area"}
-                label={"Select Area"}
-                required
-                list="areas"
-                className="brick"
-                error={areaValidityMessage}
-                value={area}
-                onChange={areaChangeHandler}
-                onBlur={areaisTouched}
-              />
-            </div>
-            <datalist id="areas">
-              <option value="Mirpur 0000" />
-              <option value="Mirpur 0001" />
-              <option value="Mirpur 0010" />
-              <option value="Mirpur 0011" />
-              <option value="Mirpur 0100" />
-            </datalist> */}
+
             <Select 
                 label={'Area'}
                 name={'area'}
                 config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
-                onSelect={()=>{}}
+                onSelect={areaSelectHandler}
                 options={area || []}
                 previewText={'select District first'} 
                 error={areaValidityMessage}
@@ -447,12 +458,8 @@ const AddressForm = ({ proceedOrder }) => {
           <AddressList
             addressSaved={addressSaved}
             addressButtonIndex={addressButtonIndex}
-            phone={phone}
-            email={email}
-            name={name}
-            district={district}
-            division={division}
-            area={area}
+            getAddressData={getAddressData}
+            activeButtonText={activeButtonText}
           ></AddressList>
         </div>
       </div>
