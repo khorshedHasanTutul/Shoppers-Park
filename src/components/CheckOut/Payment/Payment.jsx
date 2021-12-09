@@ -27,7 +27,7 @@ const Payment = () => {
                                         <table class="table table-bordered table-responsive cart_summary">
                                             <tbody>
                                                 <tr>
-                                                    <td class="summary-details-p" colspan="3">Amount (tax incl.)</td>
+                                                    <td class="summary-details-p" colspan="3">Amount</td>
                                                     <td class="summary-details-p" colspan="2">{(data.TotalAmount).toFixed(2)}</td>
                                                 </tr>
                                                 <tr>

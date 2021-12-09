@@ -1,5 +1,5 @@
 import React from 'react';
-import { callBack, Checkout } from '../../../Service/AppService';
+import { Checkout } from '../../../Service/AppService';
 
 const DelivaryStatus = ({statusFunction}) => {
     const data=Checkout.DelivaryStatus;

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { endpoints } from "../../lib/endpoints";
 import { CartService } from "../../Service/CartContent";
+import { http } from "../../Service/httpService";
 import AddressForm from "../AddressForm/AddressForm";
 import CheckOutHeader from "./CheckOutHeader";
 import CheckOutTabs from "./CheckOutTabs";
@@ -9,17 +11,42 @@ import ProductSummary from "./ProductSummary/ProductSummary";
 const PaymentParent = () => {
   const data = CartService.Get();
   const [tabinfo, settabinfo] = useState(0);
-  // const [ShippingCost, setShippingCost] = useState();
 
-  //   const activeButtonAddress = (index, event) => {
-  //     setaddressButtonIndex(index);
-  //     var element = document.querySelectorAll(".address-btn-group");
-  //     for (let i = 0; i < element[0].childNodes.length - 1; i++) {
-  //       element[0].childNodes[i].classList.remove("active");
-  //     }
-  //     event.target.className += " active";
-  //     setaddressSaved(false);
-  //   };
+    const [getAddressData, setgetAddressData] = useState([])
+  const getAddress=()=>{
+    http.post({
+    url:endpoints.getAddress,
+    payload:{
+      PageNumber: 1,
+      PageSize: 3,
+      filter: [{
+          field: "CustomerId",
+          value: 'f33e9fba-e50b-4ba7-b296-f4f44a49ed2b',
+          "Operation": 0
+      }]
+    },
+    before:()=>{
+      console.log('get address started')
+    },
+    successed:(data)=>{
+      setgetAddressData(data.Data);
+      if(data.Data.length>0)
+      setshippingInfoTab(true);
+    },
+    failed:()=>{
+      console.log('failed')
+    },
+    always:()=>{
+      console.log('end function')
+    }
+  })
+  } 
+  useEffect(() => {
+    getAddress();
+    return () => {
+    }
+  }, [])
+  const [shippingInfoTab, setshippingInfoTab] = useState(false)
 
   const addressChangeHandler=()=>{
     window.scrollTo({
@@ -50,12 +77,20 @@ const PaymentParent = () => {
       left: 100,
       behavior: "smooth",
     });
+    if(shippingInfoTab){
+      settabinfo(2)
+    }
+    else
       settabinfo(1);
       var element = document.getElementsByClassName("tab");
       for (let i = 0; i < element.length; i++) {
         element[i].children[0].classList.remove("activetab");
       }
+      if(tabinfo===1)
       element[1].children[0].className += " activetab";
+      else 
+        element[2].children[0].className += " activetab";
+
   };
   const proceedOrder = (phone, email, name, district, division, area) => {
     // if (phone.length === 0) alert("Please Enter Your Phone");
@@ -118,6 +153,8 @@ const PaymentParent = () => {
                       proceedFunction={proceedFunction}
                       tabInformation={tabInformation}
                       addressChangeHandler={addressChangeHandler}
+                      shippingInfoTab={shippingInfoTab}
+                      getAddressData={getAddressData}
                     />
                   )}
 
