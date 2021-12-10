@@ -21,7 +21,7 @@ const AddressForm = ({ proceedOrder }) => {
     setphone(target.value.trim());
   };
   
-  var phoneLength = phone.length !== 0;
+  var phoneLength = phone?.length !== 0;
   if (
     (phoneTouched && !phoneLength) ||
     (!phoneTouched && phoneFormValidation)
@@ -61,7 +61,7 @@ const AddressForm = ({ proceedOrder }) => {
   const nameChangeHandler = ({ target }) => {
     setname(target.value);
   };
-  var nameLength = name.length !== 0;
+  var nameLength = name?.length !== 0;
 
   const nameIsTouched = () => {
     setnameTouched(true);
@@ -315,12 +315,17 @@ const AddressForm = ({ proceedOrder }) => {
 
   //getAddressList
   const [getAddressData,setgetAddressData] = useState([])
-  const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)
+  const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)||{}
   console.log('activeInputValue==>>>',activeInputValue)
 
-  // if(activeInputValue){
-  //   setphone(activeInputValue.Mobile)
-  // }
+  useEffect(() => {
+    if(activeInputValue){
+      setphone(activeInputValue.Mobile)
+      setemail(activeInputValue.Email)
+      setname(activeInputValue.Name)
+      setaddress(activeInputValue.Remarks)
+    }
+  }, [activeInputValue])
 
   const getAddress=()=>{
     http.post({
@@ -406,7 +411,7 @@ const AddressForm = ({ proceedOrder }) => {
             previewText={'select Division'} 
             error={divisionValidityMessage}
             onBlur={divisionisTouched}
-            selectedOption={divisionId}
+            selectedOption={{name:activeInputValue.Province,id:activeInputValue.ProvinceId}}
             />
 
           <Select 
