@@ -20,6 +20,9 @@ const ProductDetailsItem = ({product_id}) => {
     const Decrement=()=>{
         if(count>1) setstate(count-1) 
     }
+    const qtyChangeHandler=({target})=>{
+        setstate(target.value)
+    }
     return (
         <div class="inner-product-details-flex">
                                     <div class="product-d-left-img">
@@ -50,11 +53,11 @@ const ProductDetailsItem = ({product_id}) => {
                                             
                                             <div class="basket-add">
                                 {
-                                    (item.Ds>0)?<span class="item__price item__price--now">৳{((item.MRP-((item.MRP)*item.Ds)/100)*count).toFixed(2)}</span>:
-                                    <span class="item__price item__price--now">৳{(item.MRP*count).toFixed(2)}</span>
+                                    (item.Ds>0)?<span class="item__price item__price--now">৳{((item.MRP-((item.MRP)*item.Ds)/100)).toFixed(2)}</span>:
+                                    <span class="item__price item__price--now">৳{(item.MRP).toFixed(2)}</span>
                                 }
                                
-                                {item.Ds>0 ? <span class="price product-price"><del class="cross_price">৳ {(item.MRP*count).toFixed(2)}</del></span> :
+                                {item.Ds>0 ? <span class="price product-price"><del class="cross_price">৳ {(item.MRP).toFixed(2)}</del></span> :
                                 ''
                                 }
                                 
@@ -72,7 +75,7 @@ const ProductDetailsItem = ({product_id}) => {
                                                     <FontAwesomeIcon icon={faMinus} />
                                                   </button>
                                                 </span>
-                                                <input type="text" class="form-control no-padding add-color text-center height-25" maxlength="3" value={count} />
+                                                <input type="text" class="form-control no-padding add-color text-center height-25" maxlength="3" value={count} onChange={qtyChangeHandler}/>
                                                    <span class="input-group-btn">
                                                       <button class="btn btn-red btn-plus" type="button" onClick={Increment}>
                                                       <FontAwesomeIcon icon={faPlus} />
