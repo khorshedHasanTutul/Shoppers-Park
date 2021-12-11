@@ -16,6 +16,29 @@ const AddressForm = ({ proceedOrder }) => {
   const [phoneTouched, setphoneTouched] = useState(false);
   const [phoneFormValidation, setPhoneFormValidation] = useState(false);
   const [phone, setphone] = useState("");
+  const [email, setemail] = useState("");
+  const [name, setname] = useState("");
+  const [nameTouched, setnameTouched] = useState(false);
+  const [nameValidated, setnameValidated] = useState(false);
+  const [district, setdistrict] = useState([]);
+  const [districtTouched, setdistrictTouched] = useState(false);
+  const [districtValidity, setdistrictValidity] = useState(false);
+  const [division, setdivision] = useState([]);
+  const [divisionTouched, setdivisionTouched] = useState(false);
+  const [divisionValidity, setdivisionValidity] = useState(false);
+  const [area, setarea] = useState([]);
+  const [areaTouched, setareaTouched] = useState(false);
+  const [areaValidity, setareaValidity] = useState(false);
+  const [address, setaddress] = useState("");
+  const [addressSaved, setaddressSaved] = useState(false);
+  const authCtx=useContext(authContext);
+  const [addressButtonIndex, setaddressButtonIndex] = useState(0);
+  const [activeButtonText, setactiveButtonText] = useState('Home');
+  const [divisionId, setdivisionId] = useState('')
+  const [districtId, setdistrictId] = useState('')
+  const [areaId, setareaId] = useState('')
+  const [getAddressData,setgetAddressData] = useState([])
+  const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)||{}
 
   const phoneChangeHandler = ({ target }) => {
     setphone(target.value.trim());
@@ -49,15 +72,13 @@ const AddressForm = ({ proceedOrder }) => {
   };
 
   // Email Validation
-  const [email, setemail] = useState("");
+  
 
   const emailChangeHandler = ({ target }) => {
     setemail(target.value.trim());
   };
   //Name Validity
-  const [name, setname] = useState("");
-  const [nameTouched, setnameTouched] = useState(false);
-  const [nameValidated, setnameValidated] = useState(false);
+
   const nameChangeHandler = ({ target }) => {
     setname(target.value);
   };
@@ -71,9 +92,7 @@ const AddressForm = ({ proceedOrder }) => {
   }
 
   //district validation
-  const [district, setdistrict] = useState([]);
-  const [districtTouched, setdistrictTouched] = useState(false);
-  const [districtValidity, setdistrictValidity] = useState(false);
+
 
   const districtisTouched = () => {
     setdistrictTouched(true);
@@ -86,9 +105,7 @@ const AddressForm = ({ proceedOrder }) => {
     var districtValidityMessage = "District field is required";
 
   //Division validation
-  const [division, setdivision] = useState([]);
-  const [divisionTouched, setdivisionTouched] = useState(false);
-  const [divisionValidity, setdivisionValidity] = useState(false);
+
 
   const divisionisTouched = () => {
     setdivisionTouched(true);
@@ -102,9 +119,7 @@ const AddressForm = ({ proceedOrder }) => {
 
   //Area validation
 
-  const [area, setarea] = useState([]);
-  const [areaTouched, setareaTouched] = useState(false);
-  const [areaValidity, setareaValidity] = useState(false);
+
 
   const areaisTouched = () => {
     setareaTouched(true);
@@ -114,14 +129,13 @@ const AddressForm = ({ proceedOrder }) => {
     var areaValidityMessage = "Area field is required";
 
   //Adress
-  const [address, setaddress] = useState("");
+
   const addressChangeHandler = ({ target }) => {
     setaddress(target.value);
   };
 
   //Saving Address State
-  const [addressSaved, setaddressSaved] = useState(false);
-  const authCtx=useContext(authContext);
+
   console.log('authId=>',authCtx.login)
   //Saving Address Button
   const saveHandler = () => {
@@ -179,8 +193,7 @@ const AddressForm = ({ proceedOrder }) => {
   };
   
   //saving Address Button index State
-  const [addressButtonIndex, setaddressButtonIndex] = useState(0);
-  const [activeButtonText, setactiveButtonText] = useState('Home');
+
   
   // element[0].childNodes[0].classList.add('active')
   const activeButtonAddress = (index,item, event) => {
@@ -289,9 +302,7 @@ const AddressForm = ({ proceedOrder }) => {
     });
   };
 
-  const [divisionId, setdivisionId] = useState('')
-  const [districtId, setdistrictId] = useState('')
-  const [areaId, setareaId] = useState('')
+
 
   const divisionSelectHandler = (division) => {
     setdivisionId(division.id)
@@ -314,9 +325,8 @@ const AddressForm = ({ proceedOrder }) => {
   }, []);
 
   //getAddressList
-  const [getAddressData,setgetAddressData] = useState([])
-  const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)||{}
-  console.log('activeInputValue==>>>',activeInputValue)
+
+
 
   useEffect(() => {
     if(activeInputValue){
@@ -324,6 +334,11 @@ const AddressForm = ({ proceedOrder }) => {
       setemail(activeInputValue.Email)
       setname(activeInputValue.Name)
       setaddress(activeInputValue.Remarks)
+      // setphoneTouched(true)
+      // setnameTouched(true)
+      // setdivisionTouched(true)
+      // setdistrictTouched(true)
+      // setareaTouched(true)
     }
   }, [activeInputValue])
 
@@ -423,6 +438,7 @@ const AddressForm = ({ proceedOrder }) => {
                 previewText={'select Division first'} 
                 error={districtValidityMessage}
                 onBlur={districtisTouched}
+                selectedOption={{name:activeInputValue.District,id:activeInputValue.districtId}}
               />
 
             <Select 
@@ -434,6 +450,7 @@ const AddressForm = ({ proceedOrder }) => {
                 previewText={'select District first'} 
                 error={areaValidityMessage}
                 onBlur={areaisTouched}
+                selectedOption={{name:activeInputValue.Upazila,id:activeInputValue.areaId}}
               />
           </div>
           <div className="form__control mb-16">

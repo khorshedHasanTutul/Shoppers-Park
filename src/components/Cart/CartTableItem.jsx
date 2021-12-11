@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../Service/AppService';
 import { ButoonDec, ButoonInc, RemoveItem } from '../../Service/CartContent';
+import MiniCartQuantityRow from './MiniCartQuantityRow';
 
 const CartTableItem = ({data}) => {
 
     return (
          <>
-        {
-           
+        { 
             data.Items.map((item,index)=>(
                  <tr class="close">
             <td class="card-title-heading">
@@ -24,15 +24,7 @@ const CartTableItem = ({data}) => {
                     <strong class="SearchPrice SearchDelPriceDel2">৳{item.MRP.toFixed(2)}</strong>
                 }
             </td>
-            <td class="card-plus-minuse">
-                <div class="attributes input-group bootstrap-touchspin">
-                    <div class="qty-holder">
-                        <a href class="qty-dec-btn" title="Dec" onClick={callBack(ButoonDec,item)}>-</a>
-                        <input type="text" name="product_qty" id="product_qty" class="qty-input" value={data.qty[index]} />
-                        <a class="qty-inc-btn" title="Inc" onClick={callBack(ButoonInc,item)} href>+</a>
-                    </div>
-                </div>
-            </td>
+            <MiniCartQuantityRow item={item} data={data} index={index}/>
             <td class="amount-for-popup">
                 <span class="SearchFont SearchDelPrice">
                     {(item.Ds>0)? <del>৳</del> :<span>৳</span>} 

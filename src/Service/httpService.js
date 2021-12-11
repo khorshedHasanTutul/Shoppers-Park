@@ -10,7 +10,7 @@ export const post = async (
         successed = (data) => { },
         failed = (data) => { },
         always = (data) => { },
-        map = (data) => { },
+        map = (data) => { return data.Data },
         dataPath = '' }
 ) => {
 
@@ -39,9 +39,11 @@ export const post = async (
         throw new Error(`${data.Msg || 'Login failed'}`);
     }
     
+    const transformedData = map(data);
+
     always(data);
-    successed(data.Data);
-    return data.Data;
+    successed(transformedData);
+    return transformedData;
 }
 
 
@@ -52,7 +54,7 @@ export const get = async (
         successed = (data) => { },
         failed = (data) => { },
         always = (data) => { },
-        map = () => { },
+        map = (data) => { return data.Data },
         dataPath = ''
     }
 ) => {
@@ -82,9 +84,11 @@ export const get = async (
         throw new Error(`${data.Msg || 'Login failed'}`);
     }
 
+    const transformedData = map(data);
+
     always(data);
-    successed(data.Data);
-    return data.Data;
+    successed(transformedData);
+    return transformedData;
 }
 
 export const http = { post, get };

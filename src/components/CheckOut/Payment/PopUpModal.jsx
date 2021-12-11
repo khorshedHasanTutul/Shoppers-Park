@@ -14,7 +14,7 @@ const PopUpModal = () => {
                     <div class="brick label info mb-16"><p class="t-center">All deliveries are closed on Fridays</p></div>
                     <Link to="/profile/order/details/2525" class="warning" >View Order</Link>
                 </div>  
-                {/* <a href="#" class="modal__close">&times;</a> */}
+                <Link to="/home" class="modal__close">&times;</Link>
             </div>
         </div>
         </div>

@@ -89,7 +89,7 @@ const WishService = {};
             CartModel.MRP[index] = CartModel.Items[index].MRP + CartModel.MRP[index];
         }
         
-        CartModel.qty[index] = CartModel.qty[index] + 1;
+        CartModel.qty[index] =CartModel.qty[index]+ 1;
        
         this.Refresh(this.Get());
         localStorage.setItem('cartModel', JSON.stringify(CartModel));
@@ -110,6 +110,29 @@ const WishService = {};
         }
         
         CartModel.qty[index] = CartModel.qty[index] - 1;
+        this.Refresh(this.Get());
+        localStorage.setItem('cartModel', JSON.stringify(CartModel));
+        return CartModel.Items;
+    }
+    this.QtyUpdate=function(item,qtyChangeedValue){
+        const index = CartModel.Items.findIndex(item2 => item2.Id === item.Id);
+        if(item.Ds>0){
+            let productPrice=(item.MRP-((item.MRP)*item.Ds)/100);
+            CartModel.MRP[index]=(productPrice*qtyChangeedValue);
+            const ammount=CartModel.MRP.reduce(function(a, b){
+                return a + b;
+            }, 0);
+            CartModel.TotalAmount = ammount;
+        }
+        else{
+            CartModel.MRP[index]=(item.MRP*qtyChangeedValue);
+            const ammount=CartModel.MRP.reduce(function(a, b){
+                return a + b;
+            }, 0);
+            CartModel.TotalAmount = ammount;
+        }
+
+        CartModel.qty[index] = parseInt(qtyChangeedValue);
         this.Refresh(this.Get());
         localStorage.setItem('cartModel', JSON.stringify(CartModel));
         return CartModel.Items;
@@ -191,4 +214,8 @@ const ButoonInc = (item, evt) => {
 const ButoonDec = (item, evt) => {
     CartService.decrement(item, evt);
 }
-export { cartAddedButton,cartSingleButtonAdd, ButoonInc, ButoonDec, WishRemoveItem, CartService, WishAddedButton, WishService, RemoveItem }
+const QtyChange=(item,qtyChangeedValue,evt)=>{
+    evt.preventDefault();
+    CartService.QtyUpdate(item,qtyChangeedValue)
+}
+export { cartAddedButton,cartSingleButtonAdd, ButoonInc, ButoonDec,QtyChange, WishRemoveItem, CartService, WishAddedButton, WishService, RemoveItem }
