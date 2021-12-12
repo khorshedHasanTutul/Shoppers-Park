@@ -4,7 +4,7 @@ import LoginModal from './LoginModal';
 import OtpCodeModal from './OtpCodeModal';
 import RegistrationModal from './RegistrationModal';
 
-const ModalPOpUp = ({ModalOpen}) => {
+const ModalPOpUp = ({ModalOpen,closeCart}) => {
     const [ModalCmp, setModalCmp] = useState(0)
     const CreateAccount=()=>{
         setModalCmp(1)
@@ -24,10 +24,10 @@ const ModalPOpUp = ({ModalOpen}) => {
         <div class="modal__content">
         <div class="login-main-area">
             {
-                (ModalCmp===0)&& <LoginModal CreateAccount={CreateAccount} forgetPassModal={forgetPassModal} ModalOpen={ModalOpen}/>
+                (ModalCmp===0)&& <LoginModal CreateAccount={CreateAccount} forgetPassModal={forgetPassModal} ModalOpen={ModalOpen} closeCart={closeCart}/>
             }
             {
-                (ModalCmp===1)&& <RegistrationModal loginModalOpen={loginModalOpen}/>
+                (ModalCmp===1)&& <RegistrationModal loginModalOpen={loginModalOpen} setModalCmp={setModalCmp}/>
             }
             {
                 (ModalCmp===2)&& <ForgetPasswordModal OtpModal={OtpModal} loginModalOpen={loginModalOpen}/>

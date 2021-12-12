@@ -15,13 +15,13 @@ const ProductDetailsItem = ({product_id}) => {
     const brandData=BrandData.find(brand=>brand.brand_id  ===item.brand_id );
     const [count, setstate] = useState(1);
     const Increment=()=>{ 
-        setstate(count+1)    
+        setstate(parseInt(count)+1)    
     }
     const Decrement=()=>{
-        if(count>1) setstate(count-1) 
+        if(count>1) setstate(parseInt(count)-1) 
     }
     const qtyChangeHandler=({target})=>{
-        setstate(target.value)
+        setstate((target.value))
     }
     return (
         <div class="inner-product-details-flex">
@@ -84,7 +84,7 @@ const ProductDetailsItem = ({product_id}) => {
                                               </div>
                                               
                                               <div class="pro-add-wish-flex">
-                                              <a href onClick={callBack(cartSingleButtonAdd,item,count)}>
+                                              <a href onClick={callBack(cartSingleButtonAdd,item,parseInt(count))}>
                                                 <div class="btn_cart">
                                                    <FontAwesomeIcon icon={faShoppingCart} />
                                                     <h5>Add to Cart</h5>

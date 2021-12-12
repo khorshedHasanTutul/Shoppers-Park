@@ -11,6 +11,10 @@ const ContentCart = ({closeCart}) => {
     CartService.Refresh=referesh;
     const [loginPopupModel, setloginPopupModel] = useState(false)
 
+    const ModalClose=()=>{
+        setloginPopupModel(false);
+    }
+
     const productFound=(evt)=>{
         if(cartModel.Items.length===0){
             evt.preventDefault();
@@ -19,8 +23,7 @@ const ContentCart = ({closeCart}) => {
         }
         else if(authCtx.isLoggedIn!==true){
             evt.preventDefault();
-                setloginPopupModel(true)
-           
+            setloginPopupModel(true)
         }
         else
          closeCart();
@@ -58,7 +61,7 @@ const ContentCart = ({closeCart}) => {
 
                             <Link to={'/checkout'} onClick={productFound}   id="checkout-button" class="btn btn-success pull-left">Order Now</Link>
                             {
-                                (loginPopupModel) && <ModalPOpUp />
+                                (loginPopupModel) && <ModalPOpUp ModalOpen={ModalClose} closeCart={closeCart}/>
                             }
                             <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>{(cartModel.TotalAmount.toFixed(2))}</span></span>
                             <a class="block-btn-card" href>

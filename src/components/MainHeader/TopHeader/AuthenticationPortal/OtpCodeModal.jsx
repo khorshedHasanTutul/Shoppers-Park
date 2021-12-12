@@ -16,9 +16,9 @@ const OtpCodeModal = ({loginModalOpen,forgetPassModal}) => {
                                {/* <input type="submit" value="Next" />  */}
                                 <a href onClick={loginModalOpen}>Next</a>
                             </div>
-                            <div class="time-clock-otp">
+                            {/* <div class="time-clock-otp">
                                 <i class="fa fa-clock-o display-time" aria-hidden="true"></i>
-                            </div>
+                            </div> */}
                         </div>
                     </form>
                 </div>

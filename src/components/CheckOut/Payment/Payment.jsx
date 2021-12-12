@@ -30,21 +30,22 @@ const Payment = () => {
                                                     <td class="summary-details-p" colspan="3">Amount</td>
                                                     <td class="summary-details-p" colspan="2">{(data.TotalAmount).toFixed(2)}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="summary-details-p" colspan="3">Delivery Charge</td>
-                                                    <td class="summary-details-p" colspan="2">ShippingCost</td>
-                                                </tr>
+                                                
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3">Discount</td>
                                                     <td class="summary-details-p" colspan="2">0</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="summary-details-p" colspan="3">Discount 2</td>
+                                                    <td class="summary-details-p" colspan="3">Cupon Discount</td>
                                                     <td class="summary-details-p" colspan="2">0</td>
                                                 </tr>
                                                 <tr>
+                                                    <td class="summary-details-p" colspan="3">Delivery Charge</td>
+                                                    <td class="summary-details-p" colspan="2">120</td>
+                                                </tr>
+                                                <tr>
                                                     <td class="summary-details-p" colspan="3"><strong>Total Amount </strong></td>
-                                                    <td class="summary-details-p" colspan="2"><strong>{(data.TotalAmount).toFixed(2)}</strong></td>
+                                                    <td class="summary-details-p" colspan="2"><strong>{(data.TotalAmount+120).toFixed(2)}</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>

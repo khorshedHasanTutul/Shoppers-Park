@@ -4,7 +4,7 @@ import { endpoints } from "../../../../lib/endpoints";
 import { http } from "../../../../Service/httpService";
 import authContext from "../../../../Store/auth-context";
 
-const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen }) => {
+const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart }) => {
   const [phonenumber, setphonenumber] = useState("");
   const [password, setpassword] = useState("");
   const authCtx = useContext(authContext);
@@ -39,6 +39,7 @@ const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen }) => {
         });
          history.push('/profile')
         ModalOpen();
+        closeCart();
        
       },
       failed: (data, msg) => {
