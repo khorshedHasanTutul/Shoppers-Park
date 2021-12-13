@@ -412,6 +412,7 @@ input:focus {
   position: relative;
   top: 10px;
   left: 3px;
+  cursor: pointer;
 }
 .singnup-cart > ul > li {
   margin-right: 15px;
@@ -5230,7 +5231,7 @@ div.brick.label.default {
 	border: 1px solid #df2c8a;
 	padding: 10px 22px;
 	background: #df2c8a;
-	color: black;
+	color: white;
 	font-size: 17px;
 	font-weight: 600;
 	/* display: flex; */

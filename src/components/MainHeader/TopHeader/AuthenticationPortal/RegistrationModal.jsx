@@ -1,12 +1,15 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 import { endpoints } from '../../../../lib/endpoints';
 import { http } from '../../../../Service/httpService';
+import authContext from '../../../../Store/auth-context';
 
 const RegistrationModal = ({loginModalOpen,setModalCmp}) => {
     const [phone, setphone] = useState('')
     const [password, setpassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [mapData, setmapData] = useState('')
+    const [errorMsgValue, seterrorMsgValue] = useState(false)
+    const authCtx = useContext(authContext);
 
     const phoneChangeHandler=({target})=>{
         setphone(target.value);
@@ -19,28 +22,39 @@ const RegistrationModal = ({loginModalOpen,setModalCmp}) => {
     }
     const loginSubmitHandler=(e)=>{
         e.preventDefault();
-        http.post({
-            url:endpoints.getOtp,
-            payload:{
-                Phone:phone,
-                Password:password
-            },
-            before:()=>{
-                console.log('registratioin started')
-            },
-            successed:(data)=>{
-                setModalCmp(3)
-            },
-            failed:()=>{
-                console.log('failed')
-            },
-            always:()=>{
-                console.log('program end')
-            },
-            map:(data)=>{
-                setmapData(data.Id)
-            }
-        })
+        authCtx.registration.phone=phone;
+        authCtx.registration.password=password;
+        if(password===confirmPassword){
+            http.post({
+                url:endpoints.getOtp,
+                payload:{
+                    Phone:phone,
+                    Password:password
+                },
+                before:()=>{
+                    console.log('registratioin started')
+                },
+                successed:(data)=>{
+                    authCtx.userOtpId.id=data.Id
+                    setModalCmp(3)
+                },
+                failed:()=>{
+                    console.log('failed')
+                },
+                always:()=>{
+                    console.log('program end')
+                },
+                map:(data)=>{
+                    // setmapData(data.Id)
+                    // authCtx.userOtpId.Id=data.Id;
+                    return data;
+                }
+            })
+        }
+        else{
+            seterrorMsgValue(true)
+        }
+       
     }
     return (
             <div>
@@ -59,7 +73,11 @@ const RegistrationModal = ({loginModalOpen,setModalCmp}) => {
                             <div class="custom-input">
                                 <label for="confirmpassword">Confirm Password</label>
                                 <input type="password" name="" id="confirmpassword" required="" onChange={confirmPasswordChangeHandler} value={confirmPassword}/>
+                                {
+                                    (errorMsgValue) && <span class="alert alert-error">Password not matched</span>
+                                }
                             </div>
+                            
                             <div class="login-submit">
                                 <input type="submit" value="Registration" onClick={loginSubmitHandler}/>
                             </div>

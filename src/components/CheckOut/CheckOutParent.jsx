@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { endpoints } from "../../lib/endpoints";
 import { CartService } from "../../Service/CartContent";
 import { http } from "../../Service/httpService";
+import authContext from "../../Store/auth-context";
 import AddressForm from "../AddressForm/AddressForm";
 import CheckOutHeader from "./CheckOutHeader";
 import CheckOutTabs from "./CheckOutTabs";
@@ -11,6 +12,7 @@ import ProductSummary from "./ProductSummary/ProductSummary";
 const PaymentParent = () => {
   const data = CartService.Get();
   const [tabinfo, settabinfo] = useState(0);
+  const authCtx=useContext(authContext)
 
     const [getAddressData, setgetAddressData] = useState([])
   const getAddress=()=>{
@@ -21,7 +23,7 @@ const PaymentParent = () => {
       PageSize: 3,
       filter: [{
           field: "CustomerId",
-          value: 'f33e9fba-e50b-4ba7-b296-f4f44a49ed2b',
+          value: authCtx.user.id,
           "Operation": 0
       }]
     },
@@ -79,17 +81,29 @@ const PaymentParent = () => {
     });
     if(shippingInfoTab){
       settabinfo(2)
-    }
-    else
-      settabinfo(1);
       var element = document.getElementsByClassName("tab");
       for (let i = 0; i < element.length; i++) {
         element[i].children[0].classList.remove("activetab");
       }
-      if(tabinfo===1)
+      element[2].children[0].className += " activetab";
+    }
+    else{
+       settabinfo(1);
+        element = document.getElementsByClassName("tab");
+      for (let i = 0; i < element.length; i++) {
+        element[i].children[0].classList.remove("activetab");
+      }
       element[1].children[0].className += " activetab";
-      else 
-        element[2].children[0].className += " activetab";
+    }
+     
+      // var element = document.getElementsByClassName("tab");
+      // for (let i = 0; i < element.length; i++) {
+      //   element[i].children[0].classList.remove("activetab");
+      // }
+      // if(tabinfo===1)
+      // element[1].children[0].className += " activetab";
+      // else if(tabinfo===2)
+      //   element[2].children[0].className += " activetab";
 
   };
   const proceedOrder = (phone, email, name, district, division, area) => {

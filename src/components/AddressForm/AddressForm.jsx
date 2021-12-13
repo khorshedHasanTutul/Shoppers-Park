@@ -3,7 +3,7 @@ import "./AddressForm.css";
 import AddressList from "./AddressList";
 import { Link } from "react-router-dom";
 import { callBack } from "../../Service/AppService";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import SavingAddressTab from "./SavingAddressTab";
 import { http } from "../../Service/httpService";
 import { endpoints } from "../../lib/endpoints";
@@ -48,9 +48,8 @@ const AddressForm = ({ proceedOrder }) => {
   if (
     (phoneTouched && !phoneLength) ||
     (!phoneTouched && phoneFormValidation)
-  ) {
+  )
     var phoneValidityMessage = "Phone number is required!";
-  }
 
   if (phoneTouched && phone.length > 11) {
     phoneValidityMessage = "Number should be less than 11 charecter";
@@ -155,7 +154,7 @@ const AddressForm = ({ proceedOrder }) => {
       http.post({
         url:endpoints.createAddress,
         payload:{
-          CustomerId:'f33e9fba-e50b-4ba7-b296-f4f44a49ed2b',
+          CustomerId:authCtx.user.id,
           DistrictId: districtId,
           IsDefault: false,
           Name: name,
@@ -326,8 +325,6 @@ const AddressForm = ({ proceedOrder }) => {
 
   //getAddressList
 
-
-
   useEffect(() => {
     if(activeInputValue){
       setphone(activeInputValue.Mobile)
@@ -350,7 +347,7 @@ const AddressForm = ({ proceedOrder }) => {
       PageSize: 3,
       filter: [{
           field: "CustomerId",
-          value: 'f33e9fba-e50b-4ba7-b296-f4f44a49ed2b',
+          value: authCtx.user.id,
           "Operation": 0
       }]
     },

@@ -7,6 +7,7 @@ import authContext from "../../../../Store/auth-context";
 const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart }) => {
   const [phonenumber, setphonenumber] = useState("");
   const [password, setpassword] = useState("");
+  const [failedMsg, setfailedMsg] = useState(false)
   const authCtx = useContext(authContext);
   const history=useHistory();
 
@@ -18,6 +19,7 @@ const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart }) => {
   };
   const submitButtonHandler = (e) => {
     e.preventDefault();
+
     http.post({
       url: endpoints.login,
       payload: {
@@ -28,7 +30,7 @@ const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart }) => {
         console.log("request stareted");
       },
       successed: (data) => {
-        console.log(data);
+        console.log({login:data});
         authCtx.login({
           id: data.Id,
           name: data.Name,
@@ -37,17 +39,19 @@ const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart }) => {
           email: data.Email,
           phone: data.Phone,
         });
-         history.push('/profile')
+        history.push('/profile')
         ModalOpen();
-        closeCart();
-       
+        // closeCart();
       },
       failed: (data, msg) => {
-       alert("Phone or Password doesn't match.")
+        setfailedMsg(true)
       },
       always: () => {
         console.log(`request end`);
       },
+      // map:(data)=>{
+      //   return data.Id
+      // }
     });
   };
 
@@ -76,12 +80,17 @@ const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart }) => {
                 required=""
                 onChange={passwordChangeHandler}
               />
+              {
+                (failedMsg) && <span class="alert alert-error">Login failed, Phone or Password is wrong!</span>
+              }
+             
             </div>
-            <a class="forgot-pass" href onClick={forgetPassModal}>
-              Forgot Password?
+            <a class="forgot-pass" href >
+              <span onClick={forgetPassModal}>Forgot Password?</span>
+              
             </a>
-            <div class="login-submit" onClick={submitButtonHandler}>
-              <input type="submit" value="Login" />
+            <div class="login-submit" >
+              <input type="submit" value="Login" onClick={submitButtonHandler}/>
             </div>
           </div>
         </form>
