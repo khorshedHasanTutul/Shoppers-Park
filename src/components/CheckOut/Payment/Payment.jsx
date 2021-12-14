@@ -8,7 +8,7 @@ const Payment = () => {
     const data=CartService.Get();
     const [OrderStatus, setproceedOrder] = useState(false)
     const proceedOrder=()=>{
-        localStorage.clear();
+        // localStorage.clear();
         setproceedOrder(true)
     }
     

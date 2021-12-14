@@ -7,4 +7,5 @@ const getDistricts="/AddressArea/District/AutoComplete";
 const getAreas="/AddressArea/Upazila/AutoComplete";
 const createAddress="/AddressArea/Address/Create";
 const getAddress="/AddressArea/Address/Get";
-export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress}
+const updateInformation="/CustomerArea/Customer/UpdateInfo";
+export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress,updateInformation}

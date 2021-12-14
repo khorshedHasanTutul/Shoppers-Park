@@ -9,6 +9,7 @@ const ProfileSideBar = () => {
                     <img src="/contents/assets/images/blog/member.jpg" alt="" />
                 </div>
                 <div className='t-center'>
+                <p className='t-14 mb-4'>Tutul</p>
                     <p className='t-14 mb-4'>01792855468</p>
                     <p className='t-14 mb-4'><small>Accounted Cash:</small> 1865<span>BDT</span></p>
                     <p className='t-14 mb-8 t-secondary t-b'><small>Pending Cash:</small> 300<span>BDT</span></p>

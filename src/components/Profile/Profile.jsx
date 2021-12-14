@@ -4,38 +4,71 @@ import ChangePassword from "../AuthForms/ChangePassword/ChangePassword";
 import Card from '../utilities/Card/Card';
 
 import "./Profile.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import authContext from "../../Store/auth-context";
+import { http } from "../../Service/httpService";
+import { endpoints } from "../../lib/endpoints";
 
 const Profile = () => {
-  const [isPopupOpened, setIsPopupOPened] = useState(false);
-  const [user, setUser] = useState({});
-  const [isDirty, setIsDirty] = useState(false);
+  const authCtx = useContext(authContext);
+  const getUserValue=authCtx.getloginValue;
+  console.log(getUserValue)
+  const [name, setname] = useState(getUserValue.name)
+  const [email, setemail] = useState(getUserValue.email)
+  const [file, setfile] = useState(getUserValue.image)
 
-
-  const openChangePasswordPopup = () => {
-    setIsPopupOPened(true);
-  };
-
-  const closeChangePasswordPopup = () => {
-    setIsPopupOPened(false);
-  };
-
-  const nameChangeHandler = ({ target }) => {
-    setUser((prevState) => ({ ...prevState, Name: target.value }));
-  };
-
-  const emailChangeHandler = ({target}) => {
-    setUser((prevState) => ({...prevState, Email: target.value}));
+  const nameChangeHandler=({target})=>{
+    setname(target.value)
+  }
+  const emailChangehandler=({target})=>{
+    setemail(target.value)
+  }
+  const fileUploadHandler=({target})=>{
+    setfile(target.files[0])
+  }
+  const saveHandler=()=>{
+    http.post({
+      url:endpoints.updateInformation,
+      payload:{
+        UserId: getUserValue.id,
+        Name: name,
+        Email: email,
+      },
+      before:()=>{
+        console.log('function started')
+      },
+      successed:(data)=>{
+        console.log('info',data)
+      },
+      failed:()=>{
+        console.log('failed')
+      },
+      always:()=>{
+        console.log('function end')
+      }
+    })
+    http.file({
+      url:endpoints.updateInformation,
+      payload:{
+        Img: file,
+        UserId: getUserValue.id,
+        ActivityId: '00000000-0000-0000-0000-000000000000'
+      },
+      before:()=>{
+        console.log('function started')
+      },
+      successed:(data)=>{
+        console.log('picture',data)
+      },
+      failed:()=>{
+        console.log('failed')
+      },
+      always:()=>{
+        console.log('function end')
+      }
+    })
   }
 
-  const isDirtyChecker = ({ target }) => {
-   
-  };
-
-  const save = (e) => {
-    e.preventDefault();
-    console.log("Saved: ", user);
-  };
 
   return (
     <Card className='p-16 mt-8'>
@@ -46,9 +79,8 @@ const Profile = () => {
               name={"user-name"}
               label={"Name"}
               error={undefined}
-              value={user?.Name}
               onChange={nameChangeHandler}
-              onBlur={isDirtyChecker}
+              value={name}
             />
           </div>
           <div className="form__control">
@@ -57,9 +89,9 @@ const Profile = () => {
               label={"Email"}
               error={undefined}
               type="email"
-              value={user?.Email}
-              onChange={emailChangeHandler}
-              onBlur={isDirtyChecker}
+              onChange={emailChangehandler}
+              value={email}
+
             />
           </div>
         </div>
@@ -70,7 +102,7 @@ const Profile = () => {
               label={"Phone Number"}
               error={undefined}
               disabled
-              value={user?.Phone}
+              value={getUserValue?getUserValue.phone:''}
             />
           </div>
           <div className="form__control">
@@ -79,6 +111,7 @@ const Profile = () => {
               label={"Upload Photo"}
               error={undefined}
               type="file"
+              onChange={fileUploadHandler}
             />
           </div>
         </div>
@@ -87,28 +120,27 @@ const Profile = () => {
           <button
             className="brick fill primary round-corner"
             type="button"
-            disabled={!isDirty}
-            onClick={save}
+            onClick={saveHandler}
           >
             Save
           </button>
-          <button
+          {/* <button
             className="brick fill secondary round-corner"
             type="button"
             onClick={openChangePasswordPopup}
           >
             Change Password
-          </button>
+          </button> */}
         </div>
       </form>
-      {isPopupOpened && (
+      {/* {isPopupOpened && (
         <Popup
           isInitHidden={false}
           title={"Change Password"}
           BodyComponent={ChangePassword}
           onCloseHandlder={closeChangePasswordPopup}
         />
-      )}
+      )} */}
     </Card>
   );
 };

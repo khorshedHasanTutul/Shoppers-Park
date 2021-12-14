@@ -91,4 +91,55 @@ export const get = async (
     return transformedData;
 }
 
-export const http = { post, get };
+
+
+export const file = async (
+    { url,
+        headers = {},
+        payload = {},
+        before = () => { },
+        successed = (data) => { },
+        failed = (data) => { },
+        always = (data) => { },
+        map = (data) => { return data.Data },
+    }
+) => {
+
+    before();
+
+    const formData = new FormData();
+    for(const [key, value] of Object.entries(payload)){
+        formData.append(key, value);
+    }
+
+
+    const response = await fetch(`${BASE_URL}/${url}`, {
+        method: 'POST',
+        headers: {
+            'datacontent': await getToken(),
+            ...headers
+        },
+        body: formData
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        always(data);
+        failed(data, data.message);
+        throw new Error(data.message || 'Login failed');
+    }
+
+    if (data.IsError) {
+        always(data);
+        failed(data, data.Msg);
+        throw new Error(`${data.Msg || 'Login failed'}`);
+    }
+
+    const transformData = map(data);
+
+    always(data);
+    successed(transformData);
+    return data.Data;
+}
+export const http = { post, get, file };
