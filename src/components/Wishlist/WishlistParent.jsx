@@ -13,12 +13,10 @@ const WishlistParent = () => {
             <section class="wishlist-area">
               <div class="container">
                   <div class="wishlist-main-item">
-                    {/* <!-- wd-empty-page --> */}
                     {
                         (Wishlist.Items.length<=0)&& <WishlistNoProduct />
                     }
-                   
-                     {/* <!-- wd-empty-page --> */}
+
                     {
                         (Wishlist.Items.length>0) && 
                     <div class="add-product-wishlist-main-page">

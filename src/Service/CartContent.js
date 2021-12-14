@@ -74,6 +74,14 @@ const WishService = {};
         localStorage.setItem('cartModel', JSON.stringify(CartModel));
         return CartModel.Items;
     }
+    this.ClearCart=function(){
+        CartModel.Items.splice(0, CartModel.Items.length);
+        CartModel.qty.splice(0,CartModel.qty.length);
+        CartModel.MRP.splice(0,CartModel.MRP.length);
+        CartModel.TotalAmount=0;
+        this.Refresh(this.Get());
+        localStorage.removeItem("cartModel"); 
+    }
 
     this.increment = function (item) {
         var index = CartModel.Items.findIndex(item2 => item2.Id === item.Id);
@@ -218,4 +226,8 @@ const QtyChange=(item,qtyChangeedValue,evt)=>{
     evt.preventDefault();
     CartService.QtyUpdate(item,qtyChangeedValue)
 }
-export { cartAddedButton,cartSingleButtonAdd, ButoonInc, ButoonDec,QtyChange, WishRemoveItem, CartService, WishAddedButton, WishService, RemoveItem }
+const CartClear=(e)=>{
+    e.preventDefault();
+    CartService.ClearCart();
+}
+export { cartAddedButton,CartClear,cartSingleButtonAdd, ButoonInc, ButoonDec,QtyChange, WishRemoveItem, CartService, WishAddedButton, WishService, RemoveItem }

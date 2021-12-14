@@ -1,39 +1,43 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../../Service/AppService';
-import { cartAddedButton, WishAddedButton, WishRemoveItem } from '../../../../Service/CartContent';
+import { cartAddedButton } from '../../../../Service/CartContent';
+import authContext from '../../../../Store/auth-context';
 
 
 const TrandingProductItem = ({item,wishItemsGet}) => {
-    const [selectedWish, setselectedWish] = useState(false)
-    // const Wishlist=WishService.Get();
-    var findItem=wishItemsGet.Items.find(item2=>item2.Id===item.Id);
+    const authCtx = useContext(authContext)
+    const [wishActiveItem, setwishActiveItem] = useState(false)
+
+    const getAllWishItem=authCtx.getwishlist;
+    const findWishId=getAllWishItem.find(item2=>item2===item.Id);
     useEffect(() => {
-        if(findItem){
-            setselectedWish(true);
+        if(findWishId){
+            setwishActiveItem(true)
         }
         return () => {
-          
+            
         }
-    }, [selectedWish,findItem])
-    const refreshHeart=()=>{
-        setselectedWish(prevState=>!prevState)
-    }
+    }, [findWishId])
 
 
     return (
         <div class="single-product-catagory-item">
-        <div class="hover-eff-product">
+                <div class="hover-eff-product">
                     {
-                      (!selectedWish && !findItem)?
-                      <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)} href>
-                      <i class="fa fa-heart-o" aria-hidden="true" onClick={refreshHeart}></i>
-                      </a>:
-                       <a title="Remove Wish Item" href onClick={callBack(WishRemoveItem,item)}>
-                       <i class="fa fa-heart" aria-hidden="true" onClick={refreshHeart}></i>
-                       </a>
+                        (!wishActiveItem)?<>
+                                <a title="Add to Wishlist" href>
+                                    <i class="fa fa-heart-o"></i>
+                                </a>
+                        </>:
+                        <>
+                        <a title="Remove Wishitem" href>
+                            <i class="fa fa-heart"></i>
+                        </a>
+                        </>
                     }
-        </div>
+                      
+                </div>
         <Link to={'/product/'+item.Id}>
         {
         item.Ds>0 ? <div class="group-price-drag"><span class="product-new-drag">{item.Ds>0 ? item.Ds:''}{item.Ds>0 ? '%':''} </span></div> : ''

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { callBack } from '../../../Service/AppService';
+import { CartClear } from '../../../Service/CartContent';
 
 const PopUpModal = () => {
+
     return (
         <div className="alert-for-all-web">
             <div id="demo-modal3" class="modal">
@@ -12,7 +15,10 @@ const PopUpModal = () => {
                     <p>We'll call your number '01553501368' to reconfirm.</p>
                     <hr />
                     <div class="brick label info mb-16"><p class="t-center">All deliveries are closed on Fridays</p></div>
+                    <div onClick={callBack(CartClear)}>
                     <Link to="/profile/order/details/2525" class="warning" >View Order</Link>
+                    </div>
+                    
                 </div>  
                 <Link to="/home" class="modal__close">&times;</Link>
             </div>

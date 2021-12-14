@@ -1,38 +1,53 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import {  } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { callBack } from '../../../../Service/AppService'
-import { cartAddedButton, WishAddedButton, WishRemoveItem, WishService } from '../../../../Service/CartContent'
+import { cartAddedButton} from '../../../../Service/CartContent'
+import authContext from '../../../../Store/auth-context'
 
 const CategorySingleItem = ({item,wishItemsGet}) => {
-    const [selectedWish, setselectedWish] = useState(false)
-    // const Wishlist=WishService.Get();
-    var findItem=wishItemsGet.Items.find(item2=>item2.Id===item.Id);
+    const authCtx = useContext(authContext)
+    const [wishActiveItem, setwishActiveItem] = useState(false)
+
+    const wishItemAddHandler=()=>{
+        authCtx.wishList({
+            id:item.Id
+        })
+    }
+    const WishRemoveHandler=()=>{
+        authCtx.wishRemovehandler({
+            id:item.Id
+        })
+    }
+    const getAllWishItem=authCtx.getwishlist;
+    const findWishId=getAllWishItem.find(item2=>item2===item.Id);
     useEffect(() => {
-        if(findItem){
-            setselectedWish(true);
+        if(findWishId){
+            setwishActiveItem(true)
         }
         return () => {
-          
+            
         }
-    }, [selectedWish,findItem])
-    const refreshHeart=()=>{
-        setselectedWish(prevState=>!prevState)
-    }
+    }, [findWishId])
+    
     return (
 
             <div class="single-product-catagory-item">
 
                 <div class="hover-eff-product">
                     {
-                      (!selectedWish && !findItem)?
-                      <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)} href>
-                      <i class="fa fa-heart-o"  onClick={refreshHeart}></i>
-                      </a>:
-                       <a title="Remove Wish Item" href onClick={callBack(WishRemoveItem,item)}>
-                       <i class="fa fa-heart"  onClick={refreshHeart}></i>
-                       </a>
+                        (!wishActiveItem)?<>
+                                <a title="Add to Wishlist" onClick={wishItemAddHandler} href>
+                                    <i class="fa fa-heart-o"></i>
+                                </a>
+                        </>:
+                        <>
+                        <a title="Remove Wishitem" onClick={WishRemoveHandler} href>
+                            <i class="fa fa-heart"></i>
+                        </a>
+                        </>
                     }
+                      
                 </div>
                 
                     <Link to={'/product/'+item.Id}>
