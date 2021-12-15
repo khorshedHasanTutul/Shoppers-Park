@@ -4,7 +4,7 @@ const authContext = createContext({
     login: (user) => {},
     getloginValue:[],
     logout:()=>{},
-    user:{id:'',name:'',email:'',phone:''},
+    user:{id:'',name:'',email:'',phone:'',image:''},
     isLoggedIn: false,
     userOtpId:{id:''},
     registration:(user2)=>{},

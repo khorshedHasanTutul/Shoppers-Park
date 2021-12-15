@@ -83,7 +83,7 @@ const SideBarLinks = () => {
         to="/profile/complain"
       >
         <span className="flex justify-between align-center">
-          <span>Sumit Complain</span> <span className='sidebar__icon'>&#10095;</span>
+          <span>Submit Complain</span> <span className='sidebar__icon'>&#10095;</span>
         </span>
       </NavLink>
       
