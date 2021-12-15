@@ -8,4 +8,5 @@ const getAreas="/AddressArea/Upazila/AutoComplete";
 const createAddress="/AddressArea/Address/Create";
 const getAddress="/AddressArea/Address/Get";
 const updateInformation="/CustomerArea/Customer/UpdateInfo";
-export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress,updateInformation}
+const complainUrl="/CommonArea/Complain/Add";
+export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress,updateInformation,complainUrl}

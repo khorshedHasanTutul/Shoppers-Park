@@ -51,16 +51,16 @@ const AddressForm = ({ proceedOrder }) => {
   )
     var phoneValidityMessage = "Phone number is required!";
 
-  if (phoneTouched && phone.length > 11) {
+  if (phoneTouched && phone?.length > 11) {
     phoneValidityMessage = "Number should be less than 11 charecter";
   }
-  if (phoneTouched && phone.length > 0 && phone.length < 11) {
+  if (phoneTouched && phone?.length > 0 && phone?.length < 11) {
     phoneValidityMessage = "Number should be 11 charecter";
   }
 
   if (
     phoneTouched &&
-    phone.length > 0 &&
+    phone?.length > 0 &&
     (phone[0] !== "0" || phone[1] !== "1")
   ) {
     phoneValidityMessage = "Phone number format is Invalid";
@@ -96,7 +96,7 @@ const AddressForm = ({ proceedOrder }) => {
   const districtisTouched = () => {
     setdistrictTouched(true);
   };
-  var districtLength = district.length !== 0;
+  var districtLength = district?.length !== 0;
   if (
     (districtTouched && !districtLength) ||
     (!districtTouched && districtValidity)
@@ -109,7 +109,7 @@ const AddressForm = ({ proceedOrder }) => {
   const divisionisTouched = () => {
     setdivisionTouched(true);
   };
-  var divisionLength = division.length !== 0;
+  var divisionLength = division?.length !== 0;
   if (
     (divisionTouched && !divisionLength) ||
     (!divisionTouched && divisionValidity)
@@ -123,7 +123,7 @@ const AddressForm = ({ proceedOrder }) => {
   const areaisTouched = () => {
     setareaTouched(true);
   };
-  var areaLength = area.length !== 0;
+  var areaLength = area?.length !== 0;
   if ((areaTouched && !areaLength) || (!areaTouched && areaValidity))
     var areaValidityMessage = "Area field is required";
 
@@ -331,11 +331,14 @@ const AddressForm = ({ proceedOrder }) => {
       setemail(activeInputValue.Email)
       setname(activeInputValue.Name)
       setaddress(activeInputValue.Remarks)
-      // setphoneTouched(true)
-      // setnameTouched(true)
-      // setdivisionTouched(true)
-      // setdistrictTouched(true)
-      // setareaTouched(true)
+      setphoneTouched(true)
+      setnameTouched(true)
+      setdivisionTouched(true)
+      setdistrictTouched(true)
+      setareaTouched(true)
+      setdivisionValidity(true)
+      setdistrictValidity(true)
+      setareaValidity(true)
     }
   }, [activeInputValue])
 

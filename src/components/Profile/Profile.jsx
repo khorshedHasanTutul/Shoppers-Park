@@ -12,10 +12,9 @@ import { endpoints } from "../../lib/endpoints";
 const Profile = () => {
   const authCtx = useContext(authContext);
   const getUserValue=authCtx.getloginValue;
-  console.log(getUserValue)
   const [name, setname] = useState(getUserValue.name)
   const [email, setemail] = useState(getUserValue.email)
-  const [file, setfile] = useState(getUserValue.image)
+  const [file, setfile] = useState()
 
   const nameChangeHandler=({target})=>{
     setname(target.value)
@@ -38,7 +37,13 @@ const Profile = () => {
         console.log('function started')
       },
       successed:(data)=>{
-        console.log('info',data)
+        authCtx.login({
+          id: getUserValue.id,
+          name: name,
+          token: getUserValue.token,
+          email: email,
+          phone: getUserValue.phone
+        })
       },
       failed:()=>{
         console.log('failed')
@@ -47,26 +52,37 @@ const Profile = () => {
         console.log('function end')
       }
     })
-    http.file({
-      url:endpoints.updateInformation,
-      payload:{
-        Img: file,
-        UserId: getUserValue.id,
-        ActivityId: '00000000-0000-0000-0000-000000000000'
-      },
-      before:()=>{
-        console.log('function started')
-      },
-      successed:(data)=>{
-        console.log('picture',data)
-      },
-      failed:()=>{
-        console.log('failed')
-      },
-      always:()=>{
-        console.log('function end')
-      }
-    })
+    if(file){
+      http.file({
+        url:endpoints.updateInformation,
+        payload:{
+          Img: file,
+          UserId: getUserValue.id,
+          ActivityId: '00000000-0000-0000-0000-000000000000'
+        },
+        before:()=>{
+          console.log('function started')
+        },
+        successed:(data)=>{
+          authCtx.login({
+            id: getUserValue.id,
+            name: name,
+            token: getUserValue.token,
+            email: email,
+            phone: getUserValue.phone
+          })
+          authCtx.user.image = file
+          console.log(data)
+        },
+        failed:()=>{
+          console.log('failed')
+        },
+        always:()=>{
+          console.log('function end')
+        }
+      })      
+    }
+
   }
 
 
