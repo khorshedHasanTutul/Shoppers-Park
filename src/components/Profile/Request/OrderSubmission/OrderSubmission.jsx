@@ -30,7 +30,7 @@ const OrderSubmission = ({ onSubmit }) => {
           onChange={agreementHandler}
         />
         I have read and agreed to the{" "}
-        <Link to="/profile">Terms and conditions</Link>
+        <Link to="/termscondition">Terms and conditions</Link>
       </label>
       <button
         type="button"

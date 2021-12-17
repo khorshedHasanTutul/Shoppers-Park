@@ -11,7 +11,7 @@ const Trandingproducts = ({wishItemsGet}) => {
     data.sort((a,b)=>b.Ds-a.Ds);
     const options={
         rewind: true,
-        type: 'loop',
+        type: 'slide',
         autoplay: true,
         rewindSpeed: 1500,
         speed: 1000,

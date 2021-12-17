@@ -8,7 +8,7 @@ const CategoryWiseProduct = ({item,wishItemsGet}) => {
     const data=appData.categoryProducts.filter(item2=>item2.category_id===item.categoryId && item.categoryVisible===true)
     const options={
         rewind: true,
-        type: 'loop',
+        type: 'slide',
         autoplay: true,
         rewindSpeed: 1500,
         speed: 1000,
