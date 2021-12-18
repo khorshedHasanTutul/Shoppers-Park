@@ -2,8 +2,8 @@ import InputControl from "../utilities/InputControl/InputControl";
 import "./AddressForm.css";
 import AddressList from "./AddressList";
 import { Link } from "react-router-dom";
-import { callBack } from "../../Service/AppService";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { callBack, Checkout } from "../../Service/AppService";
+import { useContext, useEffect, useState } from "react";
 import SavingAddressTab from "./SavingAddressTab";
 import { http } from "../../Service/httpService";
 import { endpoints } from "../../lib/endpoints";
@@ -11,152 +11,83 @@ import Select from "../utilities/Select/Select";
 import authContext from "../../Store/auth-context";
 
 const AddressForm = ({ proceedOrder }) => {
-  //Phone validation
-
-  const [phoneTouched, setphoneTouched] = useState(false);
-  const [phoneFormValidation, setPhoneFormValidation] = useState(false);
-  const [phone, setphone] = useState("");
+  //From Address Saved
+  const [phone, setphone] = useState('');
+  const [phoneIsTouched, setphoneIsTouched] = useState(false)
   const [email, setemail] = useState("");
   const [name, setname] = useState("");
-  const [nameTouched, setnameTouched] = useState(false);
-  const [nameValidated, setnameValidated] = useState(false);
+  const [nameIsTouched, setnameIsTouched] = useState(false)
   const [district, setdistrict] = useState([]);
-  const [districtTouched, setdistrictTouched] = useState(false);
-  const [districtValidity, setdistrictValidity] = useState(false);
   const [division, setdivision] = useState([]);
-  const [divisionTouched, setdivisionTouched] = useState(false);
-  const [divisionValidity, setdivisionValidity] = useState(false);
   const [area, setarea] = useState([]);
-  const [areaTouched, setareaTouched] = useState(false);
-  const [areaValidity, setareaValidity] = useState(false);
   const [address, setaddress] = useState("");
+  const [addressIsTouched, setaddressIsTouched] = useState(false)
+  const [checkBox, setcheckBox] = useState(false)
+
   const [addressSaved, setaddressSaved] = useState(false);
   const authCtx=useContext(authContext);
   const [addressButtonIndex, setaddressButtonIndex] = useState(0);
-  const [activeButtonText, setactiveButtonText] = useState('Home');
+  const [activeButtonText, setactiveButtonText] = useState('');
+
   const [divisionId, setdivisionId] = useState('')
   const [districtId, setdistrictId] = useState('')
   const [areaId, setareaId] = useState('')
-  const [getAddressData,setgetAddressData] = useState([])
-  const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)||{}
 
+  const [getAddressData,setgetAddressData] = useState([])
+  const [activeValue, setactiveValue] = useState('')
+  const savedAddressInfo=Checkout.SavingAddressTabData;
+  const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
+  //delivary Charge System
+  const findDiscountCharge=district.find(item=>item.id===districtId);
+  const [delivaryCharge, setdelivaryCharge] = useState(findDiscountCharge.charge)
+
+  console.log('heyhey',findDiscountCharge)
+
+  //phone saved
   const phoneChangeHandler = ({ target }) => {
     setphone(target.value.trim());
   };
-  
-  var phoneLength = phone?.length !== 0;
-  if (
-    (phoneTouched && !phoneLength) ||
-    (!phoneTouched && phoneFormValidation)
-  )
-    var phoneValidityMessage = "Phone number is required!";
-
-  if (phoneTouched && phone?.length > 11) {
-    phoneValidityMessage = "Number should be less than 11 charecter";
-  }
-  if (phoneTouched && phone?.length > 0 && phone?.length < 11) {
-    phoneValidityMessage = "Number should be 11 charecter";
+  const phoneTouched=()=>{
+    setphoneIsTouched(true)
   }
 
-  if (
-    phoneTouched &&
-    phone?.length > 0 &&
-    (phone[0] !== "0" || phone[1] !== "1")
-  ) {
-    phoneValidityMessage = "Phone number format is Invalid";
-  }
-
-  const phoneIsTouched = () => {
-    setphoneTouched(true);
-  };
-
-  // Email Validation
-  
-
+  // Email Set
   const emailChangeHandler = ({ target }) => {
     setemail(target.value.trim());
   };
-  //Name Validity
-
+  //Name Set
   const nameChangeHandler = ({ target }) => {
     setname(target.value);
   };
-  var nameLength = name?.length !== 0;
-
-  const nameIsTouched = () => {
-    setnameTouched(true);
-  };
-  if ((nameTouched && !nameLength) || (!nameTouched && nameValidated)) {
-    var nameValidityMessage = "Name is required!";
+  const nameTouched=()=>{
+    setnameIsTouched(true)
   }
-
-  //district validation
-
-
-  const districtisTouched = () => {
-    setdistrictTouched(true);
-  };
-  var districtLength = district?.length !== 0;
-  if (
-    (districtTouched && !districtLength) ||
-    (!districtTouched && districtValidity)
-  )
-    var districtValidityMessage = "District field is required";
-
-  //Division validation
-
-
-  const divisionisTouched = () => {
-    setdivisionTouched(true);
-  };
-  var divisionLength = division?.length !== 0;
-  if (
-    (divisionTouched && !divisionLength) ||
-    (!divisionTouched && divisionValidity)
-  )
-    var divisionValidityMessage = "Division field is required";
-
-  //Area validation
-
-
-
-  const areaisTouched = () => {
-    setareaTouched(true);
-  };
-  var areaLength = area?.length !== 0;
-  if ((areaTouched && !areaLength) || (!areaTouched && areaValidity))
-    var areaValidityMessage = "Area field is required";
-
-  //Adress
-
+  //Address saved
   const addressChangeHandler = ({ target }) => {
     setaddress(target.value);
   };
+  const addressTouched=()=>{
+    setaddressIsTouched(true)
+  }
+  const checkBoxChangeHandler=()=>{
+    setcheckBox(prevState => !prevState)
+  }
+  const checkBoxStatteChangeHandler=()=>{
+    console.log('hello')
+    setcheckBox(false)
+  }
 
-  //Saving Address State
+  // console.log('checkbox status',checkBox)
 
-  console.log('authId=>',authCtx.login)
-  //Saving Address Button
+  //Save Button Handler
   const saveHandler = () => {
-    if(
-    phoneTouched &&
-    typeof phoneValidityMessage === "undefined" &&
-    nameTouched &&
-    typeof nameValidityMessage === "undefined" &&
-    districtTouched &&
-    typeof districtValidityMessage === "undefined" &&
-    divisionTouched &&
-    typeof divisionValidityMessage === "undefined" &&
-    areaTouched &&
-    typeof areaValidityMessage === "undefined")
-    {
       setaddressSaved(true);
       http.post({
         url:endpoints.createAddress,
         payload:{
           CustomerId:authCtx.user.id,
           DistrictId: districtId,
-          IsDefault: false,
+          IsDefault: checkBox,
           Name: name,
           ProvinceId: divisionId,
           Type: activeButtonText,
@@ -169,7 +100,7 @@ const AddressForm = ({ proceedOrder }) => {
           console.log('submit adress Data')
         },
         successed:(data)=>{
-          console.log(data);
+          console.log('OMG Success data get',data);
           getAddress();
         },
         failed:()=>{
@@ -179,21 +110,8 @@ const AddressForm = ({ proceedOrder }) => {
           console.log('request end')
         }
       })
-    }
-    else{
-      alert("Form Validation Error");
-    }
-    
-    setPhoneFormValidation(true);
-    setnameValidated(true);
-    setdistrictValidity(true);
-    setdivisionValidity(true);
-    setareaValidity(true);
   };
-  
-  //saving Address Button index State
 
-  
   // element[0].childNodes[0].classList.add('active')
   const activeButtonAddress = (index,item, event) => {
     setactiveButtonText(item.text);
@@ -221,7 +139,7 @@ const AddressForm = ({ proceedOrder }) => {
             name: district[0]
         });
     })
-    console.log(transformedDistricts)
+    // console.log(transformedDistricts)
     setdivision(transformedDistricts);
       },
       failed: () => {
@@ -248,6 +166,7 @@ const AddressForm = ({ proceedOrder }) => {
       },
       successed: (data) => {
         const transformedDistricts = [];
+        console.log('heyDatadata',data)
 
         data.Data[0].forEach(district => {
             transformedDistricts.push({
@@ -267,7 +186,6 @@ const AddressForm = ({ proceedOrder }) => {
     });
   };
 
-  console.log('transformedDistricts=>>>>>',district)
 
   const getAreas = (districtId) => {
     http.post({
@@ -281,6 +199,7 @@ const AddressForm = ({ proceedOrder }) => {
         console.log("Getting Areas");
       },
       successed: (data) => {
+       
         const transformedDistricts = [];
 
         data.Data[0].forEach(area => {
@@ -304,7 +223,8 @@ const AddressForm = ({ proceedOrder }) => {
 
 
   const divisionSelectHandler = (division) => {
-    setdivisionId(division.id)
+   
+    setdivisionId(division.id);
     getDistricts(division.id);
   };
 
@@ -323,24 +243,39 @@ const AddressForm = ({ proceedOrder }) => {
     getAreas();
   }, []);
 
-  //getAddressList
+  useEffect(() => {
+    const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
+    console.log('checkThisData=>>>',getCheckedData)
+      if(getCheckedData){
+    setactiveButtonText(getCheckedData.Type)
+    const activeTab=savedAddressInfo.find(item=>item.text===getCheckedData.Type);
+    const activeTabIndex=activeTab.id-1;
+
+    var element = document.querySelectorAll(".address-btn-group");
+    for (let i = 0; i < element[0].childNodes.length - 1; i++) {
+      element[0].childNodes[i].classList.remove("active");
+    }
+    element[0].childNodes[activeTabIndex].className +=" active";
+  }
+  else{
+    setactiveButtonText(savedAddressInfo[0].text)
+  }
+
+  }, [getAddressData,savedAddressInfo])
 
   useEffect(() => {
+    const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)
+    setactiveValue(activeInputValue)
     if(activeInputValue){
       setphone(activeInputValue.Mobile)
       setemail(activeInputValue.Email)
       setname(activeInputValue.Name)
       setaddress(activeInputValue.Remarks)
-      setphoneTouched(true)
-      setnameTouched(true)
-      setdivisionTouched(true)
-      setdistrictTouched(true)
-      setareaTouched(true)
-      setdivisionValidity(true)
-      setdistrictValidity(true)
-      setareaValidity(true)
     }
-  }, [activeInputValue])
+  }, [activeButtonText,getAddressData])
+
+
+
 
   const getAddress=()=>{
     http.post({
@@ -370,8 +305,6 @@ const AddressForm = ({ proceedOrder }) => {
   } 
   useEffect(() => {
     getAddress();
-    return () => {
-    }
   }, [])
 
 
@@ -380,79 +313,78 @@ const AddressForm = ({ proceedOrder }) => {
       <div className="admin-all-detalics">
         <div className="add-left-content mb-16">
           <h3 className="t-uppercase t-14 mb-8">Your contact information</h3>
-          <div className="form__control mb-16">
-            <InputControl
-              name={"phone"}
-              label={"Phone Number"}
-              required
-              className="brick"
-              error={phoneValidityMessage}
-              value={phone}
-              onChange={phoneChangeHandler}
-              onBlur={phoneIsTouched}
-            />
-          </div>
-          <div className="form__control mb-16">
-            <InputControl
-              name={"email"}
-              label={"Email"}
-              required
-              className="brick"
-              // error={emailValidityMessage}
-              value={email}
-              onChange={emailChangeHandler}
-              // onBlur={emailIsTouched}
-            />
-          </div>
+
           <div className="form__control mb-16">
             <InputControl
               name={"name"}
               label={"Name"}
               required
               className="brick"
-              error={nameValidityMessage}
               value={name}
+              error={(nameIsTouched && name.length===0) && "Name is required."}
               onChange={nameChangeHandler}
-              onBlur={nameIsTouched}
+              onBlur={nameTouched}
             />
           </div>
+
+          <div className="form__control mb-16">
+            <InputControl
+              name={"phone"}
+              label={"Phone Number"}
+              required
+              className="brick"
+              value={phone}
+              error={(phoneIsTouched && phone.length===0) && "Phone is required."}
+              onChange={phoneChangeHandler}
+              onBlur={phoneTouched}
+            />
+          </div>
+
+          <div className="form__control mb-16">
+            <InputControl
+              name={"email"}
+              label={"Email"}
+              required
+              className="brick"
+              value={email}
+              onChange={emailChangeHandler}
+            />
+          </div>
+
           <div className="grid-3 mb-16 g-8">
-            <Select 
-            label={'Division'}
+            <Select
+            label={'Select Region'}
             name={'division'}
             config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
             onSelect={divisionSelectHandler}
             options={division}
-            previewText={'select Division'} 
-            error={divisionValidityMessage}
-            onBlur={divisionisTouched}
-            selectedOption={{name:activeInputValue.Province,id:activeInputValue.ProvinceId}}
+            onBlur={()=>{}}
+            selectedOption={{name:activeValue?.Province,id:activeValue?.ProvinceId}}
             />
 
           <Select 
-                label={'District'}
+                label={'Select City'}
                 name={'district'}
                 config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
                 onSelect={districtSelectHandler}
                 options={district || []}
-                previewText={'select Division first'} 
-                error={districtValidityMessage}
-                onBlur={districtisTouched}
-                selectedOption={{name:activeInputValue.District,id:activeInputValue.districtId}}
+                previewText={'Select Region first'} 
+                onBlur={()=>{}}
+                selectedOption={{name:activeValue?.District,id:activeValue?.districtId}}
               />
 
             <Select 
-                label={'Area'}
+                label={'Select Area'}
                 name={'area'}
                 config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
                 onSelect={areaSelectHandler}
                 options={area || []}
-                previewText={'select District first'} 
-                error={areaValidityMessage}
-                onBlur={areaisTouched}
-                selectedOption={{name:activeInputValue.Upazila,id:activeInputValue.areaId}}
+                previewText={'Select City first'} 
+                onBlur={()=>{}}
+                selectedOption={{name:activeValue?.Upazila,id:activeValue?.areaId}}
               />
           </div>
+
           <div className="form__control mb-16">
             <div className="form__control--text-area">
               <label htmlFor="address">Address</label>
@@ -463,8 +395,12 @@ const AddressForm = ({ proceedOrder }) => {
                 className="brick"
                 value={address}
                 onChange={addressChangeHandler}
+                onBlur={addressTouched}
               ></textarea>
-              <div className="alert alert-error"> </div>
+              {
+                (addressIsTouched && address.length===0) &&<div className="alert alert-error">Address is required.</div>
+              }
+             
             </div>
           </div>
           <div className={`address-btn-group align-start g-8`}>
@@ -477,7 +413,12 @@ const AddressForm = ({ proceedOrder }) => {
                 Save Address
               </button>
               <div>
-                <input type="checkbox" name="primaryCheck" id="primary-check" />
+                {
+                  (getCheckedData?.Type===activeButtonText) ?
+                  <input type="checkbox" name="primaryCheck" id="primary-check" onClick={checkBoxStatteChangeHandler} checked/>:
+                  <input type="checkbox" name="primaryCheck" id="primary-check" onClick={checkBoxChangeHandler} />
+                }
+                
                 <label htmlFor="primary-check" className="t-bold ml-8">
                   Set as primary
                 </label>

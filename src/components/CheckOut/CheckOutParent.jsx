@@ -13,8 +13,8 @@ const PaymentParent = () => {
   const data = CartService.Get();
   const [tabinfo, settabinfo] = useState(0);
   const authCtx=useContext(authContext)
-
-    const [getAddressData, setgetAddressData] = useState([])
+  const [getAddressData, setgetAddressData] = useState([])
+  
   const getAddress=()=>{
     http.post({
     url:endpoints.getAddress,

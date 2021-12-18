@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+
 import { Checkout } from "../../Service/AppService";
-import Card from "../utilities/Card/Card";
 import FoundIteminfo from "./FoundIteminfo";
 
 const AddressList = ({addressSaved,addressButtonIndex,getAddressData,activeButtonText}) => {

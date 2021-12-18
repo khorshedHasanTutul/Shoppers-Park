@@ -19,7 +19,7 @@ const HeaderSearch = () => {
         <div class="header-middle-search">
             <form autocomplete="off">
                 <div class="search-inner-area autocomplete">
-                    <input id="myInput" type="text" placeholder="I'm looking for" onChange={callBack(getInputValue)}/>
+                    <input id="myInput" type="text" placeholder="I'm looking for" value={SearchValue} onChange={callBack(getInputValue)}/>
                     <button onClick={getInputValue}>
                         <FontAwesomeIcon icon={faSearch} />
                     </button>

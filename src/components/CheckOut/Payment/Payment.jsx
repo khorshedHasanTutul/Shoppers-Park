@@ -8,10 +8,10 @@ const Payment = () => {
     const data=CartService.Get();
     const [OrderStatus, setproceedOrder] = useState(false)
     const proceedOrder=()=>{
-        // localStorage.clear();
         setproceedOrder(true)
     }
     
+
     return (
         <div class="tab-content checkout-main-tab-content">
                                 <div class="discount-cupon-payment">
