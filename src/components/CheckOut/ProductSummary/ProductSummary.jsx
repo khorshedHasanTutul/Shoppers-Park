@@ -7,6 +7,7 @@ import TableSingleItem from "./TableSingleItem";
 const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, tabInformation,addressChangeHandler }) => {
   const [CartContent, setCartContent] = useState(CartService.Get());
   CartService.Refresh = setCartContent;
+  const findDefaultSelected=getAddressData.find(item=>item.IsDefault===true);
 
 
   return (
@@ -70,12 +71,26 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
                    <i class="fa fa-map-marker" aria-hidden="true"></i>
                 </div>
                 <div className="saving-address-content">
-                  
-                  <small>{getAddressData[0].Name}</small>
+                  {
+                    (findDefaultSelected)?
+                    <>
+                     <small>{findDefaultSelected.Name}</small>
+                  <small>{findDefaultSelected.Mobile}</small>
+                  <span><aside>{findDefaultSelected.Type}</aside></span>
+                  <span>{findDefaultSelected.Email}</span>
+                  <span>{findDefaultSelected.Province + '-' + findDefaultSelected.District + '-' + findDefaultSelected.Upazila + '-' + findDefaultSelected.Remarks}</span>
+                    </>:
+                    <>
+                      <small>{getAddressData[0].Name}</small>
                   <small>{getAddressData[0].Mobile}</small>
-                  <span><aside>Home</aside></span>
+                  <span><aside>getAddressData[0].Type</aside></span>
                   <span>{getAddressData[0].Email}</span>
                   <span>{getAddressData[0].Province + '-' + getAddressData[0].District + '-' + getAddressData[0].Upazila + '-' + getAddressData[0].Remarks}</span>
+                    </>
+
+                  }
+                  
+                 
                 </div>
               </div>
               <div className="saving-ad-btn">

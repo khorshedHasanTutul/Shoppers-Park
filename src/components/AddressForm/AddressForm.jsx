@@ -2,7 +2,7 @@ import InputControl from "../utilities/InputControl/InputControl";
 import "./AddressForm.css";
 import AddressList from "./AddressList";
 import { Link } from "react-router-dom";
-import { callBack } from "../../Service/AppService";
+import { callBack, Checkout } from "../../Service/AppService";
 import { useContext, useEffect, useState } from "react";
 import SavingAddressTab from "./SavingAddressTab";
 import { http } from "../../Service/httpService";
@@ -12,39 +12,44 @@ import authContext from "../../Store/auth-context";
 
 const AddressForm = ({ proceedOrder }) => {
   //From Address Saved
-  const [phone, setphone] = useState([]);
-  const [phoneTouched, setphoneTouched] = useState(false)
-  const [phoneValidity, setphoneValidity] = useState(false)
+  const [phone, setphone] = useState('');
+  const [phoneIsTouched, setphoneIsTouched] = useState(false)
   const [email, setemail] = useState("");
   const [name, setname] = useState("");
+  const [nameIsTouched, setnameIsTouched] = useState(false)
   const [district, setdistrict] = useState([]);
   const [division, setdivision] = useState([]);
   const [area, setarea] = useState([]);
   const [address, setaddress] = useState("");
+  const [addressIsTouched, setaddressIsTouched] = useState(false)
+  const [checkBox, setcheckBox] = useState(false)
 
   const [addressSaved, setaddressSaved] = useState(false);
   const authCtx=useContext(authContext);
   const [addressButtonIndex, setaddressButtonIndex] = useState(0);
-  const [activeButtonText, setactiveButtonText] = useState('Home');
+  const [activeButtonText, setactiveButtonText] = useState('');
+
   const [divisionId, setdivisionId] = useState('')
   const [districtId, setdistrictId] = useState('')
   const [areaId, setareaId] = useState('')
+
   const [getAddressData,setgetAddressData] = useState([])
-  const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)||{}
+  const [activeValue, setactiveValue] = useState('')
+  const savedAddressInfo=Checkout.SavingAddressTabData;
+  const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
+  //delivary Charge System
+  const findDiscountCharge=district.find(item=>item.id===districtId);
+  const [delivaryCharge, setdelivaryCharge] = useState(findDiscountCharge.charge)
+
+  console.log('heyhey',findDiscountCharge)
 
   //phone saved
-  var phoneValidityStatus=false;
   const phoneChangeHandler = ({ target }) => {
     setphone(target.value.trim());
   };
-  const phoneIsTouched=()=>{
-    setphoneTouched(true);
+  const phoneTouched=()=>{
+    setphoneIsTouched(true)
   }
-
-    // if((phoneTouched && (phone.length)===0) || (!phoneTouched && phone.length===0)){
-    //   setphoneValidity(true);
-    // }
-  
 
   // Email Set
   const emailChangeHandler = ({ target }) => {
@@ -54,10 +59,25 @@ const AddressForm = ({ proceedOrder }) => {
   const nameChangeHandler = ({ target }) => {
     setname(target.value);
   };
+  const nameTouched=()=>{
+    setnameIsTouched(true)
+  }
   //Address saved
   const addressChangeHandler = ({ target }) => {
     setaddress(target.value);
   };
+  const addressTouched=()=>{
+    setaddressIsTouched(true)
+  }
+  const checkBoxChangeHandler=()=>{
+    setcheckBox(prevState => !prevState)
+  }
+  const checkBoxStatteChangeHandler=()=>{
+    console.log('hello')
+    setcheckBox(false)
+  }
+
+  // console.log('checkbox status',checkBox)
 
   //Save Button Handler
   const saveHandler = () => {
@@ -67,7 +87,7 @@ const AddressForm = ({ proceedOrder }) => {
         payload:{
           CustomerId:authCtx.user.id,
           DistrictId: districtId,
-          IsDefault: false,
+          IsDefault: checkBox,
           Name: name,
           ProvinceId: divisionId,
           Type: activeButtonText,
@@ -119,7 +139,7 @@ const AddressForm = ({ proceedOrder }) => {
             name: district[0]
         });
     })
-    console.log(transformedDistricts)
+    // console.log(transformedDistricts)
     setdivision(transformedDistricts);
       },
       failed: () => {
@@ -146,6 +166,7 @@ const AddressForm = ({ proceedOrder }) => {
       },
       successed: (data) => {
         const transformedDistricts = [];
+        console.log('heyDatadata',data)
 
         data.Data[0].forEach(district => {
             transformedDistricts.push({
@@ -178,6 +199,7 @@ const AddressForm = ({ proceedOrder }) => {
         console.log("Getting Areas");
       },
       successed: (data) => {
+       
         const transformedDistricts = [];
 
         data.Data[0].forEach(area => {
@@ -201,7 +223,8 @@ const AddressForm = ({ proceedOrder }) => {
 
 
   const divisionSelectHandler = (division) => {
-    setdivisionId(division.id)
+   
+    setdivisionId(division.id);
     getDistricts(division.id);
   };
 
@@ -220,16 +243,39 @@ const AddressForm = ({ proceedOrder }) => {
     getAreas();
   }, []);
 
-  //getAddressList
+  useEffect(() => {
+    const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
+    console.log('checkThisData=>>>',getCheckedData)
+      if(getCheckedData){
+    setactiveButtonText(getCheckedData.Type)
+    const activeTab=savedAddressInfo.find(item=>item.text===getCheckedData.Type);
+    const activeTabIndex=activeTab.id-1;
+
+    var element = document.querySelectorAll(".address-btn-group");
+    for (let i = 0; i < element[0].childNodes.length - 1; i++) {
+      element[0].childNodes[i].classList.remove("active");
+    }
+    element[0].childNodes[activeTabIndex].className +=" active";
+  }
+  else{
+    setactiveButtonText(savedAddressInfo[0].text)
+  }
+
+  }, [getAddressData,savedAddressInfo])
 
   useEffect(() => {
+    const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)
+    setactiveValue(activeInputValue)
     if(activeInputValue){
       setphone(activeInputValue.Mobile)
       setemail(activeInputValue.Email)
       setname(activeInputValue.Name)
       setaddress(activeInputValue.Remarks)
     }
-  }, [activeInputValue])
+  }, [activeButtonText,getAddressData])
+
+
+
 
   const getAddress=()=>{
     http.post({
@@ -247,7 +293,6 @@ const AddressForm = ({ proceedOrder }) => {
       console.log('get address started')
     },
     successed:(data)=>{
-      console.log('hey i am here ',data)
       setgetAddressData(data.Data);
     },
     failed:()=>{
@@ -271,14 +316,27 @@ const AddressForm = ({ proceedOrder }) => {
 
           <div className="form__control mb-16">
             <InputControl
+              name={"name"}
+              label={"Name"}
+              required
+              className="brick"
+              value={name}
+              error={(nameIsTouched && name.length===0) && "Name is required."}
+              onChange={nameChangeHandler}
+              onBlur={nameTouched}
+            />
+          </div>
+
+          <div className="form__control mb-16">
+            <InputControl
               name={"phone"}
               label={"Phone Number"}
               required
               className="brick"
               value={phone}
-              error={(phoneValidityStatus) && "Phone field is required."}
+              error={(phoneIsTouched && phone.length===0) && "Phone is required."}
               onChange={phoneChangeHandler}
-              onBlur={phoneIsTouched}
+              onBlur={phoneTouched}
             />
           </div>
 
@@ -293,26 +351,15 @@ const AddressForm = ({ proceedOrder }) => {
             />
           </div>
 
-          <div className="form__control mb-16">
-            <InputControl
-              name={"name"}
-              label={"Name"}
-              required
-              className="brick"
-              value={name}
-              onChange={nameChangeHandler}
-            />
-          </div>
-
           <div className="grid-3 mb-16 g-8">
-            <Select 
+            <Select
             label={'Select Region'}
             name={'division'}
             config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
             onSelect={divisionSelectHandler}
             options={division}
             onBlur={()=>{}}
-            // selectedOption={{name:activeInputValue.Province,id:activeInputValue.ProvinceId}}
+            selectedOption={{name:activeValue?.Province,id:activeValue?.ProvinceId}}
             />
 
           <Select 
@@ -323,7 +370,7 @@ const AddressForm = ({ proceedOrder }) => {
                 options={district || []}
                 previewText={'Select Region first'} 
                 onBlur={()=>{}}
-                // selectedOption={{name:activeInputValue.District,id:activeInputValue.districtId}}
+                selectedOption={{name:activeValue?.District,id:activeValue?.districtId}}
               />
 
             <Select 
@@ -334,7 +381,7 @@ const AddressForm = ({ proceedOrder }) => {
                 options={area || []}
                 previewText={'Select City first'} 
                 onBlur={()=>{}}
-                // selectedOption={{name:activeInputValue.Upazila,id:activeInputValue.areaId}}
+                selectedOption={{name:activeValue?.Upazila,id:activeValue?.areaId}}
               />
           </div>
 
@@ -348,8 +395,12 @@ const AddressForm = ({ proceedOrder }) => {
                 className="brick"
                 value={address}
                 onChange={addressChangeHandler}
+                onBlur={addressTouched}
               ></textarea>
-              <div className="alert alert-error"> </div>
+              {
+                (addressIsTouched && address.length===0) &&<div className="alert alert-error">Address is required.</div>
+              }
+             
             </div>
           </div>
           <div className={`address-btn-group align-start g-8`}>
@@ -362,7 +413,12 @@ const AddressForm = ({ proceedOrder }) => {
                 Save Address
               </button>
               <div>
-                <input type="checkbox" name="primaryCheck" id="primary-check" />
+                {
+                  (getCheckedData?.Type===activeButtonText) ?
+                  <input type="checkbox" name="primaryCheck" id="primary-check" onClick={checkBoxStatteChangeHandler} checked/>:
+                  <input type="checkbox" name="primaryCheck" id="primary-check" onClick={checkBoxChangeHandler} />
+                }
+                
                 <label htmlFor="primary-check" className="t-bold ml-8">
                   Set as primary
                 </label>
