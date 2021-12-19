@@ -18,6 +18,7 @@ const AddressForm = ({ proceedOrder }) => {
   const [name, setname] = useState("");
   const [nameIsTouched, setnameIsTouched] = useState(false)
   const [district, setdistrict] = useState([]);
+
   const [division, setdivision] = useState([]);
   const [area, setarea] = useState([]);
   const [address, setaddress] = useState("");
@@ -32,16 +33,15 @@ const AddressForm = ({ proceedOrder }) => {
   const [divisionId, setdivisionId] = useState('')
   const [districtId, setdistrictId] = useState('')
   const [areaId, setareaId] = useState('')
+  const [divisionIsTouched, setdivisionIsTouched] = useState(false)
 
   const [getAddressData,setgetAddressData] = useState([])
   const [activeValue, setactiveValue] = useState('')
   const savedAddressInfo=Checkout.SavingAddressTabData;
   const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
-  //delivary Charge System
-  const findDiscountCharge=district.find(item=>item.id===districtId);
-  const [delivaryCharge, setdelivaryCharge] = useState(findDiscountCharge.charge)
-
-  console.log('heyhey',findDiscountCharge)
+  // //delivary Charge System
+  // const findDiscountCharge=district.find(item=>item.id===districtId);
+  const [delivaryCharge, setdelivaryCharge] = useState('')
 
   //phone saved
   const phoneChangeHandler = ({ target }) => {
@@ -73,12 +73,12 @@ const AddressForm = ({ proceedOrder }) => {
     setcheckBox(prevState => !prevState)
   }
   const checkBoxStatteChangeHandler=()=>{
-    console.log('hello')
     setcheckBox(false)
   }
-
-  // console.log('checkbox status',checkBox)
-
+  const divisionTocuhedHandler=()=>{
+    setdivisionIsTouched(true)
+  }
+  console.log({activeButtonText})
   //Save Button Handler
   const saveHandler = () => {
       setaddressSaved(true);
@@ -86,12 +86,12 @@ const AddressForm = ({ proceedOrder }) => {
         url:endpoints.createAddress,
         payload:{
           CustomerId:authCtx.user.id,
-          DistrictId: districtId,
+          DistrictId: districtId.id,
           IsDefault: checkBox,
           Name: name,
-          ProvinceId: divisionId,
+          ProvinceId: divisionId.id,
           Type: activeButtonText,
-          UpazilaId: areaId,
+          UpazilaId: areaId.id,
           email: email,
           mobile: phone,
           Remarks: address,
@@ -100,7 +100,6 @@ const AddressForm = ({ proceedOrder }) => {
           console.log('submit adress Data')
         },
         successed:(data)=>{
-          console.log('OMG Success data get',data);
           getAddress();
         },
         failed:()=>{
@@ -139,7 +138,6 @@ const AddressForm = ({ proceedOrder }) => {
             name: district[0]
         });
     })
-    // console.log(transformedDistricts)
     setdivision(transformedDistricts);
       },
       failed: () => {
@@ -223,18 +221,17 @@ const AddressForm = ({ proceedOrder }) => {
 
 
   const divisionSelectHandler = (division) => {
-   
-    setdivisionId(division.id);
+    setdivisionId(division);
     getDistricts(division.id);
   };
 
   const districtSelectHandler=(district) =>{
-    setdistrictId(district.id)
+    setdistrictId(district)
     getAreas(district.id)
   }
   
   const areaSelectHandler=(area)=>{
-    setareaId(area.id)
+    setareaId(area)
   }
 
   useEffect(() => {
@@ -245,8 +242,7 @@ const AddressForm = ({ proceedOrder }) => {
 
   useEffect(() => {
     const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
-    console.log('checkThisData=>>>',getCheckedData)
-      if(getCheckedData){
+    if(getCheckedData){
     setactiveButtonText(getCheckedData.Type)
     const activeTab=savedAddressInfo.find(item=>item.text===getCheckedData.Type);
     const activeTabIndex=activeTab.id-1;
@@ -265,12 +261,23 @@ const AddressForm = ({ proceedOrder }) => {
 
   useEffect(() => {
     const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)
-    setactiveValue(activeInputValue)
+    console.log({activeInputValue})
     if(activeInputValue){
       setphone(activeInputValue.Mobile)
       setemail(activeInputValue.Email)
       setname(activeInputValue.Name)
       setaddress(activeInputValue.Remarks)
+      setdivisionId({name:activeInputValue?.Province,id:activeInputValue?.ProvinceId})
+      setdistrictId({name:activeInputValue?.District,id:activeInputValue?.DistrictId})
+      setareaId({name:activeInputValue?.Upazila,id:activeInputValue?.UpazilaId})
+    }else{
+      setphone('')
+      setemail('')
+      setname('')
+      setaddress('')
+      setdivisionId({name:'',id:''})
+      setdistrictId({name:'',id:''})
+      setareaId({name:'',id:''})
     }
   }, [activeButtonText,getAddressData])
 
@@ -358,8 +365,9 @@ const AddressForm = ({ proceedOrder }) => {
             config={ {searchPath: "name", textPath : "name", keyPath : "id"} }
             onSelect={divisionSelectHandler}
             options={division}
-            onBlur={()=>{}}
-            selectedOption={{name:activeValue?.Province,id:activeValue?.ProvinceId}}
+            onBlur={divisionTocuhedHandler}
+            selectedOption={divisionId}
+            // error={ "Name is required."}
             />
 
           <Select 
@@ -370,7 +378,7 @@ const AddressForm = ({ proceedOrder }) => {
                 options={district || []}
                 previewText={'Select Region first'} 
                 onBlur={()=>{}}
-                selectedOption={{name:activeValue?.District,id:activeValue?.districtId}}
+                selectedOption={districtId}
               />
 
             <Select 
@@ -381,7 +389,7 @@ const AddressForm = ({ proceedOrder }) => {
                 options={area || []}
                 previewText={'Select City first'} 
                 onBlur={()=>{}}
-                selectedOption={{name:activeValue?.Upazila,id:activeValue?.areaId}}
+                selectedOption={areaId}
               />
           </div>
 

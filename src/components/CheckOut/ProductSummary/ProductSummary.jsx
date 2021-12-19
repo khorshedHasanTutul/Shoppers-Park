@@ -83,7 +83,7 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
                     <>
                       <small>{getAddressData[0].Name}</small>
                   <small>{getAddressData[0].Mobile}</small>
-                  <span><aside>getAddressData[0].Type</aside></span>
+                  <span><aside>{getAddressData[0].Type}</aside></span>
                   <span>{getAddressData[0].Email}</span>
                   <span>{getAddressData[0].Province + '-' + getAddressData[0].District + '-' + getAddressData[0].Upazila + '-' + getAddressData[0].Remarks}</span>
                     </>
