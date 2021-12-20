@@ -12,8 +12,26 @@ import ProductSummary from "./ProductSummary/ProductSummary";
 const PaymentParent = () => {
   const data = CartService.Get();
   const [tabinfo, settabinfo] = useState(0);
-  const authCtx=useContext(authContext)
+  const authCtx=useContext(authContext);
   const [getAddressData, setgetAddressData] = useState([])
+  const [savedShippingInfo, setsavedShippingInfo] = useState({data:{},savedAddressInfo:{}})
+  const [shippingInfoTab, setshippingInfoTab] = useState(false)
+  console.log('getAddressData======>>>>>>>>',getAddressData)
+  
+  useEffect(() => {
+
+    const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
+
+    if(getCheckedData){
+      setsavedShippingInfo({data:getCheckedData,savedAddressInfo:{text:getCheckedData.Type}})
+    }
+    else {
+      setsavedShippingInfo({data:getAddressData[0],savedAddressInfo:{text:getAddressData[0]?.Type}})
+    }
+  }, [getAddressData])
+
+  console.log({savedShippingInfo})
+
   
   const getAddress=()=>{
     http.post({
@@ -48,7 +66,7 @@ const PaymentParent = () => {
     return () => {
     }
   }, [])
-  const [shippingInfoTab, setshippingInfoTab] = useState(false)
+
 
   const addressChangeHandler=()=>{
     window.scrollTo({
@@ -135,6 +153,20 @@ const PaymentParent = () => {
       settabinfo(2);
     }
   };
+  const selectedShippingInfo=(data,savedAddressInfo)=>{
+    console.log({data},{savedAddressInfo})
+   if(data && savedAddressInfo){
+     
+     settabinfo(0)
+     var element = document.getElementsByClassName("tab");
+     for (let i = 0; i < element.length; i++) {
+       element[i].children[0].classList.remove("activetab");
+     }
+     element[0].children[0].className += " activetab";
+     setsavedShippingInfo({data:data,savedAddressInfo:savedAddressInfo})
+
+   }
+  }
   return (
     <>
       <CheckOutHeader />
@@ -169,15 +201,16 @@ const PaymentParent = () => {
                       addressChangeHandler={addressChangeHandler}
                       shippingInfoTab={shippingInfoTab}
                       getAddressData={getAddressData}
+                      savedShippingInfo={savedShippingInfo}
                     />
                   )}
 
                   {tabinfo === 1 && (
-                    <AddressForm proceedOrder={proceedOrder} />
+                    <AddressForm proceedOrder={proceedOrder} selectedShippingInfo={selectedShippingInfo}/>
                   )}
                   {/* AddressComponentLoaded */}
 
-                  {tabinfo === 2 && <Payment />}
+                  {tabinfo === 2 && <Payment savedShippingInfo={savedShippingInfo.data.ChargeAmount}/>}
                   {/* PaymentComponentLoaded */}
 
                 </div>

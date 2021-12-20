@@ -4,7 +4,7 @@ import { callBack } from '../../../Service/AppService';
 import { CartService } from '../../../Service/CartContent';
 import PopUpModal from './PopUpModal';
 
-const Payment = () => {
+const Payment = ({savedShippingInfo}) => {
     const data=CartService.Get();
     const [OrderStatus, setproceedOrder] = useState(false)
     const proceedOrder=()=>{
@@ -41,11 +41,11 @@ const Payment = () => {
                                                 </tr>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3">Delivery Charge</td>
-                                                    <td class="summary-details-p" colspan="2">120</td>
+                                                    <td class="summary-details-p" colspan="2">{savedShippingInfo}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="summary-details-p" colspan="3"><strong>Total Amount </strong></td>
-                                                    <td class="summary-details-p" colspan="2"><strong>{(data.TotalAmount+120).toFixed(2)}</strong></td>
+                                                    <td class="summary-details-p" colspan="2"><strong>{(data.TotalAmount+parseInt(savedShippingInfo)).toFixed(2)}</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>
