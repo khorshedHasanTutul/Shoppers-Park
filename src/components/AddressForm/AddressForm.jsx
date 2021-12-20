@@ -10,7 +10,7 @@ import { endpoints } from "../../lib/endpoints";
 import Select from "../utilities/Select/Select";
 import authContext from "../../Store/auth-context";
 
-const AddressForm = ({ proceedOrder }) => {
+const AddressForm = ({ proceedOrder,selectedShippingInfo }) => {
   //From Address Saved
   const [phone, setphone] = useState('');
   const [phoneIsTouched, setphoneIsTouched] = useState(false)
@@ -28,7 +28,6 @@ const AddressForm = ({ proceedOrder }) => {
   const [addressSaved, setaddressSaved] = useState(false);
   const authCtx=useContext(authContext);
   const [addressButtonIndex, setaddressButtonIndex] = useState(0);
-  const [activeButtonText, setactiveButtonText] = useState('');
 
   const [divisionId, setdivisionId] = useState('')
   const [districtId, setdistrictId] = useState('')
@@ -38,6 +37,7 @@ const AddressForm = ({ proceedOrder }) => {
   const [getAddressData,setgetAddressData] = useState([])
   const [activeValue, setactiveValue] = useState('')
   const savedAddressInfo=Checkout.SavingAddressTabData;
+  const [activeButtonText, setactiveButtonText] = useState(savedAddressInfo[0].text);
   const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
   // //delivary Charge System
   // const findDiscountCharge=district.find(item=>item.id===districtId);
@@ -240,24 +240,24 @@ const AddressForm = ({ proceedOrder }) => {
     getAreas();
   }, []);
 
-  useEffect(() => {
-    const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
-    if(getCheckedData){
-    setactiveButtonText(getCheckedData.Type)
-    const activeTab=savedAddressInfo.find(item=>item.text===getCheckedData.Type);
-    const activeTabIndex=activeTab.id-1;
+  // useEffect(() => {
+  //   const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
+  //   if(getCheckedData){
+  //   setactiveButtonText(getCheckedData.Type)
+  //   const activeTab=savedAddressInfo.find(item=>item.text===getCheckedData.Type);
+  //   const activeTabIndex=activeTab.id-1;
 
-    var element = document.querySelectorAll(".address-btn-group");
-    for (let i = 0; i < element[0].childNodes.length - 1; i++) {
-      element[0].childNodes[i].classList.remove("active");
-    }
-    element[0].childNodes[activeTabIndex].className +=" active";
-  }
-  else{
-    setactiveButtonText(savedAddressInfo[0].text)
-  }
+  //   var element = document.querySelectorAll(".address-btn-group");
+  //   for (let i = 0; i < element[0].childNodes.length - 1; i++) {
+  //     element[0].childNodes[i].classList.remove("active");
+  //   }
+  //   element[0].childNodes[activeTabIndex].className +=" active";
+  // }
+  // else{
+  //   setactiveButtonText(savedAddressInfo[0].text)
+  // }
 
-  }, [getAddressData,savedAddressInfo])
+  // }, [getAddressData,savedAddressInfo])
 
   useEffect(() => {
     const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)
@@ -440,10 +440,11 @@ const AddressForm = ({ proceedOrder }) => {
             addressButtonIndex={addressButtonIndex}
             getAddressData={getAddressData}
             activeButtonText={activeButtonText}
+            selectedShippingInfo={selectedShippingInfo}
           ></AddressList>
         </div>
       </div>
-      <div class="cart_navigation">
+      {/* <div class="cart_navigation">
         <Link class="prev-btn" to="/">
           <i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i>{" "}
           Continue shopping
@@ -465,7 +466,7 @@ const AddressForm = ({ proceedOrder }) => {
           Proceed to order{" "}
           <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i>
         </a>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -2,7 +2,7 @@
 import { Checkout } from "../../Service/AppService";
 import FoundIteminfo from "./FoundIteminfo";
 
-const AddressList = ({addressSaved,addressButtonIndex,getAddressData,activeButtonText}) => {
+const AddressList = ({addressSaved,addressButtonIndex,getAddressData,activeButtonText,selectedShippingInfo}) => {
   const savedAddressInfo=Checkout.SavingAddressTabData;
   var data;
   console.log(getAddressData)
@@ -15,7 +15,7 @@ const AddressList = ({addressSaved,addressButtonIndex,getAddressData,activeButto
       {
         savedAddressInfo.map((item,index)=>(
           (addressSaved || !data)?
-          <FoundIteminfo savedAddressInfo={item} getAddressData={getAddressData} activeButtonText={activeButtonText}/>
+          <FoundIteminfo savedAddressInfo={item} getAddressData={getAddressData} activeButtonText={activeButtonText} selectedShippingInfo={selectedShippingInfo}/>
           :''
         ))
       }

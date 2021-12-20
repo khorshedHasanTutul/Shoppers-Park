@@ -4,11 +4,15 @@ import { callBack } from "../../../Service/AppService";
 import { CartService } from "../../../Service/CartContent";
 import TableSingleItem from "./TableSingleItem";
 
-const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, tabInformation,addressChangeHandler }) => {
+const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, tabInformation,addressChangeHandler,savedShippingInfo }) => {
   const [CartContent, setCartContent] = useState(CartService.Get());
   CartService.Refresh = setCartContent;
-  const findDefaultSelected=getAddressData.find(item=>item.IsDefault===true);
-
+  console.log({getAddressData})
+  let findDefaultSelected=getAddressData.find(item=>item.IsDefault===true);
+  if(!findDefaultSelected){
+    findDefaultSelected=getAddressData[0];
+  }
+  console.log(["CharGeDataAmmount===>",savedShippingInfo.data])
 
   return (
     <div class="tab-content checkout-main-tab-content">
@@ -72,22 +76,21 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
                 </div>
                 <div className="saving-address-content">
                   {
-                    (findDefaultSelected)?
+                    (typeof (savedShippingInfo.data.Name)!=='undefined')?
                     <>
-                     <small>{findDefaultSelected.Name}</small>
+                     <small>{savedShippingInfo.data.Name}</small>
+                  <small>{savedShippingInfo.data.Mobile}</small>
+                  <span><aside>{savedShippingInfo.savedAddressInfo.text}</aside></span>
+                  <span>{savedShippingInfo.data.Email}</span>
+                  <span>{savedShippingInfo.data.Province + '-' + savedShippingInfo.data.District + '-' + savedShippingInfo.data.Upazila + '-' + savedShippingInfo.data.Remarks}</span>
+                    </>:
+                    <>
+                  <small>{findDefaultSelected.Name}</small>
                   <small>{findDefaultSelected.Mobile}</small>
                   <span><aside>{findDefaultSelected.Type}</aside></span>
                   <span>{findDefaultSelected.Email}</span>
                   <span>{findDefaultSelected.Province + '-' + findDefaultSelected.District + '-' + findDefaultSelected.Upazila + '-' + findDefaultSelected.Remarks}</span>
-                    </>:
-                    <>
-                      <small>{getAddressData[0].Name}</small>
-                  <small>{getAddressData[0].Mobile}</small>
-                  <span><aside>{getAddressData[0].Type}</aside></span>
-                  <span>{getAddressData[0].Email}</span>
-                  <span>{getAddressData[0].Province + '-' + getAddressData[0].District + '-' + getAddressData[0].Upazila + '-' + getAddressData[0].Remarks}</span>
                     </>
-
                   }
                   
                  
