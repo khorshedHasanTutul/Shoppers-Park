@@ -9,4 +9,6 @@ const createAddress="/AddressArea/Address/Create";
 const getAddress="/AddressArea/Address/Get";
 const updateInformation="/CustomerArea/Customer/UpdateInfo";
 const complainUrl="/CommonArea/Complain/Add";
-export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress,updateInformation,complainUrl}
+const postCuponCode="/PromotionalArea/Coupon/Check";
+const postContact="/ContactArea/Contact/Add";
+export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress,updateInformation,complainUrl,postCuponCode,postContact}
