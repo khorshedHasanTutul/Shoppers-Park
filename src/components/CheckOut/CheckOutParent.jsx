@@ -49,6 +49,8 @@ const PaymentParent = () => {
       console.log('get address started')
     },
     successed:(data)=>{
+      console.log('datamaaaaaaaaaaaaaaaan',data)
+      if(data)
       setgetAddressData(data.Data);
       if(data.Data.length>0)
       setshippingInfoTab(true);
@@ -63,8 +65,6 @@ const PaymentParent = () => {
   } 
   useEffect(() => {
     getAddress();
-    return () => {
-    }
   }, [])
 
 
@@ -167,6 +167,7 @@ const PaymentParent = () => {
 
    }
   }
+
   return (
     <>
       <CheckOutHeader />

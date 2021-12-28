@@ -11,4 +11,5 @@ const updateInformation="/CustomerArea/Customer/UpdateInfo";
 const complainUrl="/CommonArea/Complain/Add";
 const postCuponCode="/PromotionalArea/Coupon/Check";
 const postContact="/ContactArea/Contact/Add";
-export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress,updateInformation,complainUrl,postCuponCode,postContact}
+const addWishlist="/WishListArea/WishList/Create"
+export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress,updateInformation,complainUrl,postCuponCode,postContact,addWishlist}
