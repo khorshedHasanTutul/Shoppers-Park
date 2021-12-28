@@ -1,8 +1,7 @@
 import InputControl from "../utilities/InputControl/InputControl";
 import "./AddressForm.css";
 import AddressList from "./AddressList";
-import { Link } from "react-router-dom";
-import { callBack, Checkout } from "../../Service/AppService";
+import { Checkout } from "../../Service/AppService";
 import { useContext, useEffect, useState } from "react";
 import SavingAddressTab from "./SavingAddressTab";
 import { http } from "../../Service/httpService";
@@ -10,7 +9,10 @@ import { endpoints } from "../../lib/endpoints";
 import Select from "../utilities/Select/Select";
 import authContext from "../../Store/auth-context";
 
-const AddressForm = ({ proceedOrder,selectedShippingInfo }) => {
+const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) => {
+
+  // console.log(addresses);
+
   //From Address Saved
   const [phone, setphone] = useState('');
   const [phoneIsTouched, setphoneIsTouched] = useState(false)
@@ -34,7 +36,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo }) => {
   const [areaId, setareaId] = useState('')
   const [divisionIsTouched, setdivisionIsTouched] = useState(false)
 
-  const [getAddressData,setgetAddressData] = useState([])
+  const [getAddressData, setgetAddressData] = useState(addresses || []);
   const [activeValue, setactiveValue] = useState('')
   const savedAddressInfo=Checkout.SavingAddressTabData;
   const [activeButtonText, setactiveButtonText] = useState(savedAddressInfo[0].text);
@@ -100,7 +102,8 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo }) => {
           console.log('submit adress Data')
         },
         successed:(data)=>{
-          getAddress();
+          // getAddress();
+          onSave();
         },
         failed:()=>{
           console.log('failed');
@@ -438,7 +441,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo }) => {
           <AddressList
             addressSaved={addressSaved}
             addressButtonIndex={addressButtonIndex}
-            getAddressData={getAddressData}
+            getAddressData={addresses || getAddressData}
             activeButtonText={activeButtonText}
             selectedShippingInfo={selectedShippingInfo}
           ></AddressList>

@@ -37,6 +37,7 @@ const SubCategoryItem = ({categoryId,subCategoryId,subCategoryItemID}) => {
     const subcatId=parseInt(subCategoryId)
     const subItemId=parseInt(subCategoryItemID)
     const data=concatData.filter(item=>item.category_id===catId && item.subCategory_id===subcatId && item.subCategory_item_id===subItemId);
+
     return (
         <div class="product-catagory-main-flex owl-slider-perk">
             {

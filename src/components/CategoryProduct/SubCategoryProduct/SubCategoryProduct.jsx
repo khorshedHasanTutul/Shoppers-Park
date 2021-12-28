@@ -1,12 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router';
+import appData from '../../DataSource/appData';
 import SubCategoryProductHeader from './SubCategoryProductHeader';
 import SubCategoryTotalItem from './SubCategoryTotalItem';
 
 const SubCategoryProduct = () => {
     const {categoryId}=useParams();
-    const {subCategoryId}=useParams();
-
+    const {subCategoryId}=useParams()
+    
     return (
         <>
         <SubCategoryProductHeader categoryId={categoryId} subCategoryId={subCategoryId}/>

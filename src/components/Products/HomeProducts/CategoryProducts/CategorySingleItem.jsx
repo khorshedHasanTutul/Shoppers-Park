@@ -25,9 +25,6 @@ const CategorySingleItem = ({item,wishItemsGet}) => {
         if(findWishId){
             setwishActiveItem(true)
         }
-        return () => {
-            
-        }
     }, [findWishId])
     
     return (

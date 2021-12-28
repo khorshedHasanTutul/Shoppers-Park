@@ -12,6 +12,7 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
   if(!findDefaultSelected){
     findDefaultSelected=getAddressData[0];
   }
+  console.log(['getaddressData 0',findDefaultSelected])
   console.log(["CharGeDataAmmount===>",savedShippingInfo.data])
 
   return (
@@ -67,6 +68,9 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
                 </div>
               </form>
             </div> */}
+            {
+              console.log({shippingInfoTab})
+            }
             {
               (shippingInfoTab)&& 
                <div className="shaping-address-saveing-row">

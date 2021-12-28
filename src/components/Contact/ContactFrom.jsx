@@ -48,6 +48,7 @@ const ContactFrom = () => {
     }
     useEffect(() => {
         if(clicked){
+            
         if( (nameIsTouched && name.length===0) || (!nameIsTouched && name.length===0) ){
         setnameValid(true)
         }
@@ -94,7 +95,6 @@ const ContactFrom = () => {
                     console.log('program started');
                 },
                 successed:(data)=>{
-                   
                     setname('');
                     setemail('');
                     setphone('');
@@ -103,12 +103,11 @@ const ContactFrom = () => {
                     setphoneIsTouched(false);
                     setemailIsTouched(false);
                     setmessageIsTouched(false);
+                    setpopUp(true);
                     setnameValid(false);
                     setemailValid(false);
                     setphoneValid(false);
                     setmessageValid(false);
-                    setpopUp(true);
-                    console.log(data);
                 },
                 failed:()=>{
                     console.log('function failed')
@@ -140,7 +139,6 @@ const ContactFrom = () => {
                         ></textarea>
                         {
                         (messageValid) &&<div className="alert alert-error">Message is required.</div>
-                       
                         }
                         {
                              (messageIsTouched && message.length===0 && !messageValid) &&<div className="alert alert-error">Message is required.</div>

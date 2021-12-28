@@ -1,4 +1,6 @@
 import { useReducer } from "react";
+import { endpoints } from "../lib/endpoints";
+import { http } from "../Service/httpService";
 import authContext from "./auth-context";
 
 const initialState = () => {
@@ -68,9 +70,26 @@ const reducer = (state, action) => {
 
     updatedWishlist.push(action.item.id);
 
-    localStorage.setItem('WISHLIST', JSON.stringify(updatedWishlist));
-
-
+    http.post({
+      url:endpoints.addWishlist,
+      payload:{
+        ActivityId:"5988299b-2504-483f-8c62-45e1a106a32a",
+        CustomerId:state.user.id,
+        ProductId:action.item.id
+      },
+      before:()=>{
+        console.log('program start')
+      },
+      successed:(data)=>{
+        console.log(data)
+      },
+      failed:()=>{
+        console.log('failed')
+      },
+      always:()=>{
+        console.log('function end')
+      }
+    })
     return {
       ...state,
       wishList: updatedWishlist
@@ -78,15 +97,17 @@ const reducer = (state, action) => {
   }
 
   if(action.type==="WISHITEMS_REMOVED"){
-    let getWishItem=localStorage.getItem("WISHLIST");
-    if(getWishItem){
-      getWishItem=JSON.parse(getWishItem);
-    }
-    const findLocalindex=getWishItem.findIndex(item2=>item2.Id===action.item.id)
+    // let getWishItem=localStorage.getItem("WISHLIST");
+    // if(getWishItem){
+    //   getWishItem=JSON.parse(getWishItem);
+    // }
+    // const findLocalindex=getWishItem.findIndex(item2=>item2.Id===action.item.id)
+    console.log('wishlist',state.wishList)
     const index = state.wishList.findIndex(item2 => item2.Id === action.item.id);
+    console.log('wishIndex',index)
     state.wishList.splice(index, 1);
-    getWishItem.slice(findLocalindex,1);
-    localStorage.setItem('WISHLIST', JSON.stringify(getWishItem));
+    // getWishItem.slice(findLocalindex,1);
+    // localStorage.setItem('WISHLIST', JSON.stringify(getWishItem));
     return {
       ...state,
       wishList: state.wishList
@@ -121,9 +142,9 @@ const AuthContextProvider = ({ children }) => {
     isLoggedIn: state.isLoggedIn,
     userOtpId: state.userOtpId,
     registration: registrationHandler,
-    wishList: wishlistItemAddHandler,
     getwishlist:state.wishList,
     getloginValue:state.user,
+    wishList: wishlistItemAddHandler,
     wishRemovehandler:wishRemovehandler,
   };
 

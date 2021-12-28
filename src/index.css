@@ -5792,3 +5792,10 @@ div.brick.label.default {
 	cursor: pointer;
 }
 
+.pro-not-found-img-subcategory{
+  margin: 0px 315px auto;
+}
+.pro-not-found-img-subcategory strong img {
+	width: 550px;
+	height: auto;
+}
