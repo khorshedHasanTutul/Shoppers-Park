@@ -3,10 +3,11 @@ import { Checkout } from "../../Service/AppService";
 import FoundIteminfo from "./FoundIteminfo";
 
 const AddressList = ({addressSaved,addressButtonIndex,getAddressData,activeButtonText,selectedShippingInfo}) => {
+  
   const savedAddressInfo=Checkout.SavingAddressTabData;
   var data;
-  console.log(getAddressData)
-  if(getAddressData.length===0){
+  console.log("getAddressData------>findit Man",getAddressData);
+  if(getAddressData?.length===0){
      data=false;
   }
   return (

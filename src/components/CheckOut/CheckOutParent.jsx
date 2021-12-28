@@ -50,7 +50,7 @@ const PaymentParent = () => {
     },
     successed:(data)=>{
       console.log('datamaaaaaaaaaaaaaaaan',data)
-      if(data)
+      if(data.Data)
       setgetAddressData(data.Data);
       if(data.Data.length>0)
       setshippingInfoTab(true);
@@ -207,7 +207,7 @@ const PaymentParent = () => {
                   )}
 
                   {tabinfo === 1 && (
-                    <AddressForm proceedOrder={proceedOrder} selectedShippingInfo={selectedShippingInfo}/>
+                    <AddressForm onSave={getAddress} addresses={getAddressData} proceedOrder={proceedOrder} selectedShippingInfo={selectedShippingInfo}/>
                   )}
                   {/* AddressComponentLoaded */}
 
