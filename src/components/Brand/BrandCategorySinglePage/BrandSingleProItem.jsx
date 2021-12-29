@@ -26,6 +26,13 @@ const BrandSingleProItem = ({data}) => {
     const refreshHeart=()=>{
         setselectedWish(prevState=>!prevState)
     }
+    if(brandData.length===0){
+        return (
+            <div className="pro-not-found-img">
+                <strong> <img src="/contents/assets/images/no-product-found.png" alt="" /> </strong>
+            </div>
+        )
+    }
 
 
     return (

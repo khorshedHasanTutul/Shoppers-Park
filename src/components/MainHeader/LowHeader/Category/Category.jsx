@@ -1,13 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderLinksitem from '../LowHeaderLinks/HeaderLinksitem';
 import CategoryItem from './CategoryItem';
 
 const Category = () => {
-    const [isActive, setActive] = useState();
+    const [count, setcount] = useState(0)
+    const [isActive, setActive] = useState(false);
+    const screenWidth=window.innerWidth;
+    const increment=()=>{
+        setcount(count+1)
+    }
+
     const toggleClass = () => {
-        setActive(!isActive)
+        setActive(prevState=> !prevState)
     };
+
+    useEffect(() => {
+        if(screenWidth<=991){
+            var element=document.getElementsByClassName("dropdownmenu");
+        if(count%2!==0){
+            element[0].classList.remove("dropDown-hidden")
+        }
+        if(count%2===0){
+            element[0].className+=" dropDown-hidden"
+        }
+        increment();
+        }
+        
+    }, [])
+
+    const clickedArrowHandler=()=>{
+        increment();
+        var element=document.getElementsByClassName("dropdownmenu");
+        if(count%2!==0){
+            element[0].classList.remove("dropDown-hidden")
+        }
+        if(count%2===0){
+            element[0].className+=" dropDown-hidden"
+        }
+    }
+
     return (
         <div>
           
@@ -16,11 +48,27 @@ const Category = () => {
                             <a href class="nav-icon"><span onClick={toggleClass}>×</span></a>
                             <ul>
                                 <li class="dropdown">
-                                    <a href>Shop Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
-                                    <ul class="dropdownmenu mega-menu">
+                                   
+                                    {
+                                        (screenWidth>991)?
+                                        <>
+                                        <a href>Shop Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
+                                        <ul class="dropdownmenu mega-menu">
                                         {/* start inner mega menu shop */}
                                         <CategoryItem />
-                                    </ul>
+                                        </ul>
+                                        </>
+                                        :
+                                        <>
+                                        <a href>Shop Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true" onClick={clickedArrowHandler}></i></a>
+                                        <ul class="dropdownmenu mega-menu">
+                                        {/* start inner mega menu shop */}
+                                        <CategoryItem toggleClass={toggleClass}/>
+                                        </ul>
+                                        </>
+
+                                    }
+                                   
                                 </li>
                                 <HeaderLinksitem />
 
