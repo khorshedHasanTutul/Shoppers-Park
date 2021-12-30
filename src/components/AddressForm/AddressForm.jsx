@@ -11,9 +11,6 @@ import authContext from "../../Store/auth-context";
 
 const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) => {
 
-  // console.log(addresses);
-
-  //From Address Saved
   const [phone, setphone] = useState('');
   const [phoneIsTouched, setphoneIsTouched] = useState(false)
   const [email, setemail] = useState("");
@@ -35,15 +32,13 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
   const [districtId, setdistrictId] = useState('')
   const [areaId, setareaId] = useState('')
   const [divisionIsTouched, setdivisionIsTouched] = useState(false)
+  const [districtIsTouched, setdistrictIsTouched] = useState(false)
+  const [areaIsTouched, setareaIsTouched] = useState(false)
 
   const [getAddressData, setgetAddressData] = useState(addresses || []);
-  const [activeValue, setactiveValue] = useState('')
   const savedAddressInfo=Checkout.SavingAddressTabData;
   const [activeButtonText, setactiveButtonText] = useState(savedAddressInfo[0].text);
   const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
-  // //delivary Charge System
-  // const findDiscountCharge=district.find(item=>item.id===districtId);
-  const [delivaryCharge, setdelivaryCharge] = useState('')
 
   //phone saved
   const phoneChangeHandler = ({ target }) => {
@@ -80,9 +75,16 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
   const divisionTocuhedHandler=()=>{
     setdivisionIsTouched(true)
   }
+  const districtTouchedHandler=()=>{
+    setdistrictIsTouched(true)
+  }
+  const areaTouchedHandler=()=>{
+    setareaIsTouched(true)
+  }
   console.log({activeButtonText})
   //Save Button Handler
   const saveHandler = () => {
+    if(name.length!==0 && phone.length!==0 && address.length!==0 && divisionId.name && districtId.name && areaId.name){
       setaddressSaved(true);
       http.post({
         url:endpoints.createAddress,
@@ -112,6 +114,11 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
           console.log('request end')
         }
       })
+    }
+    else{
+      alert("Form Validation Error!")
+    }
+      
   };
 
   // element[0].childNodes[0].classList.add('active')
@@ -243,25 +250,6 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
     getAreas();
   }, []);
 
-  // useEffect(() => {
-  //   const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
-  //   if(getCheckedData){
-  //   setactiveButtonText(getCheckedData.Type)
-  //   const activeTab=savedAddressInfo.find(item=>item.text===getCheckedData.Type);
-  //   const activeTabIndex=activeTab.id-1;
-
-  //   var element = document.querySelectorAll(".address-btn-group");
-  //   for (let i = 0; i < element[0].childNodes.length - 1; i++) {
-  //     element[0].childNodes[i].classList.remove("active");
-  //   }
-  //   element[0].childNodes[activeTabIndex].className +=" active";
-  // }
-  // else{
-  //   setactiveButtonText(savedAddressInfo[0].text)
-  // }
-
-  // }, [getAddressData,savedAddressInfo])
-
   useEffect(() => {
     const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)
     console.log({activeInputValue})
@@ -316,6 +304,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
   useEffect(() => {
     getAddress();
   }, [])
+  console.log({divisionId})
 
 
   return (
@@ -370,7 +359,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
             options={division}
             onBlur={divisionTocuhedHandler}
             selectedOption={divisionId}
-            // error={ "Name is required."}
+            error= {(divisionIsTouched && !divisionId.name)&&'Region field is required.'}
             />
 
           <Select 
@@ -380,8 +369,9 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
                 onSelect={districtSelectHandler}
                 options={district || []}
                 previewText={'Select Region first'} 
-                onBlur={()=>{}}
+                onBlur={districtTouchedHandler}
                 selectedOption={districtId}
+                error= {(districtIsTouched  && !districtId.name)&&'City field is required.'}
               />
 
             <Select 
@@ -391,8 +381,10 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
                 onSelect={areaSelectHandler}
                 options={area || []}
                 previewText={'Select City first'} 
-                onBlur={()=>{}}
+                onBlur={areaTouchedHandler}
                 selectedOption={areaId}
+                error= {(areaIsTouched && !areaId.name)&&'Area field is required.'}
+
               />
           </div>
 
@@ -429,7 +421,6 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
                   <input type="checkbox" name="primaryCheck" id="primary-check" onClick={checkBoxStatteChangeHandler} checked/>:
                   <input type="checkbox" name="primaryCheck" id="primary-check" onClick={checkBoxChangeHandler} />
                 }
-                
                 <label htmlFor="primary-check" className="t-bold ml-8">
                   Set as primary
                 </label>
@@ -447,29 +438,6 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
           ></AddressList>
         </div>
       </div>
-      {/* <div class="cart_navigation">
-        <Link class="prev-btn" to="/">
-          <i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i>{" "}
-          Continue shopping
-        </Link>
-        <a
-          class="next-btn"
-          href
-          onClick={callBack(
-            proceedOrder,
-            phone,
-            email,
-            name,
-            district,
-            division,
-            area
-          )}
-        >
-          {" "}
-          Proceed to order{" "}
-          <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i>
-        </a>
-      </div> */}
     </>
   );
 };

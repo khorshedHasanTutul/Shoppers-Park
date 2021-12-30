@@ -39,17 +39,18 @@ const CategoryItem = ({toggleClass}) => {
     
     return (
         <>
-        <li class="sd-nav__item sd-nav__item--level-2">
-            <Link title="New In" to="/newinShop">New In <i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true"></i></Link>
+        <li class="sd-nav__item sd-nav__item--level-2" onClick={toggleClass}>
+            <Link title="New In" to="/newinShop">New In</Link>
         </li>
 
         {
             appData.ShopCategory.map((categoryItem,index)=>(
+                <>
                 <li class="sd-nav__item sd-nav__item--level-2">
             {
                 (window.innerWidth>991)?
                     <>
-                        <Link title="Make Up" to={'/category/'+categoryItem.categoryId}>{categoryItem.categoryName}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true"></i></Link>
+                        <Link title={categoryItem.categoryName} to={'/category/'+categoryItem.categoryId}>{categoryItem.categoryName}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true"></i></Link>
                         <ul class="loaded mega-menu mega-menu2">
                                 <li class="sd-nav__section-wrapper">
                                     <Link to={'/category/'+categoryItem.categoryId}>View all{categoryItem.categoryName}</Link>
@@ -58,16 +59,17 @@ const CategoryItem = ({toggleClass}) => {
                         </ul>
                     </>:
                     <>
-                        <Link title="Make Up" to={'/category/'+categoryItem.categoryId}>{categoryItem.categoryName}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true" onClick={callBack(clickedArrowHandler,index) }></i></Link>
+                        <Link title={categoryItem.categoryName} to={'/category/'+categoryItem.categoryId}>{categoryItem.categoryName}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true" onClick={callBack(clickedArrowHandler,index) }></i></Link>
                             <ul class="loaded mega-menu mega-menu2">
                                 <li class="sd-nav__section-wrapper">
-                                    <Link to={'/category/'+categoryItem.categoryId}>View all{categoryItem.categoryName}</Link>
-                                    <SubCategory  categoryItem={categoryItem}  toggleClass={toggleClass}/>
+                                    <Link to={'/category/'+categoryItem.categoryId}><span onClick={toggleClass}>View all{categoryItem.categoryName}</span></Link>
+                                    <SubCategory  categoryItem={categoryItem}  toggleClass={toggleClass} indexnum={index}/>
                                 </li>
                             </ul>
                     </>
             }
                 </li>
+                </>
             ))
         }
         
