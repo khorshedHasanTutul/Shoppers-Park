@@ -8,10 +8,11 @@ import { http } from "../../Service/httpService";
 import { endpoints } from "../../lib/endpoints";
 import Select from "../utilities/Select/Select";
 import authContext from "../../Store/auth-context";
+import { useLocation } from "react-router-dom";
 
 const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) => {
-
-  const [phone, setphone] = useState('');
+  const {pathname}=useLocation()
+  const [phone, setphone] = useState('')
   const [phoneIsTouched, setphoneIsTouched] = useState(false)
   const [email, setemail] = useState("");
   const [name, setname] = useState("");
@@ -22,7 +23,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
   const [area, setarea] = useState([]);
   const [address, setaddress] = useState("");
   const [addressIsTouched, setaddressIsTouched] = useState(false)
-  const [checkBox, setcheckBox] = useState(false)
+  // const [checkBox, setcheckBox] = useState(false)
 
   const [addressSaved, setaddressSaved] = useState(false);
   const authCtx=useContext(authContext);
@@ -39,7 +40,15 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
   const savedAddressInfo=Checkout.SavingAddressTabData;
   const [activeButtonText, setactiveButtonText] = useState(savedAddressInfo[0].text);
   const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
+  const [nameValid, setnameValid] = useState(false)
+  const [phoneValid, setphoneValid] = useState(false)
+  const [regionValid, setregionValid] = useState(false)
+  const [cityValid, setcityValid] = useState(false)
+  const [areaValid, setareaValid] = useState(false)
+  const [addressValid, setaddressValid] = useState(false)
+  const [saveBtnClicked, setsaveBtnClicked] = useState(false)
 
+  const [checked, setchecked] = useState(false)
   //phone saved
   const phoneChangeHandler = ({ target }) => {
     setphone(target.value.trim());
@@ -66,12 +75,12 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
   const addressTouched=()=>{
     setaddressIsTouched(true)
   }
-  const checkBoxChangeHandler=()=>{
-    setcheckBox(prevState => !prevState)
-  }
-  const checkBoxStatteChangeHandler=()=>{
-    setcheckBox(false)
-  }
+  // const checkBoxChangeHandler=()=>{
+  //   setcheckBox(prevState => !prevState)
+  // }
+  // const checkBoxStatteChangeHandler=()=>{
+  //   setcheckBox(prevState => !prevState)
+  // }
   const divisionTocuhedHandler=()=>{
     setdivisionIsTouched(true)
   }
@@ -81,9 +90,10 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
   const areaTouchedHandler=()=>{
     setareaIsTouched(true)
   }
-  console.log({activeButtonText})
+  // console.log({activeButtonText})
   //Save Button Handler
   const saveHandler = () => {
+    setsaveBtnClicked(true);
     if(name.length!==0 && phone.length!==0 && address.length!==0 && divisionId.name && districtId.name && areaId.name){
       setaddressSaved(true);
       http.post({
@@ -91,7 +101,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
         payload:{
           CustomerId:authCtx.user.id,
           DistrictId: districtId.id,
-          IsDefault: checkBox,
+          IsDefault: checked,
           Name: name,
           ProvinceId: divisionId.id,
           Type: activeButtonText,
@@ -104,7 +114,10 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
           console.log('submit adress Data')
         },
         successed:(data)=>{
-          // getAddress();
+          if(pathname==="/profile/address"){
+            getAddress();
+          }
+          else
           onSave();
         },
         failed:()=>{
@@ -261,6 +274,13 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
       setdivisionId({name:activeInputValue?.Province,id:activeInputValue?.ProvinceId})
       setdistrictId({name:activeInputValue?.District,id:activeInputValue?.DistrictId})
       setareaId({name:activeInputValue?.Upazila,id:activeInputValue?.UpazilaId})
+      if(activeInputValue.IsDefault===true){
+        setchecked(true)
+      }
+      else
+      {
+        setchecked(false)
+      }
     }else{
       setphone('')
       setemail('')
@@ -269,11 +289,12 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
       setdivisionId({name:'',id:''})
       setdistrictId({name:'',id:''})
       setareaId({name:'',id:''})
+      setchecked(false)
     }
-  }, [activeButtonText,getAddressData])
-
-
-
+    // if(getCheckedData){
+    //   setchecked(true)
+    // }
+  }, [activeButtonText,getAddressData,getCheckedData])
 
   const getAddress=()=>{
     http.post({
@@ -304,7 +325,42 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
   useEffect(() => {
     getAddress();
   }, [])
-  console.log({divisionId})
+
+  useEffect(() => {
+    if(saveBtnClicked){
+      if((nameIsTouched && name.length===0)|| (!nameIsTouched && name.length===0)){
+        setnameValid(true)
+      }
+      else
+      setnameValid(false)
+      if((phoneIsTouched && phone.length===0)|| (!phoneIsTouched && phone.length===0)){
+        setphoneValid(true)
+      }
+      else
+      setphoneValid(false)
+      if((divisionIsTouched && !divisionId.name) || (!divisionIsTouched && !divisionId.name)){
+        setregionValid(true)
+      }
+      else
+      setregionValid(false)
+      if((districtIsTouched && !districtId.name) || (!districtIsTouched && !districtId.name)){
+        setcityValid(true)
+      }
+      else
+      setcityValid(false)
+      if((areaIsTouched && !areaId.name)|| (!areaIsTouched && !areaId.name)){
+        setareaValid(true)
+      }
+      else
+      setareaValid(false)
+      if((addressIsTouched && address.length===0)|| (!addressIsTouched && address.length===0)){
+        setaddressValid(true)
+      }
+      else
+      setaddressValid(false)
+    }
+   
+  }, [nameIsTouched,name.length,phoneIsTouched,phone.length,divisionIsTouched,divisionId,districtIsTouched,districtId,areaIsTouched,areaId,addressIsTouched,address.length,saveBtnClicked])
 
 
   return (
@@ -320,7 +376,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
               required
               className="brick"
               value={name}
-              error={(nameIsTouched && name.length===0) && "Name is required."}
+              error={(nameValid) ? "Name is required." :(nameIsTouched && name.length===0 && !nameValid) ? "Name is required.":''}
               onChange={nameChangeHandler}
               onBlur={nameTouched}
             />
@@ -333,7 +389,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
               required
               className="brick"
               value={phone}
-              error={(phoneIsTouched && phone.length===0) && "Phone is required."}
+              error={(phoneValid) ? "Phone is required." :(phoneIsTouched && phone.length===0 && !phoneValid) ? "Phone is required.":''}
               onChange={phoneChangeHandler}
               onBlur={phoneTouched}
             />
@@ -359,7 +415,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
             options={division}
             onBlur={divisionTocuhedHandler}
             selectedOption={divisionId}
-            error= {(divisionIsTouched && !divisionId.name)&&'Region field is required.'}
+            error= {(regionValid)?'Region field is required.':(divisionIsTouched && !divisionId.name && !regionValid) ? "Region is required.":''}
             />
 
           <Select 
@@ -371,7 +427,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
                 previewText={'Select Region first'} 
                 onBlur={districtTouchedHandler}
                 selectedOption={districtId}
-                error= {(districtIsTouched  && !districtId.name)&&'City field is required.'}
+                error= {(cityValid)?'City field is required.':(districtIsTouched && !districtId.name && !cityValid) ? "City is required.":''}
               />
 
             <Select 
@@ -383,7 +439,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
                 previewText={'Select City first'} 
                 onBlur={areaTouchedHandler}
                 selectedOption={areaId}
-                error= {(areaIsTouched && !areaId.name)&&'Area field is required.'}
+                error= {(areaValid)?'Area field is required.':(areaIsTouched && !areaId.name && !areaValid) ? "Area is required.":''}
 
               />
           </div>
@@ -401,8 +457,11 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
                 onBlur={addressTouched}
               ></textarea>
               {
-                (addressIsTouched && address.length===0) &&<div className="alert alert-error">Address is required.</div>
+                (addressValid) &&<div className="alert alert-error">Address is required.</div>
               }
+               {
+                             (addressIsTouched && address.length===0 && !addressValid) &&<div className="alert alert-error">Address is required.</div>
+                        }
              
             </div>
           </div>
@@ -416,11 +475,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
                 Save Address
               </button>
               <div>
-                {
-                  (getCheckedData?.Type===activeButtonText) ?
-                  <input type="checkbox" name="primaryCheck" id="primary-check" onClick={checkBoxStatteChangeHandler} checked/>:
-                  <input type="checkbox" name="primaryCheck" id="primary-check" onClick={checkBoxChangeHandler} />
-                }
+                  <input type="checkbox" name="primaryCheck" id="primary-check" checked={checked} onChange={() => setchecked(prevState => !prevState)}/>
                 <label htmlFor="primary-check" className="t-bold ml-8">
                   Set as primary
                 </label>
