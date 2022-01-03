@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react';
 import { endpoints } from '../../../../lib/endpoints';
 import { http } from '../../../../Service/httpService';
 import authContext from '../../../../Store/auth-context';
+import { useHistory } from "react-router";
 
-const OtpCodeModal = ({loginModalOpen,forgetPassModal}) => {
+const OtpCodeModal = ({loginModalOpen,forgetPassModal,ModalOpen}) => {
     const [otpValue, setotpValue] = useState('')
     const [failedMessage, setfailedMessage] = useState(false)
     const authCtx = useContext(authContext)
+    const history=useHistory();
     // console.log('iddddddd',authCtx.userOtpId.id)
     const otpChangeHandler=({target})=>{
         setotpValue(target.value)
@@ -31,12 +33,43 @@ const OtpCodeModal = ({loginModalOpen,forgetPassModal}) => {
                    Phone:authCtx.registration.phone,
                    Password:authCtx.registration.password,
                    OTPId:authCtx.userOtpId.id,
-                   ActivityId:'00000000-0000-0000-0000-000000000000'},
+                   ActivityId:'00000000-0000-0000-0000-000000000000'
+                },
                    before:()=>{
                        console.log('function start')
                    },
                    successed:(data)=>{
                        console.log(data)
+                       http.post({
+                        url: endpoints.login,
+                        payload: {
+                          UserName: authCtx.registration.phone,
+                          Password: authCtx.registration.password,
+                        },
+                        before: () => {
+                          console.log("request stareted");
+                        },
+                        successed: (data) => {
+                          authCtx.login({
+                            id: data.Id,
+                            name: data.Name,
+                            token: data.datacontent,
+                            image: data.Icon,
+                            email: data.Email,
+                            phone: data.Phone,
+                          });
+                          history.push('/home')
+                          ModalOpen();
+                        },
+                        failed: (data, msg) => {
+                        },
+                        always: () => {
+                          console.log(`request end`);
+                        },
+                        // map:(data)=>{
+                        //   return data.Id
+                        // }
+                      });
                    },
                    failed:()=>{
                     console.log('failed')

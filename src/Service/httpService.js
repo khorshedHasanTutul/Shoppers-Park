@@ -13,6 +13,12 @@ export const post = async (
         map = (data) => { return data.Data },
         dataPath = '' }
 ) => {
+    const token = await getToken();
+    const tokenHeader = {};
+    if(token){
+        tokenHeader.datacontent = token;
+    }
+
 
     before();
 
@@ -20,8 +26,8 @@ export const post = async (
         method: 'POST',
         headers: {
             'content-type': 'application/json',
-            'datacontent': await getToken(),
-            ...headers
+            ...headers,
+            ...tokenHeader
         },
         body: JSON.stringify(payload)
     });
