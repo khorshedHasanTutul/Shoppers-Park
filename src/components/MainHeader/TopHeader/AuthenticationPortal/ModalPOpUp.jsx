@@ -33,7 +33,7 @@ const ModalPOpUp = ({ModalOpen,closeCart}) => {
                 (ModalCmp===2)&& <ForgetPasswordModal OtpModal={OtpModal} loginModalOpen={loginModalOpen}/>
             }
             {
-                (ModalCmp===3)&& <OtpCodeModal loginModalOpen={loginModalOpen} forgetPassModal={forgetPassModal}/>
+                (ModalCmp===3)&& <OtpCodeModal loginModalOpen={loginModalOpen} forgetPassModal={forgetPassModal} ModalOpen={ModalOpen}/>
             }
             <a href onClick={ModalOpen} class="modal__close">&times;</a>
         </div>

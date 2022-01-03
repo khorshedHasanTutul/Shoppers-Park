@@ -603,7 +603,7 @@ input:focus {
   clear: both;
   z-index: 9;
   opacity: 0;
-  /* visibility: hidden; */
+  visibility: hidden;
   transition: 0.6s;
   background: #fff;
   box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
