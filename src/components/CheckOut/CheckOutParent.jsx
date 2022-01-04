@@ -16,7 +16,6 @@ const PaymentParent = () => {
   const [getAddressData, setgetAddressData] = useState([])
   const [savedShippingInfo, setsavedShippingInfo] = useState({data:{},savedAddressInfo:{}})
   const [shippingInfoTab, setshippingInfoTab] = useState(false)
-  console.log('getAddressData======>>>>>>>>',getAddressData)
   
   useEffect(() => {
 
@@ -29,9 +28,6 @@ const PaymentParent = () => {
       setsavedShippingInfo({data:getAddressData[0],savedAddressInfo:{text:getAddressData[0]?.Type}})
     }
   }, [getAddressData])
-
-  console.log({savedShippingInfo})
-
   
   const getAddress=()=>{
     http.post({
@@ -81,13 +77,25 @@ const PaymentParent = () => {
       }
       element[1].children[0].className += " activetab";
   }
+  console.log({getAddressData})
 
   const tabInformation = (index, item, evt) => {
+    if(index===2 &&  (getAddressData.length)===0){
+      alert('Please select a valid address first.')
+      settabinfo(0);
+      let element = document.getElementsByClassName("tab");
+      for (let i = 0; i < element.length; i++) {
+        element[i].children[0].classList.remove("activetab");
+      }
+      element[0].children[0].className += " activetab";
+      return;
+    }
     var element = document.getElementsByClassName("tab");
     for (let i = 0; i < element.length; i++) {
       element[i].children[0].classList.remove("activetab");
     }
     evt.target.className += " activetab";
+    
     settabinfo(index);
   };
 

@@ -1045,7 +1045,7 @@ var appData = {
             image:"/contents/assets/images/halloween/n1.png",
             buttonText:"Shop All",
             subCategory:[
-              { 
+              {
                 subCategory_id:1,
                 subCategoryName:"Face MakeUp",
                 subCategoryItem:[
@@ -1400,6 +1400,1114 @@ var appData = {
               { 
                 subCategory_id:6, 
                 subCategoryName:"Nails",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Nail Polish"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Gel Nail Polish"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Base Top Coats"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Fake Nails"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Nail Care"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Nail Tools"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Nail Polish Remover"
+                  }
+                ]
+              }
+            ]
+           },
+           {
+            categoryId:3,
+            categoryVisible:true,
+            created_at:(new Date().getDate()+7),
+            image:"/contents/assets/images/halloween/n1.png",
+            categoryName:"Hair",
+            buttonText:"Shop All",
+            subCategory:[
+              { 
+                subCategory_id:1, 
+                subCategoryName:"Skin Face MakeUp",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Foundation"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Concealer"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Colour Corrector"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"BB Cream"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"CC Cream"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Primers"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Powders"
+                  },
+                  {
+                    subCategory_item:8,
+                    itemName:"Setting Sprays"
+                  },
+                  {
+                    subCategory_item:9,
+                    itemName:"Bronzer"
+                  },
+                  {
+                    subCategory_item:10,
+                    itemName:"Contour"
+                  },
+                  {
+                    subCategory_item:11,
+                    itemName:"Highlighter"
+                  },
+                  {
+                    subCategory_item:12,
+                    itemName:"Blusher"
+                  },
+                  {
+                    subCategory_item:13,
+                    itemName:"Face Makeup Brushes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:2,
+                subCategoryName:"Skin Lips",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Lip Glosses"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Lipstick"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Lip Plumpers"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Lip Balm"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Lip Scrub"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Lip Liners"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:3,
+                subCategoryName:"Skin Eye Make Up",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Mascara"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyeliner"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eye Shadow Palettes"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"False Eyelashes"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Eyelash Glue"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:4,
+                subCategoryName:"Eyebrows",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Eyebrow Pencils"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Gel"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eyebrow Pomade"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Brow Palettes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:5,
+                subCategoryName:"Brushes",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Makeup Brush"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Brush"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Face Brush"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:6, 
+                subCategoryName:"Nails",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Nail Polish"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Gel Nail Polish"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Base Top Coats"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Fake Nails"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Nail Care"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Nail Tools"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Nail Polish Remover"
+                  }
+                ]
+              }
+            ]
+           },
+           {
+            categoryId:4,
+            categoryVisible:true,
+            created_at:(new Date().getDate()+7),
+            image:"/contents/assets/images/halloween/n1.png",
+            categoryName:"Perfume",
+            buttonText:"Shop All",
+            subCategory:[
+              { 
+                subCategory_id:1, 
+                subCategoryName:"Skin Face MakeUp",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Foundation"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Concealer"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Colour Corrector"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"BB Cream"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"CC Cream"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Primers"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Powders"
+                  },
+                  {
+                    subCategory_item:8,
+                    itemName:"Setting Sprays"
+                  },
+                  {
+                    subCategory_item:9,
+                    itemName:"Bronzer"
+                  },
+                  {
+                    subCategory_item:10,
+                    itemName:"Contour"
+                  },
+                  {
+                    subCategory_item:11,
+                    itemName:"Highlighter"
+                  },
+                  {
+                    subCategory_item:12,
+                    itemName:"Blusher"
+                  },
+                  {
+                    subCategory_item:13,
+                    itemName:"Face Makeup Brushes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:2,
+                subCategoryName:"Skin Lips",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Lip Glosses"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Lipstick"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Lip Plumpers"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Lip Balm"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Lip Scrub"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Lip Liners"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:3,
+                subCategoryName:"Skin Eye Make Up",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Mascara"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyeliner"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eye Shadow Palettes"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"False Eyelashes"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Eyelash Glue"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:4,
+                subCategoryName:"Eyebrows",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Eyebrow Pencils"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Gel"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eyebrow Pomade"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Brow Palettes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:5,
+                subCategoryName:"Brushes",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Makeup Brush"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Brush"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Face Brush"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:6, 
+                subCategoryName:"Nails",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Nail Polish"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Gel Nail Polish"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Base Top Coats"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Fake Nails"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Nail Care"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Nail Tools"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Nail Polish Remover"
+                  }
+                ]
+              }
+            ]
+           },
+           {
+            categoryId:5,
+            categoryVisible:true,
+            created_at:(new Date().getDate()+7),
+            image:"/contents/assets/images/halloween/n1.png",
+            categoryName:"Baby & Child",
+            buttonText:"Shop All",
+            subCategory:[
+              { 
+                subCategory_id:1, 
+                subCategoryName:"Skin Face MakeUp",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Foundation"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Concealer"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Colour Corrector"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"BB Cream"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"CC Cream"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Primers"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Powders"
+                  },
+                  {
+                    subCategory_item:8,
+                    itemName:"Setting Sprays"
+                  },
+                  {
+                    subCategory_item:9,
+                    itemName:"Bronzer"
+                  },
+                  {
+                    subCategory_item:10,
+                    itemName:"Contour"
+                  },
+                  {
+                    subCategory_item:11,
+                    itemName:"Highlighter"
+                  },
+                  {
+                    subCategory_item:12,
+                    itemName:"Blusher"
+                  },
+                  {
+                    subCategory_item:13,
+                    itemName:"Face Makeup Brushes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:2,
+                subCategoryName:"Skin Lips",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Lip Glosses"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Lipstick"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Lip Plumpers"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Lip Balm"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Lip Scrub"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Lip Liners"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:3,
+                subCategoryName:"Skin Eye Make Up",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Mascara"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyeliner"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eye Shadow Palettes"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"False Eyelashes"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Eyelash Glue"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:4,
+                subCategoryName:"Eyebrows",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Eyebrow Pencils"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Gel"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eyebrow Pomade"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Brow Palettes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:5,
+                subCategoryName:"Brushes",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Makeup Brush"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Brush"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Face Brush"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:6, 
+                subCategoryName:"Nails",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Nail Polish"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Gel Nail Polish"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Base Top Coats"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Fake Nails"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Nail Care"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Nail Tools"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Nail Polish Remover"
+                  }
+                ]
+              }
+            ]
+           },
+           {
+            categoryId:6,
+            categoryVisible:true,
+            created_at:(new Date().getDate()+7),
+            image:"/contents/assets/images/halloween/n1.png",
+            categoryName:"Acceesories & Lifestyle",
+            buttonText:"Shop All",
+            subCategory:[
+              { 
+                subCategory_id:1, 
+                subCategoryName:"Skin Face MakeUp",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Foundation"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Concealer"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Colour Corrector"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"BB Cream"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"CC Cream"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Primers"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Powders"
+                  },
+                  {
+                    subCategory_item:8,
+                    itemName:"Setting Sprays"
+                  },
+                  {
+                    subCategory_item:9,
+                    itemName:"Bronzer"
+                  },
+                  {
+                    subCategory_item:10,
+                    itemName:"Contour"
+                  },
+                  {
+                    subCategory_item:11,
+                    itemName:"Highlighter"
+                  },
+                  {
+                    subCategory_item:12,
+                    itemName:"Blusher"
+                  },
+                  {
+                    subCategory_item:13,
+                    itemName:"Face Makeup Brushes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:2,
+                subCategoryName:"Skin Lips",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Lip Glosses"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Lipstick"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Lip Plumpers"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Lip Balm"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Lip Scrub"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Lip Liners"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:3,
+                subCategoryName:"Skin Eye Make Up",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Mascara"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyeliner"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eye Shadow Palettes"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"False Eyelashes"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Eyelash Glue"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:4,
+                subCategoryName:"Eyebrows",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Eyebrow Pencils"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Gel"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eyebrow Pomade"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Brow Palettes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:5,
+                subCategoryName:"Brushes",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Makeup Brush"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Brush"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Face Brush"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:6, 
+                subCategoryName:"Nails",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Nail Polish"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Gel Nail Polish"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Base Top Coats"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Fake Nails"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Nail Care"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Nail Tools"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Nail Polish Remover"
+                  }
+                ]
+              }
+            ]
+           },
+           {
+            categoryId:7,
+            categoryVisible:true,
+            created_at:(new Date().getDate()+7),
+            image:"/contents/assets/images/halloween/n1.png",
+            categoryName:"Health & Wealbeing",
+            buttonText:"Shop All",
+            subCategory:[
+              { 
+                subCategory_id:1, 
+                subCategoryName:"Skin Face MakeUp",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Foundation"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Concealer"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Colour Corrector"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"BB Cream"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"CC Cream"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Primers"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Powders"
+                  },
+                  {
+                    subCategory_item:8,
+                    itemName:"Setting Sprays"
+                  },
+                  {
+                    subCategory_item:9,
+                    itemName:"Bronzer"
+                  },
+                  {
+                    subCategory_item:10,
+                    itemName:"Contour"
+                  },
+                  {
+                    subCategory_item:11,
+                    itemName:"Highlighter"
+                  },
+                  {
+                    subCategory_item:12,
+                    itemName:"Blusher"
+                  },
+                  {
+                    subCategory_item:13,
+                    itemName:"Face Makeup Brushes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:2,
+                subCategoryName:"Skin Lips",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Lip Glosses"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Lipstick"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Lip Plumpers"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Lip Balm"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Lip Scrub"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Lip Liners"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Lip"
+                  },
+                  {
+                    subCategory_item:8,
+                    itemName:"Liners"
+                  },
+                  {
+                    subCategory_item:9,
+                    itemName:"Lip Liners Bum"
+                  },
+                  {
+                    subCategory_item:10,
+                    itemName:"Lip Liners Gelly"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:3,
+                subCategoryName:"Skin Eye Make Up",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Mascara"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyeliner"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eye Shadow Palettes"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"False Eyelashes"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Eyelash Glue"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:4,
+                subCategoryName:"Eyebrows",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Eyebrow Pencils"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Gel"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Eyebrow Pomade"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Brow Palettes"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:5,
+                subCategoryName:"Brushes",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Makeup Brush"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Eyebrow Brush"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Face Brush"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:6, 
+                subCategoryName:"Nails",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Nail Polish"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Gel Nail Polish"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Base Top Coats"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Fake Nails"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Nail Care"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Nail Tools"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Nail Polish Remover"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:7, 
+                subCategoryName:"Lip Gels",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Nail Polish"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Gel Nail Polish"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Base Top Coats"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Fake Nails"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Nail Care"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Nail Tools"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Nail Polish Remover"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:8, 
+                subCategoryName:"Nail Palish",
+                subCategoryItem:[
+                  {
+                    subCategory_item:1,
+                    itemName:"Nail Polish"
+                  },
+                  {
+                    subCategory_item:2,
+                    itemName:"Gel Nail Polish"
+                  },
+                  {
+                    subCategory_item:3,
+                    itemName:"Base Top Coats"
+                  },
+                  {
+                    subCategory_item:4,
+                    itemName:"Fake Nails"
+                  },
+                  {
+                    subCategory_item:5,
+                    itemName:"Nail Care"
+                  },
+                  {
+                    subCategory_item:6,
+                    itemName:"Nail Tools"
+                  },
+                  {
+                    subCategory_item:7,
+                    itemName:"Nail Polish Remover"
+                  }
+                ]
+              },
+              { 
+                subCategory_id:9, 
+                subCategoryName:"Nails Remover",
                 subCategoryItem:[
                   {
                     subCategory_item:1,

@@ -70,7 +70,7 @@ const Category = () => {
                                     }
                                    
                                 </li>
-                                <HeaderLinksitem />
+                                <HeaderLinksitem toggleClass={toggleClass}/>
 
                             </ul>
                             {/* <!-- mobile menu hide  --> */}

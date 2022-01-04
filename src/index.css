@@ -5803,3 +5803,16 @@ div.brick.label.default {
 .dropDown-hidden{
   display: none !important;
 }
+
+.shippingAddress.t-uppercase.t-14.mb-8 {
+	color: #DF2C8A;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.Card_card__30GZy.mb-16.hover-card.pointer:hover {
+	background-color: #55C594;
+	box-shadow: 1px 3px;
+	opacity: 1;
+	padding: 12px;
+}
