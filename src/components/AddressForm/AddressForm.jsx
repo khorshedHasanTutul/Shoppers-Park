@@ -119,6 +119,12 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
           }
           else
           onSave();
+          window.scrollTo({
+            top: 300,
+            left: 0,
+            behavior: "smooth",
+          });
+
         },
         failed:()=>{
           console.log('failed');

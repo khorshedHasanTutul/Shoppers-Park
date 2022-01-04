@@ -1,7 +1,7 @@
 import React from 'react'
 import HeaderLinks from './HeaderLinks';
 
-const HeaderLinksitem = () => {
+const HeaderLinksitem = ({toggleClass}) => {
     const links=[
         {
             name:'Home',
@@ -41,7 +41,7 @@ const HeaderLinksitem = () => {
         
     ];
     return (
-        <HeaderLinks links={links}/>
+        <HeaderLinks links={links} toggleClass={toggleClass}/>
     )
 }
 export default HeaderLinksitem;

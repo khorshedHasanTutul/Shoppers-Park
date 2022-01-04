@@ -8,6 +8,7 @@ const authContext = createContext({
     isLoggedIn: false,
     userOtpId:{id:''},
     registration:(user2)=>{},
+    getRegistrationValue:[],
     wishList: (item) => {},
     getwishlist:[],
     wishRemovehandler:(item)=>{}

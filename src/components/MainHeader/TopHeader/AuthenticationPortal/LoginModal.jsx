@@ -19,8 +19,8 @@ const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart }) => {
   };
   const submitButtonHandler = (e) => {
     e.preventDefault();
-
-    http.post({
+    if(phonenumber.length!==0 && password.length!==0 && phonenumber.length===11 && password.length>=4){
+          http.post({
       url: endpoints.login,
       payload: {
         UserName: phonenumber,
@@ -53,6 +53,11 @@ const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart }) => {
       //   return data.Id
       // }
     });
+    }
+    else{
+      setfailedMsg(true)
+    }
+
   };
 
   return (
@@ -65,17 +70,18 @@ const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart }) => {
               <label for="mobile">Mobile Number</label>
               <input
                 type="text"
-                name=""
+                name="mpbile"
                 id="mobile"
                 required=""
                 onChange={phoneNumberChangeHandler}
               />
+              
             </div>
             <div class="custom-input">
               <label for="password">Password</label>
               <input
                 type="password"
-                name=""
+                name="password"
                 id="password"
                 required=""
                 onChange={passwordChangeHandler}

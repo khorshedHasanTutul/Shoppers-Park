@@ -38,7 +38,6 @@ const initialState = () => {
 
 const reducer = (state, action) => {
 
-
   if (action.type === "USER_LOGIN") {
     localStorage.setItem("USER", JSON.stringify(action.user));
 
@@ -62,7 +61,6 @@ const reducer = (state, action) => {
       user2:action.user2
     };
   }
-
 
   if(action.type==="WISHITEMS_ADDED") {
     
@@ -128,7 +126,6 @@ const AuthContextProvider = ({ children }) => {
     dispatch({ type: "USER_REGISTRATION", user:user2 });
   };
   const wishlistItemAddHandler=(item)=>{
-    console.log('dispatch',item)
     dispatch({type:"WISHITEMS_ADDED",item:item});
   };
   const wishRemovehandler=(item)=>{
@@ -142,6 +139,7 @@ const AuthContextProvider = ({ children }) => {
     isLoggedIn: state.isLoggedIn,
     userOtpId: state.userOtpId,
     registration: registrationHandler,
+    getRegistrationValue:registrationHandler,
     getwishlist:state.wishList,
     getloginValue:state.user,
     wishList: wishlistItemAddHandler,

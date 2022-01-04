@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const HeaderLinks = ({ links }) => {
+const HeaderLinks = ({ links, toggleClass }) => {
   return (
     <>
       {links.map((link) => (
-        <li>
+        <li onClick={toggleClass}>
           <NavLink
             to={link.to}
             activeStyle={{

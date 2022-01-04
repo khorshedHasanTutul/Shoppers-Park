@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { endpoints } from '../../../../lib/endpoints';
 import { http } from '../../../../Service/httpService';
 import authContext from '../../../../Store/auth-context';
@@ -6,16 +6,36 @@ import { useHistory } from "react-router";
 
 const OtpCodeModal = ({loginModalOpen,forgetPassModal,ModalOpen}) => {
     const [otpValue, setotpValue] = useState('')
+    const [otpValidation, setotpValidation] = useState(false)
+    const [otpIsTouched, setotpIsTouched] = useState(false)
     const [failedMessage, setfailedMessage] = useState(false)
     const authCtx = useContext(authContext)
+    const [saveBtnClicked, setsaveBtnClicked] = useState(false)
     const history=useHistory();
     // console.log('iddddddd',authCtx.userOtpId.id)
+    // console.log(authCtx.getRegistrationValue.password)
     const otpChangeHandler=({target})=>{
         setotpValue(target.value)
     }
+    const otpTouchedHandler=()=>{
+        setotpIsTouched(true)
+    }
+    useEffect(() => {
+        if(otpIsTouched && otpValue.length===0){
+            setotpValidation(true)
+        }
+        else
+        setotpValidation(false)
+    }, [otpIsTouched,otpValue.length])
+    const savebtnClickedHandler=()=>{
+        setsaveBtnClicked(true)
+    }
+    
     const submitButtonHandler=(e)=>{
         e.preventDefault();
-        http.post({
+        savebtnClickedHandler();
+        if(otpValue.length!==0){
+                http.post({
             url:endpoints.verifyOtp,
             payload:{
                 Code:otpValue,
@@ -87,6 +107,42 @@ const OtpCodeModal = ({loginModalOpen,forgetPassModal,ModalOpen}) => {
                 console.log('program end');
             }
         })
+        }
+        else if(otpValue.length===0){
+            setotpValidation(true)
+            console.log('hello')
+        }
+        
+
+    }
+    const resendClickedHandler=(e)=>{
+        e.preventDefault();
+        http.post({
+            url:endpoints.getOtp,
+            payload:{
+                Phone:authCtx.getRegistrationValue.phone,
+                Password:authCtx.getRegistrationValue.password
+            },
+            before:()=>{
+                console.log('registratioin started')
+            },
+            successed:(data)=>{
+                authCtx.userOtpId.id=data.Id
+                // setModalCmp(3)
+            },
+            failed:()=>{
+                console.log('failed')
+            },
+            always:()=>{
+                console.log('program end')
+            },
+            map:(data)=>{
+                // setmapData(data.Id)
+                // authCtx.userOtpId.Id=data.Id;
+                return data;
+            }
+        })
+
     }
     return (
             <div>
@@ -96,9 +152,20 @@ const OtpCodeModal = ({loginModalOpen,forgetPassModal,ModalOpen}) => {
                         <div class="login-info-inner-content">
                             <div class="custom-input">
                                 <label for="mobile">Otp Code</label>
-                                <input type="text" name="" id="mobile" required="" onChange={otpChangeHandler}/>
+                                <input 
+                                type="text" 
+                                name="mobile" 
+                                id="mobile" 
+                                required="" 
+                                value={otpValue}
+                                onChange={otpChangeHandler}
+                                onBlur={otpTouchedHandler}
+                                />
                                 {
                                     (failedMessage) && <span class="alert alert-error">Wrong OTP!</span>
+                                }
+                                {
+                                    (otpValidation) && <span class="alert alert-error">OTP cant't be empty!</span>
                                 }
                             </div>
                             <div class="login-submit" >
@@ -113,7 +180,7 @@ const OtpCodeModal = ({loginModalOpen,forgetPassModal,ModalOpen}) => {
                 </div>
                 <div class="dont-have-account">
                     <p>Didn't receive the OTP?</p>
-                    <a href onClick={forgetPassModal}>Resend</a>
+                    <a href onClick={resendClickedHandler}>Resend</a>
                 </div>
             </div> 
     );

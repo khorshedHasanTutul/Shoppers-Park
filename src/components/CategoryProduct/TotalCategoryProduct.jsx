@@ -7,7 +7,7 @@ const TotalCategoryProduct = ({category_id,subCategory_id}) => {
     
     const options={
         rewind: true,
-        type: 'loop',
+        type: 'slide',
         autoplay: true,
         rewindSpeed: 1500,
         speed: 1000,
