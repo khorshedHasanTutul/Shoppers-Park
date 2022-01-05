@@ -4,6 +4,7 @@
     border-radius: 5px;
     padding: 1rem;
     cursor: pointer;
+    justify-content: space-around;
   }
   div.pointer.card {
     background: rgb(241, 241, 241);

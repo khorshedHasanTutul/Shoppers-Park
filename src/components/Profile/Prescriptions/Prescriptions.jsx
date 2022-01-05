@@ -33,7 +33,7 @@ const Prescriptions = ({ prescriptions }) => {
   if (prescriptions.length === 0) {
     return (
       <div className="label brick info">
-        <p className="t-14 t-center">No Prescription Uploaded Yet!</p>
+        <p className="t-14 t-center">No Product Image Uploaded Yet!</p>
       </div>
     );
   }
@@ -48,7 +48,7 @@ const Prescriptions = ({ prescriptions }) => {
             {prescriptions.length > 0
               ? `${prescriptions.length} Prescription
             ${prescriptions.length > 1 ? "s" : ""} Found!`
-              : "No Prescription Uploaded Yet!"}
+              : "No Product Image Uploaded Yet!"}
           </p>
         </div>
 
