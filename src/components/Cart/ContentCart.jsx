@@ -4,12 +4,15 @@ import CartTableItem from './CartTableItem';
 import { Link } from 'react-router-dom';
 import authContext from '../../Store/auth-context';
 import ModalPOpUp from '../MainHeader/TopHeader/AuthenticationPortal/ModalPOpUp';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ContentCart = ({closeCart}) => {
     const authCtx=useContext(authContext)
     const [cartModel, referesh] = useState(CartService.Get());
     CartService.Refresh=referesh;
     const [loginPopupModel, setloginPopupModel] = useState(false)
+    const history=useHistory();
+    const [orderNowPressed, setorderNowPressed] = useState(false)
 
     const ModalClose=()=>{
         setloginPopupModel(false);
@@ -24,9 +27,11 @@ const ContentCart = ({closeCart}) => {
         else if(authCtx.isLoggedIn!==true){
             evt.preventDefault();
             setloginPopupModel(true)
+            setorderNowPressed(true)
         }
-        else
-         closeCart();
+        else{
+            closeCart();
+        }
     }
 
     return (
@@ -61,7 +66,7 @@ const ContentCart = ({closeCart}) => {
 
                             <Link to={'/checkout'} onClick={productFound}   id="checkout-button" class="btn btn-success pull-left">Order Now</Link>
                             {
-                                (loginPopupModel) && <ModalPOpUp ModalOpen={ModalClose} closeCart={closeCart}/>
+                                (loginPopupModel) && <ModalPOpUp ModalOpen={ModalClose} closeCart={closeCart} orderNowPressed={orderNowPressed}/>
                             }
                             <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>{(cartModel.TotalAmount.toFixed(2))}</span></span>
                             <a class="block-btn-card" href>

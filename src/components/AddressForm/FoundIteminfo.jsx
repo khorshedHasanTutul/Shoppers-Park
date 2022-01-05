@@ -10,17 +10,17 @@ const FoundIteminfo = ({savedAddressInfo,getAddressData,activeButtonText,selecte
         <>
         {
         (data)?
-            <Card className="mb-16 hover-card pointer">
+            <Card className="mb-16 hover-card pointer hover-Effect">
               {
                 (pathname==="/profile/address")?
-                <span>
-              <h4 className="t-16 t-bold mb-8">{savedAddressInfo.text}</h4>
+                <span className="span hover-card pointer">
+              <h4 className="t-16 t-bold mb-8">{savedAddressInfo.text} Address</h4>
               <p className=" mb-4">{data.Name}-{data.Mobile}-{data.Email}</p>
               <p>{data.Province },{data.District },{data.Upazila}</p>
               <p>{data.Remarks}</p>
               </span>:
-              <span  onClick={callBack(selectedShippingInfo,data,savedAddressInfo)}>
-              <h4 className="t-16 t-bold mb-8">{savedAddressInfo.text}</h4>
+              <span className="span hover-card pointer"  onClick={callBack(selectedShippingInfo,data,savedAddressInfo)}>
+              <h4 className="t-16 t-bold mb-8">{savedAddressInfo.text} Address</h4>
               <p className=" mb-4">{data.Name}-{data.Mobile}-{data.Email}</p>
               <p>{data.Province },{data.District },{data.Upazila}</p>
               <p>{data.Remarks}</p>

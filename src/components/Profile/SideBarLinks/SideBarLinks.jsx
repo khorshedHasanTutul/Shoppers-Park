@@ -43,7 +43,7 @@ const SideBarLinks = () => {
         to="/profile/history"
       >
         <span className="flex justify-between align-center">
-          <span>Upolad Images History</span> <span className='sidebar__icon'>&#10095;</span>
+          <span>Upolad Image & Order</span> <span className='sidebar__icon'>&#10095;</span>
         </span>
       </NavLink>
 
