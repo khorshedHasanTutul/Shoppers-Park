@@ -22,9 +22,49 @@ const OrderDetails = () => {
   return (
     <div>
       <div className="brick label happiness mb-16">
-        <p className="t-14">
-          You saved <span className="t-bold">{"200BDT"}</span> In This Order
-        </p>
+        <div class="Steps_steps__3SNbF Steps_wide__2JixU">
+          <div className="line">
+            <div className="filler">
+              
+            </div>
+          </div>
+          <div class="Steps_step__2Wic5">
+            <p class="Steps_step__counter__2y6zu false Steps_active__z3pdg">
+              1
+            </p>
+            <div class="Steps_details__1CSho">
+              <h5>pending</h5>
+            </div>
+          </div>
+          <div class="Steps_step__2Wic5">
+            <p class="Steps_step__counter__2y6zu false false">2</p>
+            <div class="Steps_details__1CSho">
+              <h5>confirmed</h5>
+            </div>
+          </div>
+          <div class="Steps_step__2Wic5">
+            <p class="Steps_step__counter__2y6zu false false">3</p>
+            <div class="Steps_details__1CSho">
+              <h5>processing</h5>
+            </div>
+          </div>
+          <div class="Steps_step__2Wic5">
+            <p class="Steps_step__counter__2y6zu false false">4</p>
+            <div class="Steps_details__1CSho">
+              <h5>delivering</h5>
+            </div>
+          </div>
+          <div class="Steps_step__2Wic5">
+            <p class="Steps_step__counter__2y6zu false false">5</p>
+            <div class="Steps_details__1CSho">
+              <h5>delivered</h5>
+            </div>
+          </div>
+          {/* <div class="Steps_line__1f205">
+                                <div class="Steps_filler__30wuh">
+                                  </div>
+                                  </div> */}
+        </div>
       </div>
       <div className="brick default label mb-16">
         <h4 className="t-bold mb-8">Shipping Address</h4>

@@ -12,4 +12,5 @@ const complainUrl="/CommonArea/Complain/Add";
 const postCuponCode="/PromotionalArea/Coupon/Check";
 const postContact="/ContactArea/Contact/Add";
 const addWishlist="/WishListArea/WishList/Create"
-export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress,updateInformation,complainUrl,postCuponCode,postContact,addWishlist}
+const uploadProductImage="/ProductOrderArea/Prescription/Add"
+export const endpoints={login,getOtp,verifyOtp,registration,division, getDistricts,getAreas,createAddress,getAddress,updateInformation,complainUrl,postCuponCode,postContact,addWishlist,uploadProductImage}

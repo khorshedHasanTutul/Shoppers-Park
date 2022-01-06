@@ -27,7 +27,7 @@ const SideBarLinks = () => {
       </NavLink>
 
 
-      <NavLink
+      {/* <NavLink
         className="kill-anchore block t-14 t-bold sidebar__link"
         activeClassName="active"
         to="/profile/request"
@@ -35,7 +35,7 @@ const SideBarLinks = () => {
         <span className="flex justify-between align-center">
           <span>Product Request</span> <span className='sidebar__icon'>&#10095;</span>
         </span>
-      </NavLink>
+      </NavLink> */}
 
       <NavLink
         className="kill-anchore block t-14 t-bold sidebar__link"

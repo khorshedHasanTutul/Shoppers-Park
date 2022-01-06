@@ -118,7 +118,6 @@ export const file = async (
         formData.append(key, value);
     }
 
-
     const response = await fetch(`${BASE_URL}/${url}`, {
         method: 'POST',
         headers: {

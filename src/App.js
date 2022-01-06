@@ -24,6 +24,7 @@ import Payment from './pages/CheckOut';
 import NewInShop from './pages/NewInShop';
 import Notifications from './pages/Notifications';
 import Festival from './pages/Festival';
+import RequestProducts from './pages/RequestProducts';
 
 
 
@@ -47,6 +48,9 @@ function App() {
           </Route>
           <Route path="/festival">
              <Festival />
+          </Route>
+          <Route path="/request">
+            <RequestProducts />
           </Route>
           <Route path="/blog" exact>
               <Blog />

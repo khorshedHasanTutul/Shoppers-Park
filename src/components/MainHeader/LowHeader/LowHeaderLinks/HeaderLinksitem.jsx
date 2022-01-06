@@ -22,8 +22,8 @@ const HeaderLinksitem = ({toggleClass}) => {
             to:'/festival'
         },
         {
-            name:'Request a Order',
-            to:'/profile/request'
+            name:'Request Products',
+            to:'/request'
 
         },
         {
