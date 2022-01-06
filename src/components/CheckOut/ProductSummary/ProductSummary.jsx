@@ -54,7 +54,7 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
                 </td>
                 <td colspan="4">
                   <strong>
-                    ৳ <span>{(CartContent.TotalAmount).toFixed(2)}</span>
+                    ৳ <span>{(CartContent?.TotalAmount).toFixed(2)}</span>
                   </strong>
                 </td>
               </tr>

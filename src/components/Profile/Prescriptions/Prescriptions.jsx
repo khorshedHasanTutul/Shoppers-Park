@@ -5,25 +5,45 @@ import { Fragment, useState } from "react";
 import Popup from "../../utilities/Popup/Popup";
 import PrescriptionSaved from "../../Profile/PrescriptionSaved/PrescriptionSaved";
 import { useHistory } from "react-router";
+import { http } from "../../../Service/httpService";
+import { endpoints } from "../../../lib/endpoints";
 
 const Prescriptions = ({ prescriptions }) => {
   const history = useHistory();
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-
-  let uploadedPrescriptions;
 
   const popupCloseHandler = () => {
     setIsPopupVisible(false);
   };
 
   const submitHandler = (formData) => {
-   uploadedPrescriptions = formData;
+    console.log(formData)
+    // http.file({
+    //   url:endpoints.uploadProductImage,
+    //   payload:{
+    //     Img:formData.file,
+    //     From:"Upload Image",
+    //     Description:formData.remarks,
+    //     activityId:"00000000-0000-0000-0000-000000000000"
+    //   },
+    //   before:()=>{
+    //     console.log("function started")
+    //   },
+    //   successed:(data)=>{
+    //     console.log(data ,'success')
+    //   },
+    //   failed:()=>{
+    //     console.log('failed')
+    //   },
+    //   always:()=>{
+    //     console.log('function end')
+    //   }
+    // })
     setIsPopupVisible(true);
   }
 
   const doneHandler = () => {
     setIsPopupVisible(false);
-    uploadedPrescriptions = ''
   }
 
   const orderHandler = () => {
@@ -46,7 +66,7 @@ const Prescriptions = ({ prescriptions }) => {
         <div className="label brick info mb-16">
           <p className="t-14 t-center">
             {prescriptions.length > 0
-              ? `${prescriptions.length} Prescription
+              ? `${prescriptions.length} Product Image
             ${prescriptions.length > 1 ? "s" : ""} Found!`
               : "No Product Image Uploaded Yet!"}
           </p>
@@ -67,7 +87,7 @@ const Prescriptions = ({ prescriptions }) => {
       </div>
       {isPopupVisible && (
         <Popup
-          title="Prescription Saved"
+          title="Order Saved"
           onClose={popupCloseHandler}
         >
           <PrescriptionSaved 

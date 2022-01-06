@@ -483,7 +483,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
               <div>
                   <input type="checkbox" name="primaryCheck" id="primary-check" checked={checked} onChange={() => setchecked(prevState => !prevState)}/>
                 <label htmlFor="primary-check" className="t-bold ml-8">
-                  Set as primary
+                  Set Default Address
                 </label>
               </div>
             </div>

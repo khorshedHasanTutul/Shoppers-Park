@@ -33,7 +33,8 @@ const Request = () => {
 
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 container req-producr">
+      <div className="req-min-con">
       <Hightlight type="info" className="mb-16">
         <p>
           <strong>Note: </strong>Product availability & price will be confirmed
@@ -57,6 +58,7 @@ const Request = () => {
         <textarea name="" id="desc"></textarea>
       </div>
       <OrderSubmission onSubmit={submitHandler}/>
+      </div>
     </div>
   );
 };

@@ -25,9 +25,9 @@ const ProfileBody = () => {
         <Route path="/profile/order">
           <OrderHistory />
         </Route>
-        <Route path="/profile/request">
+        {/* <Route path="/profile/request">
           <Request></Request>
-        </Route>
+        </Route> */}
         <Route path="/profile/history">
           <Prescription prescriptions={{ id: 1 }}></Prescription>
         </Route>

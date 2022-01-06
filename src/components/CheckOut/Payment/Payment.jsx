@@ -6,7 +6,7 @@ import PopUpModal from './PopUpModal';
 import { endpoints } from '../../../lib/endpoints';
 import { http } from '../../../Service/httpService';
 
-const Payment = ({savedShippingInfo}) => {
+const Payment = ({savedShippingInfo,savedShippingData}) => {
     const [cupon, setcupon] = useState('')
     const data=CartService.Get();
     const [OrderStatus, setproceedOrder] = useState(false)
@@ -123,7 +123,7 @@ const Payment = ({savedShippingInfo}) => {
                                           <Link class="prev-btn" to="/"><i class="fa fa-angle-left check-ang-left" aria-hidden="true"></i> Continue shopping</Link>
                                           <a class="next-btn" onClick={callBack(proceedOrder)} href> Order Now <i class="fa fa-angle-right check-ang-right" aria-hidden="true"></i></a>
                                           {
-                                              (OrderStatus)&& <PopUpModal />
+                                              (OrderStatus)&& <PopUpModal savedShippingDataMobile={savedShippingData.Mobile}/>
                                           }
                                         </div>
                                     </div> 
