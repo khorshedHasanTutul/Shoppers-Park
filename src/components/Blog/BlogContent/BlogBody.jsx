@@ -24,7 +24,7 @@ export const BlogBody = () => {
 
                        </div>
                        {/* <!-- pagenation for blog --> */}
-                       <nav class="pagenation-for-web" aria-label="Page navigation example">
+                       {/* <nav class="pagenation-for-web" aria-label="Page navigation example">
                            <ul class="pagination">
                                <li class="page-item">
                                <a class="page-link" href aria-label="Previous">
@@ -44,7 +44,7 @@ export const BlogBody = () => {
                                </a>
                                </li>
                            </ul>
-                           </nav>
+                           </nav> */}
                        {/* <!-- pagenation for blog --> */}
                    </div>
                </div>

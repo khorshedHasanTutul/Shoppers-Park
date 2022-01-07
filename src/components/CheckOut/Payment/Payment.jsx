@@ -13,7 +13,15 @@ const Payment = ({savedShippingInfo,savedShippingData}) => {
     const [invalidCupon, setinvalidCupon] = useState(false)
     const [validCupon, setvalidCupon] = useState(false)
     const [cuponDiscount, setcuponDiscount] = useState(0)
+    const [paymentChacked, setpaymentChacked] = useState(false)
+    const paymentSelectedHandler=()=>{
+        setpaymentChacked(true)
+    }
     const proceedOrder=()=>{
+        if(!paymentChacked){
+            alert('Please select a payment method')
+        }
+        else
         setproceedOrder(true)
     }
     const cuponChangeHandler=({target})=>{
@@ -109,11 +117,11 @@ const Payment = ({savedShippingInfo,savedShippingData}) => {
                                             <form>
                                                 <div class="order-outside-inside-flex">
                                                     <p>
-                                                        <input type="radio" id="test3" name="radio-group" checked />
+                                                        <input type="radio" id="test3" name="radio-group" onClick={paymentSelectedHandler}/>
                                                         <label for="test3">Cash on Delivery</label>
                                                       </p>
                                                       <p>
-                                                        <input type="radio" id="test4" name="radio-group" />
+                                                        <input type="radio" id="test4" name="radio-group" onClick={paymentSelectedHandler}/>
                                                         <label for="test4">Onlie Payments</label>
                                                       </p>
                                                 </div>
