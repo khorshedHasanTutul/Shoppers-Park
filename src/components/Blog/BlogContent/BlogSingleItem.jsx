@@ -21,6 +21,17 @@ const BlogSingleItem = ({callBack,categoryId}) => {
             setState({Item:[],CategoryId:ctgrId});
         }
     });
+    if(blogList.length===0){
+        return(
+            <div class="container">
+            <div className="pro-not-found-img-subcategory">
+                <strong> <img src="/contents/assets/images/No-blog-found.png" alt="" /> </strong>
+            </div>
+            </div>
+        )
+       
+    }
+    else
     
     return (
         <>

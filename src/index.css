@@ -640,6 +640,14 @@ input:focus {
   border-bottom: 1px solid #ee008e;
   background: #f9f9f9;
 }
+.main-menu > ul > li.dropdown > ul.dropdownmenu > li a i {
+  transition: all 500ms ease-in-out;
+}
+.main-menu > ul > li.dropdown > ul.dropdownmenu > li:hover > a i{
+  color: #ee008e;
+  font-weight: bold;
+  font-size: 20px;
+}
 .header-top-offer-now i {
   color: #df2c8a;
   font-size: 28px;
@@ -1938,9 +1946,10 @@ table td {
   border-radius: 0 6px 6px 0;
 }
 .btn-success:hover {
-  color: #fff;
-  background-color: #000;
-  border-color: #000;
+	color: #fff;
+	background-color: #55C595;
+	border-color: #55C595;
+	border: 1px solid #55C595;
 }
 
 .block-btn-card {
@@ -4610,6 +4619,7 @@ div.pointer.card {
 	width: 350px;
 	transition: all 200ms ease-in-out;
 	height: 228px;
+  margin-top: 10px;
 }
 .offer-card.center-items:hover {
 	scale: 1.05;
