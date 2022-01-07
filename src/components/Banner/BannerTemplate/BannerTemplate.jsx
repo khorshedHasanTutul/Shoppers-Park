@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 
 const BannerTemplate = ({item}) => {
@@ -7,7 +8,7 @@ const BannerTemplate = ({item}) => {
                     <div class="banner-slider-main-flex owl-slider-perk-items">
     
                         <div class="single-banner-slider">
-                            <a href><img src={item.image} alt="img" /></a>
+                            <Link to={item.to} ><img src={item.image} alt="img" /></Link>
                         </div>
 
                     </div>

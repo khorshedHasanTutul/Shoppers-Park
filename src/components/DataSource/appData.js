@@ -551,15 +551,18 @@ var appData = {
     BannerImage:[
       {
         id:1,
-        image:"/contents/assets/images/Banner111.jpg"
+        image:"/contents/assets/images/Banner111.jpg",
+        to:"/product/668f1e62-a58e-43dd-9ec0-0013dbb70d42c"
       },
       {
         id:2,
-        image:"contents/assets/images/banner222.jpg"
+        image:"contents/assets/images/banner222.jpg",
+        to:"/product/7c159a2d-ed4a-483f-96a9-003111c84f06c"
       },
       {
         id:3,
-        image:"contents/assets/images/banner3.jpg"
+        image:"contents/assets/images/banner3.jpg",
+        to:"/brands/5"
       }
     ],
     categoryProducts: [

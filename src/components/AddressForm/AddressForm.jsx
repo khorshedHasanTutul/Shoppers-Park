@@ -488,7 +488,9 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
               </div>
             </div>
           </div>
+         
         </div>
+        
         <div className="add-right-content">
           <AddressList
             addressSaved={addressSaved}
@@ -499,6 +501,27 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
           ></AddressList>
         </div>
       </div>
+      <div class="cart_navigation">
+              <a href class="prev-btn" to="/home">
+                <i
+                  class="fa fa-angle-left check-ang-left"
+                  aria-hidden="true"
+                ></i>{" "}
+                Continue shopping
+              </a>
+              
+              <a
+                class="next-btn"
+                href
+              >
+                {" "}
+                Proceed to Order{" "}
+                <i
+                  class="fa fa-angle-right check-ang-right"
+                  aria-hidden="true"
+                ></i>
+              </a>
+          </div>
     </>
   );
 };

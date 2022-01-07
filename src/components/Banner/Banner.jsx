@@ -14,6 +14,7 @@ export const Banner = () => {
     }
     return (
         <section class="banner-slider-index-item">
+            
                 {/* <!-- banner slider area --> */}
                <Slider data={data} options={options} />
             </section>
