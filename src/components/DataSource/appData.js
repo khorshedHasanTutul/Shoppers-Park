@@ -441,9 +441,9 @@ var appData = {
 
     },
     BottomAdress:{
-      address:"Lazz Center, 63/C, Lake Circus, Kalabagan, West Panthapath, Dhaka.",
-      mobile:"+880258155933,",
-      email:"lazzcorporate@gmail.com",
+      address:"Genetic Plaza, Shop -222, Dhaka ",
+      mobile:"01780390222",
+      email:"shoppersperk16@gmail.com ",
       img:"/contents/assets/images/sp.jpeg",
       contact_header:"Please send your message below. We will get back to you at the earliest!"
     },
