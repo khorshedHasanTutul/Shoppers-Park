@@ -24,6 +24,7 @@ const Address = () => {
     addresses.splice(i, 1);
     setAddresses([...addresses]);
   };
+  
 
   const setPrimaryAddress = (address) => {};
 
