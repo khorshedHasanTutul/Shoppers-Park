@@ -5863,12 +5863,15 @@ div.brick.label.default {
 	font-weight: bold;
 }
 .hover-Effect{
-  border:1px solid transparent;
-  border: 1px solid #DF2989;
-  transition: all 200ms ease-in-out;
+  /* border:1px solid transparent; */
+  border: 2px solid #DF2989;
+  /* transition: all 1000ms ease-in-out; */
 
 }
-
+.border-effect{
+  border: 1px solid #df2c8a;
+}
+/* 
 .hover-Effect:hover {
 	border-width: 1px;
 	border-style: solid;
@@ -5877,7 +5880,7 @@ div.brick.label.default {
 	opacity: 1;
 	box-shadow: 1px 2px 2px whitesmoke;
 	scale: 1.05;
-}
+} */
 
 .h-100-min.w-100-min.bg-gray.center.pointer {
 	width: 100px;
@@ -6037,4 +6040,12 @@ div.brick.label.default {
 
 .page-content .tab-content.checkout-main-tab-content .product-payment-block-tab strong {
 	padding-left: 0;
+}
+
+.selected.address {
+	color: #42790a;
+	font-weight: bold;
+	display: flex;
+	justify-content: end;
+	align-items: center;
 }

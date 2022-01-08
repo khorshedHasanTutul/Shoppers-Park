@@ -8,9 +8,8 @@ const SearchProduct = ({SearchValue,closeSearch}) => {
     const allProduct=appData.categoryProducts;
     const filterData=allProduct.filter(item=>item.Nm.toLowerCase().includes(lowerSearchvalue));
     const data=(filterData.length>5)?filterData.slice(0,5):filterData;
-
     return (
-        <SearchPortal data={data} closeSearch={closeSearch}/>
+        <SearchPortal data={data} closeSearch={closeSearch} lowerSearchvalue={lowerSearchvalue}/>
     );
 };
 

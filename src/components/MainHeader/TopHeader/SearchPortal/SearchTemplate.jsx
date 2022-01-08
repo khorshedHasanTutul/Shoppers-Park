@@ -4,8 +4,9 @@ import { callBack } from '../../../../Service/AppService';
 import { cartAddedButton } from '../../../../Service/CartContent';
 import appData from '../../../DataSource/appData';
 
-const SearchTemplate = ({item,closeSearch}) => {
+const SearchTemplate = ({item,closeSearch,lowerSearchvalue}) => {
   const categoryData= appData.ShopCategory.find(item2=>(item2.categoryId===item.category_id))
+  const itemName=item.Nm;
     return (
         <div class="search-result__items">
               {/* <!-- search result --> */}
@@ -14,7 +15,8 @@ const SearchTemplate = ({item,closeSearch}) => {
                 <img src={item.image} alt="product_image" />
               </div>
               <div class="result-card__details">
-                <Link to={'/product/'+item.Id}  class="result-card__details--name" onClick={closeSearch}>{item.Nm}
+                <Link to={'/product/'+item.Id}  class="result-card__details--name" onClick={closeSearch}>
+                  {itemName}
                 </Link>
                 <p class="result-card__details--price">
                 <span>Price: </span>

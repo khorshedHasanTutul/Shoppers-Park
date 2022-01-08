@@ -24,7 +24,7 @@ const AddressList = ({addressSaved,addressButtonIndex,getAddressData,activeButto
       {
         savedAddressInfo.map((item,index)=>(
           (addressSaved || !data)?
-          <FoundIteminfo savedAddressInfo={item} getAddressData={getAddressData} activeButtonText={activeButtonText} selectedShippingInfo={selectedShippingInfo}/>
+          <FoundIteminfo savedAddressInfo={item} getAddressData={getAddressData} activeButtonText={activeButtonText} selectedShippingInfo={selectedShippingInfo} savedAddressIndex={index}/>
           :''
         ))
       }

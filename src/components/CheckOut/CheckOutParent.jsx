@@ -25,7 +25,7 @@ const PaymentParent = () => {
       setsavedShippingInfo({data:getCheckedData,savedAddressInfo:{text:getCheckedData.Type}})
     }
     else {
-      setsavedShippingInfo({data:getAddressData[0],savedAddressInfo:{text:getAddressData[0]?.Type}})
+      setsavedShippingInfo({data:getAddressData[getAddressData.length-1],savedAddressInfo:{text:getAddressData[getAddressData.length-1]?.Type}})
     }
   }, [getAddressData])
   
@@ -133,12 +133,6 @@ const PaymentParent = () => {
 
   };
   const proceedOrder = (phone, email, name, district, division, area) => {
-    // if (phone.length === 0) alert("Please Enter Your Phone");
-    // if (email.length === 0) alert("Please Enter Your Email");
-    // if (name.length === 0) alert("Please Enter Your Name");
-    // if (district.length === 0) alert("Please Enter Your District");
-    // if (division.length === 0) alert("Please Enter Your Division");
-    // if (area.length === 0) alert("Please Enter Your Area");
 
     window.scrollTo({
       top: 100,
@@ -146,12 +140,13 @@ const PaymentParent = () => {
       behavior: "smooth",
     });
     if (
-      phone.length !== 0 &&
-      email.length !== 0 &&
-      name.length !== 0 &&
-      district.length !== 0 &&
-      division.length !== 0 &&
-      area.length !== 0
+      // phone.length !== 0 &&
+      // email.length !== 0 &&
+      // name.length !== 0 &&
+      // district.length !== 0 &&
+      // division.length !== 0 &&
+      // area.length !== 0
+      typeof(savedShippingInfo.data)!=='undefined'
     ) {
       var element = document.getElementsByClassName("tab");
       for (let i = 0; i < element.length; i++) {
@@ -160,17 +155,22 @@ const PaymentParent = () => {
       element[2].children[0].className += " activetab";
       settabinfo(2);
     }
+    else
+    alert("Please select a valid address first")
   };
+
+
+
+
   const selectedShippingInfo=(data,savedAddressInfo)=>{
     console.log({data},{savedAddressInfo})
    if(data && savedAddressInfo){
-     
-     settabinfo(0)
-     var element = document.getElementsByClassName("tab");
-     for (let i = 0; i < element.length; i++) {
-       element[i].children[0].classList.remove("activetab");
-     }
-     element[0].children[0].className += " activetab";
+    //  settabinfo(0)
+    //  var element = document.getElementsByClassName("tab");
+    //  for (let i = 0; i < element.length; i++) {
+    //    element[i].children[0].classList.remove("activetab");
+    //  }
+    //  element[0].children[0].className += " activetab";
      setsavedShippingInfo({data:data,savedAddressInfo:savedAddressInfo})
 
    }

@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchTemplate from './SearchTemplate';
 
-const SearchPortal = ({data,closeSearch}) => {
+const SearchPortal = ({data,closeSearch,lowerSearchvalue}) => {
     return (
         <div class="search-result" id="search-result">
             {
@@ -14,7 +14,7 @@ const SearchPortal = ({data,closeSearch}) => {
             {
                 (data.length>0)&&
                 data.map(item=>(
-                    <SearchTemplate item={item} closeSearch={closeSearch}/>
+                    <SearchTemplate item={item} closeSearch={closeSearch} lowerSearchvalue={lowerSearchvalue}/>
                 ))
             }
             {
