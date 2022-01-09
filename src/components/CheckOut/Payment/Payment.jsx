@@ -6,7 +6,8 @@ import PopUpModal from './PopUpModal';
 import { endpoints } from '../../../lib/endpoints';
 import { http } from '../../../Service/httpService';
 
-const Payment = ({savedShippingInfo,savedShippingData}) => {
+const Payment = ({savedShippingInfo,savedShippingData,addressChangeHandler}) => {
+    console.log({savedShippingData})
     const [cupon, setcupon] = useState('')
     const data=CartService.Get();
     const [OrderStatus, setproceedOrder] = useState(false)
@@ -75,7 +76,26 @@ const Payment = ({savedShippingInfo,savedShippingData}) => {
                                       </form>
                                       
                                 </div>
-                               
+                                <div className='shipping-Address-heading'>
+                                    <label htmlFor="shipping-Address-heading">Shipping Address</label>
+                                </div>
+                                <div className="payment-shaping-address-saveing-row">
+                                <div className="shapping-address-inner-content">
+                                    <div className="location-ad-icon">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    </div>
+                                    <div className="saving-address-content">
+                                        <small>{savedShippingData.Name}</small>
+                                    <small>{savedShippingData.Mobile}</small>
+                                    <span><aside>{savedShippingData.Type}</aside></span>
+                                    <span>{savedShippingData.Email}</span>
+                                    <span>{savedShippingData.Province + '-' +savedShippingData.District + '-'+savedShippingData.Upazila + '-' +savedShippingData.Remarks}</span>
+                                    </div>
+                                </div>
+                                {/* <div className="saving-ad-btn">
+                                    <button onClick={addressChangeHandler}>Change</button>
+                                </div> */}
+                                </div>
                                 {/* <!-- product desc review information --> */}
                                 <div class="product-payment-block-tab">
                                     <div class="payment-summary-table">
