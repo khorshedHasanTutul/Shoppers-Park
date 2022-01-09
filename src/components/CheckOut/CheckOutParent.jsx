@@ -219,7 +219,7 @@ const PaymentParent = () => {
                   )}
                   {/* AddressComponentLoaded */}
 
-                  {tabinfo === 2 && <Payment savedShippingInfo={savedShippingInfo.data.ChargeAmount} savedShippingData={savedShippingInfo.data}/>}
+                  {tabinfo === 2 && <Payment savedShippingInfo={savedShippingInfo.data.ChargeAmount} savedShippingData={savedShippingInfo.data} addressChangeHandler={addressChangeHandler}/>}
                   {/* PaymentComponentLoaded */}
 
                 </div>

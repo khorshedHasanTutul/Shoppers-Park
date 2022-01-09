@@ -3,10 +3,11 @@ import { useLocation } from 'react-router-dom';
 import { callBack } from '../../Service/AppService';
 import Card from '../utilities/Card/Card';
 
-const FoundIteminfo = ({savedAddressInfo,getAddressData,activeButtonText,selectedShippingInfo,savedAddressIndex}) => {
+const FoundIteminfo = ({savedAddressInfo,getAddressData,selectedStatusIndex,setselectedStatusIndex,activeButtonText,selectedShippingInfo,savedAddressIndex}) => {
   const {pathname}=useLocation();
-  const [selectedStatusIndex, setselectedStatusIndex] = useState(0)
+
     const data=getAddressData?.find(item=>item.Type===savedAddressInfo.text);
+    console.log({savedAddressInfo})
 
     const selectShippingAddressHandler=(savedAddressIndex,e)=>{
       const element=document.getElementsByClassName('hover-Effect');
@@ -14,13 +15,9 @@ const FoundIteminfo = ({savedAddressInfo,getAddressData,activeButtonText,selecte
         element[i].classList.remove("hover-Effect");
       }
       e.currentTarget.className+=' hover-Effect'
-
       setselectedStatusIndex(savedAddressIndex)
     }
-
-    console.log(selectedStatusIndex)
     console.log({selectedStatusIndex, savedAddressIndex})
-    // onClick={callBack(selectedShippingInfo,data,savedAddressInfo)}
     return (
         <>
         {

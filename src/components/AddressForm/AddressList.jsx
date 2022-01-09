@@ -1,9 +1,10 @@
 import { Checkout } from "../../Service/AppService";
 import FoundIteminfo from "./FoundIteminfo";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const AddressList = ({addressSaved,addressButtonIndex,getAddressData,activeButtonText,selectedShippingInfo}) => {
-  
+  const [selectedStatusIndex, setselectedStatusIndex] = useState(0)
   const savedAddressInfo=Checkout.SavingAddressTabData;
   const {pathname}=useLocation()
   var data;
@@ -24,7 +25,9 @@ const AddressList = ({addressSaved,addressButtonIndex,getAddressData,activeButto
       {
         savedAddressInfo.map((item,index)=>(
           (addressSaved || !data)?
-          <FoundIteminfo savedAddressInfo={item} getAddressData={getAddressData} activeButtonText={activeButtonText} selectedShippingInfo={selectedShippingInfo} savedAddressIndex={index}/>
+          <FoundIteminfo savedAddressInfo={item} getAddressData={getAddressData} activeButtonText={activeButtonText} selectedShippingInfo={selectedShippingInfo} savedAddressIndex={index}
+          selectedStatusIndex={selectedStatusIndex} setselectedStatusIndex={setselectedStatusIndex}
+          />
           :''
         ))
       }

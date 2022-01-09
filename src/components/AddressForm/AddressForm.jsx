@@ -480,12 +480,12 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
               >
                 Save Address
               </button>
-              <div>
+              {/* <div>
                   <input type="checkbox" name="primaryCheck" id="primary-check" checked={checked} onChange={() => setchecked(prevState => !prevState)}/>
                 <label htmlFor="primary-check" className="t-bold ml-8">
                   Set Default Address
                 </label>
-              </div>
+              </div> */}
             </div>
           </div>
          
