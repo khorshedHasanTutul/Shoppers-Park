@@ -70,6 +70,54 @@ const Category = () => {
                                     }
                                    
                                 </li>
+                                <li class="dropdown">
+                                   
+                                    {
+                                        (screenWidth>991)?
+                                        <>
+                                        <a href>Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
+                                        <ul class="dropdownmenu mega-menu">
+                                        {/* start inner mega menu shop */}
+                                        <CategoryItem />
+                                        </ul>
+                                        </>
+                                        :
+                                        <>
+                                        <a href>Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true" onClick={clickedArrowHandler}></i></a>
+                                        <ul class="dropdownmenu mega-menu">
+                                        {/* start inner mega menu shop */}
+                                        <CategoryItem toggleClass={toggleClass}/>
+                                        </ul>
+                                        </>
+
+                                    }
+                                   
+                                </li>
+                                <li class="dropdown">
+                                   
+                                    {
+                                        (screenWidth>991)?
+                                        <>
+                                        <a href>Brand Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
+                                        <ul class="dropdownmenu mega-menu">
+                                        {/* start inner mega menu shop */}
+                                        <CategoryItem />
+                                        </ul>
+                                        </>
+                                        :
+                                        <>
+                                        <a href>Brand Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true" onClick={clickedArrowHandler}></i></a>
+                                        <ul class="dropdownmenu mega-menu">
+                                        {/* start inner mega menu shop */}
+                                        <CategoryItem toggleClass={toggleClass}/>
+                                        </ul>
+                                        </>
+
+                                    }
+                                   
+                                </li>
+
+
                                 <HeaderLinksitem toggleClass={toggleClass}/>
 
                             </ul>

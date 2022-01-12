@@ -550,9 +550,10 @@ input:focus {
 }
 
 .main-menu > ul > li {
-  margin-right: 25px;
-  display: flex;
-  align-items: center;
+	margin-right: 15px;
+	display: flex;
+	align-items: center;
+	position: relative;
 }
 
 .mobile-menu-test2 {
@@ -572,10 +573,14 @@ input:focus {
 .arrow-class {
   padding-left: 5px;
   position: relative;
-  left: 10px;
+  left: 0px;
   font-size: 20px;
   top: 2px;
   color: #969bac;
+}
+
+.main-menu ul li ul li:hover > ul.mega-menu2 {
+	border-left: 2px solid #DF2C8A;
 }
 
 .main-menu > ul > li.dropdown ul.dropdownmenu > li a i {
@@ -686,6 +691,7 @@ input:focus {
   overflow: hidden;
   max-height: 423px;
   overflow: auto;
+  border-left: 2px solid transparent;
 }
 .loaded.mega-menu.mega-menu2::-webkit-scrollbar {
   display: none;
@@ -4969,7 +4975,7 @@ div.brick.label.default {
 .form__control input[type="file"] {
   font-size: 0.8rem;
   padding-top: 5px;
-  height: 29px;
+  height: 36px;
 }
 
 .profile
