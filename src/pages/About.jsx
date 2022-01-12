@@ -29,7 +29,7 @@ const teamMember = [
 
  const aboutTitle = {
      tname: 'About Us',
-     adesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat iusto illo maxime porro blanditiis tempore, atque, aut in, fuga velit quos nostrum soluta delectus ratione aliquid. Exercitationem, minus. Labore, harum! fuga velit quos nostrum soluta delectus ratione aliquid. Exercitationem, minus. Labore, harum!'
+     adesc: 'We offer excellent value to our customers by bringing them high quality & original brand products from UK USA Korea & Around the world at competitive prices We have in place efficient system and passionate people to source health and beauty products of your choice. Now that we have made shopping of high quality, original brand products from across the world easy for you, you do not need to use fake products, replica cosmetics made of harmful chemicals. Use best products from all over the world to keep your health and beauty bold.Have a look around our range of collection and order your products straight away. Or, if you are interested in any particular product/brand on any WEBSITE of Europe, UK, USA based company please do get in touch with us, we will bring it to you.'
  }   
 
 

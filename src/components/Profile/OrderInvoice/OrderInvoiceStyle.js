@@ -4,7 +4,7 @@ const style = `
     height: auto;
 }
 .order-invoice-ea .invoice-head td {
-    padding: 0 8px;
+    padding: 2px 8px;
 }
 .order-invoice-ea .container {
     max-width: 700px;
@@ -46,7 +46,7 @@ const style = `
 }
 
 .order-invoice-ea .custom-row-top .well {
-    padding: 20px;
+    padding: 15px;
 }
 
 .order-invoice-ea .invoice h2 {

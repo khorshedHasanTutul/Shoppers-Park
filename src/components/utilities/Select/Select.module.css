@@ -17,6 +17,7 @@
     padding: 0.5rem;
     border: 1px solid rgb(197, 197, 197);
     border-radius: 0.125rem;
+    box-sizing: border-box;
 }
 .input-box input:hover{
     border: 1px solid rgb(165, 165, 165);

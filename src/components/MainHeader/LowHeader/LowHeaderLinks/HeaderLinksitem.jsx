@@ -37,7 +37,11 @@ const HeaderLinksitem = ({toggleClass}) => {
         {
             name:'Oh My Blog',
             to:'/blog'
-        }
+        },
+        {
+            name:'Consultancy',
+            to:'/consultancy'
+        },
         
     ];
     return (
