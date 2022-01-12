@@ -4,35 +4,26 @@ import appData from '../../../DataSource/appData';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../../Service/AppService';
 
-const CategoryItem = ({toggleClass}) => {
+const CategoryItem = ({toggleClass,indexofCategory}) => {
+    
     const [count, setcount] = useState(0)
     const increment=()=>{
         setcount(count+1)
     }
-    useEffect(() => {
-        if(window.innerWidth<=991){
-            var element=document.getElementsByClassName("loaded");
-        if(count%2!==0){
-            for(let i=0;i<element.length;i++)
-            element[i].classList.remove("dropDown-hidden")
-        }
-        if(count%2===0){
-            for(let i=0;i<element.length;i++)
-            element[i].className+=" dropDown-hidden"
-        }
-        increment();
-        }
-        
-    }, [])
+    const decrement=()=>{
+        setcount(count-1)
+    }
 
-    const clickedArrowHandler=(index)=>{
-        increment();
-        var element=document.getElementsByClassName("loaded");
-        if(count%2!==0){
-            element[index].classList.remove("dropDown-hidden")
-        }
+    const clickedArrowHandler=({target})=>{
+        const element=target.parentElement.nextSibling;
         if(count%2===0){
-            element[index].className+=" dropDown-hidden"
+            element.classList+=' loaded-menu-display'
+            increment();
+        }
+       
+        else{
+            element.classList.remove('loaded-menu-display')
+            decrement();
         }
     }
     
@@ -59,7 +50,7 @@ const CategoryItem = ({toggleClass}) => {
                         </ul>
                     </>:
                     <>
-                        <Link title={categoryItem.categoryName} to={'/category/'+categoryItem.categoryId}>{categoryItem.categoryName}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true" onClick={callBack(clickedArrowHandler,index) }></i></Link>
+                        <Link title={categoryItem.categoryName} to={'/category/'+categoryItem.categoryId}>{categoryItem.categoryName}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true" onClick={clickedArrowHandler}></i></Link>
                             <ul class="loaded mega-menu mega-menu2">
                                 <li class="sd-nav__section-wrapper">
                                     <Link to={'/category/'+categoryItem.categoryId}><span onClick={toggleClass}>View all{categoryItem.categoryName}</span></Link>

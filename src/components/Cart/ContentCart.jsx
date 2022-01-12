@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import authContext from '../../Store/auth-context';
 import ModalPOpUp from '../MainHeader/TopHeader/AuthenticationPortal/ModalPOpUp';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import PopUpAlert from '../utilities/Alert/PopUpAlert';
 
 const ContentCart = ({closeCart}) => {
     const authCtx=useContext(authContext)
@@ -13,6 +14,10 @@ const ContentCart = ({closeCart}) => {
     const [loginPopupModel, setloginPopupModel] = useState(false)
     const history=useHistory();
     const [orderNowPressed, setorderNowPressed] = useState(false)
+    const [alert, setalert] = useState(false)
+    const closeModal=()=>{
+        setalert(prevState=>!prevState)
+    }
 
     const ModalClose=()=>{
         setloginPopupModel(false);
@@ -21,7 +26,8 @@ const ContentCart = ({closeCart}) => {
     const productFound=(evt)=>{
         if(cartModel.Items.length===0){
             evt.preventDefault();
-            alert('Please Select at least one product');
+            // alert('Please Select at least one product');
+            setalert(true)
             return false;
         }
         else if(authCtx.isLoggedIn!==true){
@@ -75,6 +81,9 @@ const ContentCart = ({closeCart}) => {
                             </a>
                         </div>
                     </div>
+                    {
+                        (alert)&&<PopUpAlert content={'Please select at least one product.'} closeModal={closeModal} />
+                    }
                     
                 </div>
                

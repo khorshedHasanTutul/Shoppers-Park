@@ -5,6 +5,7 @@ import { CartService } from '../../../Service/CartContent';
 import PopUpModal from './PopUpModal';
 import { endpoints } from '../../../lib/endpoints';
 import { http } from '../../../Service/httpService';
+import PopUpAlert from '../../utilities/Alert/PopUpAlert';
 
 const Payment = ({savedShippingInfo,savedShippingData,addressChangeHandler}) => {
     console.log({savedShippingData})
@@ -15,12 +16,18 @@ const Payment = ({savedShippingInfo,savedShippingData,addressChangeHandler}) => 
     const [validCupon, setvalidCupon] = useState(false)
     const [cuponDiscount, setcuponDiscount] = useState(0)
     const [paymentChacked, setpaymentChacked] = useState(false)
+    const [alert, setalert] = useState(false)
+    const closeModal=()=>{
+        setalert(prevState=>!prevState)
+    }
+
     const paymentSelectedHandler=()=>{
         setpaymentChacked(true)
     }
     const proceedOrder=()=>{
         if(!paymentChacked){
-            alert('Please select a payment method')
+            // alert('Please select a payment method')
+            setalert(true)
         }
         else
         setproceedOrder(true)
@@ -141,7 +148,7 @@ const Payment = ({savedShippingInfo,savedShippingData,addressChangeHandler}) => 
                                                         <label for="test3">Cash on Delivery</label>
                                                       </p>
                                                       <p>
-                                                        <input type="radio" id="test4" name="radio-group" onClick={paymentSelectedHandler}/>
+                                                        <input type="radio" id="test4" name="radio-group" onClick={paymentSelectedHandler} disabled/>
                                                         <label for="test4">Onlie Payments</label>
                                                       </p>
                                                 </div>
@@ -156,6 +163,10 @@ const Payment = ({savedShippingInfo,savedShippingData,addressChangeHandler}) => 
                                         </div>
                                     </div> 
                                 </div>
+                                
+                                    {
+                                        (alert)&&<PopUpAlert content={'Please select a payment method.'} closeModal={closeModal} />
+                                    }
                                 {/* <!-- product desc review information --> */}
                             </div>
     );

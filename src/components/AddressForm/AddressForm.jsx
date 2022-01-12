@@ -9,6 +9,7 @@ import { endpoints } from "../../lib/endpoints";
 import Select from "../utilities/Select/Select";
 import authContext from "../../Store/auth-context";
 import { Link, useLocation } from "react-router-dom";
+import PopUpAlert from "../utilities/Alert/PopUpAlert";
 
 const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) => {
   const {pathname}=useLocation()
@@ -47,6 +48,10 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
   const [areaValid, setareaValid] = useState(false)
   const [addressValid, setaddressValid] = useState(false)
   const [saveBtnClicked, setsaveBtnClicked] = useState(false)
+  const [alert, setalert] = useState(false)
+    const closeModal=()=>{
+        setalert(prevState=>!prevState)
+    }
 
   const [checked, setchecked] = useState(false)
   //phone saved
@@ -135,7 +140,8 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
       })
     }
     else{
-      alert("Form Validation Error!")
+      // alert("Form Validation Error!")
+      setalert(true)
     }
       
   };
@@ -501,6 +507,9 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
           ></AddressList>
         </div>
       </div>
+      {
+      (alert)&&<PopUpAlert content={'Form Validation Error!'} closeModal={closeModal} />
+      }
       {
         (pathname==="/checkout") &&
         <div class="cart_navigation">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import appData from '../../../DataSource/appData';
 import HeaderLinksitem from '../LowHeaderLinks/HeaderLinksitem';
 import CategoryItem from './CategoryItem';
 
@@ -7,36 +8,28 @@ const Category = () => {
     const [count, setcount] = useState(0)
     const [isActive, setActive] = useState(false);
     const screenWidth=window.innerWidth;
+    
     const increment=()=>{
         setcount(count+1)
     }
-
+    const decrement=()=>{
+        setcount(count-1)
+    }
     const toggleClass = () => {
         setActive(prevState=> !prevState)
     };
 
-    useEffect(() => {
-        if(screenWidth<=991){
-            var element=document.getElementsByClassName("dropdownmenu");
-        if(count%2!==0){
-            element[0].classList.remove("dropDown-hidden")
-        }
+    const clickedArrowHandler=({target})=>{
+        const element=target.parentElement.nextSibling;
+        console.log(element)
         if(count%2===0){
-            element[0].className+=" dropDown-hidden"
+            element.classList+=' loaded-menu-display'
+            increment();
         }
-        increment();
-        }
-        
-    }, [])
-
-    const clickedArrowHandler=()=>{
-        increment();
-        var element=document.getElementsByClassName("dropdownmenu");
-        if(count%2!==0){
-            element[0].classList.remove("dropDown-hidden")
-        }
-        if(count%2===0){
-            element[0].className+=" dropDown-hidden"
+       
+        else{
+            element.classList.remove('loaded-menu-display')
+            decrement();
         }
     }
 
@@ -47,76 +40,33 @@ const Category = () => {
         <div className={`main-menu ${isActive && 'off-canvas'}`} >
                             <a href class="nav-icon"><span onClick={toggleClass}>×</span></a>
                             <ul>
-                                <li class="dropdown">
+                                {
+                                    appData.MainCategory.map((item,index)=>(
+                                        <li class="dropdown">
                                    
-                                    {
-                                        (screenWidth>991)?
-                                        <>
-                                        <a href>Shop Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
-                                        <ul class="dropdownmenu mega-menu">
-                                        {/* start inner mega menu shop */}
-                                        <CategoryItem />
-                                        </ul>
-                                        </>
-                                        :
-                                        <>
-                                        <a href>Shop Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true" onClick={clickedArrowHandler}></i></a>
-                                        <ul class="dropdownmenu mega-menu">
-                                        {/* start inner mega menu shop */}
-                                        <CategoryItem toggleClass={toggleClass}/>
-                                        </ul>
-                                        </>
-
-                                    }
-                                   
-                                </li>
-                                <li class="dropdown">
-                                   
-                                    {
-                                        (screenWidth>991)?
-                                        <>
-                                        <a href>Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
-                                        <ul class="dropdownmenu mega-menu">
-                                        {/* start inner mega menu shop */}
-                                        <CategoryItem />
-                                        </ul>
-                                        </>
-                                        :
-                                        <>
-                                        <a href>Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true" onClick={clickedArrowHandler}></i></a>
-                                        <ul class="dropdownmenu mega-menu">
-                                        {/* start inner mega menu shop */}
-                                        <CategoryItem toggleClass={toggleClass}/>
-                                        </ul>
-                                        </>
-
-                                    }
-                                   
-                                </li>
-                                <li class="dropdown">
-                                   
-                                    {
-                                        (screenWidth>991)?
-                                        <>
-                                        <a href>Brand Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
-                                        <ul class="dropdownmenu mega-menu">
-                                        {/* start inner mega menu shop */}
-                                        <CategoryItem />
-                                        </ul>
-                                        </>
-                                        :
-                                        <>
-                                        <a href>Brand Categories <i class="fa fa-angle-down arrow-class" aria-hidden="true" onClick={clickedArrowHandler}></i></a>
-                                        <ul class="dropdownmenu mega-menu">
-                                        {/* start inner mega menu shop */}
-                                        <CategoryItem toggleClass={toggleClass}/>
-                                        </ul>
-                                        </>
-
-                                    }
-                                   
-                                </li>
-
+                                        {
+                                            (screenWidth>991)?
+                                            <>
+                                            <a href>{item.name} <i class="fa fa-angle-down arrow-class" aria-hidden="true"></i></a>
+                                            <ul class="dropdownmenu mega-menu">
+                                            {/* start inner mega menu shop */}
+                                            <CategoryItem />
+                                            </ul>
+                                            </>
+                                            :
+                                            <>
+                                            <a href >{item.name}<i class="fa fa-angle-down arrow-class" aria-hidden="true" onClick={clickedArrowHandler}></i></a>
+                                            <ul class="dropdownmenu mega-menu">
+                                            {/* start inner mega menu shop */}
+                                            <CategoryItem toggleClass={toggleClass}/>
+                                            </ul>
+                                            </>
+    
+                                        }
+                                       
+                                    </li>
+                                    ))
+                                }
 
                                 <HeaderLinksitem toggleClass={toggleClass}/>
 
