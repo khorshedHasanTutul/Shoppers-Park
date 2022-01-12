@@ -1200,7 +1200,7 @@ input:focus {
 }
 .single-product-catagory-item {
   background: #fff;
-  margin: 0px 4px;
+  margin: 4px 4px;
   position: relative;
   border: 1px solid #ddd;
   cursor: pointer;
@@ -1953,11 +1953,12 @@ table td {
   border-color: #46b8da;
   border-radius: 0 6px 6px 0;
 }
+
 .btn-success:hover {
 	color: #fff;
-	background-color: #55C595;
+	background-color: #B07F26;
 	border-color: #55C595;
-	border: 1px solid #55C595;
+	border: 1px solid #B07F26;
 }
 
 .block-btn-card {
@@ -2762,9 +2763,9 @@ select::-ms-expand {
 .contact-us-area {
   padding-bottom: 50px;
 }
-.contact-us-address {
+/* .contact-us-address {
   padding-top: 20px;
-}
+} */
 .contact-us-area .custom-input > input {
   padding-left: 15px;
 }
@@ -2788,18 +2789,21 @@ select::-ms-expand {
   display: block;
   padding-bottom: 15px;
 }
+
 .contact-us-address {
-  margin-top: 40px;
-  padding: 30px 20px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+	margin-top: 40px;
+	padding: 30px 30px;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
+	border-radius: 10px;
+	border: 1px solid #e7e7e7;
 }
+
 .contact-us-address ul li {
   color: #000;
   font-weight: 600;
   font-size: 18px;
   display: block;
-  padding: 6px 0px;
+  padding: 7px 0px;
   transition: 0.6s;
 }
 .contact-us-address ul li span {
@@ -2883,7 +2887,8 @@ select::-ms-expand {
   padding-top: 30px;
 }
 .wishlist-cross-btn > a i {
-  margin-right: 4px;
+	margin-right: 4px;
+	color: #DF2C8A;
 }
 
 /*** add-product-wishlist-main-page css****/
@@ -3078,7 +3083,12 @@ select::-ms-expand {
   color: #a4a4a4;
   font-size: 14px;
 }
+
 .meta-author > span > small {
+  color: #df2c8a;
+}
+
+.meta-author > span > small a{
   color: #df2c8a;
 }
 .blog-post-categories-main {
@@ -3755,6 +3765,7 @@ select::-ms-expand {
   border-radius: 5px;
   overflow: hidden;
   transition: 0.6s;
+  cursor: pointer;
 }
 .wishlist-btn a:hover {
   background: #df2c8a;
@@ -4022,7 +4033,7 @@ select::-ms-expand {
   row-gap: 0;
   align-items: center;
   transition: all 0.3s ease-in-out;
-  width: 120px;
+  width: 125px;
   padding: 0.5rem;
   background: #df2c8a;
   color: #f7fbf9;
@@ -4046,14 +4057,15 @@ select::-ms-expand {
 }
 
 .search-result__view-more button {
-  border: none;
-  outline: none;
-  margin: 0;
-  padding: 0;
-  background: #df2c8a;
-  width: 100%;
-  padding: 0.5rem;
-  color: #fff;
+	border: none;
+	outline: none;
+	margin: 0;
+	padding: 0;
+	background: #df2c8a;
+	width: 100%;
+	padding: 0.5rem;
+	color: #fff;
+	font-family: "Poppins", sans-serif !important;
 }
 
 .search-result__view-more button:hover {
@@ -4308,10 +4320,12 @@ select::-ms-expand {
   font-family: "Poppins", sans-serif;
   outline: none;
   border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .form__control textarea {
   height: 120px;
+  padding-top: 10px;
 }
 
 .form__control input:disabled,
@@ -4344,13 +4358,14 @@ select::-ms-expand {
 }
 
 .alert {
-  font-size: 12px;
-  font-weight: bold;
-  margin-left: 10px;
-  min-height: 12px;
+  margin-left: 15px;
+  min-height: 10px;
 }
+
 .alert.alert-error {
-  color: red;
+	color: red;
+	font-size: 14px;
+	font-weight: 400;
 }
 
 input::-webkit-calendar-picker-indicator {
@@ -4631,7 +4646,8 @@ div.pointer.card {
   margin-top: 10px;
 }
 .offer-card.center-items:hover {
-	scale: 1.05;
+	scale: 1.03;
+  cursor: pointer;
 }
 .offer-card-container > div {
 	border-top: 5px solid #DF2A89;
@@ -5075,9 +5091,10 @@ div.brick.label.default {
   padding: 100px 0px;
 }
 .about-us-banner p {
-  text-align: left;
-  width: 55%;
-  font-size: 15px;
+	text-align: left;
+	width: 73%;
+	font-size: 15px;
+	line-height: 1.5;
 }
 .about-us-banner h2 {
   font-size: 30px;
@@ -5904,8 +5921,14 @@ div.brick.label.default {
 
 .image-preview.width-height img {
 	width: 96px;
-	height: auto;
+	height: 96px;
+	object-fit: cover;
 }
+
+.offer-card.center-items > div .t-18 {
+	padding-bottom: 20px;
+}
+
 .image-preview.width-height {
 	display: grid;
 	place-items: center;
@@ -6048,6 +6071,9 @@ div.brick.label.default {
 	display: flex;
 	justify-content: end;
 	align-items: center;
+	position: absolute;
+	right: 10px;
+	top: 10px;
 }
 
 .selected.address i {
@@ -6056,6 +6082,7 @@ div.brick.label.default {
 	padding: 1px;
 	margin-right: 2px;
 	width: 15px;
+  border-radius: 5px;
 }
 .payment-shaping-address-saveing-row {
 	display: flex;
@@ -6070,4 +6097,22 @@ div.brick.label.default {
 	font-size: 16px;
 	font-weight: 500;
 	margin-bottom: 5px;
+}
+
+.contact-us-address ul li > i {
+	margin-right: 15px;
+	font-size: 30px;
+	position: relative;
+	top: 5px;
+}
+
+.custom-row-top .invoice-head {
+	width: 285px;
+}
+.custom-row-top .invoice-head .pull-right {
+	width: 105px;
+}
+
+.admin-all-detalics .add-left-content.mb-16 .grid-3.mb-16.g-8 .Select_select__1Ztlc {
+	flex: 0 0 30%;
 }

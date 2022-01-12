@@ -19,16 +19,16 @@ const OffersHeader = () => {
                 perPage: 1,
             },
             575: {
-                perPage: 2,
+                perPage: 1,
             },
             991: {
-                perPage: 3,
+                perPage: 1,
             },
             992: {
-                perPage: 5,
+                perPage: 1,
             },
             1200: {
-                perPage: 5,
+                perPage: 1,
             }
       }
        

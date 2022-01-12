@@ -19,7 +19,7 @@ const OffersProductArea = () => {
         width:'100%',
         breakpoints: {
             375: {
-                perPage: 1,
+                perPage: 2,
             },
             575: {
                 perPage: 2,

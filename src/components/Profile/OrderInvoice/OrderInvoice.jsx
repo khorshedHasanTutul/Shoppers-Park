@@ -16,9 +16,9 @@ const OrderInvoice = () => {
             <img src="/contents/assets/images/sp.jpeg" alt="img" className='print'/>
             <address>
               <h2>Shopper Perk Ltd</h2>
-              Road 12, Avenue 3, Mirpur DOHS
+              Genetic Plaza, Shop -222, Dhaka 
               <br />
-              Dhaka City, Dhaka
+              {/* Dhaka City, Dhaka */}
             </address>
           </div>
           <div className="span4 well">
@@ -81,7 +81,7 @@ const OrderInvoice = () => {
                   <td>www.swaransoft.com</td>
                   <td>8 Months</td>
                   <td>0</td>
-                  <td>$1000</td>
+                  <td>1000</td>
                 </tr>
                 <tr>
                   <td>02</td>
@@ -89,7 +89,7 @@ const OrderInvoice = () => {
                   <td>www.swaransoft.com</td>
                   <td>8 Months</td>
                   <td>0</td>
-                  <td>$1000</td>
+                  <td>1000</td>
                 </tr>
               </tbody>
             </table>
@@ -100,14 +100,22 @@ const OrderInvoice = () => {
                 <tr>
                   <td>SubTotal</td>
                   <td className="SubTotal-tab">
-                    ৳<span>1.51</span>
+                    <span>1.51</span>
                   </td>
                 </tr>
                 <tr>
                   <td>Rounding Off</td>
                   <td className="SubTotal-tab">
                     <span>
-                      -<span>৳</span>0.51
+                     <span>-</span>0.51
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Coupon Discount </td>
+                  <td className="SubTotal-tab">
+                    <span>
+                     <span>-</span>55
                     </span>
                   </td>
                 </tr>
@@ -115,7 +123,7 @@ const OrderInvoice = () => {
                   <td>Total order value</td>
                   <td className="SubTotal-tab">
                     <span>
-                      <span>৳</span>1.00
+                      1.00
                     </span>
                   </td>
                 </tr>
@@ -123,7 +131,7 @@ const OrderInvoice = () => {
                   <td>Delivery charge (Inside Dhaka)</td>
                   <td className="SubTotal-tab">
                     <span>
-                      <span>৳</span>29
+                      29
                     </span>
                   </td>
                 </tr>
@@ -133,7 +141,7 @@ const OrderInvoice = () => {
                   </td>
                   <td className="SubTotal-tab">
                     <strong>
-                      <span>৳</span>30.00
+                      30.00
                     </strong>
                   </td>
                 </tr>

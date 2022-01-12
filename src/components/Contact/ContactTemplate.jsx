@@ -19,14 +19,17 @@ const ContactTemplate = () => {
                 <div class="contact-us-address">
                   <ul>
                     <li>
-                      Address: <span>{data.address}</span>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                       <span>{data.address}</span>
                     </li>
                     <li>
-                      Mobile:{" "}
+                     <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                   
                       <Link to={"tel:" + data.mobile}>{data.mobile}</Link>
                     </li>
                     <li>
-                      Email:{" "}
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                   
                       <Link to={"mailto:" + data.email}>{data.email}</Link>
                     </li>
                   </ul>

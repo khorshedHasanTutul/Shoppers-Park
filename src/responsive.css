@@ -40,14 +40,21 @@
     }
 }
 @media all and (max-width:1140px){
+    .contact-us-address ul li > i {
+        display: block;
+        margin-bottom: 6px;
+    }
+    .contact-us-address {
+        margin-top: 20px;
+    }
     .add-left-content.mb-16 {
         flex: 0 0 100%;
     }
     .add-right-content {
         flex: 0 0 100%;
     }
-    .add-left-content.mb-16 .form__control {
-        width: 94%;
+    .admin-all-detalics .add-left-content.mb-16 .form__control {
+        width: 100%;
     }
     .add-left-content.mb-16 .grid-3 {
         flex-direction: column;
@@ -126,7 +133,7 @@
         flex: 0 0 49%;
     }
     .blog-view-left {
-        flex: 0 0 75%;
+        flex: 0 0 73%;
     }
     .blog-recent-post-right {
         flex: 0 0 18%;
@@ -163,6 +170,30 @@
 
 
 @media all and (max-width:991px){
+    .btn-red {
+        border-radius: inherit;
+    }
+    .btn {
+        border-radius: inherit;
+    }
+
+    .input-group {
+        text-align: center;
+    }
+    .form__control input, .form__control textarea {
+        box-sizing: border-box;
+    }
+
+    .Select_input-box__2LE_L input {
+        box-sizing: border-box;
+    }
+
+    .main-menu > ul > li > a > i {
+        font-size: 22px;
+    }
+    .main-menu > ul > li.dropdown ul.dropdownmenu > li a i {
+        font-size: 22px;
+    }
 
     .main-menu ul li:hover > ul {
         top: 0px !important;
@@ -604,6 +635,9 @@
         text-align: left;
         font-size: 18px;
     }
+    .form__control input[type="file"] {
+        height: 35px;
+    }
 
 }
 
@@ -630,8 +664,17 @@
 }
 
 @media all and (max-width:767px){
+    .order-invoice-ea .custom-row-top .span4 img {
+        width: 155px;
+    }
+    .offer-card-container {
+        flex-direction: column;
+    }
+    .form__control {
+        width: 100%;
+    }
     .r-tabs__link {
-        padding: 0.3em;
+        padding: 0.6em;
         font-size: 14px;
     }
     .custom-table-row {
@@ -673,7 +716,7 @@
         justify-content: center;
     }
     .single-product-catagory-item {
-        flex: 0 0 47% !important;
+        flex: 0 0 46% !important;
     }
  
     .shop-way-superdrag-single-item {
@@ -823,7 +866,7 @@
    
     .comment-input-flex {
         display: block;
-        max-width: 450px;
+        max-width: 95%;
         flex-direction: column;
     }
     .blog-single-page .blog-view-left .shop-drag-comntent p {
@@ -894,7 +937,7 @@
         margin-top: 25px;
     }
     .contact-us-area .comment-textarea {
-        max-width: 500px;
+        max-width: 95%;
     }
 
     /***************** return policy page css *****************/
@@ -938,7 +981,7 @@
         margin-bottom: 20px;
     }
     .single-blog-shop-way-superdrag-main .comment-textarea {
-        max-width: 500px;
+        max-width: 95%;
     }
 
     .profile {
@@ -948,6 +991,10 @@
         position: static;
         left: 0;
         width: inherit;
+    }
+
+    .new-add-pimg.form__control.mb-16.flex #prescription {
+        width: 100%;
     }
 
 
@@ -973,6 +1020,37 @@
 }
 
 @media all and (max-width:575px){
+    .Steps_steps__3SNbF.Steps_wide__2JixU {
+        gap: 0.5rem;
+    }
+    .Steps_details__1CSho h5 {
+        font-size: 12px;
+    }
+    .order-invoice-ea .cask-rewarded span {
+        font-size: 18px;
+    }
+    .read-more-notification-name p {
+        text-align: justify;
+    }
+    .comment-textarea > textarea {
+        padding: 5px;
+    }
+    .checkout-main-area .address-btn-group {
+        flex-direction: column;
+    }
+
+    .saving-ad-btn {
+        margin-top: 15px;
+    }
+    .shaping-address-saveing-row {
+        flex-direction: column;
+    }
+    .admin-all-detalics {
+        overflow-x: scroll;
+    }
+    .qty {
+        width: 80px;
+    }
     .user-profile-form {
         display: flex;
         flex-direction: column;
@@ -997,7 +1075,7 @@
 
 
     .single-product-catagory-item {
-        flex: 0 0 100% !important;
+        flex: 0 0 45% !important;
     }
     .singnup-cart > ul > li a span {
         display: none;
@@ -1200,6 +1278,7 @@
     .cart_navigation a {
         padding: 10px 10px;
         font-size: 13px;
+        display: flex;
     }
     .order-inside-outside-main [type="radio"]:checked + label, .order-inside-outside-main [type="radio"]:not(:checked) + label {
         font-size: 14px;
@@ -1333,7 +1412,7 @@
     }
     .result-card__details--actions button {
         width: 100px;
-        font-size: 14px;
+        font-size: 13px;
         margin-right: 5px;
     }
     .result-card__details--actions button i {
@@ -1344,6 +1423,7 @@
         left: 0px;
 
     }
+
     .about-us-banner p {
         width: 100%;
     }
@@ -1368,11 +1448,24 @@
         padding-bottom: 30px;
     }
 
+    .catagory-main-product-area.home-single-product-catagory-item {
+        padding-top: 30px;
+    }
+
 
 
 }
 
 @media all and (max-width:413px){
+    .shop-all-offer-btn > a {
+        font-size: 14px;;
+        padding: 12px 22px;
+    }
+
+    .hover-eff-product {
+        opacity: 0;
+        visibility: hidden;
+    }
     .main-menu {
         width: 70%;
     }
@@ -1398,19 +1491,52 @@
     .single-blog-shop-way-superdrag-main .comment-textarea {
         max-width: 90%;
     }
+    .cart-box-inner-view {
+        display: block;
+        max-width: 100%;
+        width: 100%;
+    }
+    .cart-body {
+        width: 100%;
+    }
+
+
 }
 
 @media all and (max-width:374px){
     .new-in-page .tranding-h-single-slide {
         flex: 0 0 42%;
     }
-
-
     .support-service-single-item {
         flex: 0 0 100%;
         justify-content: start;
         margin-bottom: 20px;
     }
+    .catagory-overly-main-bg .btn_cart > h5{
+        font-size: 11px;
+    }
+    .basket-add .item__price.item__price--now {
+        font-size: 9px;
+    }
+    .cross_price {
+        font-size: 10px;
+    }
+    .catagory-product-overly h4 {
+        width: 85px;
+    }
+    .cart-box-inner-view {
+        display: block;
+        max-width: 100%;
+        width: 90%;
+        float: right;
+    }
+    .single-product-catagory-item {
+        flex: 0 0 44% !important;
+    }
+    .Steps_details__1CSho h5 {
+        display: none;
+    }
+
 }
 
 @media all and (min-width:992px){

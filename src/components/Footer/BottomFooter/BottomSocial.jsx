@@ -10,7 +10,7 @@ const BottomSocial = () => {
             <ul>
                 {appData.BottomSocial.map((socialLinks)=>(
                 <li>
-                    <Link to={socialLinks.to}><i class="" aria-hidden="true"></i><FontAwesomeIcon icon={socialLinks.icon} /></Link>
+                    <Link target="_blank" to={socialLinks.to}><i class="" aria-hidden="true"></i><FontAwesomeIcon icon={socialLinks.icon} /></Link>
                 </li>
                 ))}
             </ul>

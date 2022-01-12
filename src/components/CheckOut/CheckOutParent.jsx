@@ -200,7 +200,7 @@ const PaymentParent = () => {
                   <span class="card-shiping-item">
                     {" "}
                     Your shopping cart contains:
-                    <small>{data.Items.length} Product</small>
+                     <small> {data.Items.length} Product</small>
                   </span>
                   {tabinfo === 0 && (
                     <ProductSummary
