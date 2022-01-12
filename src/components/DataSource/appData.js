@@ -432,6 +432,21 @@ var appData = {
     //   { Pt: "f9aca78d-f570-47b0-bc58-d3885229cfe8.PNG", Ur: "" },
     // ],
     // BottomSlider: [{ Pt: "8cd72c34-6a43-4a19-b696-8800a832eb36.PNG", Ur: "" }],
+
+    MainCategory:[
+      {
+        index:0,
+        name:'Shop Category'
+      },
+      {
+        index:1,
+        name:'Categories'
+      },
+      {
+        index:2,
+        name:'Brand Category'
+      }
+    ],
     
     HeaderData:{
       Headerlogo:{

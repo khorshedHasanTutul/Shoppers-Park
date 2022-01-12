@@ -343,7 +343,7 @@
         position: inherit;
         visibility: visible;
         opacity: 1;
-        /* display: none; */
+        display: none;
     }
     .mega-menu2 {
         position: initial;
@@ -359,7 +359,7 @@
     }
 
     .loaded.mega-menu.mega-menu2 {
-        /* display: none; */
+        display: none;
     }
     .sdg-perfumenavigation-class .loaded.mega-menu.mega-menu2 {
         display: none;

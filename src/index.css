@@ -6122,3 +6122,6 @@ div.brick.label.default {
 .admin-all-detalics .add-left-content.mb-16 .grid-3.mb-16.g-8 .Select_select__1Ztlc {
 	flex: 0 0 30%;
 }
+.loaded-menu-display{
+  display: block !important;
+}

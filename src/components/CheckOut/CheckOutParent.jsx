@@ -4,6 +4,7 @@ import { CartService } from "../../Service/CartContent";
 import { http } from "../../Service/httpService";
 import authContext from "../../Store/auth-context";
 import AddressForm from "../AddressForm/AddressForm";
+import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import CheckOutHeader from "./CheckOutHeader";
 import CheckOutTabs from "./CheckOutTabs";
 import Payment from "./Payment/Payment";
@@ -16,6 +17,11 @@ const PaymentParent = () => {
   const [getAddressData, setgetAddressData] = useState([])
   const [savedShippingInfo, setsavedShippingInfo] = useState({data:{},savedAddressInfo:{}})
   const [shippingInfoTab, setshippingInfoTab] = useState(false)
+  const [alert, setalert] = useState(false)
+    const closeModal=()=>{
+        setalert(prevState=>!prevState)
+    }
+
   
   useEffect(() => {
 
@@ -81,7 +87,7 @@ const PaymentParent = () => {
 
   const tabInformation = (index, item, evt) => {
     if(index===2 &&  (getAddressData.length)===0){
-      alert('Please select a valid address first.')
+      setalert(true)
       settabinfo(0);
       let element = document.getElementsByClassName("tab");
       for (let i = 0; i < element.length; i++) {
@@ -156,7 +162,8 @@ const PaymentParent = () => {
       settabinfo(2);
     }
     else
-    alert("Please select a valid address first")
+    // alert("Please select a valid address first")
+    setalert(true)
   };
 
 
@@ -228,6 +235,10 @@ const PaymentParent = () => {
             {/* <!-- checkout-main-tab --> */}
           </div>
         </div>
+        
+  {
+      (alert)&&<PopUpAlert content={'Please select a valid address first.'} closeModal={closeModal} />
+  }
       </section>
     </>
   );
