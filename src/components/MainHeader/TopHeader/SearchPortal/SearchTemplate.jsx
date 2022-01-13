@@ -6,7 +6,15 @@ import appData from '../../../DataSource/appData';
 
 const SearchTemplate = ({item,closeSearch,lowerSearchvalue}) => {
   const categoryData= appData.ShopCategory.find(item2=>(item2.categoryId===item.category_id))
-  const itemName=item.Nm;
+  const getHTML = () => {
+    return {
+      __html: item.Nm.toLowerCase().replace(
+        lowerSearchvalue,
+        `<span class="t-pink">${lowerSearchvalue}</span>`
+      ),
+    };
+  };
+
     return (
         <div class="search-result__items">
               {/* <!-- search result --> */}
@@ -16,7 +24,7 @@ const SearchTemplate = ({item,closeSearch,lowerSearchvalue}) => {
               </div>
               <div class="result-card__details">
                 <Link to={'/product/'+item.Id}  class="result-card__details--name" onClick={closeSearch}>
-                  {itemName}
+                  <span  dangerouslySetInnerHTML={getHTML()}></span>
                 </Link>
                 <p class="result-card__details--price">
                 <span>Price: </span>
