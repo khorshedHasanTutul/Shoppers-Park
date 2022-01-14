@@ -189,7 +189,10 @@
     }
 
     .main-menu > ul > li > a > i {
-        font-size: 22px;
+        font-size: 23px;
+    }
+    .arrow-class{
+        left: 20px;
     }
     .main-menu > ul > li.dropdown ul.dropdownmenu > li a i {
         font-size: 22px;

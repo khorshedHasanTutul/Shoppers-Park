@@ -40,7 +40,7 @@ const RequsestProductTable = ({ products = [], onRemoveProduct }) => {
                       className="add-pro-table brick outline warning small"
                       onClick={removeProductHandler.bind(null, product)}
                     >
-                      {/* X */} Delete
+                       Delete
                     </button>
                   </td>
                 </tr>
