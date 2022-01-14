@@ -12,6 +12,7 @@ import { WishService } from '../Service/CartContent';
 const Home = () => {
     const [wishItemsGet, setwishItemsGet] = useState(WishService.Get())
     WishService.Refresh=setwishItemsGet;
+ 
     return (
         <>
         <Banner />
@@ -21,6 +22,7 @@ const Home = () => {
         <Trandingproducts wishItemsGet={wishItemsGet}/>
         <SuperDrugBlogs />
         <BrandsSuperDrug />
+       
         </>
     )
 }

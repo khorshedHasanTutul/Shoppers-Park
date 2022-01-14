@@ -4364,7 +4364,7 @@ select::-ms-expand {
 }
 
 .alert {
-  margin-left: 15px;
+  margin-left: 10px;
   min-height: 10px;
 }
 
@@ -4372,6 +4372,8 @@ select::-ms-expand {
 	color: red;
 	font-size: 14px;
 	font-weight: 400;
+  position: relative;
+  top: 7px;
 }
 
 input::-webkit-calendar-picker-indicator {
@@ -6096,6 +6098,11 @@ div.brick.label.default {
 	border: 1px solid #ddd;
 	margin-bottom: 32px;
   padding: 12px;
+}
+
+.profile .body .Card_card__2escB .p-12 > div .t-14 {
+	text-align: left;
+	font-size: 14px;
 }
 
 .shipping-Address-heading {
