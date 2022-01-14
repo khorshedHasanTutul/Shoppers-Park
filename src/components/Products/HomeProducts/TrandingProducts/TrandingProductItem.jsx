@@ -1,15 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../../Service/AppService';
 import { cartAddedButton } from '../../../../Service/CartContent';
 import authContext from '../../../../Store/auth-context';
+import AnimatedProduct from '../../../AnimatedProduct/AnimatedProduct';
 
 
 const TrandingProductItem = ({item,wishItemsGet}) => {
     const authCtx = useContext(authContext)
     const [wishActiveItem, setwishActiveItem] = useState(false)
-
+    const cardRef = useRef(null)
+    const [anime, setAnime] = useState(false);
     const getAllWishItem=authCtx.getwishlist;
+    const animateCardHandler=()=>{
+        setAnime(true);	
+    }
+
+    const stopAnime = () => {
+        setAnime(false);
+      }
+
+
+
     const findWishId=getAllWishItem.find(item2=>item2===item.Id);
     useEffect(() => {
         if(findWishId){
@@ -22,7 +34,7 @@ const TrandingProductItem = ({item,wishItemsGet}) => {
 
 
     return (
-        <div class="single-product-catagory-item">
+        <div class="single-product-catagory-item"  ref={cardRef}>
                 <div class="hover-eff-product">
                     {
                         (!wishActiveItem)?<>
@@ -58,12 +70,18 @@ const TrandingProductItem = ({item,wishItemsGet}) => {
                                 }
                                 
                             </div>
-                <a href class="btn_cart" onClick={callBack(cartAddedButton,item)}>
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <h5>Add to Cart</h5>
-                </a>
+                            <span onClick={animateCardHandler}>
+                            <a onClick={callBack(cartAddedButton,item)} href class="btn_cart" >
+                               
+                                <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
+                                <h5 >Add to Cart</h5>
+                               
+                               
+                            </a>
+                            </span>
             </div>
         </Link>
+        <AnimatedProduct when={anime} onStop={stopAnime} uiRef={cardRef}/>
     </div>
     )
 }

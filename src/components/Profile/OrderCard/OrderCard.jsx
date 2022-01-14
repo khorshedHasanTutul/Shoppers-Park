@@ -9,7 +9,12 @@ const OrderCard = ({ order }) => {
         to={`/profile/order/details/${order.id}`}
       >
         <div className="t-16 t-bold bg-background py-12 px-12 round-corner">
-          Order ID #2566
+         <div> Order ID #2566</div>
+         <div className="cancel-Order">
+           <div className="cancel-order-button">
+           Cancel Order
+            </div> 
+            </div>
         </div>
         <div className="p-12">
           <div className="flex justify-between mb-8">
