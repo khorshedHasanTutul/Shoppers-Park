@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../../Service/AppService';
 import { cartAddedButton } from '../../../../Service/CartContent';
+import AnimatedProduct from '../../../AnimatedProduct/AnimatedProduct';
 import appData from '../../../DataSource/appData';
 
 const SearchTemplate = ({item,closeSearch,lowerSearchvalue}) => {
+  const [anime, setAnime] = useState(false);
+  const cardRef = useRef(null)
   const categoryData= appData.ShopCategory.find(item2=>(item2.categoryId===item.category_id))
+  const animateCardHandler=()=>{
+    setAnime(true);	
+}
+
+const stopAnime = () => {
+    setAnime(false);
+  }
+
   const getHTML = () => {
     return {
       __html: item.Nm.toLowerCase().replace(
@@ -16,7 +27,7 @@ const SearchTemplate = ({item,closeSearch,lowerSearchvalue}) => {
   };
 
     return (
-        <div class="search-result__items">
+        <div class="search-result__items"  ref={cardRef}>
               {/* <!-- search result --> */}
             <div class="result-card">
               <div class="result-card__img">
@@ -44,14 +55,23 @@ const SearchTemplate = ({item,closeSearch,lowerSearchvalue}) => {
                  
                 </Link>
               </div>
+             
               <div class="result-card__details--actions">
+             
                 <button onClick={callBack(cartAddedButton,item)}>
+                
                 <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
-                <strong onClick={closeSearch}> Add to Cart</strong>
+                <span onClick={animateCardHandler}>
+                <strong> Add to Cart</strong>
+                </span>
                  
                 </button>
+              
               </div>
+             
+             
             </div>
+            <AnimatedProduct when={anime} onStop={stopAnime} uiRef={cardRef}/>
             </div>
     );
 };

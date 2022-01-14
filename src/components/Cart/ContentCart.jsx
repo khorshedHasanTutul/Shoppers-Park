@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { CartService } from '../../Service/CartContent';
+import { CartClear, CartService } from '../../Service/CartContent';
 import CartTableItem from './CartTableItem';
 import { Link } from 'react-router-dom';
 import authContext from '../../Store/auth-context';
 import ModalPOpUp from '../MainHeader/TopHeader/AuthenticationPortal/ModalPOpUp';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import PopUpAlert from '../utilities/Alert/PopUpAlert';
+import { callBack } from '../../Service/AppService';
 
 const ContentCart = ({closeCart}) => {
     const authCtx=useContext(authContext)
@@ -69,16 +70,29 @@ const ContentCart = ({closeCart}) => {
                             </div>
                         </div>
                         <div class="cart-footer">
-
+                            <div>
                             <Link to={'/checkout'} onClick={productFound}   id="checkout-button" class="btn btn-success pull-left">Order Now</Link>
                             {
                                 (loginPopupModel) && <ModalPOpUp ModalOpen={ModalClose} closeCart={closeCart} orderNowPressed={orderNowPressed}/>
                             }
                             <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>{(cartModel.TotalAmount.toFixed(2))}</span></span>
-                            <a class="block-btn-card" href>
-                                <i class="fa fa-shopping-cart fa-2x pull-right"></i>
-                                <div class="clearfix"></div>
-                            </a>
+                            </div>
+                            <div className='clear-button btn' onClick={callBack(CartClear)}>
+                                <span onClick={closeCart}> Clear Cart</span>
+                               
+                            </div>
+
+                          
+                            {/* <div className='button-card-clear'>
+                                <a class="block-btn-card" href>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <div className='clear-button'>
+                                   hji
+                                </div>
+
+                            </div> */}
+                           
                         </div>
                     </div>
                     {

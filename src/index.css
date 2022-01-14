@@ -1916,9 +1916,11 @@ table td {
 }
 
 .cart-footer {
-  display: block;
-  padding: 10px;
-  background: #df2c8a;
+	display: flex;
+	padding: 10px;
+	background: #df2c8a;
+	justify-content: space-between;
+	align-items: baseline;
 }
 #empty_cart_button i {
   color: #fff;
@@ -3963,6 +3965,7 @@ select::-ms-expand {
   column-gap: 0.5rem;
   padding: 0.5rem;
   border-bottom: 1px solid #ddd;
+  text-transform: uppercase;
 }
 
 .result-card:hover {
@@ -6127,4 +6130,34 @@ div.brick.label.default {
 }
 .t-pink{
   color: #df2c8a;
+}
+
+.t-16.t-bold.bg-background.py-12.px-12.round-corner {
+	display: flex;
+	justify-content: space-between;
+}
+
+.cancel-Order {
+	border: 2px solid #df2c81;
+	border-radius: 5px;
+	color: #df2c8a;
+}
+.cancel-order-button {
+	font-weight: 500;
+	color: #df2c8a;
+	background: whitesmoke;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 2px;
+	border-radius: 5px;
+}
+.clear-button {
+	border: 1px solid #B07F26;
+	border-radius: 6px;
+	background: white;
+}
+.clear-button:hover{
+  background: hotpink;
+  color: white;
+  transition: all(500ms ease-in-out);
 }
