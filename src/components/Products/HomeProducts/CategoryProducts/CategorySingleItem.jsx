@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useRef, useState} from 'react'
 import {  } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { callBack } from '../../../../Service/AppService'
 import { cartAddedButton} from '../../../../Service/CartContent'
 import authContext from '../../../../Store/auth-context'
+import AnimatedProduct from '../../../AnimatedProduct/AnimatedProduct'
 
 const CategorySingleItem = ({item,wishItemsGet}) => {
+    const [anime, setAnime] = useState(false);
     const authCtx = useContext(authContext)
+    const cardRef = useRef(null)
     const [wishActiveItem, setwishActiveItem] = useState(false)
 
     const wishItemAddHandler=()=>{
@@ -19,6 +22,10 @@ const CategorySingleItem = ({item,wishItemsGet}) => {
             id:item.Id
         })
     }
+    const stopAnime = () => {
+        setAnime(false);
+      }
+    
     const getAllWishItem=authCtx.getwishlist;
     const findWishId=getAllWishItem.find(item2=>item2===item.Id);
     useEffect(() => {
@@ -26,10 +33,14 @@ const CategorySingleItem = ({item,wishItemsGet}) => {
             setwishActiveItem(true)
         }
     }, [findWishId])
+
+    const animateCardHandler=()=>{
+        setAnime(true);	
+    }
     
     return (
 
-            <div class="single-product-catagory-item">
+            <div class="single-product-catagory-item" ref={cardRef}>
 
                 <div class="hover-eff-product">
                     {
@@ -68,13 +79,20 @@ const CategorySingleItem = ({item,wishItemsGet}) => {
                                 }
                                 
                             </div>
+                            <span onClick={animateCardHandler}>
                             <a onClick={callBack(cartAddedButton,item)} href class="btn_cart" >
+                               
                                 <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
                                 <h5 >Add to Cart</h5>
+                               
+                               
                             </a>
+                            </span>
                         </div>
                     </Link>
+                    <AnimatedProduct when={anime} onStop={stopAnime} uiRef={cardRef}/>
                     </div>
+                    
     )
 }
 export default CategorySingleItem;

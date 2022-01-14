@@ -25,6 +25,7 @@ import NewInShop from './pages/NewInShop';
 import Notifications from './pages/Notifications';
 import Festival from './pages/Festival';
 import RequestProducts from './pages/RequestProducts';
+import Consultancy from './pages/Consultancy';
 
 
 
@@ -102,6 +103,9 @@ function App() {
           </Route>
           <Route path="/checkout" >
             <Payment />
+          </Route>
+          <Route path="/consultancy">
+            <Consultancy />
           </Route>
           <Route path="/*" >
           <ErrorPage />
