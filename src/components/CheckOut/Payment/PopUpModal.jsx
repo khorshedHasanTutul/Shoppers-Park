@@ -12,7 +12,7 @@ const PopUpModal = ({savedShippingDataMobile}) => {
                 <div class="alert-main-area">
                     <h1>Your order has been placed</h1>
                     <h2>Your order number is "258946"</h2>
-                    <p>We'll call your number '{savedShippingDataMobile}' to reconfirm.</p>
+                    <p>We'll message your number '{savedShippingDataMobile}' to reconfirm.</p>
                     <hr />
                     <div class="brick label info mb-16"><p class="t-center">All deliveries are closed on Fridays</p></div>
                     <div onClick={callBack(CartClear)}>

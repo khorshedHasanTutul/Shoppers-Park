@@ -1,12 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../Service/AppService';
 import { cartAddedButton, WishAddedButton, WishRemoveItem, WishService } from '../../../Service/CartContent';
+import AnimatedProduct from '../../AnimatedProduct/AnimatedProduct';
 
 const SubSingleItem = ({item}) => {
+    const [anime, setAnime] = useState(false);
+    const cardRef = useRef(null)
     const [selectedWish, setselectedWish] = useState(false)
     const Wishlist=WishService.Get();
     var findItem=Wishlist.Items.find(item2=>item2.Id===item.Id);
+    const stopAnime = () => {
+        setAnime(false);
+      }
+    const animateCardHandler=()=>{
+        setAnime(true);	
+    }
+
     useEffect(() => {
         if(findItem){
             setselectedWish(true);
@@ -21,7 +31,7 @@ const SubSingleItem = ({item}) => {
 
 
     return (
-        <div class="single-product-catagory-item">
+        <div class="single-product-catagory-item" ref={cardRef}>
         <div class="hover-eff-product">
                     {
                       (!selectedWish && !findItem)?
@@ -53,12 +63,19 @@ const SubSingleItem = ({item}) => {
                         }
                         
                 </div>
-                <div class="btn_cart" onClick={callBack(cartAddedButton,item)}>
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <h5>Add to Cart</h5>
-                </div>
+                <span onClick={animateCardHandler}>
+                            <a onClick={callBack(cartAddedButton,item)} href class="btn_cart" >
+                               
+                                <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
+                                <h5 >Add to Cart</h5>
+                               
+                               
+                            </a>
+                            </span>
             </div>
         </Link>
+        
+ <AnimatedProduct when={anime} onStop={stopAnime} uiRef={cardRef}/>
     </div>
     );
 };

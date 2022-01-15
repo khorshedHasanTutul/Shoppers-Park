@@ -440,11 +440,11 @@ var appData = {
       },
       {
         index:1,
-        name:'Categories'
+        name:'Cosmatics'
       },
       {
         index:2,
-        name:'Brand Category'
+        name:'Baby & Child'
       }
     ],
     

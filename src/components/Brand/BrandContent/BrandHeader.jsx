@@ -8,7 +8,7 @@ const BrandHeader = () => {
         <nav aria-label="breadcrumb" class="breadcrumb-main">
           <ul class="breadcrumb">
             <li class="breadcrumb-item">
-              <Link to="/home">Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
               A-Z Brands
