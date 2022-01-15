@@ -4,11 +4,6 @@ import HeaderLinks from './HeaderLinks';
 const HeaderLinksitem = ({toggleClass}) => {
     const links=[
         {
-            name:'Home',
-            to:'/home'
-
-        },
-        {
             name:'Brands',
             to:'/brands'
 

@@ -5,9 +5,9 @@ const ReviewContent = () => {
     return (
         <div class="tab-content detalis-page-tab-content">
         {/* <!-- product desc review information --> */}
-        <div class="product-comments-block-tab">
+        <div class="product-comments-block-tab-review">
             <div class="new_comment_container">
-                <div class="post-cmt-input">
+                <div class="post-cmt-input-review">
                     <input placeholder="Post Your Review Here" type="text"/>
                 </div>
                 <div class="post-cmt-btn">
