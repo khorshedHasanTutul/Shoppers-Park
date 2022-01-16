@@ -2369,10 +2369,10 @@ a {
   width: 250px;
   height: auto;
 }
-.login-main-area {
+/* .login-main-area {
   max-width: 500px;
   margin: 0 auto;
-}
+} */
 
 .login-logo {
   text-align: center;
@@ -2386,7 +2386,7 @@ a {
 }
 
 .login-info-from .custom-input > input {
-  width: calc(100% - 20px);
+  width: 100%;
   border: 1px solid #ddd;
   height: 35px;
   display: block;
@@ -2397,10 +2397,11 @@ a {
   font-family: "Poppins", sans-serif;
   outline: none;
   border-radius: 6px;
+  box-sizing: border-box;
 }
 .custom-input {
   margin-bottom: 12px;
-  margin-right: 45px;
+  margin-right: 0px;
 }
 
 .login-submit {
@@ -2408,9 +2409,7 @@ a {
 }
 
 .login-info-from > form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px 20px;
+  padding: 20px 0px;
   background: #fff;
   border-radius: 10px;
 }
@@ -2444,6 +2443,8 @@ a {
   transition: 0.6s;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid transparent;
 }
 
 .login-info-from > form > h2 {
@@ -2456,9 +2457,22 @@ a {
 }
 
 .login-submit input:hover {
-  background: #18cc7f;
+  background: transparent;
   transition: 0.6s;
-  color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.login-submit:hover a{
+  background: transparent;
+  transition: 0.6s;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.login-main-area {
+	max-width: 345px;
+	width: 100%;
 }
 
 .dont-have-account > p {
@@ -2634,12 +2648,28 @@ a {
 
 /************** comment and review css *****************/
 .comment_container .cmt-item {
-  border: 2px solid #ebedf0;
-  border-radius: 5px;
-  margin-bottom: 30px;
-  padding: 5px;
-
+	border: 2px solid #ebedf0;
+	border-radius: 5px;
+	margin-bottom: 30px;
+	padding: 10px;
+	max-height: 520px;
+	overflow: auto;
 }
+
+ /* Hide scrollbar for Chrome, Safari and Opera */
+ .comment_container .cmt-item::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.comment_container .cmt-item {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+} 
+
+
+
+
 .cmt-row {
   display: flex;
   padding: 20px;
@@ -2649,7 +2679,7 @@ a {
   height: auto;
 }
 .col.ctr_img .img_container {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .commnet-dettail div a strong {
   font-weight: 500;
@@ -2657,6 +2687,10 @@ a {
   color: #000;
   line-height: 22px;
   cursor: pointer;
+}
+
+.cmt-item-reply-area-cmt-row .col.ctr_img .img_container {
+	margin-right: 10px;
 }
 
 .commnet-content {
@@ -3792,13 +3826,13 @@ select::-ms-expand {
 
 /************ table css ***********/
 .new_comment_container {
-	display: flex;
+	/* display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: center; */
   margin: 30px 0px;
 }
 .post-cmt-input {
-  flex: 0 0 100%;
+  flex: 0 0 70%;
 }
 .post-cmt-input-review {
   flex: 0 0 68%;
@@ -3825,20 +3859,44 @@ select::-ms-expand {
   color: #000;
   box-sizing: border-box;
 }
-.post-cmt-btn {
-  flex: 0 0 30%;
+.parent-cmt-2021 .post-cmt-btn {
+	margin-top: 15px;
+	display: inline-block;
 }
 .post-cmt-btn > button {
-  width: 100%;
-  height: 41px;
-  border: 1px solid #de2c89;
-  font-size: 16px;
-  font-family: "Poppins", sans-serif;
-  background: #de2c89;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.6s;
+	width: 100%;
+	height: 42px;
+	border: 1px solid #de2c89;
+	font-size: 16px;
+	font-family: "Poppins", sans-serif;
+	background: #de2c89;
+	color: #fff;
+	cursor: pointer;
+	transition: 0.6s;
+	padding: 10px 30px;
+	border-radius: 50px;
+	text-transform: uppercase;
 }
+
+.submited-text-value {
+	text-align: justify;
+}
+
+.consultancy-reply-item .col.commnet-dettail_container {
+	padding: 0px 20px;
+  padding-left: 0px;
+}
+
+.consultancy-reply-item .admin-name {
+	text-align: end;
+}
+
+.consultancy-reply-item .commnet-content {
+	text-align: justify;
+	margin-right: 0px;
+}
+
+
 .post-cmt-btn:hover button {
   background: transparent;
   border: 1px solid #ddd;
@@ -6244,7 +6302,7 @@ div.brick.label.default {
 	display: flex;
 	justify-content: flex-end;
 	background: #DDDDDD;
-	padding: 5px 0px;
+	padding: 20px;
 	border-radius: 5px;
 	overflow: hidden;
   margin-bottom: 10px;
@@ -6268,25 +6326,61 @@ div.brick.label.default {
 	margin-top: 10px;
   border-radius: 5px;
 }
-.reply-cmt-btn > i:hover {
+/* .reply-cmt-btn > i:hover {
 	font-size: 20px;
 	cursor: pointer;
 	color: #54C594;
-}
+} */
 .post-cmt-input > textarea {
 	width: 100%;
 	height: 125px;
-	padding: 0px 10px;
+	padding: 10px 10px;
 	font-size: 15px;
 	font-family: "Poppins", sans-serif;
 	font-weight: 400;
 	color: #000;
 	box-sizing: border-box;
-	border: 1px solid #df2c8a;
+	border: 1px solid #ccc;
 	border-radius: 5px;
 }
 
 .reply-cmt-btn {
-	display: flex;
-	justify-content: end;
+	float: right;
+  transition: 0.6s;
+
+}
+
+.inner-replay {
+	background: #DF2C8A;
+	display: inline-block;
+	padding: 8px 20px;
+	margin-top: 15px;
+	border-radius: 5px;
+  cursor: pointer;
+  transition: 0.6s;
+  border: 1px solid transparent;
+}
+
+.reply-cmt-btn:hover .inner-replay{
+  background: transparent;
+  transition: 0.6s;
+  border: 1px solid #ccc;
+}
+
+.reply-cmt-btn:hover .inner-replay i,
+.reply-cmt-btn:hover .inner-replay span{
+  color: #000;
+}
+
+
+.inner-replay span {
+	font-size: 20px;
+	font-weight: 500;
+	font-family: "Poppins", sans-serif !important;
+	color: #fff;
+	margin-right: 5px;
+}
+.inner-replay > i {
+	color: #fff;
+	font-size: 19px;
 }

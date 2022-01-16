@@ -28,7 +28,8 @@ const ConsultancyParent = () => {
                 (!alreadyQueryOne)&&
                 <div class="new_comment_container">
                 <div class="post-cmt-input">
-                    <input placeholder="Post Your Query here..." type="text" onChange={textChangeHandler} value={textValue}/>
+                    {/* <input placeholder="Post Your Query here..." type="text" onChange={textChangeHandler} value={textValue}/> */}
+                    <textarea name="" placeholder="Post Your Query here..." onChange={textChangeHandler} value={textValue}></textarea>
                 </div>
                 <div class="post-cmt-btn">
                     <button onClick={submitButtonHandler} type="submit">Post</button>
