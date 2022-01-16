@@ -49,7 +49,7 @@ const AnimatedProduct = ({ when, onStop, uiRef }) => {
         left: ${((closeCartPos?.left + closeCartPos?.right ) / 2) + window.scrollX}px;
     }
     80%{
-      transform: translate(-50%, -50%) scale(0.5);
+      transform: translate(-100%, -50%) scale(0.5);
     }
     100%{
       transform: translate(-50%, -50%) scale(0);

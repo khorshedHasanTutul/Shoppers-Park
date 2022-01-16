@@ -2,6 +2,7 @@ import React from 'react';
 import BlogRecentPost from '../BlogContent/BlogRecentPost';
 import BlogComment from './BlogComment';
 import BlogItem from './BlogItem';
+import BlogPostComent from './BlogPostComent';
 import Nerwblogbrad from './Nerwblogbrad';
 
 const BlogSinglePage = ({blogs}) => {
@@ -46,37 +47,7 @@ const BlogSinglePage = ({blogs}) => {
                        <BlogComment />
                        {/* <!-- commnet replay area --> */}
                        {/* <!-- comment section for blog --> */}
-                       <div class="comment-sec-main">
-                           <h2>Write a comment</h2>
-                           <div class="comment-from-area">
-                               <form>
-                                   <div class="single-comment-inner-form">
-                                       <div class="comment-textarea">
-                                           <label for="message">Comment*</label>
-                                           <textarea class="effect2" name="" id="message" required></textarea> 
-                                       </div>
-                                       <div class="comment-input-flex">
-                                           <div class="custom-input">
-                                               <label for="name">Name*</label>
-                                               <input type="text" name="" id="name" required />
-                                           </div>
-                                           <div class="custom-input">
-                                               <label for="email">Email*</label>
-                                               <input type="email" name="" id="email" required />
-                                           </div>
-                                           <div class="custom-input">
-                                               <label for="website">Website*</label>
-                                               <input type="text" name="" id="website" required />
-                                           </div>
-                                       </div>
-                                       <div class="custom-submit">
-                                           <input class="cmt-submit" type="submit" value="post comment" />
-                                       </div>
-                                   </div>
-
-                               </form>
-                           </div>
-                       </div>
+                       <BlogPostComent />
                        {/* <!-- comment section for blog --> */}
                     </div>
                  </div>
