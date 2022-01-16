@@ -27,7 +27,7 @@ const CartTableItem = ({data}) => {
             <MiniCartQuantityRow item={item} data={data} index={index}/>
             <td class="amount-for-popup">
                 <span class="SearchFont SearchDelPrice">
-                    {(item.Ds>0)? <del>৳</del> :<span>৳</span>} 
+                    {(item.Ds>0)? <aside>৳</aside> :<span>৳</span>} 
                     {
                         (item.Ds>0) && <del class="add-postion">{(item.MRP*data.qty[index]).toFixed(2)}</del>
                     }
