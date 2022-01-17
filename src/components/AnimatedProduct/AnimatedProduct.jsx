@@ -15,9 +15,12 @@ const AnimatedProduct = ({ when, onStop, uiRef }) => {
     stop();
   }, 1200);
 
+ 
+
   const pos = uiRef.current?.getBoundingClientRect();
   const animateEl = document.querySelector("#animation");
-  const closeCartEl = document.querySelector(".cart-box");
+  const closeCartEl = document.querySelector(".cart_box_container.cart_info");
+ 
 
   const closeCartPos = closeCartEl?.getBoundingClientRect();
 
@@ -33,8 +36,19 @@ const AnimatedProduct = ({ when, onStop, uiRef }) => {
     animation: shrink 1200ms ease-in-out;
     z-index: 50;
     transform: translate(-50%, -50%) scale(0.1);
+    
 
-    background: white;
+  
+}
+
+.animated .result-card {
+	transform: rotate(90deg) scale(0.2);
+	background: #fff;
+}
+
+.animated a img {
+	width: 100%;
+	height: auto;
 }
 
 @keyframes shrink {
@@ -49,7 +63,7 @@ const AnimatedProduct = ({ when, onStop, uiRef }) => {
         left: ${((closeCartPos?.left + closeCartPos?.right ) / 2) + window.scrollX}px;
     }
     80%{
-      transform: translate(-100%, -50%) scale(0.5);
+      transform: translate(-50%, -50%) scale(0.3);
     }
     100%{
       transform: translate(-50%, -50%) scale(0);

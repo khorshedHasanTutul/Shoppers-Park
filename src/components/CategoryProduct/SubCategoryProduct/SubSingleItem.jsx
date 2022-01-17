@@ -47,16 +47,16 @@ const SubSingleItem = ({item,setalert}) => {
     return (
         <div class="single-product-catagory-item" ref={cardRef}>
         <div class="hover-eff-product">
-                    {
-                      (!selectedWish && !findItem)?
-                      <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)} href>
-                      <i class="fa fa-heart-o" aria-hidden="true" onClick={refreshHeart}></i>
-                      </a>:
-                       <a title="Remove Wish Item" href onClick={callBack(WishRemoveItem,item)}>
-                       <i class="fa fa-heart" aria-hidden="true" onClick={refreshHeart}></i>
-                       </a>
-                    }
-</div>
+            {
+                (!selectedWish && !findItem)?
+                <a title="Add to Wishlist" onClick={callBack(WishAddedButton,item)} href>
+                <i class="fa fa-heart-o" aria-hidden="true" onClick={refreshHeart}></i>
+                </a>:
+                <a title="Remove Wish Item" href onClick={callBack(WishRemoveItem,item)}>
+                <i class="fa fa-heart" aria-hidden="true" onClick={refreshHeart}></i>
+                </a>
+            }
+        </div>
         <Link to={'/product/'+item.Id}>
         {
          item.Ds>0 ? <div class="group-price-drag"><span class="product-new-drag">{item.Ds>0 ? item.Ds:''}{item.Ds>0 ? '%':''} </span></div> : ''
@@ -77,6 +77,7 @@ const SubSingleItem = ({item,setalert}) => {
                         }
                         
                 </div>
+
                 <span onClick={animateCardHandler.bind(null,item)}>
                             <a onClick={callBack(cartAddedButton,item)} href class="btn_cart">
                                 <i class="fa fa-shopping-cart" aria-hidden="true" ></i>

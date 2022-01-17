@@ -9,9 +9,9 @@ const ParkItem = () => {
             {
                 appData.BannerParkItem.map((parkItem)=>(
                     <div class="single-product-add">
-                <strong><span class="pink">{parkItem.colorText}</span> {parkItem.Boldtext} </strong>
-                <p>{parkItem.normalText}</p>
-            </div>
+                        <strong><span class="pink">{parkItem.colorText}</span> {parkItem.Boldtext} </strong>
+                        <p>{parkItem.normalText}</p>
+                    </div>
                 ))
             }
 
