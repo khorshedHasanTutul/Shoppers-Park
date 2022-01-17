@@ -1,3 +1,4 @@
+import { Action } from "history";
 import { useReducer } from "react";
 import { endpoints } from "../lib/endpoints";
 import { http } from "../Service/httpService";
@@ -10,11 +11,13 @@ const initialState = () => {
     user: null,
     userOtpId: { id: "" },
     registration: { phone: "", password: "" },
-    wishList: []
+    wishList: [],
+    cartItems:[]
   };
   
   let user = localStorage.getItem("USER");
   let wishList =localStorage.getItem("WISHLIST");
+  let cartItemsLocally =localStorage.getItem("cartModel");
 
   let storedUser = {};
   let isLoggedIn = false;
@@ -27,12 +30,18 @@ const initialState = () => {
   if(wishList){
     storedWishlist = JSON.parse(wishList)
   }
+  let storeCartItems=[]
+  if(cartItemsLocally){
+    storeCartItems=JSON.parse(cartItemsLocally)
+    storeCartItems=storeCartItems.Items
+  }
 
   return {
     ...initial,
     user: storedUser,
     isLoggedIn: isLoggedIn,
-    wishList: storedWishlist
+    wishList: storedWishlist,
+    cartItems:storeCartItems
   };
 };
 
@@ -111,7 +120,34 @@ const reducer = (state, action) => {
       wishList: state.wishList
     }
   }
+  if(action.type==="CartItems_Added"){
+    const updatedCart = [...state.cartItems];
+
+    updatedCart.push(action.item);
+    return {
+      ...state,
+      cartItems:updatedCart
+    }
+  }
+
+  if(action.type==="CART_ITEM_REMOVER"){
+    let cartcontextItems = [...state.cartItems];
+    cartcontextItems=cartcontextItems.filter(item=>item.Id!==action.item.Id)
+
+    return {
+      ...state,
+      cartItems:cartcontextItems
+    }
+  }
+  if(action.type==="CLEAR_CART"){
+    return {
+      ...state,
+      cartItems:[]
+    }
+  }
 };
+
+
 
 const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState());
@@ -131,6 +167,16 @@ const AuthContextProvider = ({ children }) => {
   const wishRemovehandler=(item)=>{
     dispatch({type:"WISHITEMS_REMOVED",item:item});
   }
+  const cartAddedHandler=(item)=>{
+    dispatch({type:"CartItems_Added",item:item})
+  }
+  const removeItemCartHandler=(item)=>{
+    dispatch({type:"CART_ITEM_REMOVER",item:item})
+  }
+
+  const clearCartHandler=()=>{
+    dispatch({type:"CLEAR_CART"})
+  }
 
   const context = {
     login: loginHandler,
@@ -144,6 +190,10 @@ const AuthContextProvider = ({ children }) => {
     getloginValue:state.user,
     wishList: wishlistItemAddHandler,
     wishRemovehandler:wishRemovehandler,
+    cartContext:cartAddedHandler,
+    getCartContext:state.cartItems,
+    removeItemCart:removeItemCartHandler,
+    clearCart:clearCartHandler
   };
 
   return (

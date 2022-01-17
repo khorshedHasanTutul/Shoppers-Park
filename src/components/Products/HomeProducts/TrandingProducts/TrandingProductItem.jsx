@@ -6,16 +6,27 @@ import authContext from '../../../../Store/auth-context';
 import AnimatedProduct from '../../../AnimatedProduct/AnimatedProduct';
 
 
-const TrandingProductItem = ({item,wishItemsGet}) => {
+const TrandingProductItem = ({item,wishItemsGet,setalert}) => {
     const authCtx = useContext(authContext)
     const [wishActiveItem, setwishActiveItem] = useState(false)
     const cardRef = useRef(null)
     const [anime, setAnime] = useState(false);
     const getAllWishItem=authCtx.getwishlist;
-    const animateCardHandler=()=>{
-        setAnime(true);	
-    }
+    const animateCardHandler=(item)=>{
+        const getCartContext=authCtx.getCartContext;
+        if(getCartContext.find(itemInner=>itemInner.Id===item.Id)){
+            setalert();
+        }
+        else{
+            authCtx.cartContext(item)
+            animationStartHandler()
+        }
 
+        
+    }
+    const animationStartHandler=()=>{
+        setAnime(true);
+    }
     const stopAnime = () => {
         setAnime(false);
       }
@@ -70,13 +81,10 @@ const TrandingProductItem = ({item,wishItemsGet}) => {
                                 }
                                 
                             </div>
-                            <span onClick={animateCardHandler}>
-                            <a onClick={callBack(cartAddedButton,item)} href class="btn_cart" >
-                               
+                            <span onClick={animateCardHandler.bind(null,item)}>
+                            <a onClick={callBack(cartAddedButton,item)} href class="btn_cart">
                                 <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
                                 <h5 >Add to Cart</h5>
-                               
-                               
                             </a>
                             </span>
             </div>

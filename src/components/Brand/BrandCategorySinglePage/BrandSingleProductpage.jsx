@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PopUpAlert from '../../utilities/Alert/PopUpAlert';
 import BrandSingleProItem from './BrandSingleProItem';
 
 const BrandSingleProductpage = ({data}) => {
+    const [alert, setalert] = useState(false)
+    const closeModal=()=>{
+        setalert(prevState=>!prevState)
+    }
     return (
         <section class="brand-single-product-details-area">
+             {
+      (alert)&&<PopUpAlert content={'Already in your cart.'} closeModal={closeModal} />
+  }
+
         <div class="container">
           <div class="catagory-main-product-area">
               {/* <!-- common heading --> */}
@@ -17,7 +26,7 @@ const BrandSingleProductpage = ({data}) => {
                   <div class="product-catagory-inner-flex owl-slider-perk-items">
                       {/* <!-- single item --> */}
 
-                     <BrandSingleProItem data={data}/>
+                     <BrandSingleProItem data={data} setalert={closeModal}/>
 
                   </div>
               </div>

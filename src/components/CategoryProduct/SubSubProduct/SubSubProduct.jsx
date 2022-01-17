@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import appData from '../../DataSource/appData';
+import PopUpAlert from '../../utilities/Alert/PopUpAlert';
 import SubSubAllProduct from './SubSubAllProduct';
 import SubSubHeader from './SubSubHeader';
 
 const SubSubProduct = () => {
+    const [alert, setalert] = useState(false)
+    const closeModal=()=>{
+        setalert(prevState=>!prevState)
+    }
     const {categoryId}=useParams();
     const catid=parseInt(categoryId)
     const {subCategoryId}=useParams();
@@ -18,6 +23,9 @@ const SubSubProduct = () => {
     
     return (
         <>
+         {
+      (alert)&&<PopUpAlert content={'Already in your cart.'} closeModal={closeModal} />
+  }
           <SubSubHeader categoryId={categoryData} subCategoryId={subcategoryData} subItemId={subItemData}/>
 
             <section class="catagory-product-area view-all-sub-catagory sub2-shop-all-new-in-make-up">
@@ -35,7 +43,7 @@ const SubSubProduct = () => {
                     <div class="product-catagory-inner-flex owl-slider-perk-items">
                         {/* <!-- single item --> */}
                        
-                       <SubSubAllProduct categoryId={categoryData} subCategoryId={subcategoryData} subItemId={subItemData}/>
+                       <SubSubAllProduct categoryId={categoryData} subCategoryId={subcategoryData} subItemId={subItemData} setalert={closeModal}/>
               
                     </div>
                 </div>

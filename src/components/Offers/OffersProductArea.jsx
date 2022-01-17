@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Offers } from '../../Service/AppService';
 import appData from '../DataSource/appData';
+import PopUpAlert from '../utilities/Alert/PopUpAlert';
 import SliderComponent from '../utilities/Slider/SliderComponent';
 import OffersProductSingleItem from './OffersProductSingleItem';
 const OffersProductArea = () => {
+    const [alert, setalert] = useState(false)
+    const closeModal=()=>{
+        setalert(prevState=>!prevState)
+    }
     const headingArea=Offers.OffersProductArea.HeaderAreaText;
     const data=appData.categoryProducts.filter(item=>item.offer_status===true);
     data.sort((a,b)=>b.Ds-a.Ds);
@@ -36,7 +41,11 @@ const OffersProductArea = () => {
       }
     }
     return (
+
         <section class="catagory-product-area">
+             {
+      (alert)&&<PopUpAlert content={'Already in your cart.'} closeModal={closeModal} />
+  }
         <div class="container">
             <div class="catagory-main-product-area">
                 {/* <!-- common heading --> */}
@@ -51,12 +60,12 @@ const OffersProductArea = () => {
                     <div class="product-catagory-inner-flex owl-slider-perk-items">
                         {/* <!-- single item --> */}
                             {
-                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={OffersProductSingleItem} />
+                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={OffersProductSingleItem} setalert={closeModal}/>
                             }
                             {
                                  (data.length<5)&&
                                  (data.map(item=>(
-                                     <OffersProductSingleItem item={item}/>
+                                     <OffersProductSingleItem item={item} setalert={closeModal}/>
                                  )))
                             }
                         

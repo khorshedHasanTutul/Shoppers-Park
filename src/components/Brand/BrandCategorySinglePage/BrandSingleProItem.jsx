@@ -1,20 +1,35 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../Service/AppService';
 import { cartAddedButton, WishAddedButton, WishRemoveItem, WishService } from '../../../Service/CartContent';
+import authContext from '../../../Store/auth-context';
 import AnimatedProduct from '../../AnimatedProduct/AnimatedProduct';
 import appData from '../../DataSource/appData';
 
-const BrandSingleProItem = ({data}) => {
+const BrandSingleProItem = ({data,setalert}) => {
+    const authCtx = useContext(authContext)  
     const [anime, setAnime] = useState(false);
     const cardRef = useRef(null)
 
     const stopAnime = () => {
         setAnime(false);
       }
-    const animateCardHandler=()=>{
-        setAnime(true);	
+      const animateCardHandler=(item)=>{
+        const getCartContext=authCtx.getCartContext;
+        if(getCartContext.find(itemInner=>itemInner.Id===item.Id)){
+            setalert();
+        }
+        else{
+            authCtx.cartContext(item)
+            animationStartHandler()
+        }
+
+        
     }
+    const animationStartHandler=()=>{
+        setAnime(true);
+    }
+
 
     const concatData=appData.categoryProducts;
     const brandData=concatData.filter(item=>item.brand_id===data.brand_id);
@@ -83,13 +98,12 @@ const BrandSingleProItem = ({data}) => {
                                 
                             </div>
                 
-                            <span onClick={animateCardHandler}>
-                            <a onClick={callBack(cartAddedButton,item)} href class="btn_cart" >
-                               
+                            
+
+<span onClick={animateCardHandler.bind(null,item)}>
+                            <a onClick={callBack(cartAddedButton,item)} href class="btn_cart">
                                 <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
                                 <h5 >Add to Cart</h5>
-                               
-                               
                             </a>
                             </span>
             </div>
