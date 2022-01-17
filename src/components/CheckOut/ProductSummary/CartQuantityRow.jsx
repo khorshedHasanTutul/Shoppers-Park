@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { callBack } from '../../../Service/AppService';
 import { ButoonDec, ButoonInc, QtyChange } from '../../../Service/CartContent';
+import authContext from '../../../Store/auth-context';
 
 export const CartQuantityRow = ({item,data,index}) => {
+  
     const [quantityValue, setquantityValue] = useState(data.qty[index])
     const qtyChangehandler=(e)=>{ 
         const x = callBack(QtyChange,item,e.target.value);

@@ -129,6 +129,22 @@ const reducer = (state, action) => {
       cartItems:updatedCart
     }
   }
+
+  if(action.type==="CART_ITEM_REMOVER"){
+    let cartcontextItems = [...state.cartItems];
+    cartcontextItems=cartcontextItems.filter(item=>item.Id!==action.item.Id)
+
+    return {
+      ...state,
+      cartItems:cartcontextItems
+    }
+  }
+  if(action.type==="CLEAR_CART"){
+    return {
+      ...state,
+      cartItems:[]
+    }
+  }
 };
 
 
@@ -154,6 +170,13 @@ const AuthContextProvider = ({ children }) => {
   const cartAddedHandler=(item)=>{
     dispatch({type:"CartItems_Added",item:item})
   }
+  const removeItemCartHandler=(item)=>{
+    dispatch({type:"CART_ITEM_REMOVER",item:item})
+  }
+
+  const clearCartHandler=()=>{
+    dispatch({type:"CLEAR_CART"})
+  }
 
   const context = {
     login: loginHandler,
@@ -168,7 +191,9 @@ const AuthContextProvider = ({ children }) => {
     wishList: wishlistItemAddHandler,
     wishRemovehandler:wishRemovehandler,
     cartContext:cartAddedHandler,
-    getCartContext:state.cartItems
+    getCartContext:state.cartItems,
+    removeItemCart:removeItemCartHandler,
+    clearCart:clearCartHandler
   };
 
   return (

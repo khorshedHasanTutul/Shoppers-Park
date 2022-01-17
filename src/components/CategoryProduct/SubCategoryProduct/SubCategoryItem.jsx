@@ -3,7 +3,7 @@ import appData from '../../DataSource/appData';
 import SliderComponent from '../../utilities/Slider/SliderComponent';
 import SubSingleItem from './SubSingleItem';
 
-const SubCategoryItem = ({categoryId,subCategoryId,subCategoryItemID}) => {
+const SubCategoryItem = ({categoryId,subCategoryId,subCategoryItemID,setalert}) => {
     // console.log(['ids are',categoryId,subCategoryId,subCategoryItemID])
     const options={
         rewind: true,
@@ -45,12 +45,12 @@ const SubCategoryItem = ({categoryId,subCategoryId,subCategoryItemID}) => {
                     <div class="product-catagory-inner-flex owl-slider-perk-items">
                         {/* <!-- single item --> */}
                        {
-                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={SubSingleItem} />
+                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={SubSingleItem} setalert={setalert} />
                             }
                             {
                                  (data.length<5)&&
                                  (data.map(item=>(
-                                     <SubSingleItem item={item}/>
+                                     <SubSingleItem item={item} setalert={setalert}/>
                                  )))
                             }
                        

@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Offers } from '../../../../Service/AppService';
 import appData from '../../../DataSource/appData';
+import PopUpAlert from '../../../utilities/Alert/PopUpAlert';
 import SliderComponent from '../../../utilities/Slider/SliderComponent';
 import TrandingProductItem from './TrandingProductItem';
 
 const Trandingproducts = ({wishItemsGet}) => {
+    const [alert, setalert] = useState(false)
+    const closeModal=()=>{
+        setalert(prevState=>!prevState)
+    }
     const textContent=Offers.OffersProductArea;
     const data=appData.categoryProducts.filter(item=>item.offer_status===true);
     data.sort((a,b)=>b.Ds-a.Ds);
@@ -38,6 +43,9 @@ const Trandingproducts = ({wishItemsGet}) => {
     }
     return (
         <section class="tranding-right-now-home catagory-product-area">
+             {
+                           (alert)&&<PopUpAlert content={'Already in your cart.'} closeModal={closeModal} />
+                      }
                 <div class="container">
                     <div class="catagory-main-product-area">
                         {/* <!-- common heading --> */}
@@ -51,7 +59,7 @@ const Trandingproducts = ({wishItemsGet}) => {
                             <div class="product-catagory-inner-flex owl-slider-perk-items">
                                 {/* <!-- single item --> */}
 
-                             <SliderComponent options={options} data={data} Template={TrandingProductItem} wishItemsGet={wishItemsGet}/>
+                             <SliderComponent options={options} data={data} Template={TrandingProductItem} wishItemsGet={wishItemsGet} setalert={closeModal}/>
                                 <div class="shop-all-offer-btn">
                                     <Link to="/offers">{textContent.buttonText}</Link>
                                 </div>

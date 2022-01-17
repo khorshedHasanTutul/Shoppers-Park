@@ -40,6 +40,10 @@ const ContentCart = ({closeCart}) => {
             closeCart();
         }
     }
+    const clearCartHandler=(e)=>{
+        authCtx.clearCart();
+        callBack(CartClear)(e);
+    }
 
     return (
         <div class="cart-box-view">
@@ -77,9 +81,10 @@ const ContentCart = ({closeCart}) => {
                             }
                             <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>{(cartModel.TotalAmount.toFixed(2))}</span></span>
                             </div>
-                            <div className='clear-button btn' onClick={callBack(CartClear)}>
+                            <div className='clear-button btn' onClick={clearCartHandler}>
                                 <span onClick={closeCart}> Clear Cart</span> 
                             </div>
+                            {/* callBack(CartClear) */}
 
                           
                             {/* <div className='button-card-clear'>
