@@ -436,15 +436,15 @@ var appData = {
     MainCategory:[
       {
         index:0,
-        name:'Shop Category'
+        name:'Cosmetics'
       },
       {
         index:1,
-        name:'Cosmatics'
+        name:'Jewellery'
       },
       {
         index:2,
-        name:'Baby & Child'
+        name:'Baby Product'
       }
     ],
     

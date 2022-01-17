@@ -78,8 +78,7 @@ const ContentCart = ({closeCart}) => {
                             <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>{(cartModel.TotalAmount.toFixed(2))}</span></span>
                             </div>
                             <div className='clear-button btn' onClick={callBack(CartClear)}>
-                                <span onClick={closeCart}> Clear Cart</span>
-                               
+                                <span onClick={closeCart}> Clear Cart</span> 
                             </div>
 
                           
