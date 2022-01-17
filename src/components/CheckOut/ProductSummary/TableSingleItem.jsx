@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { callBack } from '../../../Service/AppService';
 import { RemoveItem } from '../../../Service/CartContent';
+import authContext from '../../../Store/auth-context';
 import CartQuantityRow from './CartQuantityRow';
 import TableItemCategoryBrand from './TableItemCategoryBrand';
 
 const TableSingleItem = ({data}) => {
+    const authCtx = useContext(authContext)
+    const cartItemRemover=(item)=>{
+        authCtx.removeItemCart(item)
+
+    }
     return (
         <>
         {
@@ -20,8 +26,12 @@ const TableSingleItem = ({data}) => {
               }
                 <CartQuantityRow item={item} data={data} index={index}/>
                 <td class="price"><span>{(data.MRP[index].toFixed(2))}</span></td>
-                <td class="action"><a onClick={callBack(RemoveItem,item)} href><i class="fa fa-times" aria-hidden="true"></i>
-</a></td>
+                <td class="action">
+                    <a onClick={callBack(RemoveItem,item)} href>
+                        <span onClick={cartItemRemover.bind(null,item)}> <i class="fa fa-times" aria-hidden="true"></i></span>
+                       
+                    </a>
+                </td>
             </tr>
             
             ))

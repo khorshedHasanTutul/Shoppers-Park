@@ -4,7 +4,7 @@ import appData from '../../../DataSource/appData';
 import SliderComponent from '../../../utilities/Slider/SliderComponent';
 import CategorySingleItem from './CategorySingleItem';
 
-const CategoryWiseProduct = ({item,wishItemsGet}) => {
+const CategoryWiseProduct = ({item,wishItemsGet,setalert}) => {
     const data=appData.categoryProducts.filter(item2=>item2.category_id===item.categoryId && item.categoryVisible===true)
     const options={
         rewind: true,
@@ -48,7 +48,7 @@ const CategoryWiseProduct = ({item,wishItemsGet}) => {
                 <!-- single product catagory main area --> */}
                 <div class="product-catagory-main-flex owl-slider-perk">
                     <div class="product-catagory-inner-flex owl-slider-perk-items">
-                       <SliderComponent options={options} data={data} Template={CategorySingleItem} wishItemsGet={wishItemsGet}/>
+                       <SliderComponent options={options} data={data} Template={CategorySingleItem} wishItemsGet={wishItemsGet} setalert={setalert}/>
                     </div>
                     <div class="shop-all-offer-btn">
                         <Link to={'/category/'+item.categoryId}>{item.buttonText+' '+item.categoryName}</Link>

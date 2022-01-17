@@ -7,12 +7,12 @@ import authContext from '../../../../Store/auth-context'
 import AnimatedProduct from '../../../AnimatedProduct/AnimatedProduct'
 import PopUpAlert from '../../../utilities/Alert/PopUpAlert'
 
-const CategorySingleItem = ({item,wishItemsGet}) => {
+const CategorySingleItem = ({item,wishItemsGet,setalert}) => {
     const [anime, setAnime] = useState(false);
     const authCtx = useContext(authContext)
     const cardRef = useRef(null)
     const [wishActiveItem, setwishActiveItem] = useState(false)
-    const [alert, setalert] = useState(false)
+
 
     const wishItemAddHandler=()=>{
         authCtx.wishList({
@@ -39,7 +39,7 @@ const CategorySingleItem = ({item,wishItemsGet}) => {
     const animateCardHandler=(item)=>{
         const getCartContext=authCtx.getCartContext;
         if(getCartContext.find(itemInner=>itemInner.Id===item.Id)){
-            setalert(true)
+            setalert();
         }
         else{
             authCtx.cartContext(item)
@@ -51,12 +51,11 @@ const CategorySingleItem = ({item,wishItemsGet}) => {
     const animationStartHandler=()=>{
         setAnime(true);
     }
-    const closeModal=()=>{
-        setalert(prevState=>!prevState)
-    }
+
     
     return (
         <>
+
         <div class="single-product-catagory-item" ref={cardRef}>
 
                 <div class="hover-eff-product">
@@ -109,9 +108,7 @@ const CategorySingleItem = ({item,wishItemsGet}) => {
                    
                     </div>
 
-                    {
-                    (alert)&&<PopUpAlert content={'Already in your cart.'} closeModal={closeModal} />
-                    }
+                   
         </>
 
             

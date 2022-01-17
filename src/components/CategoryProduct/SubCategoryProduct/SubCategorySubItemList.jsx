@@ -2,7 +2,7 @@ import React from 'react'
 import appData from '../../DataSource/appData';
 import SubCategoryItem from './SubCategoryItem';
 
-const SubCategorySubItemList = ({item,categoryId,subCategoryId}) => {
+const SubCategorySubItemList = ({item,categoryId,subCategoryId,setalert}) => {
     const data=appData.categoryProducts.filter(item2=>item2.category_id===categoryId && item2.subCategory_id===subCategoryId && item2.subCategory_item_id===item.subCategory_item);
     if(data.length===0){
         return false;
@@ -18,7 +18,7 @@ const SubCategorySubItemList = ({item,categoryId,subCategoryId}) => {
         {/* <!-- common heading --> */}
         {/* <!-- single product catagory main area --> */}
 
-        <SubCategoryItem categoryId={categoryId} subCategoryId={subCategoryId} subCategoryItemID={item.subCategory_item}/>
+        <SubCategoryItem categoryId={categoryId} subCategoryId={subCategoryId} subCategoryItemID={item.subCategory_item} setalert={setalert}/>
         
         {/* <!-- single product catagory main area --> */}
 

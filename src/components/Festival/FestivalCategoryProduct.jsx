@@ -4,7 +4,7 @@ import appData from '../DataSource/appData';
 import SliderComponent from '../utilities/Slider/SliderComponent';
 import FestivalProSingleItem from './FestivalProSingleItem';
 
-const FestivalCategoryProduct = () => {
+const FestivalCategoryProduct = ({setalert}) => {
     const options={
         rewind: true,
         type: 'loop',
@@ -55,12 +55,12 @@ const FestivalCategoryProduct = () => {
                             (item=concatData.filter(item2=>(item2.FestivalCategory_id===item.category_id))).length>0 &&
                             <>
                             {
-                                (item.length>=5)&& <SliderComponent options={options} data={item} Template={FestivalProSingleItem} />
+                                (item.length>=5)&& <SliderComponent options={options} data={item} Template={FestivalProSingleItem} setalert={setalert}/>
                             }
                             {
                                  (item.length<5)&&
                                  (item.map(item=>(
-                                     <FestivalProSingleItem item={item}/>
+                                     <FestivalProSingleItem item={item} setalert={setalert}/>
                                  )))
                             }
                             </>

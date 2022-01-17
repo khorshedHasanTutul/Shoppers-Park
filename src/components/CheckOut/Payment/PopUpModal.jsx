@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../Service/AppService';
 import { CartClear } from '../../../Service/CartContent';
+import authContext from '../../../Store/auth-context';
 
 const PopUpModal = ({savedShippingDataMobile}) => {
-
+    const authCtx = useContext(authContext)
+    const cartClearContext=()=>{
+        authCtx.clearCart();
+    }
     return (
         <div className="alert-for-all-web">
             <div id="demo-modal3" class="modal">
@@ -24,7 +28,10 @@ const PopUpModal = ({savedShippingDataMobile}) => {
                     
                 </div>  
                 <div className='close-popup-modal' onClick={callBack(CartClear)} >
-                <Link to="/"  class="modal__close">&times;</Link>
+                    <span onClick={cartClearContext}>
+                         <Link to="/"  class="modal__close">&times;</Link>
+                    </span>
+               
                 </div>
                
             </div>

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../Service/AppService';
 import { ButoonDec, ButoonInc, RemoveItem } from '../../Service/CartContent';
+import authContext from '../../Store/auth-context';
 import MiniCartQuantityRow from './MiniCartQuantityRow';
 
 const CartTableItem = ({data}) => {
+    const authCtx = useContext(authContext)
+    const CartContexItemRemover=(item)=>{
+        authCtx.removeItemCart(item)
+    }
 
     return (
          <>
@@ -36,7 +41,10 @@ const CartTableItem = ({data}) => {
                 </span>
             </td>
             <td class="amount-inner-crose">
-                <a onClick={callBack(RemoveItem,item)} href><i class="fa fa-times text-danger"></i></a>
+                <span onClick={CartContexItemRemover.bind(null,item)}>
+                     <a onClick={callBack(RemoveItem,item)} href><i class="fa fa-times text-danger"></i></a>
+                </span>
+               
             </td>
         </tr>
             ))

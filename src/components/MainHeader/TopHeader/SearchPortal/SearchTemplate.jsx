@@ -1,16 +1,30 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../../Service/AppService';
 import { cartAddedButton } from '../../../../Service/CartContent';
+import authContext from '../../../../Store/auth-context';
 import AnimatedProduct from '../../../AnimatedProduct/AnimatedProduct';
 import appData from '../../../DataSource/appData';
 
-const SearchTemplate = ({item,closeSearch,lowerSearchvalue}) => {
+const SearchTemplate = ({item,closeSearch,lowerSearchvalue,setalert}) => {
+  const authCtx = useContext(authContext) 
   const [anime, setAnime] = useState(false);
   const cardRef = useRef(null)
   const categoryData= appData.ShopCategory.find(item2=>(item2.categoryId===item.category_id))
-  const animateCardHandler=()=>{
-    setAnime(true);	
+  const animateCardHandler=(item)=>{
+    const getCartContext=authCtx.getCartContext;
+    if(getCartContext.find(itemInner=>itemInner.Id===item.Id)){
+        setalert();
+    }
+    else{
+        authCtx.cartContext(item)
+        animationStartHandler()
+    }
+
+    
+}
+const animationStartHandler=()=>{
+    setAnime(true);
 }
 
 const stopAnime = () => {
@@ -61,7 +75,7 @@ const stopAnime = () => {
                 <button onClick={callBack(cartAddedButton,item)}>
                 
                 <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
-                <span onClick={animateCardHandler}>
+                <span onClick={animateCardHandler.bind(null,item)}>
                 <strong> Add to Cart</strong>
                 </span>
                  

@@ -3,7 +3,7 @@ import appData from '../../DataSource/appData';
 import SubCategoryItem from './SubCategoryItem';
 import SubCategorySubItemList from './SubCategorySubItemList';
 
-const SubCategoryTotalItem = ({categoryId,subCategoryId}) => {
+const SubCategoryTotalItem = ({categoryId,subCategoryId,setalert}) => {
     const catId=parseInt(categoryId)
     const subcatId=parseInt(subCategoryId)
     const categoryData=appData.ShopCategory.find(item=>item.categoryId===catId);
@@ -23,7 +23,7 @@ const SubCategoryTotalItem = ({categoryId,subCategoryId}) => {
         {
            
            subcategoryData.subCategoryItem.map(item=>(
-                <SubCategorySubItemList item={item}  categoryId={catId} subCategoryId={subcatId}/>
+                <SubCategorySubItemList item={item}  categoryId={catId} subCategoryId={subcatId} setalert={setalert}/>
             ))
         }
         </>
