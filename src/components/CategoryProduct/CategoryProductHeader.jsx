@@ -8,15 +8,15 @@ const CategoryProductHeader = ({categoryId}) => {
         
     return (
         <section class="breadcrumb-main-area">
-                <div class="container">
-                    <nav aria-label="breadcrumb" class="breadcrumb-main">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                            <li class="breadcrumb-item active" aria-current="page">{data.categoryName}</li>
-                        </ul>
-                    </nav>
-                </div>
-            </section>
+            <div class="container">
+                <nav aria-label="breadcrumb" class="breadcrumb-main">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><Link to="/">Home</Link></li>
+                        <li class="breadcrumb-item active" aria-current="page">{data.categoryName}</li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
     );
 };
 

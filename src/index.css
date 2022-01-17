@@ -470,6 +470,7 @@ input:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
+ 
 }
 .notification-name .name {
   font-size: 12px;
@@ -1644,11 +1645,28 @@ input:focus {
   height: 43px;
   width: 50px;
 }
-.cart-box {
+
+
+
+.cart_box_container.cart_info{
   position: fixed;
   right: 0;
   top: 50%;
-  z-index: 5;
+  transform: translateY(-50%);
+  z-index: 9;
+
+}
+
+.cart-box-view {
+  /* z-index: 1000;
+  position: fixed;
+  right: 0;
+  top: 125px; */
+  /* display: none; */
+}
+
+
+.cart-box { 
   background: #fff;
   border: 1px solid #ddd;
   border-right-color: rgb(0, 99, 148);
@@ -1658,7 +1676,10 @@ input:focus {
   cursor: pointer;
   border-right: none;
   overflow: hidden;
+  width: auto;
+  
 }
+
 .cart-items {
   background-color: #df2c8a;
   padding: 5px 10px;
@@ -1681,13 +1702,7 @@ input:focus {
 
 /******************** card view css ********************/
 
-.cart-box-view {
-  z-index: 1000;
-  position: fixed;
-  right: 0;
-  top: 125px;
-  /* display: none; */
-}
+
 
 .cart-box-inner-view {
   display: block;
