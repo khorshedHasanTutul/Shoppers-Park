@@ -64,8 +64,11 @@ const ConsultancyReviewSingleItem = ({submitedTextValue}) => {
          <textarea cols='7' rows='7' placeholder="Write your reply here..." type="text" onChange={replyTextHandler} value={replyValue}/>
          </div>
          {/* onClick={submitReplyHandler} */}
-         <div class="reply-cmt-btn" >
-         <i title='Send Message' class="fa fa-paper-plane" aria-hidden="true"><span onClick={submitReplyHandler}> Send</span></i>
+         <div class="reply-cmt-btn" onClick={submitReplyHandler}>
+          <div className='inner-replay'>
+          <span> Send</span>
+          <i title='Send Message' class="fa fa-paper-plane" aria-hidden="true"></i>
+          </div>
          </div>
      </div>
         
