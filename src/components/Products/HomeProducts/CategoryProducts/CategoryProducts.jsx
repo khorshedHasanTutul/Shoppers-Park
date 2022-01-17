@@ -6,6 +6,8 @@ import CategoryWiseProduct from './CategoryWiseProduct';
 const CategoryProducts = ({wishItemsGet}) => {
     const categoryData=appData.ShopCategory;
 
+
+
     return (
         <section class="catagory-product-area">
             {

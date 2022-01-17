@@ -4,7 +4,7 @@ import { endpoints } from "../../../../lib/endpoints";
 import { http } from "../../../../Service/httpService";
 import authContext from "../../../../Store/auth-context";
 
-const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart, orderNowPressed}) => {
+const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart, orderNowPressed,consultancyPressed}) => {
   const [phonenumber, setphonenumber] = useState("");
   const [password, setpassword] = useState("");
   const [failedMsg, setfailedMsg] = useState(false)
@@ -41,6 +41,8 @@ const LoginModal = ({ CreateAccount, forgetPassModal,ModalOpen,closeCart, orderN
         });
         (orderNowPressed)?
         history.push('/checkout'):
+        (consultancyPressed)?
+        history.push('/consultancy'):
         history.push('/profile');
         ModalOpen();
         // closeCart();

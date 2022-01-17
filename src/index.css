@@ -550,7 +550,7 @@ input:focus {
 }
 
 .main-menu > ul > li {
-	margin-right: 25px;
+	margin-right: 22px;
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -4547,7 +4547,7 @@ div.brick.label {
   padding: 1rem;
   border: 1px solid #df2c8a;
   border-radius: 0.125rem;
-  margin-bottom: 35px;
+  /* margin-bottom: 35px; */
 }
 
 div.brick.label.warning {
@@ -6407,4 +6407,7 @@ div.brick.label.default {
 .inner-replay > i {
 	color: #fff;
 	font-size: 19px;
+}
+.order-text-mt-10 {
+	margin-bottom: -8px;
 }

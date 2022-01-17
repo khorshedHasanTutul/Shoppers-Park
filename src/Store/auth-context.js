@@ -11,7 +11,9 @@ const authContext = createContext({
     getRegistrationValue:[],
     wishList: (item) => {},
     getwishlist:[],
-    wishRemovehandler:(item)=>{}
+    wishRemovehandler:(item)=>{},
+    cartContext:(item)=>{},
+    getCartContext:[]
 });
 
 export default authContext;

@@ -10,19 +10,19 @@ import {cartSingleButtonAdd, WishAddedButton } from '../../../Service/CartConten
 import AnimatedProduct from '../../AnimatedProduct/AnimatedProduct';
 
 const ProductDetailsItem = ({product_id}) => {
-    const [anime, setAnime] = useState(false);
-    const cardRef = useRef(null)
+    // const [anime, setAnime] = useState(false);
+    // const cardRef = useRef(null)
     const concatData=appData.categoryProducts;
     const item=concatData.find(item=>item.Id ===product_id);
     const categoryData=appData.ShopCategory.find(item2=>item2.categoryId ===item.category_id );
     const brandData=BrandData.find(brand=>brand.brand_id  ===item.brand_id );
     const [count, setstate] = useState(1);
-    const stopAnime = () => {
-        setAnime(false);
-      }
-    const animateCardHandler=()=>{
-        setAnime(true);	
-    }
+    // const stopAnime = () => {
+    //     setAnime(false);
+    //   }
+    // const animateCardHandler=()=>{
+    //     setAnime(true);	
+    // }
 
     const Increment=()=>{ 
         setstate(parseInt(count)+1)    
@@ -34,7 +34,7 @@ const ProductDetailsItem = ({product_id}) => {
         setstate((target.value))
     }
     return (
-        <div class="inner-product-details-flex" ref={cardRef}>
+        <div class="inner-product-details-flex">
                                     <div class="product-d-left-img">
                                         <div class="det-img-padding">
                                             <img src={item.image} alt="img" />
@@ -94,21 +94,21 @@ const ProductDetailsItem = ({product_id}) => {
                                               </div>
                                               
                                               <div class="pro-add-wish-flex">
-                                              <span onClick={animateCardHandler}>
+                                              {/* <span onClick={animateCardHandler}> */}
                                               <a href onClick={callBack(cartSingleButtonAdd,item,parseInt(count))}>
                                                 <div class="btn_cart">
                                                    <FontAwesomeIcon icon={faShoppingCart} />
                                                     <h5>Add to Cart</h5>
                                                  </div>
                                               </a>
-                                              </span>
+                                              {/* </span> */}
                                               <div class="wishlist-btn" onClick={callBack(WishAddedButton,item)}>
                                                 <a href><i class="fa fa-heart-o" aria-hidden="true"></i>Add to wishlist</a>
                                               </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <AnimatedProduct when={anime} onStop={stopAnime} uiRef={cardRef}/>
+                                    {/* <AnimatedProduct when={anime} onStop={stopAnime} uiRef={cardRef}/> */}
                                 </div>
     );
 };

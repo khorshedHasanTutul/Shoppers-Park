@@ -21,7 +21,8 @@ const WishService = {};
     }
     this.Add = function (item) {
         if (ifExists(item)) {
-            alert('Already in your Cart.');
+            // alert('Already in your Cart.');
+            return null;
         } else {
             CartModel.Items.push(item);
             CartModel.qty.push(1);
