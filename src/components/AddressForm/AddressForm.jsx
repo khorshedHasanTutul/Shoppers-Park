@@ -252,9 +252,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
       },
     });
   };
-
-
-
+  
   const divisionSelectHandler = (division) => {
     setdivisionId(division);
     getDistricts(division.id);

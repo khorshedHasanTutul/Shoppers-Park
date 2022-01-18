@@ -69,9 +69,6 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
               </form>
             </div> */}
             {
-              console.log({shippingInfoTab})
-            }
-            {
               (shippingInfoTab)&& 
                <div className="shaping-address-saveing-row">
               <div className="shapping-address-inner-content">
