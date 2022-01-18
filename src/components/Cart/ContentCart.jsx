@@ -8,21 +8,11 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import PopUpAlert from '../utilities/Alert/PopUpAlert';
 import { callBack } from '../../Service/AppService';
 
-const ContentCart = ({closeCart}) => {
+const ContentCart = ({closeCart,setalert,setloginPopupModel,setorderNowPressed}) => {
     const authCtx=useContext(authContext)
     const [cartModel, referesh] = useState(CartService.Get());
     CartService.Refresh=referesh;
-    const [loginPopupModel, setloginPopupModel] = useState(false)
     const history=useHistory();
-    const [orderNowPressed, setorderNowPressed] = useState(false)
-    const [alert, setalert] = useState(false)
-    const closeModal=()=>{
-        setalert(prevState=>!prevState)
-    }
-
-    const ModalClose=()=>{
-        setloginPopupModel(false);
-    }
 
     const productFound=(evt)=>{
         if(cartModel.Items.length===0){
@@ -76,9 +66,7 @@ const ContentCart = ({closeCart}) => {
                         <div class="cart-footer">
                             <div>
                             <Link to={'/checkout'} onClick={productFound}   id="checkout-button" class="btn btn-success pull-left">Order Now</Link>
-                            {
-                                (loginPopupModel) && <ModalPOpUp ModalOpen={ModalClose} closeCart={closeCart} orderNowPressed={orderNowPressed}/>
-                            }
+                           
                             <span class="btn btn-info cart-amount-span cart-amount-span">৳ <span>{(cartModel.TotalAmount.toFixed(2))}</span></span>
                             </div>
                             <div className='clear-button btn' onClick={clearCartHandler}>
@@ -99,9 +87,6 @@ const ContentCart = ({closeCart}) => {
                            
                         </div>
                     </div>
-                    {
-                        (alert)&&<PopUpAlert content={'Please select at least one product.'} closeModal={closeModal} />
-                    }
                     
                 </div>
                
