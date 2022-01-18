@@ -2,14 +2,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { BrandData, callBack } from '../../../Service/AppService';
 import appData from '../../DataSource/appData';
 import { Link } from 'react-router-dom';
 import {cartSingleButtonAdd, WishAddedButton } from '../../../Service/CartContent';
 import AnimatedProduct from '../../AnimatedProduct/AnimatedProduct';
+import authContext from '../../../Store/auth-context';
 
-const ProductDetailsItem = ({product_id}) => {
+const ProductDetailsItem = ({product_id,setalert}) => {
     // const [anime, setAnime] = useState(false);
     // const cardRef = useRef(null)
     const concatData=appData.categoryProducts;
@@ -17,12 +18,21 @@ const ProductDetailsItem = ({product_id}) => {
     const categoryData=appData.ShopCategory.find(item2=>item2.categoryId ===item.category_id );
     const brandData=BrandData.find(brand=>brand.brand_id  ===item.brand_id );
     const [count, setstate] = useState(1);
+    const authCtx = useContext(authContext)
     // const stopAnime = () => {
     //     setAnime(false);
     //   }
     // const animateCardHandler=()=>{
     //     setAnime(true);	
     // }
+    const cartContextHandler=(item)=>{
+        const getCartContext=authCtx.getCartContext;
+        if(getCartContext.find(itemInner=>itemInner.Id===item.Id)){
+            setalert();
+        }
+        else
+        authCtx.cartContext(item)
+    }
 
     const Increment=()=>{ 
         setstate(parseInt(count)+1)    
@@ -96,7 +106,7 @@ const ProductDetailsItem = ({product_id}) => {
                                               <div class="pro-add-wish-flex">
                                               {/* <span onClick={animateCardHandler}> */}
                                               <a href onClick={callBack(cartSingleButtonAdd,item,parseInt(count))}>
-                                                <div class="btn_cart">
+                                                <div class="btn_cart" onClick={cartContextHandler.bind(null,item)}>
                                                    <FontAwesomeIcon icon={faShoppingCart} />
                                                     <h5>Add to Cart</h5>
                                                  </div>

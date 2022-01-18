@@ -42,7 +42,8 @@ const WishService = {};
     };
     this.SingleAdd=function(item,count){
         if(ifExists(item)){
-            alert('Already in your Cart.');
+            // alert('Already in your Cart.');
+            return null;
         }
         else{
             CartModel.Items.push(item);
