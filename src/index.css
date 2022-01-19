@@ -535,6 +535,7 @@ input:focus {
   font-weight: 500;
   display: block;
   transition: 0.6s;
+  cursor: pointer;
 }
 .main-menu > ul > li:hover a {
   color: #ee0088;

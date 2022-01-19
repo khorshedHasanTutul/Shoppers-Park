@@ -170,7 +170,7 @@ const PaymentParent = () => {
 
 
   const selectedShippingInfo=(data,savedAddressInfo)=>{
-    console.log({data},{savedAddressInfo})
+    console.log({savedAddressInfo})
    if(data && savedAddressInfo){
     //  settabinfo(0)
     //  var element = document.getElementsByClassName("tab");

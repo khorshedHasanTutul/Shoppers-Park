@@ -65,8 +65,8 @@
     background: rgba(0,0,0,.04); 
  }
  .error{
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 400;
     margin-left: 10px;
     min-height: 12px;
     color: red;
