@@ -145,8 +145,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
     }
       
   };
-
-  // element[0].childNodes[0].classList.add('active')
+  
   const activeButtonAddress = (index,item, event) => {
     setactiveButtonText(item.text);
     setaddressButtonIndex(index);
@@ -154,6 +153,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
     for (let i = 0; i < element[0].childNodes.length - 1; i++) {
       element[0].childNodes[i].classList.remove("active");
     }
+    // element[0].children[1].className+=' active'
     event.target.className += " active";
     setaddressSaved(false);
   };
@@ -252,7 +252,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
       },
     });
   };
-  
+
   const divisionSelectHandler = (division) => {
     setdivisionId(division);
     getDistricts(division.id);
@@ -273,38 +273,6 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
     getAreas();
   }, []);
 
-  useEffect(() => {
-    const activeInputValue=getAddressData.find(item=>item.Type==activeButtonText)
-    console.log({activeInputValue})
-    if(activeInputValue){
-      setphone(activeInputValue.Mobile)
-      setemail(activeInputValue.Email)
-      setname(activeInputValue.Name)
-      setaddress(activeInputValue.Remarks)
-      setdivisionId({name:activeInputValue?.Province,id:activeInputValue?.ProvinceId})
-      setdistrictId({name:activeInputValue?.District,id:activeInputValue?.DistrictId})
-      setareaId({name:activeInputValue?.Upazila,id:activeInputValue?.UpazilaId})
-      if(activeInputValue.IsDefault===true){
-        setchecked(true)
-      }
-      else
-      {
-        setchecked(false)
-      }
-    }else{
-      setphone('')
-      setemail('')
-      setname('')
-      setaddress('')
-      setdivisionId({name:'',id:''})
-      setdistrictId({name:'',id:''})
-      setareaId({name:'',id:''})
-      setchecked(false)
-    }
-    // if(getCheckedData){
-    //   setchecked(true)
-    // }
-  }, [activeButtonText,getAddressData,getCheckedData])
 
   const getAddress=()=>{
     http.post({
@@ -323,6 +291,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
     },
     successed:(data)=>{
       setgetAddressData(data.Data);
+      // onSave()
     },
     failed:()=>{
       console.log('failed')
@@ -372,6 +341,53 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
    
   }, [nameIsTouched,name.length,phoneIsTouched,phone.length,divisionIsTouched,divisionId,districtIsTouched,districtId,areaIsTouched,areaId,addressIsTouched,address.length,saveBtnClicked])
 
+  useEffect(() => {
+    const getAddressType=getAddressData.find(item=>item.Type==='Home')
+    if(getAddressType){
+      setaddressButtonIndex(0)
+      setactiveButtonText(savedAddressInfo[0].text)
+    }
+    else if(getAddressData.find(item=>item.Type==='Office'))
+      {
+        setaddressButtonIndex(1)
+        setactiveButtonText(savedAddressInfo[1].text)
+      }
+      else if(getAddressData.find(item=>item.Type==='Home Town')){
+        setaddressButtonIndex(2)
+        setactiveButtonText(savedAddressInfo[2].text)
+      }
+  }, [getAddressData,savedAddressInfo])
+
+  
+  useEffect(() => {
+    const activeInputValue=addresses.find(item=>item.Type==activeButtonText)
+    console.log({activeInputValue})
+    if(activeInputValue){
+      setphone(activeInputValue.Mobile)
+      setemail(activeInputValue.Email)
+      setname(activeInputValue.Name)
+      setaddress(activeInputValue.Remarks)
+      setdivisionId({name:activeInputValue?.Province,id:activeInputValue?.ProvinceId})
+      setdistrictId({name:activeInputValue?.District,id:activeInputValue?.DistrictId})
+      setareaId({name:activeInputValue?.Upazila,id:activeInputValue?.UpazilaId})
+      if(activeInputValue.IsDefault===true){
+        setchecked(true)
+      }
+      else
+      {
+        setchecked(false)
+      }
+    }else{
+      setphone('')
+      setemail('')
+      setname('')
+      setaddress('')
+      setdivisionId({name:'',id:''})
+      setdistrictId({name:'',id:''})
+      setareaId({name:'',id:''})
+      setchecked(false)
+    }
+  }, [activeButtonText,getAddressData,getCheckedData,addresses])
 
   return (
     <>
@@ -476,7 +492,7 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
             </div>
           </div>
           <div className={`address-btn-group align-start g-8`}>
-            <SavingAddressTab activeButtonAddress={activeButtonAddress} />
+            <SavingAddressTab activeButtonAddress={activeButtonAddress} getAddressData={addresses || []}/>
             <div>
               <button
                 className="brick fill secondary t-16 mb-8 save-btn"
@@ -502,6 +518,9 @@ const AddressForm = ({ proceedOrder,selectedShippingInfo, onSave, addresses }) =
             getAddressData={addresses || getAddressData}
             activeButtonText={activeButtonText}
             selectedShippingInfo={selectedShippingInfo}
+            setaddressButtonIndex={setaddressButtonIndex}
+            setactiveButtonText={setactiveButtonText}
+
           ></AddressList>
         </div>
       </div>
