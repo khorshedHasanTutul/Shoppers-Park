@@ -13,64 +13,93 @@ import ProductSummary from "./ProductSummary/ProductSummary";
 const PaymentParent = () => {
   const data = CartService.Get();
   const [tabinfo, settabinfo] = useState(0);
-  const authCtx=useContext(authContext);
-  const [getAddressData, setgetAddressData] = useState([])
-  const [savedShippingInfo, setsavedShippingInfo] = useState({data:{},savedAddressInfo:{}})
-  const [shippingInfoTab, setshippingInfoTab] = useState(false)
-  const [alert, setalert] = useState(false)
-    const closeModal=()=>{
-        setalert(prevState=>!prevState)
-    }
+  const authCtx = useContext(authContext);
+  const [getAddressData, setgetAddressData] = useState([]);
+  const [savedShippingInfo, setsavedShippingInfo] = useState({
+    data: {},
+    savedAddressInfo: {},
+  });
+  const [shippingInfoTab, setshippingInfoTab] = useState(false);
+  const [alert, setalert] = useState(false);
+  const [paymentShippingAddress, setpaymentShippingAddress] = useState('')
+  const closeModal = () => {
+    setalert((prevState) => !prevState);
+  };
 
-  
   useEffect(() => {
+    const getCheckedData = getAddressData.find(
+      (item) => item.IsDefault === true
+    );
 
-    const getCheckedData=getAddressData.find(item=>item.IsDefault===true)
+    if (getCheckedData) {
+      setsavedShippingInfo({
+        data: getCheckedData,
+        savedAddressInfo: { text: getCheckedData.Type },
+      });
+    } else {
+      if (getAddressData.find((item) => item.Type === "Home")) {
+        const selectedTypeDataStore = getAddressData.find(
+          (item) => item.Type === "Home"
+        );
+        setsavedShippingInfo({
+          data: selectedTypeDataStore,
+          savedAddressInfo: { text: selectedTypeDataStore.Type },
+        });
+      } else if (getAddressData.find((item) => item.Type === "Office")) {
+        const selectedTypeDataStore = getAddressData.find(
+          (item) => item.Type === "Office"
+        );
+        setsavedShippingInfo({
+          data: selectedTypeDataStore,
+          savedAddressInfo: { text: selectedTypeDataStore.Type },
+        });
+      } else if (getAddressData.find((item) => item.Type === "Home Town")) {
+        const selectedTypeDataStore = getAddressData.find(
+          (item) => item.Type === "Home Town"
+        );
+        setsavedShippingInfo({
+          data: selectedTypeDataStore,
+          savedAddressInfo: { text: selectedTypeDataStore.Type },
+        });
+      }
+    }
+  }, [getAddressData]);
 
-    if(getCheckedData){
-      setsavedShippingInfo({data:getCheckedData,savedAddressInfo:{text:getCheckedData.Type}})
-    }
-    else {
-      setsavedShippingInfo({data:getAddressData[getAddressData.length-1],savedAddressInfo:{text:getAddressData[getAddressData.length-1]?.Type}})
-    }
-  }, [getAddressData])
-  
-  const getAddress=()=>{
+  const getAddress = () => {
     http.post({
-    url:endpoints.getAddress,
-    payload:{
-      PageNumber: 1,
-      PageSize: 3,
-      filter: [{
-          field: "CustomerId",
-          value: authCtx.user.id,
-          "Operation": 0
-      }]
-    },
-    before:()=>{
-      console.log('get address started')
-    },
-    successed:(data)=>{
-      console.log('datamaaaaaaaaaaaaaaaan',data)
-      if(data.Data)
-      setgetAddressData(data.Data);
-      if(data.Data.length>0)
-      setshippingInfoTab(true);
-    },
-    failed:()=>{
-      console.log('failed')
-    },
-    always:()=>{
-      console.log('end function')
-    }
-  })
-  } 
+      url: endpoints.getAddress,
+      payload: {
+        PageNumber: 1,
+        PageSize: 3,
+        filter: [
+          {
+            field: "CustomerId",
+            value: authCtx.user.id,
+            Operation: 0,
+          },
+        ],
+      },
+      before: () => {
+        console.log("get address started");
+      },
+      successed: (data) => {
+        console.log("datamaaaaaaaaaaaaaaaan", data);
+        if (data.Data) setgetAddressData(data.Data);
+        if (data.Data.length > 0) setshippingInfoTab(true);
+      },
+      failed: () => {
+        console.log("failed");
+      },
+      always: () => {
+        console.log("end function");
+      },
+    });
+  };
   useEffect(() => {
     getAddress();
-  }, [])
+  }, []);
 
-
-  const addressChangeHandler=()=>{
+  const addressChangeHandler = () => {
     window.scrollTo({
       top: 100,
       left: 100,
@@ -78,16 +107,16 @@ const PaymentParent = () => {
     });
     settabinfo(1);
     var element = document.getElementsByClassName("tab");
-      for (let i = 0; i < element.length; i++) {
-        element[i].children[0].classList.remove("activetab");
-      }
-      element[1].children[0].className += " activetab";
-  }
-  console.log({getAddressData})
+    for (let i = 0; i < element.length; i++) {
+      element[i].children[0].classList.remove("activetab");
+    }
+    element[1].children[0].className += " activetab";
+  };
+  console.log({ getAddressData });
 
   const tabInformation = (index, item, evt) => {
-    if(index===2 &&  (getAddressData.length)===0){
-      setalert(true)
+    if (index === 2 && getAddressData.length === 0) {
+      setalert(true);
       settabinfo(0);
       let element = document.getElementsByClassName("tab");
       for (let i = 0; i < element.length; i++) {
@@ -101,7 +130,7 @@ const PaymentParent = () => {
       element[i].children[0].classList.remove("activetab");
     }
     evt.target.className += " activetab";
-    
+
     settabinfo(index);
   };
 
@@ -111,35 +140,32 @@ const PaymentParent = () => {
       left: 100,
       behavior: "smooth",
     });
-    if(shippingInfoTab){
-      settabinfo(2)
+    if (shippingInfoTab) {
+      settabinfo(2);
       var element = document.getElementsByClassName("tab");
       for (let i = 0; i < element.length; i++) {
         element[i].children[0].classList.remove("activetab");
       }
       element[2].children[0].className += " activetab";
-    }
-    else{
-       settabinfo(1);
-        element = document.getElementsByClassName("tab");
+    } else {
+      settabinfo(1);
+      element = document.getElementsByClassName("tab");
       for (let i = 0; i < element.length; i++) {
         element[i].children[0].classList.remove("activetab");
       }
       element[1].children[0].className += " activetab";
     }
-     
-      // var element = document.getElementsByClassName("tab");
-      // for (let i = 0; i < element.length; i++) {
-      //   element[i].children[0].classList.remove("activetab");
-      // }
-      // if(tabinfo===1)
-      // element[1].children[0].className += " activetab";
-      // else if(tabinfo===2)
-      //   element[2].children[0].className += " activetab";
 
+    // var element = document.getElementsByClassName("tab");
+    // for (let i = 0; i < element.length; i++) {
+    //   element[i].children[0].classList.remove("activetab");
+    // }
+    // if(tabinfo===1)
+    // element[1].children[0].className += " activetab";
+    // else if(tabinfo===2)
+    //   element[2].children[0].className += " activetab";
   };
   const proceedOrder = (phone, email, name, district, division, area) => {
-
     window.scrollTo({
       top: 100,
       left: 100,
@@ -152,7 +178,7 @@ const PaymentParent = () => {
       // district.length !== 0 &&
       // division.length !== 0 &&
       // area.length !== 0
-      typeof(savedShippingInfo.data)!=='undefined'
+      typeof savedShippingInfo.data !== "undefined"
     ) {
       var element = document.getElementsByClassName("tab");
       for (let i = 0; i < element.length; i++) {
@@ -161,27 +187,22 @@ const PaymentParent = () => {
       element[2].children[0].className += " activetab";
       settabinfo(2);
     }
-    else
     // alert("Please select a valid address first")
-    setalert(true)
+    else setalert(true);
   };
 
-
-
-
-  const selectedShippingInfo=(data,savedAddressInfo)=>{
-    console.log({savedAddressInfo})
-   if(data && savedAddressInfo){
-    //  settabinfo(0)
-    //  var element = document.getElementsByClassName("tab");
-    //  for (let i = 0; i < element.length; i++) {
-    //    element[i].children[0].classList.remove("activetab");
-    //  }
-    //  element[0].children[0].className += " activetab";
-     setsavedShippingInfo({data:data,savedAddressInfo:savedAddressInfo})
-
-   }
-  }
+  const selectedShippingInfo = (data, savedAddressInfo) => {
+    console.log({ savedAddressInfo });
+    if (data && savedAddressInfo) {
+      //  settabinfo(0)
+      //  var element = document.getElementsByClassName("tab");
+      //  for (let i = 0; i < element.length; i++) {
+      //    element[i].children[0].classList.remove("activetab");
+      //  }
+      //  element[0].children[0].className += " activetab";
+      setsavedShippingInfo({ data: data, savedAddressInfo: savedAddressInfo });
+    }
+  };
 
   return (
     <>
@@ -207,7 +228,7 @@ const PaymentParent = () => {
                   <span class="card-shiping-item">
                     {" "}
                     Your shopping cart contains:
-                     <small> {data.Items.length} Product</small>
+                    <small> {data.Items.length} Product</small>
                   </span>
                   {tabinfo === 0 && (
                     <ProductSummary
@@ -222,23 +243,39 @@ const PaymentParent = () => {
                   )}
 
                   {tabinfo === 1 && (
-                    <AddressForm onSave={getAddress} addresses={getAddressData} proceedOrder={proceedOrder} selectedShippingInfo={selectedShippingInfo}/>
+                    <AddressForm
+                      onSave={getAddress}
+                      addresses={getAddressData}
+                      proceedOrder={proceedOrder}
+                      selectedShippingInfo={selectedShippingInfo}
+                      setsavedShippingInfo={setsavedShippingInfo}
+                      setpaymentShippingAddress={setpaymentShippingAddress}
+                    />
                   )}
                   {/* AddressComponentLoaded */}
 
-                  {tabinfo === 2 && <Payment savedShippingInfo={savedShippingInfo.data.ChargeAmount} savedShippingData={savedShippingInfo.data} addressChangeHandler={addressChangeHandler}/>}
+                  {tabinfo === 2 && (
+                    <Payment
+                      savedShippingInfo={savedShippingInfo.data.ChargeAmount}
+                      savedShippingData={savedShippingInfo.data}
+                      addressChangeHandler={addressChangeHandler}
+                      paymentShippingAddress={paymentShippingAddress}
+                    />
+                  )}
                   {/* PaymentComponentLoaded */}
-
                 </div>
               </div>
             </div>
             {/* <!-- checkout-main-tab --> */}
           </div>
         </div>
-        
-  {
-      (alert)&&<PopUpAlert content={'Please select a valid address first.'} closeModal={closeModal} />
-  }
+
+        {alert && (
+          <PopUpAlert
+            content={"Please select a valid address first."}
+            closeModal={closeModal}
+          />
+        )}
       </section>
     </>
   );

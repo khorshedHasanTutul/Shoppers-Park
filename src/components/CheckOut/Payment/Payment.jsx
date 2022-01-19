@@ -7,8 +7,8 @@ import { endpoints } from '../../../lib/endpoints';
 import { http } from '../../../Service/httpService';
 import PopUpAlert from '../../utilities/Alert/PopUpAlert';
 
-const Payment = ({savedShippingInfo,savedShippingData,addressChangeHandler}) => {
-    console.log({savedShippingData})
+const Payment = ({paymentShippingAddress,savedShippingInfo,savedShippingData,addressChangeHandler}) => {
+    console.log({paymentShippingAddress})
     const [cupon, setcupon] = useState('')
     const data=CartService.Get();
     const [OrderStatus, setproceedOrder] = useState(false)
@@ -92,11 +92,11 @@ const Payment = ({savedShippingInfo,savedShippingData,addressChangeHandler}) => 
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                                     </div>
                                     <div className="saving-address-content">
-                                        <small>{savedShippingData.Name}</small>
-                                    <small>{savedShippingData.Mobile}</small>
-                                    <span><aside>{savedShippingData.Type}</aside></span>
-                                    <span>{savedShippingData.Email}</span>
-                                    <span>{savedShippingData.Province + '-' +savedShippingData.District + '-'+savedShippingData.Upazila + '-' +savedShippingData.Remarks}</span>
+                                        <small>{paymentShippingAddress.Name}</small>
+                                    <small>{paymentShippingAddress.Mobile}</small>
+                                    <span><aside>{paymentShippingAddress.Type}</aside></span>
+                                    <span>{paymentShippingAddress.Email}</span>
+                                    <span>{paymentShippingAddress.Province + '-' +paymentShippingAddress.District + '-'+paymentShippingAddress.Upazila + '-' +paymentShippingAddress.Remarks}</span>
                                     </div>
                                 </div>
                                 {/* <div className="saving-ad-btn">
