@@ -6068,13 +6068,14 @@ div.brick.label.default {
 }
 
 .Steps_steps__3SNbF.Steps_wide__2JixU > div p:first-child {
-	border: 1px solid black;
+	border: 1px solid #000;
 	height: 25px;
 	width: 25px;
 	border-radius: 50%;
 	display: grid;
 	place-items: center;
-  background-color: #AAAAAA;
+	background-color: #595656;
+	color: white;
 }
 
 .Steps_step__2Wic5 {
@@ -6108,6 +6109,7 @@ div.brick.label.default {
   position: absolute;
   width: 25%;
   background-color: #df2c8a;
+  transition: 500ms ease-in-out;
 }
 .modal__content {
 	display: flex;
@@ -6426,4 +6428,12 @@ div.brick.label.default {
 }
 .order-text-mt-10 {
 	margin-bottom: -8px;
+}
+
+
+/* //temporary */
+.Steps_step__counter__2y6zu.false.Steps_active__z3pdg {
+	background: #04432e !important;
+  font-weight: bold;
+  
 }

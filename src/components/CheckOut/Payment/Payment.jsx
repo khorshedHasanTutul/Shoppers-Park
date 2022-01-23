@@ -92,11 +92,13 @@ const Payment = ({paymentShippingAddress,savedShippingInfo,savedShippingData,add
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                                     </div>
                                     <div className="saving-address-content">
-                                        <small>{paymentShippingAddress.Name}</small>
-                                    <small>{paymentShippingAddress.Mobile}</small>
-                                    <span><aside>{paymentShippingAddress.Type}</aside></span>
-                                    <span>{paymentShippingAddress.Email}</span>
-                                    <span>{paymentShippingAddress.Province + '-' +paymentShippingAddress.District + '-'+paymentShippingAddress.Upazila + '-' +paymentShippingAddress.Remarks}</span>
+                                        <small>{(paymentShippingAddress)?paymentShippingAddress.Name :savedShippingData.Name}</small>
+                                    <small>{(paymentShippingAddress)?paymentShippingAddress.Mobile :savedShippingData.Mobile}</small>
+                                    <span><aside>{(paymentShippingAddress)?paymentShippingAddress.Type :savedShippingData.Type}</aside></span>
+                                    <span>{(paymentShippingAddress)?paymentShippingAddress.Email :savedShippingData.Email}</span>
+                                    <span>{(paymentShippingAddress)?paymentShippingAddress.Province + '-' +paymentShippingAddress.District + '-'+paymentShippingAddress.Upazila + '-' +paymentShippingAddress.Remarks:
+                                    savedShippingData.Province + '-' +savedShippingData.District + '-'+savedShippingData.Upazila + '-' +savedShippingData.Remarks
+                                    }</span>
                                     </div>
                                 </div>
                                 {/* <div className="saving-ad-btn">

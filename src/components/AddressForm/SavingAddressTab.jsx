@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { callBack, Checkout } from "../../Service/AppService";
 
 const SavingAddressTab = ({
@@ -6,12 +7,17 @@ const SavingAddressTab = ({
   activeButtonAddress,
   getAddressData,
 }) => {
+  const {pathname}=useLocation();
   const [indexCheck, setindexCheck] = useState(0);
   const savedAddressButtonHandler=(index,item,findItem,e,)=>{
-    const x=  callBack(activeButtonAddress,index,item)
+      const x=  callBack(activeButtonAddress,index,item)
     x(e)
-    const y=callBack(selectedShippingInfo,findItem,item)
-    y(e)
+    if(pathname==="/checkout"){
+      const y=callBack(selectedShippingInfo,findItem,item)
+      y(e)
+    }
+   
+    
   }
 
   const count = 1;

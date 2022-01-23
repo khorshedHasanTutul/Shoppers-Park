@@ -40,7 +40,7 @@ const FoundIteminfo = ({
     e.currentTarget.className += " hover-Effect";
     setselectedStatusIndex(savedAddressIndex);
     setaddressButtonIndex(savedAddressIndex);
-    setsavedShippingInfo({data:data,savedAddressInfo:savedAddressInfo})
+    // setsavedShippingInfo({data:data,savedAddressInfo:savedAddressInfo})
     if (savedAddressIndex === 0) {
       setactiveButtonText("Home");
     } else if (savedAddressIndex === 1) {

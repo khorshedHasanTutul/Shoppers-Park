@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { endpoints } from "../../lib/endpoints";
 import { CartService } from "../../Service/CartContent";
 import { http } from "../../Service/httpService";
@@ -11,6 +12,7 @@ import Payment from "./Payment/Payment";
 import ProductSummary from "./ProductSummary/ProductSummary";
 
 const PaymentParent = () => {
+  const {pathname}=useLocation()
   const data = CartService.Get();
   const [tabinfo, settabinfo] = useState(0);
   const authCtx = useContext(authContext);
@@ -193,7 +195,7 @@ const PaymentParent = () => {
 
   const selectedShippingInfo = (data, savedAddressInfo) => {
     console.log({ savedAddressInfo });
-    if (data && savedAddressInfo) {
+    if (data && savedAddressInfo && pathname==="/checkout") {
       //  settabinfo(0)
       //  var element = document.getElementsByClassName("tab");
       //  for (let i = 0; i < element.length; i++) {
