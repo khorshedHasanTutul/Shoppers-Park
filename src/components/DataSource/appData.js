@@ -440,10 +440,6 @@ var appData = {
       },
       {
         index:1,
-        name:'Jewellery'
-      },
-      {
-        index:2,
         name:'Baby Product'
       }
     ],
