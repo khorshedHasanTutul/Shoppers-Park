@@ -95,7 +95,7 @@ const About = () => {
           </div>
 
           <div className="about-container__map">
-          <iframe title="Shoppers Park" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3649.4472589128736!2d90.3629873!3d23.8382467!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c14866486c7d%3A0xe8693af991501c96!2sIqrasys%20Solutions%20Limited!5e0!3m2!1sen!2sbd!4v1643015386239!5m2!1sen!2sbd" style={{border:"0"}} allowfullscreen="" loading="lazy"></iframe>
+          <iframe title="Shoppers Park" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.772337199029!2d90.37097871465159!3d23.755496584586908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf536d1cf7bb%3A0x9ba1b02f4265d430!2sGenetic%20Plaza!5e0!3m2!1sen!2sbd!4v1643028415160!5m2!1sen!2sbd" style={{border:"0"}} allowfullscreen="" loading="lazy"></iframe>
           </div>
         </div>
         </div> 
