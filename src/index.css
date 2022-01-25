@@ -2246,6 +2246,55 @@ a {
   transform: scale(1.1);
 }
 
+/* ////////////////////////Funel Css ////////////// */
+.alert__popup__funel{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(90px,1fr));
+  align-items: center;
+}
+.grid-container {
+	position: absolute;
+	display: grid;
+	grid-template-columns: repeat(auto-fit,minmax(90px,1fr));
+	align-items: center;
+	background: white;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  z-index: 99999;
+  width: 60%;
+  padding: 26px;
+  top: 55px;
+}
+.grid-container__image .modal__close {
+	width: 34px;
+	height: 34px;
+	background: #000;
+	text-align: center;
+	color: #fff;
+	opacity: 0.8;
+	border-radius: 50%;
+	line-height: 34px;
+	position: absolute;
+	z-index: 999;
+	right: -4px;
+	top: -7px;
+}
+
+.grid-container__image .modal__close {
+	font-size: 30px;
+}
+
+
+.alert-for-all-web {
+	display: flex;
+	justify-content: center;
+}
+.grid-container__image > img {
+	width: 100%;
+}
+.alert-main-area {
+	display: grid;
+	place-items: center;
+}
 .modal__content {
   border-radius: 4px;
   position: relative;
@@ -2292,7 +2341,6 @@ a {
   transition: all 0.4s;
   z-index: 99;
 }
-
 .alert-main-area h2 {
   margin: 0;
   padding: 0;
@@ -2304,6 +2352,24 @@ a {
   visibility: visible;
   opacity: 1;
   animation: myAnim 2s ease 0s 1 normal forwards;
+}
+/* .alert-main-area{
+  animation: alertAnime 3s linear 3s 1 normal forwards;
+}
+@keyframes alertAnime {
+  10%{
+    background: #0969da;
+  }
+  
+} */
+
+.main-ads{
+  transform: scale(1);
+  background: rgba(77, 77, 77, 0.8);
+  opacity: 1;
+}
+.main-ads.hide{
+  transform: scale(0) !important;
 }
 
 @keyframes myAnim {
@@ -6161,6 +6227,7 @@ div.brick.label.default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+  
 }
 
 /* .close-popup-modal a {
