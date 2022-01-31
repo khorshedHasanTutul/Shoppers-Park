@@ -11,18 +11,25 @@ const SubCategory = ({categoryItem,toggleClass}) => {
     const decrement=()=>{
         setcount(count-1)
     }
+    const classRemover=()=>{
+        const classfinded=document.getElementsByClassName('loaded-menu-display');
+        for(let i=0;i<classfinded.length;i++){
+            classfinded[i].classList.remove('loaded-menu-display')
+        }
+    }
     
     const clickedArrowHandler=({target})=>{
+        // classRemover();
         const element=target.parentElement.nextSibling;
         if(count%2===0){
             element.classList+=' loaded-menu-display'
             increment();
         }
-       
         else{
             element.classList.remove('loaded-menu-display')
             decrement();
         }
+
 
     }
     

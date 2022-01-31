@@ -13,8 +13,15 @@ const CategoryItem = ({toggleClass,indexofCategory}) => {
     const decrement=()=>{
         setcount(count-1)
     }
+    const classRemover=()=>{
+        const classfinded=document.getElementsByClassName('loaded-menu-display');
+        for(let i=0;i<classfinded.length;i++){
+            classfinded[i].classList.remove('loaded-menu-display')
+        }
+    }
 
     const clickedArrowHandler=({target})=>{
+        // classRemover();
         const element=target.parentElement.nextSibling;
         if(count%2===0){
             element.classList+=' loaded-menu-display'
@@ -50,7 +57,7 @@ const CategoryItem = ({toggleClass,indexofCategory}) => {
                         </ul>
                     </>:
                     <>
-                        <Link title={categoryItem.categoryName} to={'/category/'+categoryItem.categoryId}>{categoryItem.categoryName}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true" onClick={clickedArrowHandler}></i></Link>
+                        <Link title={categoryItem.categoryName} to={'/category/'+categoryItem.categoryId}><span onClick={toggleClass}>{categoryItem.categoryName}</span><i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true" onClick={clickedArrowHandler}></i></Link>
                             <ul class="loaded mega-menu mega-menu2">
                                 <li class="sd-nav__section-wrapper">
                                     <Link to={'/category/'+categoryItem.categoryId}><span onClick={toggleClass}>View all{categoryItem.categoryName}</span></Link>

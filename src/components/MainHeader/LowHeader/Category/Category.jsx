@@ -15,13 +15,20 @@ const Category = () => {
     const decrement=()=>{
         setcount(count-1)
     }
+    const classRemoverHandler=()=>{
+        const classfinded=document.getElementsByClassName('loaded-menu-display');
+        for(let i=0;i<classfinded.length;i++){
+            classfinded[i].classList.remove('loaded-menu-display')
+        }
+    }
     const toggleClass = () => {
         setActive(prevState=> !prevState)
+        classRemoverHandler()
     };
 
     const clickedArrowHandler=({target})=>{
+        //  classRemoverHandler()
         const element=target.parentElement.nextSibling;
-        console.log(element)
         if(count%2===0){
             element.classList+=' loaded-menu-display'
             increment();
@@ -55,7 +62,7 @@ const Category = () => {
                                             </>
                                             :
                                             <>
-                                            <a href >{item.name}<i class="fa fa-angle-down arrow-class" aria-hidden="true" onClick={clickedArrowHandler}></i></a>
+                                            <a href onClick={clickedArrowHandler}><span >{item.name}</span><i class="fa fa-angle-down arrow-class" aria-hidden="true" ></i></a>
                                             <ul class="dropdownmenu mega-menu">
                                             {/* start inner mega menu shop */}
                                             <CategoryItem toggleClass={toggleClass}/>

@@ -7,7 +7,7 @@ import PopUpAlert from '../utilities/Alert/PopUpAlert';
 
 export const MainHeader = () => {
     const [scroll, setScroll] = useState(false);
-    const [alertPopUp, setalertPopUp] = useState(true);
+    const [alertPopUp, setalertPopUp] = useState(false);
     const [popupClasses, setPopupClasses] = useState('main-ads hide');
     const closeModal=()=>{
         setalertPopUp(prevState=>!prevState)
