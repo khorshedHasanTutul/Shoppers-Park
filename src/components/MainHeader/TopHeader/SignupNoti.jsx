@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState,useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
@@ -15,6 +15,8 @@ const SignupNoti = () => {
     const [Modal, setModal] = useState(false)
     const authCtx = useContext(authContext);
     const history = useHistory();
+
+    
     
     const notificationList=()=>{
         setnotification(prevstate => !prevstate)
