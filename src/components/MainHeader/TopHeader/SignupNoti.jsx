@@ -41,6 +41,7 @@ const SignupNoti = () => {
     const notiData=Notification.notificationList;
     const [wishData, setwishData] = useState(WishService.Get())
     WishService.Refresh=setwishData;
+    
     return (
         <>
         <div class="header-bottom-cart">

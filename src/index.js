@@ -8,14 +8,18 @@ import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./pages/ScrollToTop";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import AuthContextProvider from "./Store/AuthContextProvider";
+import CartContextProvider from "./Store/CartContextProvider";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ScrollToTop />
-      <AuthContextProvider>
+      <CartContextProvider>
+        <AuthContextProvider>
         <App />
       </AuthContextProvider>
+      </CartContextProvider>
+      
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
