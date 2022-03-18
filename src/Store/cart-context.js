@@ -6,6 +6,7 @@ const cartContext=createContext({
     clearCart:{},
     singleItemRemover:(item)=>{},
     updateQuantity:(item,qty)=>{},
-    singleProductAdd:(item,qty)=>{}
+    singleProductAdd:(item,qty)=>{},
+    updateEditableQuantity:(item,qty)=>{}
 })
 export default cartContext;

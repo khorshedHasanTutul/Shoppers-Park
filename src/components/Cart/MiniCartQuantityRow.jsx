@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import cartContext from "../../Store/cart-context";
 
-const MiniCartQuantityRow = ({ item }) => {
+const MiniCartQuantityRow = ({ item, setQtyAlert }) => {
   const cartCtx = useContext(cartContext);
+  const [qty, setQty] = useState("");
 
   const qtyDecHandler = (findItem, e) => {
     e.preventDefault();
@@ -14,6 +15,22 @@ const MiniCartQuantityRow = ({ item }) => {
     e.preventDefault();
     let quantity = findItem.quantity + 1;
     cartCtx.updateQuantity(findItem, quantity);
+  };
+
+  const qtyChangeHandler = ({ target }) => {
+    if (target.value === "") {
+      setQty(0);
+    } else {
+      setQty(target.value);
+    }
+    cartCtx.updateEditableQuantity(item, target.value);
+  };
+  const blurHandler = () => {
+    if (qty === 0) {
+      setQtyAlert(true);
+      cartCtx.updateEditableQuantity(item, 1);
+      setQty(1);
+    }
   };
 
   return (
@@ -36,6 +53,8 @@ const MiniCartQuantityRow = ({ item }) => {
             id="product_qty"
             class="qty-input"
             value={item.quantity}
+            onChange={qtyChangeHandler}
+            onBlur={blurHandler}
           />
           <span>
             <a

@@ -218,6 +218,56 @@ const reducer = (state, action) => {
     };
   }
 
+  //Update Editable quantity update
+  if(action.type === "UPDATE_EDITABLE_QTY") {
+    let CtxItems = [...state.Items];
+    const findCtxItem = CtxItems.find(
+      (itemfind) => itemfind.Id === action.item.Id
+    );
+    if(action.qty===""){
+      action.qty=parseInt(0);
+    }
+
+    // if (action.qty === 0) {
+    //   let getCartFromLocalStorage = localStorage.getItem("CARTV1");
+    //   getCartFromLocalStorage = JSON.parse(getCartFromLocalStorage);
+    //   const index = getCartFromLocalStorage.Items.findIndex(
+    //     (item2) => item2.Id === action.item.Id
+    //   );
+    //   getCartFromLocalStorage.Items.splice(index, 1);
+
+    //   CtxItems = CtxItems.filter((item) => item.Id !== action.item.Id);
+    // }
+
+    findCtxItem.quantity = action.qty;
+    let totalAmmount = 0;
+
+    CtxItems.forEach((element) => {
+      let mrpPriceOfSingleProduct;
+      if (element.Ds > 0) {
+        mrpPriceOfSingleProduct = calcDiscountAmmount(element);
+      } else {
+        mrpPriceOfSingleProduct = calcAmmount(element);
+      }
+      totalAmmount += mrpPriceOfSingleProduct * element.quantity;
+    });
+
+    localStorage.setItem(
+      "CARTV1",
+      JSON.stringify({
+        TotalItems: CtxItems.length,
+        TotalAmmount: totalAmmount,
+        Items: CtxItems,
+      })
+    );
+    return {
+      ...state,
+      TotalItems: CtxItems.length,
+      TotalAmmount: totalAmmount,
+      Items: CtxItems,
+    };
+  }
+
   // clear cart & LocalStorage
 
   if (action.type === "CLEAR_CART_ITEMS") {
@@ -251,6 +301,10 @@ const CartContextProvider = ({ children }) => {
     dispatch({ type: "ADD_SINGLE_PRODUCT", item: item, qty: qty });
   };
 
+  const updateEditableQtyhandler=(item,qty) => {
+    dispatch ({ type: "UPDATE_EDITABLE_QTY" , item: item, qty: qty})
+  }
+
   const context = {
     storeCartItems: storeCartHandler,
     getCartModel: state,
@@ -258,6 +312,7 @@ const CartContextProvider = ({ children }) => {
     singleItemRemover: CartItemRemoverHandler,
     updateQuantity: QuantityHandler,
     singleProductAdd: addToSingleProductHandler,
+    updateEditableQuantity:updateEditableQtyhandler
   };
 
   return (

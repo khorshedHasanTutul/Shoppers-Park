@@ -4,6 +4,7 @@ import { endpoints } from "../../lib/endpoints";
 import { CartService } from "../../Service/CartContent";
 import { http } from "../../Service/httpService";
 import authContext from "../../Store/auth-context";
+import cartContext from "../../Store/cart-context";
 import AddressForm from "../AddressForm/AddressForm";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import CheckOutHeader from "./CheckOutHeader";
@@ -13,20 +14,26 @@ import ProductSummary from "./ProductSummary/ProductSummary";
 
 const PaymentParent = () => {
   const { pathname } = useLocation();
-  const data = CartService.Get();
+  const cartCtx=useContext(cartContext)
+  const getCartModal=cartCtx.getCartModel;
   const [tabinfo, settabinfo] = useState(0);
   const authCtx = useContext(authContext);
   const [getAddressData, setgetAddressData] = useState([]);
+  
   const [savedShippingInfo, setsavedShippingInfo] = useState({
     data: {},
     savedAddressInfo: {},
   });
   const [shippingInfoTab, setshippingInfoTab] = useState(false);
   const [alert, setalert] = useState(false);
+  const [qtyAlert, setQtyAlert] = useState(false)
   const [paymentShippingAddress, setpaymentShippingAddress] = useState("");
   const closeModal = () => {
     setalert((prevState) => !prevState);
   };
+  const closeQtyModal=()=>{
+    setQtyAlert(prevState=>!prevState)
+}
 
   useEffect(() => {
     const getCheckedData = getAddressData.find(
@@ -230,17 +237,17 @@ const PaymentParent = () => {
                   <span class="card-shiping-item">
                     {" "}
                     Your shopping cart contains:
-                    <small> {data.Items.length} Product</small>
+                    <small> {getCartModal.Items.length} Product</small>
                   </span>
                   {tabinfo === 0 && (
                     <ProductSummary
-                      data={data}
                       proceedFunction={proceedFunction}
                       tabInformation={tabInformation}
                       addressChangeHandler={addressChangeHandler}
                       shippingInfoTab={shippingInfoTab}
                       getAddressData={getAddressData}
                       savedShippingInfo={savedShippingInfo}
+                      setQtyAlert={setQtyAlert}
                     />
                   )}
 
@@ -276,6 +283,12 @@ const PaymentParent = () => {
           <PopUpAlert
             content={"Please select a valid address first."}
             closeModal={closeModal}
+          />
+        )}
+        {qtyAlert && (
+          <PopUpAlert
+            content={"Quantity can't be less than 1."}
+            closeModal={closeQtyModal}
           />
         )}
       </section>
