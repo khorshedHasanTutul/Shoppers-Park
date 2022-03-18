@@ -13,6 +13,7 @@ const ProductSummary = ({
   tabInformation,
   addressChangeHandler,
   savedShippingInfo,
+  setQtyAlert
 }) => {
   const cartCtx = useContext(cartContext);
   const cartCtxModal=cartCtx.getCartModel;
@@ -46,7 +47,7 @@ const ProductSummary = ({
               </tr>
             </thead>
             <tbody>
-              <TableSingleItem />
+              <TableSingleItem setQtyAlert={setQtyAlert} />
             </tbody>
             <tfoot>
               {/* <tr>

@@ -6,7 +6,7 @@ import authContext from "../../Store/auth-context";
 import cartContext from "../../Store/cart-context";
 import MiniCartQuantityRow from "./MiniCartQuantityRow";
 
-const CartTableItem = ({ data }) => {
+const CartTableItem = ({ data,setQtyAlert }) => {
   const ctxCart = useContext(cartContext);
   const getCartModal = ctxCart.getCartModel;
 
@@ -38,7 +38,7 @@ const CartTableItem = ({ data }) => {
               </strong>
             )}
           </td>
-          <MiniCartQuantityRow item={item} />
+          <MiniCartQuantityRow item={item} setQtyAlert={setQtyAlert} />
           <td class="amount-for-popup">
             <span class="SearchFont SearchDelPrice">
               {item.Ds > 0 ? <aside>৳</aside> : <span>৳</span>}

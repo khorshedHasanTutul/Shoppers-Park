@@ -9,11 +9,15 @@ const ShoppingCart = () => {
   const { pathname } = useLocation();
   const [isOpenCart, setisOpenCart] = useState(false);
   const [alert, setalert] = useState(false);
+  const [qtyAlert, setQtyAlert] = useState(false);
   const [loginPopupModel, setloginPopupModel] = useState(false);
   const [orderNowPressed, setorderNowPressed] = useState(false);
   const closeModal = () => {
     setalert((prevState) => !prevState);
   };
+  const closeQtyModal=()=>{
+    setQtyAlert(prevState=>!prevState)
+}
   const toggleCart = () => {
     setisOpenCart((prevState) => !prevState);
   };
@@ -31,6 +35,14 @@ const ShoppingCart = () => {
             closeModal={closeModal}
           />
         )}
+        {
+            qtyAlert && (
+                <PopUpAlert 
+                content={"Quantity can't be less than 1."}
+                closeModal={closeQtyModal}
+                />
+            )
+        }
         {loginPopupModel && (
           <ModalPOpUp
             ModalOpen={ModalClose}
@@ -45,6 +57,7 @@ const ShoppingCart = () => {
               setalert={closeModal}
               setloginPopupModel={setloginPopupModel}
               setorderNowPressed={setorderNowPressed}
+              setQtyAlert={setQtyAlert}
             />
           )}
           {!isOpenCart && <MiniCart openCart={toggleCart} />}

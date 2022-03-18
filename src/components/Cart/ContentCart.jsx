@@ -9,6 +9,7 @@ const ContentCart = ({
   setalert,
   setloginPopupModel,
   setorderNowPressed,
+  setQtyAlert
 }) => {
   const authCtx = useContext(authContext);
   const ctxCart = useContext(cartContext);
@@ -65,7 +66,7 @@ const ContentCart = ({
             <span class="happy-shopping">Happy Shopping!! </span>
             <table class="cart-table">
               <tbody>
-                <CartTableItem />
+                <CartTableItem setQtyAlert={setQtyAlert}/>
               </tbody>
             </table>
           </div>

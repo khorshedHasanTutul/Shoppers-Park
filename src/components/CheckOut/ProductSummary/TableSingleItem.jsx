@@ -3,7 +3,7 @@ import cartContext from "../../../Store/cart-context";
 import CartQuantityRow from "./CartQuantityRow";
 import TableItemCategoryBrand from "./TableItemCategoryBrand";
 
-const TableSingleItem = ({ data }) => {
+const TableSingleItem = ({ data,setQtyAlert }) => {
   const cartCtx = useContext(cartContext);
   const cartCtxModel = cartCtx.getCartModel;
 
@@ -20,7 +20,7 @@ const TableSingleItem = ({ data }) => {
               <img src={item.image} alt="img" />
             </a>
           </td>
-          <TableItemCategoryBrand item={item} />
+          <TableItemCategoryBrand item={item}/>
           {item.Ds > 0 ? (
             <td class="price">
               <span>
@@ -32,7 +32,7 @@ const TableSingleItem = ({ data }) => {
               <span>৳ {item.MRP.toFixed(2)}</span>
             </td>
           )}
-          <CartQuantityRow item={item} />
+          <CartQuantityRow item={item} setQtyAlert={setQtyAlert}/>
           {item.Ds > 0 ? (
             <td class="price">
               <span>
