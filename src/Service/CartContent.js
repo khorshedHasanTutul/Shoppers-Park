@@ -106,8 +106,10 @@ const WishService = {};
         return CartModel.Items;
     }
 
-    this.decrement = function (item) {
-        const index = CartModel.Items.findIndex(item2 => item2.Id === item.Id);
+    this.decrement = function (item,quantityValue) {
+        // console.log(quantityValue)
+        if(quantityValue>1){
+            const index = CartModel.Items.findIndex(item2 => item2.Id === item.Id);
         if(item.Ds>0){
             let product_price=CartModel.Items[index].MRP;
             product_price=(product_price-((product_price)*item.Ds)/100);
@@ -123,6 +125,8 @@ const WishService = {};
         this.Refresh(this.Get());
         localStorage.setItem('cartModel', JSON.stringify(CartModel));
         return CartModel.Items;
+        }
+        
     }
     this.QtyUpdate=function(item,qtyChangeedValue){
         const index = CartModel.Items.findIndex(item2 => item2.Id === item.Id);
@@ -221,8 +225,9 @@ const cartSingleButtonAdd=(item,count,evt)=>{
 const ButoonInc = (item, evt) => {
     CartService.increment(item, evt);
 }
-const ButoonDec = (item, evt) => {
-    CartService.decrement(item, evt);
+const ButoonDec = (item,quantityValue, evt) => {
+    console.log(quantityValue)
+    CartService.decrement(item,quantityValue, evt);
 }
 const QtyChange=(item,qtyChangeedValue,evt)=>{
     evt.preventDefault();

@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { callBack } from "../../../Service/AppService";
-import { CartService } from "../../../Service/CartContent";
+import cartContext from "../../../Store/cart-context";
 import TableSingleItem from "./TableSingleItem";
 
-const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, tabInformation,addressChangeHandler,savedShippingInfo }) => {
-  const [CartContent, setCartContent] = useState(CartService.Get());
-  CartService.Refresh = setCartContent;
-  console.log({getAddressData})
-  let findDefaultSelected=getAddressData.find(item=>item.IsDefault===true);
-  if(!findDefaultSelected){
-    findDefaultSelected=getAddressData[0];
-  }
-  console.log(['getaddressData 0',findDefaultSelected])
-  console.log(["CharGeDataAmmount===>",savedShippingInfo.data])
+const ProductSummary = ({
+  getAddressData,
+  shippingInfoTab,
+  data,
+  proceedFunction,
+  tabInformation,
+  addressChangeHandler,
+  savedShippingInfo,
+}) => {
+  const cartCtx = useContext(cartContext);
+  const cartCtxModal=cartCtx.getCartModel;
+  const history=useHistory();
 
+  let findDefaultSelected = getAddressData.find(
+    (item) => item.IsDefault === true
+  );
+  if (!findDefaultSelected) {
+    findDefaultSelected = getAddressData[0];
+  }
+  useEffect(()=>{
+    if(cartCtxModal.Items.length===0){
+      history.push('/')
+    }
+  },[cartCtxModal.Items.length,history])
   return (
     <div class="tab-content checkout-main-tab-content">
       {/* <!-- product desc review information --> */}
@@ -32,7 +46,7 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
               </tr>
             </thead>
             <tbody>
-              <TableSingleItem data={CartContent} />
+              <TableSingleItem />
             </tbody>
             <tfoot>
               {/* <tr>
@@ -54,7 +68,7 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
                 </td>
                 <td colspan="4">
                   <strong>
-                    ৳ <span>{(CartContent?.TotalAmount).toFixed(2)}</span>
+                    ৳ <span>{(cartCtxModal.TotalAmmount).toFixed(2)}</span>
                   </strong>
                 </td>
               </tr>
@@ -68,56 +82,70 @@ const ProductSummary = ({ getAddressData,shippingInfoTab,data, proceedFunction, 
                 </div>
               </form>
             </div> */}
-            {
-              (shippingInfoTab)&& 
-               <div className="shaping-address-saveing-row">
-              <div className="shapping-address-inner-content">
-                <div className="location-ad-icon">
-                   <i class="fa fa-map-marker" aria-hidden="true"></i>
+            {shippingInfoTab && (
+              <div className="shaping-address-saveing-row">
+                <div className="shapping-address-inner-content">
+                  <div className="location-ad-icon">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  </div>
+                  <div className="saving-address-content">
+                    {typeof savedShippingInfo.data.Name !== "undefined" ? (
+                      <>
+                        <small>{savedShippingInfo.data.Name}</small>
+                        <small>{savedShippingInfo.data.Mobile}</small>
+                        <span>
+                          <aside>
+                            {savedShippingInfo.savedAddressInfo.text}
+                          </aside>
+                        </span>
+                        <span>{savedShippingInfo.data.Email}</span>
+                        <span>
+                          {savedShippingInfo.data.Province +
+                            "-" +
+                            savedShippingInfo.data.District +
+                            "-" +
+                            savedShippingInfo.data.Upazila +
+                            "-" +
+                            savedShippingInfo.data.Remarks}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <small>{findDefaultSelected.Name}</small>
+                        <small>{findDefaultSelected.Mobile}</small>
+                        <span>
+                          <aside>{findDefaultSelected.Type}</aside>
+                        </span>
+                        <span>{findDefaultSelected.Email}</span>
+                        <span>
+                          {findDefaultSelected.Province +
+                            "-" +
+                            findDefaultSelected.District +
+                            "-" +
+                            findDefaultSelected.Upazila +
+                            "-" +
+                            findDefaultSelected.Remarks}
+                        </span>
+                      </>
+                    )}
+                  </div>
                 </div>
-                <div className="saving-address-content">
-                  {
-                    (typeof (savedShippingInfo.data.Name)!=='undefined')?
-                    <>
-                     <small>{savedShippingInfo.data.Name}</small>
-                  <small>{savedShippingInfo.data.Mobile}</small>
-                  <span><aside>{savedShippingInfo.savedAddressInfo.text}</aside></span>
-                  <span>{savedShippingInfo.data.Email}</span>
-                  <span>{savedShippingInfo.data.Province + '-' + savedShippingInfo.data.District + '-' + savedShippingInfo.data.Upazila + '-' + savedShippingInfo.data.Remarks}</span>
-                    </>:
-                    <>
-                  <small>{findDefaultSelected.Name}</small>
-                  <small>{findDefaultSelected.Mobile}</small>
-                  <span><aside>{findDefaultSelected.Type}</aside></span>
-                  <span>{findDefaultSelected.Email}</span>
-                  <span>{findDefaultSelected.Province + '-' + findDefaultSelected.District + '-' + findDefaultSelected.Upazila + '-' + findDefaultSelected.Remarks}</span>
-                    </>
-                  }
-                  
-                 
+                <div className="saving-ad-btn">
+                  <button onClick={addressChangeHandler}>Change</button>
                 </div>
               </div>
-              <div className="saving-ad-btn">
-                <button onClick={addressChangeHandler}>Change</button>
-              </div>
-            </div>
-            }
-           
+            )}
 
             <div class="cart_navigation">
-              <Link class="prev-btn" to="/home">
+              <Link class="prev-btn" to="/">
                 <i
                   class="fa fa-angle-left check-ang-left"
                   aria-hidden="true"
                 ></i>{" "}
                 Continue shopping
               </Link>
-              
-              <a
-                class="next-btn"
-                onClick={callBack(proceedFunction)}
-                href
-              >
+
+              <a class="next-btn" onClick={callBack(proceedFunction)} href>
                 {" "}
                 Proceed to checkout{" "}
                 <i

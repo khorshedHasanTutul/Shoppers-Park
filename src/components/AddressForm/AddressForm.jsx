@@ -58,6 +58,7 @@ const AddressForm = ({
   const [addressValid, setaddressValid] = useState(false);
   const [saveBtnClicked, setsaveBtnClicked] = useState(false);
   const [alert, setalert] = useState(false);
+  console.log({divisionId})
 
   const closeModal = () => {
     setalert((prevState) => !prevState);
@@ -231,6 +232,7 @@ const AddressForm = ({
       },
     });
   };
+  console.log({districtId})
 
   const getAreas = (districtId) => {
     http.post({
