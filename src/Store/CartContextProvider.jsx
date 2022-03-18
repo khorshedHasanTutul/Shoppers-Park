@@ -239,7 +239,7 @@ const reducer = (state, action) => {
     //   CtxItems = CtxItems.filter((item) => item.Id !== action.item.Id);
     // }
 
-    findCtxItem.quantity = action.qty;
+    findCtxItem.quantity =  parseInt(action.qty);
     let totalAmmount = 0;
 
     CtxItems.forEach((element) => {
