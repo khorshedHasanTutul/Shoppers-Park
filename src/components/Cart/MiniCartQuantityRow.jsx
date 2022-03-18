@@ -23,7 +23,7 @@ const MiniCartQuantityRow = ({ item, setQtyAlert }) => {
     } else {
       setQty(target.value);
     }
-    cartCtx.updateEditableQuantity(item, parseInt(target.value));
+    cartCtx.updateEditableQuantity(item,(target.value));
   };
   const blurHandler = () => {
     if (qty === 0) {
