@@ -85,23 +85,23 @@ const CategorySingleItem = ({ item, wishItemsGet, setalert }) => {
             ""
           )}
 
-          <img src={item.image} alt="img" />
+          <img src={item[4]} alt="img" />
           <div class="catagory-overly-main-bg">
             <div class="catagory-product-overly">
-              <h4>{item.Nm}</h4>
+              <h4>{item[2]}</h4>
             </div>
             <div class="basket-add">
-              {item.Ds > 0 ? (
+              {item[7] > 0 ? (
                 <span class="item__price item__price--now">
-                  ৳{(item.MRP - (item.MRP * item.Ds) / 100).toFixed(2)}
+                  ৳{item[6].toFixed(2)}
                 </span>
               ) : (
-                <span class="item__price item__price--now">৳{item.MRP}</span>
+                <span class="item__price item__price--now">৳{item[5].toFixed(2)}</span>
               )}
 
               {item.Ds > 0 ? (
                 <span class="price product-price">
-                  <del class="cross_price">৳ {item.MRP}</del>
+                  <del class="cross_price">৳ {item[5].toFixed(2)}</del>
                 </span>
               ) : (
                 ""

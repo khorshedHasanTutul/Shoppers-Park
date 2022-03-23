@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import appData from '../../../DataSource/appData';
+import { getDisplayCategories } from '../../../../Service/DataService';
 import PopUpAlert from '../../../utilities/Alert/PopUpAlert';
 import CategoryWiseProduct from './CategoryWiseProduct';
 
 
 const CategoryProducts = ({wishItemsGet}) => {
-    const categoryData=appData.ShopCategory;
     const [alert, setalert] = useState(false)
     const closeModal=()=>{
         setalert(prevState=>!prevState)
@@ -16,7 +15,7 @@ const CategoryProducts = ({wishItemsGet}) => {
                            (alert)&&<PopUpAlert content={'Already in your cart.'} closeModal={closeModal} />
                       }
             {
-                categoryData.map(item=>(
+                getDisplayCategories.map(item=>(
                     <div class="container">
                         <CategoryWiseProduct item={item} wishItemsGet={wishItemsGet} setalert={closeModal}/>
                     </div>

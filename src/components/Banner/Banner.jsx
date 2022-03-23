@@ -1,6 +1,7 @@
 import React from 'react'
 import appData from '../DataSource/appData';
 import Slider from '../utilities/Slider/Slider';
+import BannerTemplate from './BannerTemplate/BannerTemplate';
 
 export const Banner = () => {
     const data=appData.BannerImage;
@@ -15,7 +16,7 @@ export const Banner = () => {
     return (
         <section class="banner-slider-index-item">
                 {/* <!-- banner slider area --> */}
-               <Slider data={data} options={options} />
+               <Slider data={data} options={options} TempLate={BannerTemplate} />
         </section>
     )
 }
