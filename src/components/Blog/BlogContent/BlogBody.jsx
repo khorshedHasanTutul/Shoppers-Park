@@ -1,30 +1,32 @@
-import React from 'react'
-import BlogCategory from './BlogCategory';
-import BlogRecentPost from './BlogRecentPost';
-import BlogSingleItem from './BlogSingleItem';
+import React from "react";
+import BlogCategory from "./BlogCategory";
+import BlogRecentPost from "./BlogRecentPost";
+import BlogSingleItem from "./BlogSingleItem";
 
-export const BlogBody = () => {  
-    var itemContext;
-    function itemCallback(ctx){
-        itemContext =ctx;
-    };
-    function onCategoryClick(item,evt){
-        itemContext.Refresh(item.categoryId);
-    };
-    return (
-        <section class="blog-main-page-area">
-        <div class="container">
-            <div class="blog-page-main-flex">
-                {/* <!-- blog view left --> */}
-                <div class="blog-view-left">
-                   <div class="shop-way-superdrag-main">
-                       <div class="shop-way-superdrag-inner-flex">
-                           {/* <!-- single item --> */}
-                           <BlogSingleItem callBack={itemCallback} />
+export const BlogBody = () => {
+  var itemContext;
 
-                       </div>
-                       {/* <!-- pagenation for blog --> */}
-                       {/* <nav class="pagenation-for-web" aria-label="Page navigation example">
+  function itemCallback(ctx) {
+    itemContext = ctx;
+  }
+
+  function onCategoryClick(item, evt) {
+    itemContext.Refresh(item.categoryId);
+  }
+
+  return (
+    <section class="blog-main-page-area">
+      <div class="container">
+        <div class="blog-page-main-flex">
+          {/* <!-- blog view left --> */}
+          <div class="blog-view-left">
+            <div class="shop-way-superdrag-main">
+              <div class="shop-way-superdrag-inner-flex">
+                {/* <!-- single item --> */}
+                <BlogSingleItem callBack={itemCallback} />
+              </div>
+              {/* <!-- pagenation for blog --> */}
+              {/* <nav class="pagenation-for-web" aria-label="Page navigation example">
                            <ul class="pagination">
                                <li class="page-item">
                                <a class="page-link" href aria-label="Previous">
@@ -45,19 +47,19 @@ export const BlogBody = () => {
                                </li>
                            </ul>
                            </nav> */}
-                       {/* <!-- pagenation for blog --> */}
-                   </div>
-               </div>
-               {/* <!-- blog recent post right --> */}
-               <div class="blog-recent-post-right">
-                   {/* <!-- Categories --> */}
-                   <BlogCategory OnItemClick={onCategoryClick} />
-                   {/* <!-- Categories --> */}
-                  <BlogRecentPost />
-               </div>
+              {/* <!-- pagenation for blog --> */}
             </div>
+          </div>
+          {/* <!-- blog recent post right --> */}
+          <div class="blog-recent-post-right">
+            {/* <!-- Categories --> */}
+            <BlogCategory OnItemClick={onCategoryClick} />
+            {/* <!-- Categories --> */}
+            <BlogRecentPost />
+          </div>
         </div>
+      </div>
     </section>
-    )
-}
+  );
+};
 export default BlogBody;
