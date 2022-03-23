@@ -13,11 +13,11 @@ const ProductSummary = ({
   tabInformation,
   addressChangeHandler,
   savedShippingInfo,
-  setQtyAlert
+  setQtyAlert,
 }) => {
   const cartCtx = useContext(cartContext);
-  const cartCtxModal=cartCtx.getCartModel;
-  const history=useHistory();
+  const cartCtxModal = cartCtx.getCartModel;
+  const history = useHistory();
 
   let findDefaultSelected = getAddressData.find(
     (item) => item.IsDefault === true
@@ -25,11 +25,12 @@ const ProductSummary = ({
   if (!findDefaultSelected) {
     findDefaultSelected = getAddressData[0];
   }
-  useEffect(()=>{
-    if(cartCtxModal.Items.length===0){
-      history.push('/')
+  useEffect(() => {
+    if (cartCtxModal.Items.length === 0) {
+      history.push("/");
     }
-  },[cartCtxModal.Items.length,history])
+  }, [cartCtxModal.Items.length, history]);
+  
   return (
     <div class="tab-content checkout-main-tab-content">
       {/* <!-- product desc review information --> */}
@@ -69,7 +70,7 @@ const ProductSummary = ({
                 </td>
                 <td colspan="4">
                   <strong>
-                    ৳ <span>{(cartCtxModal.TotalAmmount).toFixed(2)}</span>
+                    ৳ <span>{cartCtxModal.TotalAmmount.toFixed(2)}</span>
                   </strong>
                 </td>
               </tr>

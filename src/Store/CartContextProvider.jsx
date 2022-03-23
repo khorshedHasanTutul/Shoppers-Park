@@ -228,17 +228,6 @@ const reducer = (state, action) => {
       action.qty=parseInt(0);
     }
 
-    // if (action.qty === 0) {
-    //   let getCartFromLocalStorage = localStorage.getItem("CARTV1");
-    //   getCartFromLocalStorage = JSON.parse(getCartFromLocalStorage);
-    //   const index = getCartFromLocalStorage.Items.findIndex(
-    //     (item2) => item2.Id === action.item.Id
-    //   );
-    //   getCartFromLocalStorage.Items.splice(index, 1);
-
-    //   CtxItems = CtxItems.filter((item) => item.Id !== action.item.Id);
-    // }
-
     findCtxItem.quantity =  parseInt(action.qty);
     let totalAmmount = 0;
 

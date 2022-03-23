@@ -1,8 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { callBack } from "../../Service/AppService";
-import { ButoonDec, ButoonInc, RemoveItem } from "../../Service/CartContent";
-import authContext from "../../Store/auth-context";
 import cartContext from "../../Store/cart-context";
 import MiniCartQuantityRow from "./MiniCartQuantityRow";
 
