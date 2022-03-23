@@ -3,9 +3,12 @@ import SubCategory from './SubCategory';
 import appData from '../../../DataSource/appData';
 import { Link } from 'react-router-dom';
 import { callBack } from '../../../../Service/AppService';
+import { getDropDownMainCategories, getMainCategories } from "../../../../Service/DataService";
 
-const CategoryItem = ({toggleClass,indexofCategory}) => {
-    
+const CategoryItem = ({toggleClass,indexofCategory,mainCategoryIndex}) => {
+    const dataGet= getDropDownMainCategories();
+    console.log({dataGet})
+
     const [count, setcount] = useState(0)
     const increment=()=>{
         setcount(count+1)
@@ -42,33 +45,35 @@ const CategoryItem = ({toggleClass,indexofCategory}) => {
         </li>
 
         {
-            appData.ShopCategory.map((categoryItem,index)=>(
+            dataGet[mainCategoryIndex].map((categoryItem,index)=>{
+                return(
                 <>
                 <li class="sd-nav__item sd-nav__item--level-2">
             {
                 (window.innerWidth>991)?
                     <>
-                        <Link title={categoryItem.categoryName} to={'/category/'+categoryItem.categoryId}>{categoryItem.categoryName}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true"></i></Link>
+                        <Link title={categoryItem[1]} to={'/category/'+categoryItem[0]}>{categoryItem[1]}<i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true"></i></Link>
                         <ul class="loaded mega-menu mega-menu2">
                                 <li class="sd-nav__section-wrapper">
-                                    <Link to={'/category/'+categoryItem.categoryId}>View all{categoryItem.categoryName}</Link>
-                                    <SubCategory  categoryItem={categoryItem}/>
+                                    <Link to={'/category/'+categoryItem[0]}>View all {categoryItem[1]}</Link>
+                                    {/* <SubCategory  categoryItem={categoryItem}/> */}
                                 </li>
                         </ul>
                     </>:
                     <>
-                        <Link title={categoryItem.categoryName} to={'/category/'+categoryItem.categoryId}><span onClick={toggleClass}>{categoryItem.categoryName}</span><i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true" onClick={clickedArrowHandler}></i></Link>
+                        <Link title={categoryItem[1]} to={'/category/'+categoryItem[0]}><span onClick={toggleClass}>{categoryItem[1]}</span><i class="fa fa-angle-right sub-menu-arrow-right" aria-hidden="true" onClick={clickedArrowHandler}></i></Link>
                             <ul class="loaded mega-menu mega-menu2">
                                 <li class="sd-nav__section-wrapper">
-                                    <Link to={'/category/'+categoryItem.categoryId}><span onClick={toggleClass}>View all{categoryItem.categoryName}</span></Link>
-                                    <SubCategory  categoryItem={categoryItem}  toggleClass={toggleClass} indexnum={index}/>
+                                    <Link to={'/category/'+categoryItem[0]}><span onClick={toggleClass}>View all {categoryItem[1]}</span></Link>
+                                    {/* <SubCategory  categoryItem={categoryItem}  toggleClass={toggleClass} indexnum={index}/> */}
                                 </li>
                             </ul>
                     </>
             }
                 </li>
                 </>
-            ))
+                )
+            })
         }
         
         </>
