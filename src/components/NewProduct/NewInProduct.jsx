@@ -54,10 +54,10 @@ const NewInProduct = () => {
                         {/* <!-- single item --> */}
                        
                         {
-                                (data.length>=5)&& <SliderComponent options={options} data={data} Template={ProductSingleItem} setalert={closeModal} />
+                                (data.length>5)&& <SliderComponent options={options} data={data} Template={ProductSingleItem} setalert={closeModal} />
                             }
                             {
-                                 (data.length<5)&&
+                                 (data.length<=5)&&
                                  (data.map(item=>(
                                      <ProductSingleItem item={item} setalert={closeModal}/>
                                  )))

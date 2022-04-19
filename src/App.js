@@ -26,9 +26,12 @@ import Notifications from "./pages/Notifications";
 import Festival from "./pages/Festival";
 import RequestProducts from "./pages/RequestProducts";
 import Consultancy from "./pages/Consultancy";
+import Preloader from "./components/utilities/Preloader/Preloader";
+import Suspense from "./components/utilities/Suspense/Suspense";
 
 function App() {
   return (
+    <>
     <div className="App all-wapper-overflow">
       <MainHeader />
       <main className="banner-slider-area">
@@ -113,6 +116,8 @@ function App() {
       <ShoppingCart />
       <Footer />
     </div>
+   <Suspense />
+    </>
   );
 }
 

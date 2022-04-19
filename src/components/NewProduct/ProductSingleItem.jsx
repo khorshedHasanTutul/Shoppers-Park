@@ -21,8 +21,8 @@ const ProductSingleItem = ({ item, setalert }) => {
   const Wishlist = WishService.Get();
   var findItem = Wishlist.Items.find((item2) => item2.Id === item.Id);
 
-  const addToCartHandler = (item,e) => {
-      e.preventDefault();
+  const addToCartHandler = (item, e) => {
+    e.preventDefault();
     cartCtx.storeCartItems(item);
   };
 
