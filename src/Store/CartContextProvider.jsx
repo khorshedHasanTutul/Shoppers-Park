@@ -219,16 +219,16 @@ const reducer = (state, action) => {
   }
 
   //Update Editable quantity update
-  if(action.type === "UPDATE_EDITABLE_QTY") {
+  if (action.type === "UPDATE_EDITABLE_QTY") {
     let CtxItems = [...state.Items];
     const findCtxItem = CtxItems.find(
       (itemfind) => itemfind.Id === action.item.Id
     );
-    if(action.qty===""){
-      action.qty=parseInt(0);
+    if (action.qty === "") {
+      action.qty = parseInt(0);
     }
 
-    findCtxItem.quantity =  parseInt(action.qty);
+    findCtxItem.quantity = parseInt(action.qty);
     let totalAmmount = 0;
 
     CtxItems.forEach((element) => {
@@ -290,9 +290,9 @@ const CartContextProvider = ({ children }) => {
     dispatch({ type: "ADD_SINGLE_PRODUCT", item: item, qty: qty });
   };
 
-  const updateEditableQtyhandler=(item,qty) => {
-    dispatch ({ type: "UPDATE_EDITABLE_QTY" , item: item, qty: qty})
-  }
+  const updateEditableQtyhandler = (item, qty) => {
+    dispatch({ type: "UPDATE_EDITABLE_QTY", item: item, qty: qty });
+  };
 
   const context = {
     storeCartItems: storeCartHandler,
@@ -301,7 +301,7 @@ const CartContextProvider = ({ children }) => {
     singleItemRemover: CartItemRemoverHandler,
     updateQuantity: QuantityHandler,
     singleProductAdd: addToSingleProductHandler,
-    updateEditableQuantity:updateEditableQtyhandler
+    updateEditableQuantity: updateEditableQtyhandler,
   };
 
   return (

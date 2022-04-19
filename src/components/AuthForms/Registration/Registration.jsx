@@ -4,7 +4,6 @@ import { IqraForm } from "../../../services/IqraService";
 import { Server } from "../../../services/IqraService";
 
 const Register = ({ onLoginClickHandler, onRegistrationSubmitHandler }) => {
-  
   //variables
   const formRef = useRef();
   const formModel = {};
@@ -17,17 +16,17 @@ const Register = ({ onLoginClickHandler, onRegistrationSubmitHandler }) => {
   // functions
   const isPasswordMatched = () => {
     return formModel.Password === formModel.RetryPassword;
-  }
+  };
 
   const register = () => {
     console.log({ formMode: formModel, isValid: formModel.IsValid });
 
-    if(!isPasswordMatched()) {
-      alert('Password not matched!');
+    if (!isPasswordMatched()) {
+      alert("Password not matched!");
       return false;
     }
 
-    if(!formModel.IsValid){
+    if (!formModel.IsValid) {
       return false;
     }
 

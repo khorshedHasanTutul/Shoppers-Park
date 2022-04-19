@@ -1,51 +1,30 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import {} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import authContext from "../../../../Store/auth-context";
 import AnimatedProduct from "../../../AnimatedProduct/AnimatedProduct";
 import cartContext from "../../../../Store/cart-context";
+import { returnDataAsObjectProperties } from "../../../../Service/DataService";
 
-const CategorySingleItem = ({ item, wishItemsGet, setalert }) => {
+const CategorySingleItem = ({ item, setalert }) => {
+  const getReturnObjectData = returnDataAsObjectProperties(item);
   const [anime, setAnime] = useState(false);
-  const authCtx = useContext(authContext);
   const cardRef = useRef(null);
-  const [wishActiveItem, setwishActiveItem] = useState(false);
   const cartCtx = useContext(cartContext);
-  const cartCtxModal= cartCtx.getCartModel;
+  const cartCtxModal = cartCtx.getCartModel;
 
   const addToCartHandler = (item, e) => {
     e.preventDefault();
     cartCtx.storeCartItems(item);
   };
 
-  const wishItemAddHandler = () => {
-    authCtx.wishList({
-      id: item.Id,
-    });
-  };
-  const WishRemoveHandler = () => {
-    authCtx.wishRemovehandler({
-      id: item.Id,
-    });
-  };
-
   const stopAnime = () => {
     setAnime(false);
   };
-
-  const getAllWishItem = authCtx.getwishlist;
-  const findWishId = getAllWishItem.find((item2) => item2 === item.Id);
-  useEffect(() => {
-    if (findWishId) {
-      setwishActiveItem(true);
-    }
-  }, [findWishId]);
 
   const animateCardHandler = (item) => {
     if (cartCtxModal.Items.find((itemInner) => itemInner.Id === item.Id)) {
       setalert();
     } else {
-      authCtx.cartContext(item);
       animationStartHandler();
     }
   };
@@ -58,58 +37,54 @@ const CategorySingleItem = ({ item, wishItemsGet, setalert }) => {
     <>
       <div class="single-product-catagory-item" ref={cardRef}>
         <div class="hover-eff-product">
-          {!wishActiveItem ? (
-            <>
-              <a title="Add to Wishlist" onClick={wishItemAddHandler} href>
-                <i class="fa fa-heart-o"></i>
-              </a>
-            </>
-          ) : (
-            <>
-              <a title="Remove Wishitem" onClick={WishRemoveHandler} href>
-                <i class="fa fa-heart"></i>
-              </a>
-            </>
-          )}
+          <a title="Remove Wishitem" href>
+            <i class="fa fa-heart-o"></i>
+          </a>
         </div>
 
-        <Link to={"/product/" + item.Id}>
-          {item.Ds > 0 ? (
+        <Link to={"/product/" + getReturnObjectData.Id}>
+          {getReturnObjectData.Ds > 0 ? (
             <div class="group-price-drag">
               <span class="product-new-drag">
-                {item.Ds > 0 ? item.Ds : ""}
-                {item.Ds > 0 ? "%" : ""}{" "}
+                {getReturnObjectData.Ds > 0 ? getReturnObjectData.Ds : ""}
+                {getReturnObjectData.Ds > 0 ? "%" : ""}{" "}
               </span>
             </div>
           ) : (
             ""
           )}
 
-          <img src={item[4]} alt="img" />
+          <img src={getReturnObjectData.image} alt="img" />
           <div class="catagory-overly-main-bg">
             <div class="catagory-product-overly">
-              <h4>{item[2]}</h4>
+              <h4>{getReturnObjectData.Nm}</h4>
             </div>
             <div class="basket-add">
-              {item[7] > 0 ? (
+              {getReturnObjectData.Ds > 0 ? (
                 <span class="item__price item__price--now">
-                  ৳{item[6].toFixed(2)}
+                  ৳
+                  {(
+                    getReturnObjectData.MRP -
+                    (getReturnObjectData.MRP * getReturnObjectData.Ds) / 100
+                  ).toFixed(2)}
                 </span>
               ) : (
-                <span class="item__price item__price--now">৳{item[5].toFixed(2)}</span>
+                <span class="item__price item__price--now">
+                  ৳{getReturnObjectData.MRP}
+                </span>
               )}
 
-              {item.Ds > 0 ? (
+              {getReturnObjectData.Ds > 0 ? (
                 <span class="price product-price">
-                  <del class="cross_price">৳ {item[5].toFixed(2)}</del>
+                  <del class="cross_price">৳ {getReturnObjectData.MRP}</del>
                 </span>
               ) : (
                 ""
               )}
             </div>
-            <span onClick={animateCardHandler.bind(null, item)}>
+            <span onClick={animateCardHandler.bind(null, getReturnObjectData)}>
               <a
-                onClick={addToCartHandler.bind(this, item)}
+                onClick={addToCartHandler.bind(this, getReturnObjectData)}
                 href
                 class="btn_cart"
               >

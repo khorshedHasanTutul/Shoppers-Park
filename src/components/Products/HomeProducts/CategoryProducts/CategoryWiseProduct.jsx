@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import appData from "../../../DataSource/appData";
 import SliderComponent from "../../../utilities/Slider/SliderComponent";
 import CategorySingleItem from "./CategorySingleItem";
 
-const CategoryWiseProduct = ({ item, wishItemsGet, setalert }) => {
+const CategoryWiseProduct = ({ item, setalert }) => {
   const options = {
     rewind: true,
     type: "slide",
@@ -13,7 +12,6 @@ const CategoryWiseProduct = ({ item, wishItemsGet, setalert }) => {
     speed: 1000,
     resetProgress: true,
     perPage: 5,
-    // perMove: 2,
     width: "100%",
     breakpoints: {
       375: {
@@ -39,7 +37,7 @@ const CategoryWiseProduct = ({ item, wishItemsGet, setalert }) => {
         <div class="catagory-main-product-area home-single-product-catagory-item">
           {/* <!-- common heading --> */}
           <div class="hompe-common-title">
-            <h2>{item[1]}</h2>
+            <h2>{item.categoryName}</h2>
             <div class="my-header-underline"></div>
           </div>
           {/* <!-- common heading -->
@@ -47,25 +45,20 @@ const CategoryWiseProduct = ({ item, wishItemsGet, setalert }) => {
           <div class="product-catagory-main-flex owl-slider-perk">
             <div class="product-catagory-inner-flex owl-slider-perk-items">
               {/* <SliderComponent options={options}  Template={CategorySingleItem} setalert={setalert}/> */}
-              {item[3].length > 5 && (
+              {item.products.length > 5 && (
                 <SliderComponent
-                  data={item[3]}
+                  data={item.products}
                   options={options}
                   Template={CategorySingleItem}
                   setalert={setalert}
                 />
               )}
-              {
-                  item[3].length <=5 &&(
-                      item[3].map(item=>(
-                          <CategorySingleItem item={item}/>
-                      ))
-                  )
-              }
+              {item.products.length <= 5 &&
+                item.products.map((item) => <CategorySingleItem item={item} setalert={setalert} />)}
             </div>
             <div class="shop-all-offer-btn">
-              <Link to={"/category/" + item[0]}>
-                {'Shop All '+ item[1]}
+              <Link to={"/category/" + item.category_id}>
+                {"Shop All " + item.categoryName}
               </Link>
             </div>
           </div>
