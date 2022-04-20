@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { endpoints, getOtp, userIfExist } from "../../../../lib/endpoints";
-import { http } from "../../../../Service/httpService";
+import { getOtp, userIfExist } from "../../../../lib/endpoints";
 import { httpV2 } from "../../../../Service/httpService2";
 import authContext from "../../../../Store/auth-context";
-import Preloader from "../../../utilities/Preloader/Preloader";
 import Suspense from "../../../utilities/Suspense/Suspense";
 
 const RegistrationModal = ({ loginModalOpen, setModalCmp }) => {
@@ -25,8 +23,9 @@ const RegistrationModal = ({ loginModalOpen, setModalCmp }) => {
   const [errorMsgValue, seterrorMsgValue] = useState(false);
   //Authentication Context
   const authCtx = useContext(authContext);
-  //loader 
+  //loader
   const [isLoading, setIsLoading] = useState(false);
+  // const [mapData, setMapData] = useState();
 
   const [saveBtnClicked, setsaveBtnClicked] = useState(false);
 
@@ -101,8 +100,10 @@ const RegistrationModal = ({ loginModalOpen, setModalCmp }) => {
   const submitButtonHandler = (e) => {
     e.preventDefault();
     setsaveBtnClicked(true);
-    // authCtx.registration.phone = phone;
-    // authCtx.registration.password = password;
+    const user = {
+      phone: phone,
+      password: password,
+    };
     if (
       phone.length === 11 &&
       password.length >= 4 &&
@@ -116,46 +117,21 @@ const RegistrationModal = ({ loginModalOpen, setModalCmp }) => {
           phone: phone,
           password: password,
         },
-        before:()=>{
-            setIsLoading(true);
+        before: () => {
+          setIsLoading(true);
         },
-        successed:(data)=>{
-            console.log(data);
-            authCtx.userOtpId.id = data.data;
-            setModalCmp(3);
+        successed: (data) => {
+          authCtx.userOtpId.id = data.data;
+          setModalCmp(3);
+          authCtx.registration(user);
         },
-        failed:(data)=>{
-            console.log(data)
+        failed: (data) => {
+          console.log(data);
         },
-        always:()=>{
-            // setIsLoading(false);
-        }
+        always: () => {
+          setIsLoading(false);
+        },
       });
-      //   http.post({
-      //     url: endpoints.getOtp,
-      //     payload: {
-      //       Phone: phone,
-      //       Password: password,
-      //     },
-      //     before: () => {
-      //       console.log("registratioin started");
-      //     },
-      //     successed: (data) => {
-      //       authCtx.userOtpId.id = data.Id;
-      //       setModalCmp(3);
-      //     },
-      //     failed: () => {
-      //       console.log("failed");
-      //     },
-      //     always: () => {
-      //       console.log("program end");
-      //     },
-      //     map: (data) => {
-      //       // setmapData(data.Id)
-      //       // authCtx.userOtpId.Id=data.Id;
-      //       return data;
-      //     },
-      //   });
     }
   };
 
@@ -244,11 +220,7 @@ const RegistrationModal = ({ loginModalOpen, setModalCmp }) => {
           LogIn
         </a>
       </div>
-      {
-          isLoading && (
-              <Suspense />
-          )
-      }
+      {isLoading && <Suspense />}
     </div>
   );
 };

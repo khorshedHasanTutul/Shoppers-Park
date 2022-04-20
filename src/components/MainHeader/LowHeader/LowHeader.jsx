@@ -1,9 +1,9 @@
-import React from 'react'
+import React,{forwardRef} from 'react'
 import Category from './Category/Category';
 
-const LowHeader = () => {
+const LowHeader = forwardRef((props, ref) => {
     return (
-        <div class="header-bottom-flex">
+        <div class="header-bottom-flex" ref={ref}>
             <Category />
             
             {/* <div class="wishlist-offer">
@@ -14,6 +14,6 @@ const LowHeader = () => {
             
         </div>
     )
-}
+})
 
 export default LowHeader;
