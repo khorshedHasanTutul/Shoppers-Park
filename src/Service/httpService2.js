@@ -34,10 +34,15 @@ export const post = async ({
 
   const data = await response.json();
 
-  if (response.statusCode >= 200 && response.statusCode < 300) {
-    always(data);
-    failed(data, data.message);
-    throw new Error(data.message || "Login failed");
+  if (data.statusCode >= 200 && data.statusCode < 300) {
+    successed(data);
+  }
+  if (data.statusCode >= 400 && data.statusCode < 500) {
+    failed(data);
+  }
+  if (data.statusCode >= 500 && data.statusCode < 600) {
+    failed(data);
+    throw new Error(`${data.message || "Error Occured"}`)
   }
 
   //   if (data.IsError) {
@@ -80,10 +85,15 @@ export const get = async ({
 
   const data = await response.json();
 
-  if (response.statusCode >= 200 && response.statusCode < 300) {
-    always(data);
-    failed(data, data.message);
-    throw new Error(data.message || "Login failed");
+  if (data.statusCode >= 200 && data.statusCode < 300) {
+    successed(data);
+  }
+  if (data.statusCode >= 400 && data.statusCode < 500) {
+    failed(data);
+  }
+  if (data.statusCode >= 500 && data.statusCode < 600) {
+    failed(data);
+    throw new Error(`${data.message || "Error Occured"}`)
   }
 
   //   if (data.IsError) {

@@ -10,7 +10,6 @@ const initialState = () => {
   };
 
   let user = localStorage.getItem("USER");
-
   let storedUser = {};
   let isLoggedIn = false;
   if (user) {
@@ -27,8 +26,8 @@ const initialState = () => {
 
 const reducer = (state, action) => {
   if (action.type === "USER_LOGIN") {
+    console.log(action.user);
     localStorage.setItem("USER", JSON.stringify(action.user));
-
     return {
       ...state,
       user: action.user,
@@ -46,7 +45,7 @@ const reducer = (state, action) => {
   if (action.type === "USER_REGISTRATION") {
     return {
       ...state,
-      user2: action.user2,
+      registration: action.user,
     };
   }
 };
@@ -71,7 +70,7 @@ const AuthContextProvider = ({ children }) => {
     isLoggedIn: state.isLoggedIn,
     userOtpId: state.userOtpId,
     registration: registrationHandler,
-    getRegistrationValue: registrationHandler,
+    getRegistrationValue: state.registration,
     getloginValue: state.user,
   };
 
