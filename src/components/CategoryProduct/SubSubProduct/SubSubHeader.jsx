@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SubSubHeader = ({categoryId,subCategoryId,subItemId}) => {
+const SubSubHeader = ({categoryId,name}) => {
     
     return (
         <section class="breadcrumb-main-area">
@@ -9,9 +9,9 @@ const SubSubHeader = ({categoryId,subCategoryId,subItemId}) => {
                     <nav aria-label="breadcrumb" class="breadcrumb-main">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                            <li class="breadcrumb-item"><Link to={'/category/'+categoryId.categoryId}>{categoryId.categoryName}</Link></li>
-                            <li class="breadcrumb-item"><Link to={'/subcategory/'+categoryId.categoryId+'/'+subCategoryId.subCategory_id}>{subCategoryId.subCategoryName}</Link></li>
-                            <li class="breadcrumb-item active" aria-current="page">{subItemId.itemName}</li>
+                            {/* <li class="breadcrumb-item"><Link to={'/category/'+categoryId.categoryId}>{categoryId.categoryName}</Link></li>
+                            <li class="breadcrumb-item"><Link to={'/subcategory/'+categoryId.categoryId+'/'+subCategoryId.subCategory_id}>{subCategoryId.subCategoryName}</Link></li> */}
+                            <li class="breadcrumb-item active" aria-current="page">{name}</li>
                         </ul>
                     </nav>
                 </div>

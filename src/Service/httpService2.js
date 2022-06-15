@@ -1,7 +1,7 @@
-import getToken from "../helpers/token";
+import getToken from "../lib/token";
 
 // import { baseUrl as BASE_URL } from "./ImgService";
-const BASE_URL = "https://ecommerce.boniksoftware.com";
+export const BASE_URL = "https://localhost:5001";
 
 export const post = async ({
   url,
@@ -18,7 +18,7 @@ export const post = async ({
 }) => {
   const token = await getToken();
   if (token) {
-    headers["datacontent"] = token;
+    headers["Authorization"] = "Bearer " + token;
   }
 
   before();
@@ -35,26 +35,65 @@ export const post = async ({
   const data = await response.json();
 
   if (data.statusCode >= 200 && data.statusCode < 300) {
-    successed(data);
+    const transformData = map(data);
+    successed(transformData);
   }
   if (data.statusCode >= 400 && data.statusCode < 500) {
     failed(data);
   }
   if (data.statusCode >= 500 && data.statusCode < 600) {
     failed(data);
-    throw new Error(`${data.message || "Error Occured"}`)
+    throw new Error(`${data.message || "Error Occured"}`);
+  }
+  always(data);
+  return data;
+};
+
+export const PUT = async ({
+  url,
+  headers = {},
+  payload = {},
+  before = () => {},
+  successed = (data) => {},
+  failed = (data) => {},
+  always = (data) => {},
+  map = (data) => {
+    return data;
+  },
+  dataPath = "",
+}) => {
+  const token = await getToken();
+  if (token) {
+    headers["Authorization"] = "Bearer " + token;
   }
 
-  //   if (data.IsError) {
-  //     always(data);
-  //     failed(data, data.Msg);
-  //     throw new Error(`${data.Msg || "Login failed"}`);
-  //   }
+  before();
 
-  const transformData = map(data);
+  const response = await fetch(`${BASE_URL}${url}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+      ...headers,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await response.json();
+
+  if (data.statusCode >= 200 && data.statusCode < 300) {
+    const transformData = map(data);
+    successed(transformData);
+  }
+  if (data.statusCode >= 400 && data.statusCode < 500) {
+    failed(data);
+  }
+  if (data.statusCode >= 500 && data.statusCode < 600) {
+    failed(data);
+    throw new Error(`${data.message || "Error Occured"}`);
+  }
+
   always(data);
-  successed(transformData);
-  return transformData;
+  return data;
 };
 
 export const get = async ({
@@ -70,12 +109,12 @@ export const get = async ({
 }) => {
   const token = await getToken();
   if (token) {
-    headers["datacontent"] = token;
+    headers["Authorization"] = "Bearer " + token;
   }
 
   before();
 
-  const response = await fetch(`${BASE_URL}/${url}`, {
+  const response = await fetch(`${BASE_URL}${url}`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -86,27 +125,18 @@ export const get = async ({
   const data = await response.json();
 
   if (data.statusCode >= 200 && data.statusCode < 300) {
-    successed(data);
+    const transformData = map(data);
+    successed(transformData);
   }
   if (data.statusCode >= 400 && data.statusCode < 500) {
     failed(data);
   }
   if (data.statusCode >= 500 && data.statusCode < 600) {
     failed(data);
-    throw new Error(`${data.message || "Error Occured"}`)
+    throw new Error(`${data.message || "Error Occured"}`);
   }
-
-  //   if (data.IsError) {
-  //     always(data);
-  //     failed(data, data.Msg);
-  //     throw new Error(`${data.Msg || "Login failed"}`);
-  //   }
-
-  const transformedData = map(data);
-
   always(data);
-  successed(transformedData);
-  return transformedData;
+  return data;
 };
 
 export const file = async ({
@@ -127,11 +157,15 @@ export const file = async ({
   for (const [key, value] of Object.entries(payload)) {
     formData.append(key, value);
   }
+  const token = await getToken();
+  if (token) {
+    headers["Authorization"] = "Bearer " + token;
+  }
 
   const response = await fetch(`${BASE_URL}/${url}`, {
     method: "POST",
     headers: {
-      datacontent: await getToken(),
+      // datacontent: await getToken(),
       ...headers,
     },
     body: formData,
@@ -139,10 +173,16 @@ export const file = async ({
 
   const data = await response.json();
 
-  if (response.statusCode >= 200 && response.statusCode < 300) {
-    always(data);
-    failed(data, data.message);
-    throw new Error(data.message || "Login failed");
+  if (data.statusCode >= 200 && data.statusCode < 300) {
+    const transformData = map(data);
+    successed(transformData);
+  }
+  if (data.statusCode >= 400 && data.statusCode < 500) {
+    failed(data);
+  }
+  if (data.statusCode >= 500 && data.statusCode < 600) {
+    failed(data);
+    throw new Error(`${data.message || "Error Occured"}`);
   }
 
   //   if (data.IsError) {
@@ -151,11 +191,8 @@ export const file = async ({
   //     throw new Error(`${data.Msg || "Login failed"}`);
   //   }
 
-  const transformData = map(data);
-
   always(data);
-  successed(transformData);
-  return data.Data;
+  return data;
 };
 
-export const httpV2 = { post, get, file };
+export const httpV2 = { post, get, file, PUT };

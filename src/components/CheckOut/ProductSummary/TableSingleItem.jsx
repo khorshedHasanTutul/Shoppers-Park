@@ -3,7 +3,7 @@ import cartContext from "../../../Store/cart-context";
 import CartQuantityRow from "./CartQuantityRow";
 import TableItemCategoryBrand from "./TableItemCategoryBrand";
 
-const TableSingleItem = ({ data,setQtyAlert }) => {
+const TableSingleItem = ({ data, setQtyAlert }) => {
   const cartCtx = useContext(cartContext);
   const cartCtxModel = cartCtx.getCartModel;
 
@@ -20,28 +20,20 @@ const TableSingleItem = ({ data,setQtyAlert }) => {
               <img src={item.image} alt="img" />
             </a>
           </td>
-          <TableItemCategoryBrand item={item}/>
+          <TableItemCategoryBrand item={item} />
           {item.Ds > 0 ? (
             <td class="price">
-              <span>
-                ৳ {(item.MRP - (item.MRP * item.Ds) / 100).toFixed(2)}
-              </span>
+              <span>৳ {(item.MRP - item.Ds).toFixed(2)}</span>
             </td>
           ) : (
             <td class="price">
               <span>৳ {item.MRP.toFixed(2)}</span>
             </td>
           )}
-          <CartQuantityRow item={item} setQtyAlert={setQtyAlert}/>
+          <CartQuantityRow item={item} setQtyAlert={setQtyAlert} />
           {item.Ds > 0 ? (
             <td class="price">
-              <span>
-                ৳{" "}
-                {(
-                  (item.MRP - (item.MRP * item.Ds) / 100) *
-                  item.quantity
-                ).toFixed(2)}
-              </span>
+              <span>৳ {((item.MRP - item.Ds) * item.quantity).toFixed(2)}</span>
             </td>
           ) : (
             <td class="price">

@@ -14,11 +14,12 @@ const postContact = "/ContactArea/Contact/Add";
 const addWishlist = "/WishListArea/WishList/Create";
 const uploadProductImage = "/ProductOrderArea/Prescription/Add";
 
-export const userIfExist = "api/v1/Auth/emailexists?phone=";
+export const userIfExist = "/api/v1/Auth/PhoneExists?phone=";
 export const getOtp = "/api/v1/Auth/RequestOTP";
 export const verifyOtp = "/api/v1/Auth/Register";
 export const login = "/api/v1/Auth/Login";
-
+export const RESET_PASSWORD = "/api/v1/Auth/ResetPassword";
+export const GET_PRODUCTS_BY_CATEGORY = "/api/v1/Categories/";
 
 export const endpoints = {
   login,

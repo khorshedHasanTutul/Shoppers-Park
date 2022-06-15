@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SliderComponent from "../../../utilities/Slider/SliderComponent";
-import CategorySingleItem from "./CategorySingleItem";
+import ProductsInfoModel from "../../ProductsInfoModel";
 
 const CategoryWiseProduct = ({ item, setalert }) => {
+  //slider options and breakpoints
   const options = {
     rewind: true,
     type: "slide",
@@ -31,6 +32,8 @@ const CategoryWiseProduct = ({ item, setalert }) => {
       },
     },
   };
+  console.log('categoryProducts=>',item)
+
   return (
     <>
       {
@@ -49,12 +52,16 @@ const CategoryWiseProduct = ({ item, setalert }) => {
                 <SliderComponent
                   data={item.products}
                   options={options}
-                  Template={CategorySingleItem}
+                  Template={ProductsInfoModel}
                   setalert={setalert}
                 />
               )}
+
               {item.products.length <= 5 &&
-                item.products.map((item) => <CategorySingleItem item={item} setalert={setalert} />)}
+                item.products.map((item) => (
+                  <ProductsInfoModel item={item} setalert={setalert} />
+                ))}
+
             </div>
             <div class="shop-all-offer-btn">
               <Link to={"/category/" + item.category_id}>

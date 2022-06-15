@@ -1,23 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import appData from '../DataSource/appData';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const CategoryProductHeader = ({categoryId}) => {
-    const catId=parseInt(categoryId)
-        const data=appData.ShopCategory.find(item=>item.categoryId===catId);
-        
-    return (
-        <section class="breadcrumb-main-area">
-            <div class="container">
-                <nav aria-label="breadcrumb" class="breadcrumb-main">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                        <li class="breadcrumb-item active" aria-current="page">{data.categoryName}</li>
-                    </ul>
-                </nav>
-            </div>
-        </section>
-    );
+const CategoryProductHeader = ({ categoryId, name }) => {
+  return (
+    <section class="breadcrumb-main-area">
+      <div class="container">
+        <nav aria-label="breadcrumb" class="breadcrumb-main">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <Link to="/">Home</Link>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              {name}
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  );
 };
 
 export default CategoryProductHeader;

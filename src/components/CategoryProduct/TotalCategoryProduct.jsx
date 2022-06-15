@@ -1,9 +1,8 @@
 import React from "react";
-import appData from "../DataSource/appData";
+import ProductsInfoModel from "../Products/ProductsInfoModel";
 import SliderComponent from "../utilities/Slider/SliderComponent";
-import ProductSingleItem from "./ProductSingleItem";
 
-const TotalCategoryProduct = ({ category_id, subCategory_id, setalert }) => {
+const TotalCategoryProduct = ({ products, setalert }) => {
   const options = {
     rewind: true,
     type: "slide",
@@ -30,42 +29,31 @@ const TotalCategoryProduct = ({ category_id, subCategory_id, setalert }) => {
       },
     },
   };
-  const concatData = appData.categoryProducts;
-  const catId = parseInt(category_id);
-  const subCatId = parseInt(subCategory_id);
-  const data = concatData.filter(
-    (item) => item.category_id === catId && item.subCategory_id === subCatId
-  );
-  if (data.length === 0) {
-    return (
-      <div class="no-product-found">
-        <h6>"No Product Found!"</h6>
-      </div>
-    );
-  } else
-    return (
-      <>
-        {
-          <div class="product-catagory-main-flex owl-slider-perk">
-            <div class="product-catagory-inner-flex owl-slider-perk-items">
-              {/* <!-- single item --> */}
-              {data.length >= 5 && (
-                <SliderComponent
-                  options={options}
-                  data={data}
-                  Template={ProductSingleItem}
-                  setalert={setalert}
-                />
-              )}
-              {data.length < 5 &&
-                data.map((item) => (
-                  <ProductSingleItem item={item} setalert={setalert} />
-                ))}
-            </div>
+
+  return (
+    <>
+      {
+        <div class="product-catagory-main-flex owl-slider-perk">
+          <div class="product-catagory-inner-flex owl-slider-perk-items">
+            {/* <!-- single item --> */}
+            {products.length > 5 && (
+              <SliderComponent
+                options={options}
+                data={products}
+                Template={ProductsInfoModel}
+                setalert={setalert}
+                from={"api"}
+              />
+            )}
+            {products.length <= 5 &&
+              products.map((item) => (
+                <ProductsInfoModel item={item} setalert={setalert} from={"api"} />
+              ))}
           </div>
-        }
-      </>
-    );
+        </div>
+      }
+    </>
+  );
 };
 
 export default TotalCategoryProduct;

@@ -35,7 +35,7 @@ const initialState = () => {
 const reducer = (state, action) => {
   //calculation Discount ammount of price
   const calcDiscountAmmount = (item) => {
-    let productPrice = item.MRP - (item.MRP * item.Ds) / 100;
+    let productPrice = item.MRP - item.Ds;
     return productPrice;
   };
 

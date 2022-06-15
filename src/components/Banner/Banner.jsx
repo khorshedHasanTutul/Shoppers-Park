@@ -5,6 +5,7 @@ import BannerTemplate from "./BannerTemplate/BannerTemplate";
 
 export const Banner = () => {
   const data = getBannersTemplate;
+  console.log('bannersdata=>',data)
   const options = {
     rewind: true,
     type: "loop",

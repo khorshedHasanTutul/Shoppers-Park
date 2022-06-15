@@ -3,23 +3,14 @@ import appData from "../DataSource/appData";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import CategorySubItemProductList from "./CategorySubItemProductList";
 
-const TotalCategoryItem = ({ categoryId }) => {
-  const catId = parseInt(categoryId);
-  const data = appData.ShopCategory.find((item) =>
-    item.categoryId === catId ? item.subCategory : ""
-  );
-
-  const categoryData = appData.categoryProducts.filter(
-    (item) => item.category_id === catId
-  );
-
+const TotalCategoryItem = ({ children }) => {
   const [alert, setalert] = useState(false);
 
   const closeModal = () => {
-    setalert(prevState => !prevState);
+    setalert((prevState) => !prevState);
   };
 
-  if (categoryData.length === 0) {
+  if (children.length === 0) {
     return (
       <div class="container">
         <div className="pro-not-found-img-subcategory">
@@ -33,8 +24,7 @@ const TotalCategoryItem = ({ categoryId }) => {
         </div>
       </div>
     );
-  }
-   else
+  } else
     return (
       <section class="catagory-product-area view-all-sub-catagory">
         {alert && (
@@ -44,9 +34,8 @@ const TotalCategoryItem = ({ categoryId }) => {
           />
         )}
         <div class="container">
-          {data.subCategory.map((subCategory_item) => (
+          {children.map((subCategory_item) => (
             <CategorySubItemProductList
-              categoryId={categoryId}
               subCategory_item={subCategory_item}
               setalert={closeModal}
             />
