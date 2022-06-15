@@ -78,13 +78,10 @@ function App() {
             <Route path="/category/:id">
               <CategoryWiseItem />
             </Route>
-            <Route path="/subcategory/:categoryId/:subCategoryId" exact>
+            <Route path="/subcategory/:id" exact>
               <SubCategoryWiseItem />
             </Route>
-            <Route
-              path="/categoryitem/:categoryId/:subCategoryId/:subItemId"
-              exact
-            >
+            <Route path="/productsSub/:id" exact>
               <SubSubCategoryWiseItem />
             </Route>
             <Route path="/product/:id">

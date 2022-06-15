@@ -1,7 +1,6 @@
 import InputControl from "../utilities/InputControl/InputControl";
 import Popup from "../utilities/Popup/Popup";
-import ChangePassword from "../AuthForms/ChangePassword/ChangePassword";
-import Card from '../utilities/Card/Card';
+import Card from "../utilities/Card/Card";
 
 import "./Profile.css";
 import { useContext, useState } from "react";
@@ -11,83 +10,81 @@ import { endpoints } from "../../lib/endpoints";
 
 const Profile = () => {
   const authCtx = useContext(authContext);
-  const getUserValue=authCtx.getloginValue;
-  const [name, setname] = useState(getUserValue.name)
-  const [email, setemail] = useState(getUserValue.email)
-  const [file, setfile] = useState()
+  const getUserValue = authCtx.getloginValue;
+  const [name, setname] = useState(getUserValue.name);
+  const [email, setemail] = useState(getUserValue.email);
+  const [file, setfile] = useState();
 
-  const nameChangeHandler=({target})=>{
-    setname(target.value)
-  }
-  const emailChangehandler=({target})=>{
-    setemail(target.value)
-  }
-  const fileUploadHandler=({target})=>{
-    setfile(target.files[0])
-  }
-  const saveHandler=()=>{
+  const nameChangeHandler = ({ target }) => {
+    setname(target.value);
+  };
+  const emailChangehandler = ({ target }) => {
+    setemail(target.value);
+  };
+  const fileUploadHandler = ({ target }) => {
+    setfile(target.files[0]);
+  };
+  const saveHandler = () => {
     http.post({
-      url:endpoints.updateInformation,
-      payload:{
+      url: endpoints.updateInformation,
+      payload: {
         UserId: getUserValue.id,
         Name: name,
         Email: email,
       },
-      before:()=>{
-        console.log('function started')
+      before: () => {
+        console.log("function started");
       },
-      successed:(data)=>{
+      successed: (data) => {
         authCtx.login({
           id: getUserValue.id,
           name: name,
           token: getUserValue.token,
           email: email,
-          phone: getUserValue.phone
-        })
+          phone: getUserValue.phone,
+        });
       },
-      failed:()=>{
-        console.log('failed')
+      failed: () => {
+        console.log("failed");
       },
-      always:()=>{
-        console.log('function end')
-      }
-    })
-    if(file){
+      always: () => {
+        console.log("function end");
+      },
+    });
+    if (file) {
       http.file({
-        url:endpoints.updateInformation,
-        payload:{
+        url: endpoints.updateInformation,
+        payload: {
           Img: file,
           UserId: getUserValue.id,
-          ActivityId: '00000000-0000-0000-0000-000000000000'
+          ActivityId: "00000000-0000-0000-0000-000000000000",
         },
-        before:()=>{
-          console.log('function started')
+        before: () => {
+          console.log("function started");
         },
-        successed:(data)=>{
+        successed: (data) => {
           authCtx.login({
             id: getUserValue.id,
             name: name,
             token: getUserValue.token,
             email: email,
-            phone: getUserValue.phone
-          })
-          authCtx.user.image = file
-          console.log(data)
+            phone: getUserValue.phone,
+          });
+          authCtx.user.image = file;
+          console.log(data);
         },
-        failed:()=>{
-          console.log('failed')
+        failed: () => {
+          console.log("failed");
         },
-        always:()=>{
-          console.log('function end')
-        }
-      })      
+        always: () => {
+          console.log("function end");
+        },
+      });
     }
-
-  }
-
+  };
 
   return (
-    <Card className='p-16 mt-8'>
+    <Card className="p-16 mt-8">
       <form className="user-profile-form">
         <div>
           <div className="form__control mb-16">
@@ -107,7 +104,6 @@ const Profile = () => {
               type="email"
               onChange={emailChangehandler}
               value={email}
-
             />
           </div>
         </div>
@@ -118,7 +114,7 @@ const Profile = () => {
               label={"Phone Number"}
               error={undefined}
               disabled
-              value={getUserValue?getUserValue.phone:''}
+              value={getUserValue ? getUserValue.phone : ""}
             />
           </div>
           <div className="form__control">

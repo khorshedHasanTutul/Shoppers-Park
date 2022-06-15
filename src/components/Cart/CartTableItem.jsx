@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import cartContext from "../../Store/cart-context";
 import MiniCartQuantityRow from "./MiniCartQuantityRow";
 
-const CartTableItem = ({ data,setQtyAlert }) => {
+const CartTableItem = ({ data, setQtyAlert }) => {
   const ctxCart = useContext(cartContext);
   const getCartModal = ctxCart.getCartModel;
 
@@ -27,7 +27,7 @@ const CartTableItem = ({ data,setQtyAlert }) => {
             )}
             {item.Ds > 0 ? (
               <strong class="SearchPrice SearchDelPriceDel2">
-                ৳{(item.MRP - (item.MRP * item.Ds) / 100).toFixed(2)}
+                ৳{(item.MRP - item.Ds).toFixed(2)}
               </strong>
             ) : (
               <strong class="SearchPrice SearchDelPriceDel2">
@@ -46,10 +46,7 @@ const CartTableItem = ({ data,setQtyAlert }) => {
               )}
               <br />
               <span class="SearchFont SearchPrice">
-                {(
-                  (item.MRP - (item.MRP * item.Ds) / 100) *
-                  item.quantity
-                ).toFixed(2)}
+                {((item.MRP - item.Ds) * item.quantity).toFixed(2)}
               </span>
             </span>
           </td>

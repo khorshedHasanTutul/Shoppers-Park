@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { login } from "../../../../lib/endpoints";
 import { httpV2 } from "../../../../Service/httpService2";
@@ -13,31 +13,46 @@ const LoginModal = ({
   orderNowPressed,
   consultancyPressed,
 }) => {
-  const [phonenumber, setphonenumber] = useState("");
-  const [password, setpassword] = useState("");
-  const [failedMsg, setfailedMsg] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const authCtx = useContext(authContext);
   const history = useHistory();
 
-  const phoneNumberChangeHandler = ({ target }) => {
-    setphonenumber(target.value);
+  const [clicked, setClicked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [phone, setPhone] = useState("");
+  const [phoneIsTouched, setPhoneIsTouched] = useState(false);
+  const [phoneIsValid, setPhoneIsValid] = useState(false);
+
+  const [password, setpassword] = useState("");
+  const [passwordIsTouched, setPasswordIsTouched] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState(false);
+
+  const [failedMsg, setfailedMsg] = useState(false);
+
+  const phoneChangeHandler = ({ target }) => {
+    setPhone(target.value);
+  };
+
+  const phoneTouchedHandler = () => {
+    setPhoneIsTouched(true);
+    setfailedMsg(false);
   };
   const passwordChangeHandler = ({ target }) => {
     setpassword(target.value);
   };
+  const passwordTouchedHandler = () => {
+    setPasswordIsTouched(true);
+    setfailedMsg(false);
+  };
+
   const submitButtonHandler = (e) => {
+    setClicked(true);
     e.preventDefault();
-    if (
-      phonenumber.length !== 0 &&
-      password.length !== 0 &&
-      phonenumber.length === 11 &&
-      password.length >= 4
-    ) {
+    if (phone.length === 11 && password.length >= 3) {
       httpV2.post({
         url: login,
         payload: {
-          phone: phonenumber,
+          phone: phone,
           password: password,
         },
         before: () => {
@@ -60,22 +75,43 @@ const LoginModal = ({
           ModalOpen();
         },
         failed: () => {
-          console.log("failed");
+          setfailedMsg(true);
         },
         always: () => {
           setIsLoading(false);
         },
       });
-    } else {
-      setfailedMsg(true);
     }
   };
+
+  useEffect(() => {
+    if (clicked) {
+      if (
+        (phoneIsTouched && phone.length === 0) ||
+        (!phoneIsTouched && phone.length === 0)
+      ) {
+        setPhoneIsValid(true);
+      } else setPhoneIsValid(false);
+      if (
+        (passwordIsTouched && password.length === 0) ||
+        (!passwordIsTouched && password.length === 0)
+      ) {
+        setPasswordIsValid(true);
+      } else setPasswordIsValid(false);
+    }
+  }, [
+    clicked,
+    password.length,
+    passwordIsTouched,
+    phone.length,
+    phoneIsTouched,
+  ]);
 
   return (
     <>
       <div class="login-info-from">
         <form>
-          <h2>LogIn to Shopper Perk</h2>
+          <h2>Login to Shopper Perk</h2>
           <div class="login-info-inner-content">
             <div class="custom-input">
               <label for="mobile">Mobile Number</label>
@@ -84,8 +120,16 @@ const LoginModal = ({
                 name="mpbile"
                 id="mobile"
                 required=""
-                onChange={phoneNumberChangeHandler}
+                value={phone}
+                onChange={phoneChangeHandler}
+                onBlur={phoneTouchedHandler}
               />
+              {phoneIsValid && (
+                <span class="alert alert-error">Phone is required.</span>
+              )}
+              {!phoneIsValid && phoneIsTouched && phone.length === 0 && (
+                <span class="alert alert-error">Phone is required</span>
+              )}
             </div>
             <div class="custom-input">
               <label for="password">Password</label>
@@ -94,8 +138,18 @@ const LoginModal = ({
                 name="password"
                 id="password"
                 required=""
+                value={password}
                 onChange={passwordChangeHandler}
+                onBlur={passwordTouchedHandler}
               />
+              {passwordIsValid && (
+                <span class="alert alert-error">Password is required</span>
+              )}
+              {!passwordIsValid &&
+                passwordIsTouched &&
+                password.length === 0 && (
+                  <span class="alert alert-error">Password is required</span>
+                )}
               {failedMsg && (
                 <span class="alert alert-error">
                   Login failed, Phone or Password is wrong!
@@ -121,11 +175,7 @@ const LoginModal = ({
           Create Account
         </a>
       </div>
-      {
-        isLoading && (
-          <Suspense />
-        )
-      }
+      {isLoading && <Suspense />}
     </>
   );
 };

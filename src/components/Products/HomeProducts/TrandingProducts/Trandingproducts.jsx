@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { getTrandingDisplayProducts } from "../../../../Service/DataService";
 import PopUpAlert from "../../../utilities/Alert/PopUpAlert";
 import SliderComponent from "../../../utilities/Slider/SliderComponent";
-import CategorySingleItem from "../CategoryProducts/CategorySingleItem";
+import ProductsInfoModel from "../../ProductsInfoModel";
 
 const Trandingproducts = () => {
   const getTrandingProducts = getTrandingDisplayProducts;
+  console.log({ getTrandingProducts });
   const [alert, setalert] = useState(false);
+
   const closeModal = () => {
     setalert((prevState) => !prevState);
   };
@@ -37,6 +39,7 @@ const Trandingproducts = () => {
       },
     },
   };
+
   return (
     <section class="tranding-right-now-home catagory-product-area">
       {alert && (
@@ -54,16 +57,18 @@ const Trandingproducts = () => {
           <div class="product-catagory-main-flex owl-slider-perk">
             <div class="product-catagory-inner-flex owl-slider-perk-items">
               {/* <!-- single item --> */}
-              {getTrandingProducts.length >= 6 && (
+              {getTrandingProducts.length > 5 && (
                 <SliderComponent
+                  data={getTrandingProducts}
                   options={options}
-                  Template={CategorySingleItem}
+                  Template={ProductsInfoModel}
                   setalert={closeModal}
                 />
               )}
+
               {getTrandingProducts.length <= 5 &&
                 getTrandingProducts.map((item) => (
-                  <CategorySingleItem item={item} setalert={closeModal} />
+                  <ProductsInfoModel item={item} setalert={closeModal} />
                 ))}
             </div>
             <div class="shop-all-offer-btn">

@@ -1,28 +1,34 @@
-import React from 'react'
-import appData from '../../DataSource/appData';
-import SubCategoryItem from './SubCategoryItem';
+import React from "react";
+import appData from "../../DataSource/appData";
+import SubCategoryItem from "./SubCategoryItem";
 
-const SubCategorySubItemList = ({item,categoryId,subCategoryId,setalert}) => {
-    const data=appData.categoryProducts.filter(item2=>item2.category_id===categoryId && item2.subCategory_id===subCategoryId && item2.subCategory_item_id===item.subCategory_item);
-    if(data.length===0){
-        return false;
-    }
-    else
+const SubCategorySubItemList = ({
+  item,
+//   categoryId,
+//   subCategoryId,
+  setalert,
+}) => {
+
+  if (item.products.length === 0) {
+    return false;
+  } else
     return (
-        <div class="catagory-main-product-area">
+      <div class="catagory-main-product-area">
         {/* <!-- common heading --> */}
         <div class="hompe-common-title">
-            <h2>{item.itemName}</h2>
-            <div class="my-header-underline"></div>
+          <h2>{item.name}</h2>
+          <div class="my-header-underline"></div>
         </div>
         {/* <!-- common heading --> */}
         {/* <!-- single product catagory main area --> */}
 
-        <SubCategoryItem categoryId={categoryId} subCategoryId={subCategoryId} subCategoryItemID={item.subCategory_item} setalert={setalert}/>
-        
-        {/* <!-- single product catagory main area --> */}
+        <SubCategoryItem
+          products={item.products}
+          setalert={setalert}
+        />
 
-        </div>
-    )
-}
+        {/* <!-- single product catagory main area --> */}
+      </div>
+    );
+};
 export default SubCategorySubItemList;

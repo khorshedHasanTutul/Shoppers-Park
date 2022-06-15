@@ -1,12 +1,25 @@
 import React, { useContext, useRef, useState } from "react";
 import {} from "@fortawesome/free-solid-svg-icons";
+import {
+  returnDataAsObject,
+  returnDataAsObjectProperties,
+} from "../../Service/DataService";
+import cartContext from "../../Store/cart-context";
 import { Link } from "react-router-dom";
-import AnimatedProduct from "../../../AnimatedProduct/AnimatedProduct";
-import cartContext from "../../../../Store/cart-context";
-import { returnDataAsObjectProperties } from "../../../../Service/DataService";
+import AnimatedProduct from "../AnimatedProduct/AnimatedProduct";
+import { BASE_URL } from "../../Service/httpService2";
 
-const CategorySingleItem = ({ item, setalert }) => {
-  const getReturnObjectData = returnDataAsObjectProperties(item);
+const ProductsInfoModel = ({ item, setalert, from }) => {
+  console.log({ item });
+  console.log({ from });
+  let getReturnObjectData;
+  if (from === "api") {
+    getReturnObjectData = returnDataAsObject(item);
+  } else {
+    getReturnObjectData = returnDataAsObjectProperties(item);
+  }
+  console.log({ getReturnObjectData });
+
   const [anime, setAnime] = useState(false);
   const cardRef = useRef(null);
   const cartCtx = useContext(cartContext);
@@ -33,6 +46,8 @@ const CategorySingleItem = ({ item, setalert }) => {
     setAnime(true);
   };
 
+  console.log({getReturnObjectData})
+
   return (
     <>
       <div class="single-product-catagory-item" ref={cardRef}>
@@ -42,44 +57,42 @@ const CategorySingleItem = ({ item, setalert }) => {
           </a>
         </div>
 
-        <Link to={"/product/" + getReturnObjectData.Id}>
-          {getReturnObjectData.Ds > 0 ? (
+        <Link to={"/product/" + getReturnObjectData.id}>
+          {getReturnObjectData.discountPrice > 0 ? (
             <div class="group-price-drag">
-              <span class="product-new-drag">
-                {getReturnObjectData.Ds > 0 ? getReturnObjectData.Ds : ""}
-                {getReturnObjectData.Ds > 0 ? "%" : ""}{" "}
-              </span>
+              {getReturnObjectData.discountedPercentage > 0 && (
+                <span class="product-new-drag">
+                  {getReturnObjectData.discountedPercentage > 0
+                    ? getReturnObjectData.discountedPercentage.toFixed(2)
+                    : ""}
+                  {getReturnObjectData.discountedPercentage > 0 ? "%" : ""}
+                </span>
+              )}
             </div>
           ) : (
             ""
           )}
 
-          <img src={getReturnObjectData.image} alt="img" />
+          {getReturnObjectData.image === null ? (
+            <img src="/contents/assets/images/no_productimg.jpg" alt="img" />
+          ) : (
+            <img src={`${BASE_URL}${getReturnObjectData.image}`} alt="img" />
+          )}
+
           <div class="catagory-overly-main-bg">
             <div class="catagory-product-overly">
-              <h4>{getReturnObjectData.Nm}</h4>
+              <h4>{getReturnObjectData.displayName}</h4>
             </div>
             <div class="basket-add">
-              {getReturnObjectData.Ds > 0 ? (
-                <span class="item__price item__price--now">
-                  ৳
-                  {(
-                    getReturnObjectData.MRP -
-                    (getReturnObjectData.MRP * getReturnObjectData.Ds) / 100
-                  ).toFixed(2)}
-                </span>
-              ) : (
-                <span class="item__price item__price--now">
-                  ৳{getReturnObjectData.MRP}
-                </span>
-              )}
-
-              {getReturnObjectData.Ds > 0 ? (
+              <span class="item__price item__price--now">
+                ৳{getReturnObjectData.currentPrice}
+              </span>
+              {getReturnObjectData.discountPrice > 0 && (
                 <span class="price product-price">
-                  <del class="cross_price">৳ {getReturnObjectData.MRP}</del>
+                  <del class="cross_price">
+                    ৳ {getReturnObjectData.orginalPrice}
+                  </del>
                 </span>
-              ) : (
-                ""
               )}
             </div>
             <span onClick={animateCardHandler.bind(null, getReturnObjectData)}>
@@ -99,4 +112,4 @@ const CategorySingleItem = ({ item, setalert }) => {
     </>
   );
 };
-export default CategorySingleItem;
+export default ProductsInfoModel;

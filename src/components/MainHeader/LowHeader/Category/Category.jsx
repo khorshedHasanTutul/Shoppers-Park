@@ -48,39 +48,45 @@ const Category = () => {
           <span onClick={toggleClass}>×</span>
         </a>
         <ul>
-          {getMainCategories.map((item, index) => (
-            <li class="dropdown">
-              {screenWidth > 991 ? (
-                <>
-                  <a href>
-                    {getMainCategories[index][1]}
-                    <i
-                      class="fa fa-angle-down arrow-class"
-                      aria-hidden="true"
-                    ></i>
-                  </a>
-                  <ul class="dropdownmenu mega-menu">
-                    {/* start inner mega menu shop */}
-                    <CategoryItem mainCategoryIndex={index}/>
-                  </ul>
-                </>
-              ) : (
-                <>
-                  <a href onClick={clickedArrowHandler}>
-                    <span> {getMainCategories[index][1]}</span>
-                    <i
-                      class="fa fa-angle-down arrow-class"
-                      aria-hidden="true"
-                    ></i>
-                  </a>
-                  <ul class="dropdownmenu mega-menu">
-                    {/* start inner mega menu shop */}
-                    <CategoryItem toggleClass={toggleClass} mainCategoryIndex={index}/>
-                  </ul>
-                </>
-              )}
-            </li>
-          ))}
+          {getMainCategories.map((item, index) => {
+            console.log( 'mainCategory=>',item);
+            return (
+              <li class="dropdown">
+                {screenWidth > 991 ? (
+                  <>
+                    <a href>
+                      {item[1]}
+                      <i
+                        class="fa fa-angle-down arrow-class"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <ul class="dropdownmenu mega-menu">
+                      {/* start inner mega menu shop */}
+                      <CategoryItem mainCategoryIndex={index} />
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <a href onClick={clickedArrowHandler}>
+                      <span> {item[1]}</span>
+                      <i
+                        class="fa fa-angle-down arrow-class"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <ul class="dropdownmenu mega-menu">
+                      {/* start inner mega menu shop */}
+                      <CategoryItem
+                        toggleClass={toggleClass}
+                        mainCategoryIndex={index}
+                      />
+                    </ul>
+                  </>
+                )}
+              </li>
+            );
+          })}
 
           <HeaderLinksitem toggleClass={toggleClass} />
         </ul>

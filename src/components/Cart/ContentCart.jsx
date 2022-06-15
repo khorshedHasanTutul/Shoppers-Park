@@ -9,7 +9,7 @@ const ContentCart = ({
   setalert,
   setloginPopupModel,
   setorderNowPressed,
-  setQtyAlert
+  setQtyAlert,
 }) => {
   const authCtx = useContext(authContext);
   const ctxCart = useContext(cartContext);
@@ -34,12 +34,12 @@ const ContentCart = ({
     ctxCart.clearCart();
   };
 
-//   useEffect(()=>{
-//       if(getCartModal.Items.length===0){
-//           closeCart();
-//       }
+  //   useEffect(()=>{
+  //       if(getCartModal.Items.length===0){
+  //           closeCart();
+  //       }
 
-//   },[getCartModal.Items.length,closeCart])
+  //   },[getCartModal.Items.length,closeCart])
 
   return (
     <div class="cart-box-view">
@@ -66,7 +66,7 @@ const ContentCart = ({
             <span class="happy-shopping">Happy Shopping!! </span>
             <table class="cart-table">
               <tbody>
-                <CartTableItem setQtyAlert={setQtyAlert}/>
+                <CartTableItem setQtyAlert={setQtyAlert} />
               </tbody>
             </table>
           </div>

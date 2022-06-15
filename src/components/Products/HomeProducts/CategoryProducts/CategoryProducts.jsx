@@ -11,8 +11,10 @@ const CategoryProducts = () => {
   const closeModal = () => {
     setalert((prevState) => !prevState);
   };
+
   return (
     <section class="catagory-product-area">
+      {/* cart checking product  */}
       {alert && (
         <PopUpAlert content={"Already in your cart."} closeModal={closeModal} />
       )}
