@@ -30,7 +30,7 @@ const ProductSummary = ({
       history.push("/");
     }
   }, [cartCtxModal.Items.length, history]);
-  
+
   return (
     <div class="tab-content checkout-main-tab-content">
       {/* <!-- product desc review information --> */}

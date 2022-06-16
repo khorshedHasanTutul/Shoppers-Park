@@ -21,23 +21,23 @@ const TableSingleItem = ({ data, setQtyAlert }) => {
             </a>
           </td>
           <TableItemCategoryBrand item={item} />
-          {item.Ds > 0 ? (
+          {item.discountPrice > 0 ? (
             <td class="price">
-              <span>৳ {(item.MRP - item.Ds).toFixed(2)}</span>
+              <span>৳ {item.currentPrice.toFixed(2)}</span>
             </td>
           ) : (
             <td class="price">
-              <span>৳ {item.MRP.toFixed(2)}</span>
+              <span>৳ {item.currentPrice.toFixed(2)}</span>
             </td>
           )}
           <CartQuantityRow item={item} setQtyAlert={setQtyAlert} />
-          {item.Ds > 0 ? (
+          {item.discountPrice > 0 ? (
             <td class="price">
-              <span>৳ {((item.MRP - item.Ds) * item.quantity).toFixed(2)}</span>
+              <span>৳ {(item.currentPrice * item.quantity).toFixed(2)}</span>
             </td>
           ) : (
             <td class="price">
-              <span>৳ {(item.MRP * item.quantity).toFixed(2)}</span>
+              <span>৳ {(item.currentPrice * item.quantity).toFixed(2)}</span>
             </td>
           )}
           <td class="action">

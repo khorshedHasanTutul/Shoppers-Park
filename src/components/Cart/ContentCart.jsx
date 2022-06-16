@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import CartTableItem from "./CartTableItem";
 import { Link } from "react-router-dom";
 import authContext from "../../Store/auth-context";

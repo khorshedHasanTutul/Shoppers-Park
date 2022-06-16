@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SubCategory from "./SubCategory";
-import appData from "../../../DataSource/appData";
 import { Link } from "react-router-dom";
-import { callBack } from "../../../../Service/AppService";
-import {
-  getDropDownMainCategories,
-  getMainCategories,
-} from "../../../../Service/DataService";
+import { getDropDownMainCategories } from "../../../../Service/DataService";
 
 const CategoryItem = ({ toggleClass, indexofCategory, mainCategoryIndex }) => {
   const dataGet = getDropDownMainCategories();
-  console.log({ dataGet });
-
   const [count, setcount] = useState(0);
   const increment = () => {
     setcount(count + 1);
@@ -91,7 +84,11 @@ const CategoryItem = ({ toggleClass, indexofCategory, mainCategoryIndex }) => {
                           View all {categoryItem[1]}
                         </span>
                       </Link>
-                      {/* <SubCategory  categoryItem={categoryItem}  toggleClass={toggleClass} indexnum={index}/> */}
+                      <SubCategory
+                        categoryItem={categoryItem[2]}
+                        toggleClass={toggleClass}
+                        indexnum={index}
+                      />
                     </li>
                   </ul>
                 </>

@@ -17,7 +17,7 @@ const AddressForm = ({
   onSave,
   addresses,
   setsavedShippingInfo,
-  setpaymentShippingAddress
+  setpaymentShippingAddress,
 }) => {
   const { pathname } = useLocation();
   const [phone, setphone] = useState("");
@@ -58,7 +58,7 @@ const AddressForm = ({
   const [addressValid, setaddressValid] = useState(false);
   const [saveBtnClicked, setsaveBtnClicked] = useState(false);
   const [alert, setalert] = useState(false);
-  console.log({divisionId})
+  console.log({ divisionId });
 
   const closeModal = () => {
     setalert((prevState) => !prevState);
@@ -140,14 +140,13 @@ const AddressForm = ({
           if (pathname === "/profile/address") {
             getAddress();
           } else onSave();
-          if(pathname==="/checkout"){
+          if (pathname === "/checkout") {
             window.scrollTo({
               top: 300,
               left: 0,
               behavior: "smooth",
             });
           }
-          
         },
         failed: () => {
           console.log("failed");
@@ -232,7 +231,7 @@ const AddressForm = ({
       },
     });
   };
-  console.log({districtId})
+  console.log({ districtId });
 
   const getAreas = (districtId) => {
     http.post({
@@ -385,14 +384,11 @@ const AddressForm = ({
     }
   }, [getAddressData, savedAddressInfo]);
 
-
-
   useEffect(() => {
     const activeInputValue = addresses?.find(
       (item) => item.Type == activeButtonText
     );
-    if(pathname==="/checkout")
-    setpaymentShippingAddress(activeInputValue)
+    if (pathname === "/checkout") setpaymentShippingAddress(activeInputValue);
     // console.log({ activeInputValue });
     if (activeInputValue) {
       setphone(activeInputValue.Mobile);
@@ -426,15 +422,20 @@ const AddressForm = ({
       setareaId({ name: "", id: "" });
       setchecked(false);
     }
-  }, [activeButtonText, getAddressData, getCheckedData, addresses,pathname,setpaymentShippingAddress]);
-
-  
+  }, [
+    activeButtonText,
+    getAddressData,
+    getCheckedData,
+    addresses,
+    pathname,
+    setpaymentShippingAddress,
+  ]);
 
   useEffect(() => {
     const activeInputValue = getAddressData?.find(
       (item) => item.Type == activeButtonText
     );
-    if (activeInputValue && pathname==="/profile/address") {
+    if (activeInputValue && pathname === "/profile/address") {
       setphone(activeInputValue.Mobile);
       setemail(activeInputValue.Email);
       setname(activeInputValue.Name);
@@ -456,7 +457,7 @@ const AddressForm = ({
       } else {
         setchecked(false);
       }
-    } 
+    }
     // else {
     //   setphone("");
     //   setemail("");
@@ -467,9 +468,7 @@ const AddressForm = ({
     //   setareaId({ name: "", id: "" });
     //   setchecked(false);
     // }
-
-  }, [activeButtonText, getAddressData,pathname]);
-  
+  }, [activeButtonText, getAddressData, pathname]);
 
   return (
     <>
@@ -602,7 +601,7 @@ const AddressForm = ({
             </div>
           </div>
           <div className={`address-btn-group align-start g-8`}>
-            <SavingAddressTab 
+            <SavingAddressTab
               activeButtonAddress={activeButtonAddress}
               getAddressData={addresses || getAddressData}
               selectedShippingInfo={selectedShippingInfo}

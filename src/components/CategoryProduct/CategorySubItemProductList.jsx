@@ -1,13 +1,7 @@
 import React from "react";
-import appData from "../DataSource/appData";
 import TotalCategoryProduct from "./TotalCategoryProduct";
 
-const CategorySubItemProductList = ({
-  subCategory_item,
-  setalert,
-}) => {
-  
-
+const CategorySubItemProductList = ({ subCategory_item, setalert }) => {
   if (subCategory_item.products.length === 0) {
     return false;
   } else

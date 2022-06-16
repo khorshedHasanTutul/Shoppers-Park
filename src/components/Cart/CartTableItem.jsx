@@ -16,37 +16,39 @@ const CartTableItem = ({ data, setQtyAlert }) => {
       {getCartModal.Items.map((item, index) => (
         <tr class="close">
           <td class="card-title-heading">
-            <Link to={"/product/" + item.Id}>
-              <span class="SearchProductName SearchFont">{item.Nm}</span>
+            <Link to={"/product/" + item.id}>
+              <span class="SearchProductName SearchFont">{item.displayName}</span>
             </Link>
             <br />
-            {item.Ds > 0 ? (
-              <del class="SearchDelPrice SearchDelPriceDel1">৳ {item.MRP}</del>
+            {item.discountPrice > 0 ? (
+              <del class="SearchDelPrice SearchDelPriceDel1">
+                ৳ {item.orginalPrice}
+              </del>
             ) : (
               ""
             )}
-            {item.Ds > 0 ? (
+            {item.discountPrice > 0 ? (
               <strong class="SearchPrice SearchDelPriceDel2">
-                ৳{(item.MRP - item.Ds).toFixed(2)}
+                ৳{item.currentPrice.toFixed(2)}
               </strong>
             ) : (
               <strong class="SearchPrice SearchDelPriceDel2">
-                ৳{item.MRP.toFixed(2)}
+                ৳{item.currentPrice.toFixed(2)}
               </strong>
             )}
           </td>
           <MiniCartQuantityRow item={item} setQtyAlert={setQtyAlert} />
           <td class="amount-for-popup">
             <span class="SearchFont SearchDelPrice">
-              {item.Ds > 0 ? <aside>৳</aside> : <span>৳</span>}
-              {item.Ds > 0 && (
+              {item.discountPrice > 0 ? <aside>৳</aside> : <span>৳</span>}
+              {item.discountPrice > 0 && (
                 <del class="add-postion">
-                  {(item.MRP * item.quantity).toFixed(2)}
+                  {(item.orginalPrice * item.quantity).toFixed(2)}
                 </del>
               )}
               <br />
               <span class="SearchFont SearchPrice">
-                {((item.MRP - item.Ds) * item.quantity).toFixed(2)}
+                {(item.currentPrice * item.quantity).toFixed(2)}
               </span>
             </span>
           </td>

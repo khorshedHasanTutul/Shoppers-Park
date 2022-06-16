@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import appData from "../DataSource/appData";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import CategorySubItemProductList from "./CategorySubItemProductList";
 
 const TotalCategoryItem = ({ children }) => {
+  console.log({ children });
   const [alert, setalert] = useState(false);
 
   const closeModal = () => {
     setalert((prevState) => !prevState);
   };
+  const findEveryChildrenProducts = (children) => {
+    const find = children.filter((item) => item.products.length > 0);
+    return find.length > 0 ? true : false;
+  };
 
-  if (children.length === 0) {
+  if (children.length === 0 || findEveryChildrenProducts(children) === false) {
     return (
       <div class="container">
         <div className="pro-not-found-img-subcategory">

@@ -10,20 +10,16 @@ import AnimatedProduct from "../AnimatedProduct/AnimatedProduct";
 import { BASE_URL } from "../../Service/httpService2";
 
 const ProductsInfoModel = ({ item, setalert, from }) => {
-  console.log({ item });
-  console.log({ from });
+  const [anime, setAnime] = useState(false);
+  const cardRef = useRef(null);
+  const cartCtx = useContext(cartContext);
+  const cartCtxModal = cartCtx.getCartModel;
   let getReturnObjectData;
   if (from === "api") {
     getReturnObjectData = returnDataAsObject(item);
   } else {
     getReturnObjectData = returnDataAsObjectProperties(item);
   }
-  console.log({ getReturnObjectData });
-
-  const [anime, setAnime] = useState(false);
-  const cardRef = useRef(null);
-  const cartCtx = useContext(cartContext);
-  const cartCtxModal = cartCtx.getCartModel;
 
   const addToCartHandler = (item, e) => {
     e.preventDefault();
@@ -35,7 +31,7 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
   };
 
   const animateCardHandler = (item) => {
-    if (cartCtxModal.Items.find((itemInner) => itemInner.Id === item.Id)) {
+    if (cartCtxModal.Items.find((itemInner) => itemInner.id === item.id)) {
       setalert();
     } else {
       animationStartHandler();
@@ -46,7 +42,7 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
     setAnime(true);
   };
 
-  console.log({getReturnObjectData})
+  console.log({ getReturnObjectData });
 
   return (
     <>

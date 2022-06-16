@@ -5,6 +5,7 @@ import HeaderLinksitem from "../LowHeaderLinks/HeaderLinksitem";
 import CategoryItem from "./CategoryItem";
 
 const Category = () => {
+  // this functionalist are doing for mobile responsive menu items
   const [count, setcount] = useState(0);
   const [isActive, setActive] = useState(false);
   const screenWidth = window.innerWidth;
@@ -49,9 +50,9 @@ const Category = () => {
         </a>
         <ul>
           {getMainCategories.map((item, index) => {
-            console.log( 'mainCategory=>',item);
             return (
               <li class="dropdown">
+                {/* screen size bigger than 991px  allow this  */}
                 {screenWidth > 991 ? (
                   <>
                     <a href>

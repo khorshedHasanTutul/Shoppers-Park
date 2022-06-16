@@ -4,17 +4,18 @@ import { Link } from "react-router-dom";
 export const SubsSubCategoryitem = ({
   subCategoryItem,
   categoryId,
-  subCategoryId,
+  subCategoryName,
   toggleClass,
 }) => {
   return (
     <ul class="mega-menu3">
       <li>
-        <Link class="hover-special-view" to={"/"}>
-          <span onClick={toggleClass}>View all {}</span>
+        <Link class="hover-special-view" to={"/subcategory/" + categoryId}>
+          <span onClick={toggleClass}>View all {subCategoryName}</span>
         </Link>
       </li>
       {subCategoryItem.map((item) => (
+        /* screen size bigger than 991px  allow this  */
         <>
           {window.innerWidth > 991 ? (
             <li>
