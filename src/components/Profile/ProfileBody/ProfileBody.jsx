@@ -1,11 +1,12 @@
 import Profile from "../Profile";
 import OrderHistory from "../OrderHistory/OrderHistory";
-import Address from "../Address/Address";
 import Offers from "../Offers/Offers";
 import Complain from "../Complain/Complain";
 import Request from "../Request/Request";
-import Prescription from "../../Profile/Prescriptions/Prescriptions"
+import Prescription from "../../Profile/Prescriptions/Prescriptions";
 import { Route, Switch, Redirect } from "react-router-dom";
+import Address from "../../CheckOut/Address";
+import AddressContextProvider from "../../../Store/AddressContextProvider";
 
 const ADDRESS = [{ id: 25 }];
 
@@ -20,7 +21,7 @@ const ProfileBody = () => {
           <Profile />
         </Route>
         <Route path="/profile/order" exact>
-          <Redirect to='/profile/order/all' />
+          <Redirect to="/profile/order/all" />
         </Route>
         <Route path="/profile/order">
           <OrderHistory />
@@ -32,7 +33,9 @@ const ProfileBody = () => {
           <Prescription prescriptions={{ id: 1 }}></Prescription>
         </Route>
         <Route path="/profile/address">
-          <Address addresses={ADDRESS} />
+          <AddressContextProvider>
+            <Address />
+          </AddressContextProvider>
         </Route>
         <Route path="/profile/offer">
           <Offers offers={[{ id: 1 }]} />

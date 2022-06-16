@@ -21,7 +21,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Wishlist from "./pages/Wishlist";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
-import Payment from "./pages/CheckOut";
+import Payment from "./pages/Checkout";
 import NewInShop from "./pages/NewInShop";
 import Notifications from "./pages/Notifications";
 import Festival from "./pages/Festival";

@@ -84,3 +84,14 @@ export const returnDataAsObject = (item) => {
   };
   return productInfo;
 };
+
+export const storeAddressObj = {
+  name: "",
+  mobile: "",
+  email: "",
+  division: { id: "", name: "" },
+  district: { id: "", name: "" },
+  area: { id: "", name: "" },
+  address: "",
+  type: "",
+};

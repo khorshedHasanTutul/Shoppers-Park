@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useOutsideAlerter } from "../../../hooks/useOutsideClickHandler";
 import classes from "./Select.module.css";
 
@@ -11,28 +11,29 @@ const Select = ({
   selectedOption,
   previewText,
   error,
-  onBlur
+  onBlur,
 }) => {
   const { searchPath = "text", textPath = "text", keyPath = "id" } = config;
-  
+
   const [listIsShown, setListisShown] = useState(false);
   const inputRef = useRef();
   const selectRef = useRef();
-  const [inputValue, setInputValue] = useState(selectedOption?.id ? selectedOption[textPath] : "");
+  const [inputValue, setInputValue] = useState(
+    selectedOption?.id ? selectedOption[textPath] : ""
+  );
   const [optionList, setOptionList] = useState(options);
 
   useEffect(() => {
-    if(selectedOption){
-      setInputValue(selectedOption[textPath])
+    if (selectedOption) {
+      setInputValue(selectedOption[textPath]);
     }
     setOptionList(options);
   }, [options, selectedOption, textPath]);
 
-
   useOutsideAlerter(selectRef, () => {
     setListisShown(false);
   });
-  
+
   const focusHandler = () => {
     setListisShown(true);
   };
@@ -83,7 +84,7 @@ const Select = ({
             onFocus={focusHandler}
             onBlur={blurHandler}
             ref={inputRef}
-            value={inputValue || ''}
+            value={inputValue || ""}
             onChange={inputChangeHandler}
             autoComplete="off"
           />
@@ -97,15 +98,18 @@ const Select = ({
           }`}
         >
           <ul>
-            {optionList.length < 1 && <li>{previewText ?? 'No data to show'}</li>}
-            {optionList.length > 0 && optionList.map((option) => (
-              <li
-                onClick={optionSelectHandler.bind(null, option)}
-                key={option[keyPath]}
-              >
-                {option[textPath]}
-              </li>
-            ))}
+            {optionList.length < 1 && (
+              <li>{previewText ?? "No data to show"}</li>
+            )}
+            {optionList.length > 0 &&
+              optionList.map((option) => (
+                <li
+                  onClick={optionSelectHandler.bind(null, option)}
+                  key={option[keyPath]}
+                >
+                  {option[textPath]}
+                </li>
+              ))}
           </ul>
         </div>
         <div className={classes.error}>{error}</div>
