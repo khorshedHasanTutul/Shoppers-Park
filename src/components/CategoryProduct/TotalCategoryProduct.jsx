@@ -47,7 +47,11 @@ const TotalCategoryProduct = ({ products, setalert }) => {
             )}
             {products.length <= 5 &&
               products.map((item) => (
-                <ProductsInfoModel item={item} setalert={setalert} from={"api"} />
+                <ProductsInfoModel
+                  item={item}
+                  setalert={setalert}
+                  from={"api"}
+                />
               ))}
           </div>
         </div>

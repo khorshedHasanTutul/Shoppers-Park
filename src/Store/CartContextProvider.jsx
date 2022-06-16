@@ -35,13 +35,13 @@ const initialState = () => {
 const reducer = (state, action) => {
   //calculation Discount ammount of price
   const calcDiscountAmmount = (item) => {
-    let productPrice = item.MRP - item.Ds;
+    let productPrice = item.currentPrice;
     return productPrice;
   };
 
   //calculation without discounted price
   const calcAmmount = (item) => {
-    let productPrice = item.MRP;
+    let productPrice = item.currentPrice;
     return productPrice;
   };
 
@@ -50,7 +50,7 @@ const reducer = (state, action) => {
     const cartCtxItems = [...state.Items];
     let stateTotalItems = state.TotalItems;
     let stateTotalAmmount = state.TotalAmmount;
-    if (cartCtxItems.find((item) => item.Id === action.item.Id)) {
+    if (cartCtxItems.find((item) => item.id === action.item.id)) {
       return {
         ...state,
         TotalItems: stateTotalItems,
@@ -64,7 +64,7 @@ const reducer = (state, action) => {
       let stateTotalItems = state.TotalItems;
       stateTotalItems += 1;
       let stateTotalAmmount = state.TotalAmmount;
-      if (action.item.Ds > 0) {
+      if (action.item.discountPrice > 0) {
         let productPrice = calcDiscountAmmount(action.item);
         stateTotalAmmount += productPrice;
       } else {
@@ -97,21 +97,21 @@ const reducer = (state, action) => {
     let getCartFromLocalStorage = localStorage.getItem("CARTV1");
     getCartFromLocalStorage = JSON.parse(getCartFromLocalStorage);
     const index = getCartFromLocalStorage.Items.findIndex(
-      (item2) => item2.Id === action.item.Id
+      (item2) => item2.id === action.item.id
     );
     getCartFromLocalStorage.Items.splice(index, 1);
 
     let totalAmmount = 0;
     //context update
     const stateItems = cartcontextItems.filter(
-      (item) => item.Id !== action.item.Id
+      (item) => item.Id !== action.item.id
     );
 
     let stateTotalItems = state.TotalItems;
     stateTotalItems -= 1;
     stateItems.forEach((element) => {
       let mrpPriceOfSingleProduct;
-      if (element.Ds > 0) {
+      if (element.discountPrice > 0) {
         mrpPriceOfSingleProduct = calcDiscountAmmount(element);
       } else {
         mrpPriceOfSingleProduct = calcAmmount(element);
@@ -142,18 +142,18 @@ const reducer = (state, action) => {
   if (action.type === "UPDATE_QTY") {
     let CtxItems = [...state.Items];
     const findCtxItem = CtxItems.find(
-      (itemfind) => itemfind.Id === action.item.Id
+      (itemfind) => itemfind.id === action.item.id
     );
 
     if (action.qty === 0) {
       let getCartFromLocalStorage = localStorage.getItem("CARTV1");
       getCartFromLocalStorage = JSON.parse(getCartFromLocalStorage);
       const index = getCartFromLocalStorage.Items.findIndex(
-        (item2) => item2.Id === action.item.Id
+        (item2) => item2.id === action.item.id
       );
       getCartFromLocalStorage.Items.splice(index, 1);
 
-      CtxItems = CtxItems.filter((item) => item.Id !== action.item.Id);
+      CtxItems = CtxItems.filter((item) => item.id !== action.item.id);
     }
 
     findCtxItem.quantity = action.qty;
@@ -161,7 +161,7 @@ const reducer = (state, action) => {
 
     CtxItems.forEach((element) => {
       let mrpPriceOfSingleProduct;
-      if (element.Ds > 0) {
+      if (element.discountPrice > 0) {
         mrpPriceOfSingleProduct = calcDiscountAmmount(element);
       } else {
         mrpPriceOfSingleProduct = calcAmmount(element);
@@ -194,7 +194,7 @@ const reducer = (state, action) => {
 
     cartCtxItems.forEach((element) => {
       let mrpPriceOfSingleProduct;
-      if (element.Ds > 0) {
+      if (element.discountPrice > 0) {
         mrpPriceOfSingleProduct = calcDiscountAmmount(element);
       } else {
         mrpPriceOfSingleProduct = calcAmmount(element);
@@ -222,7 +222,7 @@ const reducer = (state, action) => {
   if (action.type === "UPDATE_EDITABLE_QTY") {
     let CtxItems = [...state.Items];
     const findCtxItem = CtxItems.find(
-      (itemfind) => itemfind.Id === action.item.Id
+      (itemfind) => itemfind.id === action.item.id
     );
     if (action.qty === "") {
       action.qty = parseInt(0);
@@ -233,7 +233,7 @@ const reducer = (state, action) => {
 
     CtxItems.forEach((element) => {
       let mrpPriceOfSingleProduct;
-      if (element.Ds > 0) {
+      if (element.discountPrice > 0) {
         mrpPriceOfSingleProduct = calcDiscountAmmount(element);
       } else {
         mrpPriceOfSingleProduct = calcAmmount(element);

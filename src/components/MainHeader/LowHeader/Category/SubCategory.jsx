@@ -35,7 +35,6 @@ const SubCategory = ({ categoryItem, toggleClass }) => {
   return (
     <ul>
       {categoryItem.map((subCategoryItem, index) => {
-        console.log({ subCategoryItem });
         return (
           <li>
             {window.innerWidth > 991 ? (
@@ -58,8 +57,8 @@ const SubCategory = ({ categoryItem, toggleClass }) => {
             )}
 
             <SubsSubCategoryitem
-              categoryId={categoryItem}
-              subCategoryId={subCategoryItem[1]}
+              categoryId={subCategoryItem[0]}
+              subCategoryName={subCategoryItem[1]}
               subCategoryItem={subCategoryItem[2]}
               toggleClass={toggleClass}
             />

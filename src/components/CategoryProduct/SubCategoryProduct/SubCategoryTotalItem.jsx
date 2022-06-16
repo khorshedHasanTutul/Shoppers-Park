@@ -2,7 +2,12 @@ import React from "react";
 import SubCategorySubItemList from "./SubCategorySubItemList";
 
 const SubCategoryTotalItem = ({ children, setalert }) => {
-  if (children.length === 0) {
+  const findEveryChildrenProducts = (children) => {
+    const find = children.filter((item) => item.products.length > 0);
+    return find.length > 0 ? true : false;
+  };
+
+  if (children.length === 0 || findEveryChildrenProducts(children) === false) {
     return (
       <div className="pro-not-found-img-subcategory">
         <strong>

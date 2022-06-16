@@ -10,6 +10,7 @@ const CategoryProduct = () => {
   const { id } = useParams();
   const [categoryProducts, setCategoryProducts] = useState();
   const [isGetting, setIsGetting] = useState(true);
+  // get category id wise child and products
   const getCategories = useCallback((id) => {
     httpV2.get({
       url: GET_PRODUCTS_BY_CATEGORY + id,
@@ -30,6 +31,7 @@ const CategoryProduct = () => {
   useEffect(() => {
     getCategories(id);
   }, [getCategories, id]);
+
   return (
     <>
       {!isGetting && (

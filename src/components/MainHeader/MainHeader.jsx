@@ -18,20 +18,8 @@ export const MainHeader = forwardRef((props, stickyNavRef) => {
   const closeModal = () => {
     setalertPopUp((prevState) => !prevState);
   };
-  //   useEffect(
-  //     () =>
-  //       window.addEventListener("scroll", () => {
-  //         setScroll(window.scrollY > 40);
-  //       }),
-  //     []
-  //   );
 
-//   useEffect(() => {
-//     setTimeout(() => {
-//       setPopupClasses("main-ads");
-//     }, 300);
-//   }, []);
-
+  // this codes exist for the header nav ups & down smoothly
   const handleScroll = useCallback(() => {
     const offset = window.scrollY;
     const navTopHeight = 25;
