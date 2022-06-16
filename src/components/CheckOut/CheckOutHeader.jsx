@@ -1,19 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-const CheckOutHeader = () => {
-    return (
-        <section class="breadcrumb-main-area">
-        <div class="container">
-            <nav aria-label="breadcrumb" class="breadcrumb-main">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><Link to={'/'}>Home</Link></li>
-                    <li class="breadcrumb-item active" aria-current="page">Checkout</li>
-                </ul>
-            </nav>
-        </div>
-    </section>
-    );
-};
+const CheckoutHeader = () => {
+  return (
+    <section class="breadcrumb-main-area">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="breadcrumb-main">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><Link to={"/"}>Home</Link></li>
+                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+            </ul>
+        </nav>
+    </div>
+</section>
+  )
+}
 
-export default CheckOutHeader;
+export default CheckoutHeader

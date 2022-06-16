@@ -20,6 +20,13 @@ export const verifyOtp = "/api/v1/Auth/Register";
 export const login = "/api/v1/Auth/Login";
 export const RESET_PASSWORD = "/api/v1/Auth/ResetPassword";
 export const GET_PRODUCTS_BY_CATEGORY = "/api/v1/Categories/";
+export const GET_ADDRESS = "/api/v1/Addresses";
+export const postAddress = "/api/v1/Addresses";
+export const addressDivisions = "/api/v1/Provinces";
+export const addressDistrict = "/api/v1/Districts/ByProvince/";
+export const addressArea = "/api/v1/Upazilas/ByDistrict/";
+export const POST_ORDER = "/api/v1/Orders";
+export const POST_ORDER_PAYMENT = "/api/v1/Orders/PaymentInfo";
 
 export const endpoints = {
   login,

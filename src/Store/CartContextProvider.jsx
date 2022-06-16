@@ -104,7 +104,7 @@ const reducer = (state, action) => {
     let totalAmmount = 0;
     //context update
     const stateItems = cartcontextItems.filter(
-      (item) => item.Id !== action.item.id
+      (item) => item.id !== action.item.id
     );
 
     let stateTotalItems = state.TotalItems;

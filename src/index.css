@@ -251,7 +251,7 @@ h3 {
   text-transform: uppercase;
   font-weight: 600;
   color: #000;
-  font-size: 26px;
+  font-size: 20px;
   text-align: center;
   line-height: 1.5;
 }
@@ -1279,22 +1279,22 @@ input:focus {
 }
 
 .catagory-overly-main-bg .btn_cart {
-	color: #fff;
-	background: #ee008e;
-	white-space: normal;
-	font-weight: 400;
-	font-size: 14px;
-	box-sizing: border-box;
-	display: flex;
-	text-align: center;
-	padding: 8px 10px !important;
-	border-radius: 5px;
-	font-family: "Open Sans", sans-serif;
-	margin-top: 4px;
-	transition: 0.4s;
-	border: 2px solid transparent;
-	justify-content: center;
-	align-items: center;
+  color: #fff;
+  background: #ee008e;
+  white-space: normal;
+  font-weight: 400;
+  font-size: 14px;
+  box-sizing: border-box;
+  display: flex;
+  text-align: center;
+  padding: 8px 10px !important;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  margin-top: 4px;
+  transition: 0.4s;
+  border: 2px solid transparent;
+  justify-content: center;
+  align-items: center;
 }
 .catagory-overly-main-bg .btn_cart > h5 {
   color: #fff;
@@ -2123,7 +2123,7 @@ a {
 
 .tab-content {
   /* display: none; */
-  color: #777;
+  /* color: #777; */
 }
 
 /* As we cannot replace the numbers with variables or calls to element properties, the number of this selector parts is our tab count limit */
@@ -2203,13 +2203,13 @@ a {
 /****************** plus minuse css default ******************/
 
 .input-group.product_qty > input {
-  width: 35px;
-  background: transparent;
-  border: 1px solid #ddd;
-  padding: 5px;
-  height: 23px;
-  position: relative;
-  top: 2px;
+	width: 35px;
+	background: transparent;
+	border: 1px solid #ddd;
+	padding: 5px;
+	height: 22px;
+	position: relative;
+	top: 2px;
 }
 .btn-red {
   border-radius: 0px 6px 6px 0px;
@@ -2229,7 +2229,7 @@ a {
   justify-content: center;
   background: rgba(77, 77, 77, 0.8);
   transition: all 0.4s;
-  z-index: 9;
+  z-index: 99999;
 }
 
 .modal:target {
@@ -2958,6 +2958,9 @@ select::-ms-expand {
   display: block;
   padding-top: 6px;
   padding-bottom: 15px;
+}
+.address-home-default-single > p {
+  text-align: center;
 }
 .return-policy-main ul {
   padding-bottom: 35px;
@@ -5170,10 +5173,11 @@ div.brick.label.default {
   z-index: 9999 !important;
 }
 .grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	padding: 0px;
+	width: 95%;
 }
-
 .prescription-form .grid {
   align-items: center;
 }
@@ -5511,18 +5515,18 @@ div.brick.label.default {
 }
 
 .cart_navigation a {
-  display: inline-block;
-  border: 1px solid #df2c8a;
-  padding: 10px 22px;
-  background: #df2c8a;
-  color: white;
-  font-size: 17px;
-  font-weight: 600;
-  /* display: flex; */
-  align-items: center;
-  transition: 0.6s;
-  cursor: pointer;
-  height: 26px;
+	display: inline-block;
+	border: 1px solid #df2c8a;
+	padding: 6px 16px;
+	background: #df2c8a;
+	color: white;
+	font-size: 17px;
+	font-weight: 600;
+	/* display: flex; */
+	align-items: center;
+	transition: 0.6s;
+	cursor: pointer;
+	height: 26px;
 }
 
 /* .cart_navigation a:hover {
@@ -5656,18 +5660,16 @@ div.brick.label.default {
   margin-top: 15px;
 }
 .address-info-right-default h2 {
-  text-align: left;
-  color: #000;
-  font-size: 20px;
+  text-align: center;
+  color: #df2c8a;
+  font-size: 18px;
   margin-bottom: 15px;
 }
 
 .address-home-default-single h3 {
-  text-align: left;
-  font-size: 15px;
-}
-.address-home-default-single p {
-  text-align: left;
+  font-size: 18px;
+  color: #df2c8a;
+  text-transform: capitalize;
 }
 
 .address-home-default-single {
@@ -5676,6 +5678,45 @@ div.brick.label.default {
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 20px;
+  text-align: center;
+  padding-bottom: 20px;
+  position: relative;
+}
+.address-home-default-single.active {
+  border: 2px solid #df2c8a;
+}
+.selected-address {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.selected-address > p {
+  font-weight: 500;
+  color: green;
+}
+.selected-address > p > i {
+  color: green;
+  border: 2px solid green;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+.order-detail-content .action > a {
+  color: #df2c8a;
+  font-size: 35px;
+  cursor: pointer;
+}
+.d-flexx {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inner-shop-add-flex span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  display: block;
+  padding-bottom: 20px;
+  text-align: left;
 }
 
 .discount-cupon-payment label {
@@ -5687,7 +5728,7 @@ div.brick.label.default {
 }
 
 #discount_codeSubmit {
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   max-width: 330px;
   width: 100%;
   display: flex;
@@ -5719,19 +5760,28 @@ div.brick.label.default {
 }
 .chosse-your-fvt-btn ul {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 .chosse-your-fvt-btn ul li {
   margin: 5px;
 }
 .chosse-your-fvt-btn ul li a {
-  background: #55c595;
-  color: #fff;
+  background: transparent;
+  color: #df2c8a;
   display: block;
-  padding: 10px 20px;
+  padding: 10px 44px;
   text-align: center;
+  border: 2px solid #df2c8a;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 5px;
 }
 .chosse-your-fvt-btn ul li.active a {
   background: #df2c8a;
+  border: 2px solid #df2c8a;
+  color: white;
 }
 
 .address-info-inner-flex {
@@ -6539,3 +6589,44 @@ div.brick.label.default {
   width: 100%;
   background: white;
 } */
+
+.checkout-main-tab-information-main .niiceeTabBtn {
+  display: flex;
+  border-bottom: 3px solid #dddddd;
+  width: 85%;
+}
+.checkout-main-tab-information-main .niiceeTabBtn button.active::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: "";
+  width: 100%;
+  height: 3px;
+  background: #df2c8a;
+}
+.checkout-main-tab-information-main .niiceeTabBtn button.active {
+  background-color: transparent;
+  color: black;
+  top: 3px;
+  position: relative;
+  font-weight: 600;
+}
+.checkout-main-tab-information-main .niiceeTabBtn > button {
+  padding: 15px 22px;
+  background: transparent;
+  color: #000;
+  flex: 0 0 33.333%;
+}
+.niiceeTabBtn > button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 15px 22px;
+  color: #fff;
+  background: #49a65e;
+  transition: 0.3s;
+  font-weight: 500;
+  font-family: var(--roboto);
+  text-transform: uppercase;
+}
