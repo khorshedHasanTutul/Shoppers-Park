@@ -1,7 +1,19 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-const PopAlert = ({ Template, closeModal, content, orderData }) => {
+const PopAlert = ({
+  Template,
+  closeModal,
+  content,
+  orderData,
+  successOrder,
+}) => {
   console.log({ orderData });
+  let history = useHistory();
+  const closeModalHandler = () => {
+    successOrder && history.push("/");
+    closeModal();
+  };
   return (
     <div class="order-success-modal">
       <div id="demo-modal5" class="modal">
@@ -13,7 +25,7 @@ const PopAlert = ({ Template, closeModal, content, orderData }) => {
               {content && <>{content}</>}
             </div>
           </div>
-          <a href onClick={closeModal} class="modal__close">
+          <a href onClick={closeModalHandler} class="modal__close">
             &times;
           </a>
         </div>

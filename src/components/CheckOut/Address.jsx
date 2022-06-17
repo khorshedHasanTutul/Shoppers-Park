@@ -153,7 +153,7 @@ const Address = ({ ProceedToOrderHandler, getAddressCallFromCheckoutP }) => {
                 <span>Your contact information</span>
               </div>
               <div class="address-info-inner-flex">
-                <div class="address-info-from">
+                <div className={`address-info-from`}>
                   <form>
                     <div class="address-info-inner-content">
                       <NameValidation
@@ -208,9 +208,9 @@ const Address = ({ ProceedToOrderHandler, getAddressCallFromCheckoutP }) => {
                     </div>
                   </form>
                 </div>
-                {pathname === "/checkout" && (
-                  <AddressList addresses={addresses} />
-                )}
+                {/* {pathname === "/checkout" && ( */}
+                <AddressList addresses={addresses} />
+                {/* )} */}
               </div>
             </div>
             {pathname === "/checkout" && (

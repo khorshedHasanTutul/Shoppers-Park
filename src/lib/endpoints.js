@@ -27,6 +27,11 @@ export const addressDistrict = "/api/v1/Districts/ByProvince/";
 export const addressArea = "/api/v1/Upazilas/ByDistrict/";
 export const POST_ORDER = "/api/v1/Orders";
 export const POST_ORDER_PAYMENT = "/api/v1/Orders/PaymentInfo";
+export const postComplain = "/api/v1/Complains";
+export const getProfileInfo = "/api/v1/Customers";
+export const updateProfileInfo = "/api/v1/Customers";
+export const GET_PROMOTIONAL = "/api/v1/Promotions";
+export const GET_ORDERS = "/api/v1/Orders";
 
 export const endpoints = {
   login,

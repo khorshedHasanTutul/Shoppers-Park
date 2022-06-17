@@ -1,159 +1,208 @@
-import InputControl from "../utilities/InputControl/InputControl";
-import Popup from "../utilities/Popup/Popup";
-import Card from "../utilities/Card/Card";
-
+import { Fragment, useEffect, useState } from "react";
+import { getProfileInfo, updateProfileInfo } from "../../lib/endpoints";
+import { BASE_URL, httpV2 } from "../../Service/httpService2";
+import Suspense from "../utilities/Suspense/Suspense";
 import "./Profile.css";
-import { useContext, useState } from "react";
-import authContext from "../../Store/auth-context";
-import { http } from "../../Service/httpService";
-import { endpoints } from "../../lib/endpoints";
 
-const Profile = () => {
-  const authCtx = useContext(authContext);
-  const getUserValue = authCtx.getloginValue;
-  const [name, setname] = useState(getUserValue.name);
-  const [email, setemail] = useState(getUserValue.email);
-  const [file, setfile] = useState();
+const Profile = ({ getProfileInformation }) => {
+  const [clicked, setClicked] = useState(false);
+  //name state
+  const [name, setName] = useState("");
+  const [nameIsTouched, setNameIsTouched] = useState(false);
+  const [nameIsValid, setNameIsValid] = useState(false);
+  //phone state
+  const [phone, setPhone] = useState("");
+  //email state
+  const [email, setEmail] = useState("");
+  //file state
+  const [files, setFiles] = useState();
+  //image preview
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const nameChangeHandler = ({ target }) => {
-    setname(target.value);
+    setName(target.value);
   };
-  const emailChangehandler = ({ target }) => {
-    setemail(target.value);
+  const nameTouchedHandler = () => {
+    setNameIsTouched(true);
   };
-  const fileUploadHandler = ({ target }) => {
-    setfile(target.files[0]);
+  const emailChangeHandler = ({ target }) => {
+    setEmail(target.value);
   };
-  const saveHandler = () => {
-    http.post({
-      url: endpoints.updateInformation,
-      payload: {
-        UserId: getUserValue.id,
-        Name: name,
-        Email: email,
-      },
-      before: () => {
-        console.log("function started");
-      },
-      successed: (data) => {
-        authCtx.login({
-          id: getUserValue.id,
-          name: name,
-          token: getUserValue.token,
-          email: email,
-          phone: getUserValue.phone,
-        });
-      },
-      failed: () => {
-        console.log("failed");
-      },
-      always: () => {
-        console.log("function end");
-      },
-    });
-    if (file) {
-      http.file({
-        url: endpoints.updateInformation,
-        payload: {
-          Img: file,
-          UserId: getUserValue.id,
-          ActivityId: "00000000-0000-0000-0000-000000000000",
-        },
+
+  const fileUploadHandler = (e) => {
+    setFiles(e.target.files[0]);
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+    setSelectedFile(e.target.files[0]);
+  };
+
+  //save button handler
+  const saveButtonHandler = (e) => {
+    e.preventDefault();
+    setClicked(true);
+    if (name.length !== 0 || email.length !== 0 || files !== undefined) {
+      let formData = new FormData();
+      if (name.length !== 0) formData.append("Name", name);
+      if (email.length !== 0) formData.append("Email", email);
+      if (files !== undefined) formData.append("ProfilePicture", files);
+      //api request for update profile information
+      httpV2.put({
+        url: updateProfileInfo,
+        payload: formData,
         before: () => {
-          console.log("function started");
+          setIsLoading(true);
         },
         successed: (data) => {
-          authCtx.login({
-            id: getUserValue.id,
-            name: name,
-            token: getUserValue.token,
-            email: email,
-            phone: getUserValue.phone,
-          });
-          authCtx.user.image = file;
-          console.log(data);
+          getProfileInformation();
         },
         failed: () => {
           console.log("failed");
         },
         always: () => {
-          console.log("function end");
+          setIsLoading(false);
         },
       });
     }
   };
 
+  const getProfileInfoHttp = () => {
+    //api request for get profile information
+    httpV2.get({
+      url: getProfileInfo,
+      before: () => {
+        setIsLoading(true);
+      },
+      successed: (data) => {
+        if (data.data.name !== null) {
+          setName(data.data.name);
+        }
+        setPhone(data.data.phone);
+        if (data.data.email !== null) {
+          setEmail(data.data.email);
+        }
+        if (data.data.imageURL !== null) {
+          setPreview(BASE_URL + data.data.imageURL);
+        }
+      },
+      failed: () => {
+        console.log("failed");
+      },
+      always: () => {
+        setIsLoading(false);
+      },
+    });
+  };
+  //api call function useEffect
+  useEffect(() => {
+    getProfileInfoHttp();
+  }, []);
+
+  //validation controller useEffect
+  useEffect(() => {
+    if (clicked) {
+      if (
+        (nameIsTouched && name.length === 0) ||
+        (!nameIsTouched && name.length === 0)
+      ) {
+        setNameIsValid(true);
+      } else setNameIsValid(false);
+    }
+  }, [clicked, name.length, nameIsTouched]);
+
+  // create a preview as a side effect, whenever selected file is changed
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
   return (
-    <Card className="p-16 mt-8">
-      <form className="user-profile-form">
-        <div>
-          <div className="form__control mb-16">
-            <InputControl
-              name={"user-name"}
-              label={"Name"}
-              error={undefined}
-              onChange={nameChangeHandler}
-              value={name}
-            />
-          </div>
-          <div className="form__control">
-            <InputControl
-              name={"user-email"}
-              label={"Email"}
-              error={undefined}
-              type="email"
-              onChange={emailChangehandler}
-              value={email}
-            />
-          </div>
+    <Fragment>
+      {!isLoading && (
+        <div class="edit-profile-main-flex">
+          <form className="form-parrent">
+            <div class="edit-profile-main-form first-column">
+              <div class="custom-input">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  name=""
+                  id="name"
+                  required=""
+                  value={name}
+                  onChange={nameChangeHandler}
+                  onBlur={nameTouchedHandler}
+                />
+
+                {nameIsValid && (
+                  <div class="alert alert-error">Name is required.</div>
+                )}
+                {nameIsTouched && name.length === 0 && !nameIsValid && (
+                  <div class="alert alert-error">Name is required.</div>
+                )}
+              </div>
+              <div class="custom-input">
+                <label for="name">Email</label>
+                <input
+                  type="email"
+                  name=""
+                  id="name"
+                  required=""
+                  value={email}
+                  onChange={emailChangeHandler}
+                />
+              </div>
+              <div class="custom-input">
+                <label for="name">Phone Number</label>
+                <input
+                  type="text"
+                  class="disabled"
+                  name=""
+                  id="name"
+                  disabled
+                  value={phone}
+                />
+              </div>
+            </div>
+            <div class="edit-profile-main-form second-column">
+              <div className="image_preview">
+                {preview && <img src={preview} alt="" />}
+              </div>
+              <div className="container-file-button">
+                <div class="custom-input" style={{ flex: "0 0 68%" }}>
+                  <label for="name">Upload Photo</label>
+                  <input
+                    type="file"
+                    name=""
+                    id="name"
+                    required=""
+                    onChange={fileUploadHandler}
+                  />
+                  {/* <div class="alert alert-error">Photo is required.</div> */}
+                </div>
+                <button
+                  type="submit"
+                  onClick={saveButtonHandler}
+                  style={{ position: "relative", top: "6px", height: "34px" }}
+                >
+                  Save
+                  {/* <i class="fa fa-floppy-o" aria-hidden="true"></i> */}
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-        <div>
-          <div className="form__control mb-16">
-            <InputControl
-              name={"user-phone"}
-              label={"Phone Number"}
-              error={undefined}
-              disabled
-              value={getUserValue ? getUserValue.phone : ""}
-            />
-          </div>
-          <div className="form__control">
-            <InputControl
-              name={"user-picture"}
-              label={"Upload Photo"}
-              error={undefined}
-              type="file"
-              onChange={fileUploadHandler}
-            />
-          </div>
-        </div>
-        <div>{/* void */}</div>
-        <div className="flex justify-end mt-16 g-8">
-          <button
-            className="brick fill primary round-corner"
-            type="button"
-            onClick={saveHandler}
-          >
-            Save
-          </button>
-          {/* <button
-            className="brick fill secondary round-corner"
-            type="button"
-            onClick={openChangePasswordPopup}
-          >
-            Change Password
-          </button> */}
-        </div>
-      </form>
-      {/* {isPopupOpened && (
-        <Popup
-          isInitHidden={false}
-          title={"Change Password"}
-          BodyComponent={ChangePassword}
-          onCloseHandlder={closeChangePasswordPopup}
-        />
-      )} */}
-    </Card>
+      )}
+      {isLoading && <Suspense />}
+    </Fragment>
   );
 };
 

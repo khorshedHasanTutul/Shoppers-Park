@@ -1,4 +1,11 @@
-import React, { Fragment, useContext, useState, useEffect } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
+import { useHistory } from "react-router-dom";
 import { POST_ORDER, POST_ORDER_PAYMENT } from "../../lib/endpoints";
 import { storeAddressObj } from "../../Service/DataService";
 import { httpV2 } from "../../Service/httpService2";
@@ -8,6 +15,8 @@ import PopAlert from "../utilities/Alert/PopAlert";
 import OrderAlert from "./OrderAlert/OrderAlert";
 
 const Payment = ({ addresses, AddressActiveHandler }) => {
+  const [successOrderAlert, setSuccessOrderAlert] = useState(false);
+  // let history = useHistory();
   //context
   const ctxAddress = useContext(addressContext);
   const ctxCart = useContext(cartContext);
@@ -39,7 +48,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
   const products = [];
   //context items push in products array
   getCtxCartItems.Items.map((item) =>
-    products.push({ id: item.Id, quantity: item.quantity })
+    products.push({ id: item.id, quantity: item.quantity })
   );
 
   const radioButtonHandler = () => {
@@ -47,6 +56,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
   };
   const alertStateChangedHandler = () => {
     setAlert((prevState) => !prevState);
+    // history.push("/");
   };
   const alertPaymentRadioStateChangeHandler = () => {
     setAlertPayment((prevState) => !prevState);
@@ -86,23 +96,24 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
           setOrderData(res.data);
           alertStateChangedHandler();
           setIsLoading(false);
+          setSuccessOrderAlert(true);
+          ctxCart.clearCart();
         },
         failed: () => {},
         always: () => {
           setIsLoading(false);
         },
       });
-      ctxCart.clearCart();
     } else {
       alertPaymentRadioStateChangeHandler();
     }
   };
 
-  const postOrderHttp = () => {
+  const postOrderHttp = useCallback((id) => {
     httpV2.post({
       url: POST_ORDER_PAYMENT,
       payload: {
-        addressId: getSelectedAddress?.id,
+        addressId: id,
         products: products,
         couponCode: cupon,
       },
@@ -110,6 +121,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
         setIsLoading(true);
       },
       successed: (res) => {
+        console.log({ res });
         setPaymentData(res.data);
         if (res.data.couponDiscount <= 0 && cupon.length > 0) {
           setIsInvalidCupon(true);
@@ -123,10 +135,11 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
         setIsLoading(false);
       },
     });
-  };
-  useEffect(() => {
-    postOrderHttp();
   }, []);
+
+  useEffect(() => {
+    postOrderHttp(getSelectedAddress?.id);
+  }, [getSelectedAddress?.id, postOrderHttp]);
 
   useEffect(() => {
     if (isClickedCoupon) {
@@ -139,7 +152,6 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
       } else setIsEmptyCoupon(false);
     }
   }, [isClickedCoupon, isCouponTouched, cupon.length]);
-  console.log({paymentData})
 
   return (
     <div id="Tab5" class="tabcontent tab-content checkout-main-tab-content">
@@ -294,8 +306,8 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
             (Cash on Delivery)
           </p>
           <p class="OrderNotice">
-            *** Jasmin agent will call you for delivery charge and reconfirm
-            your order
+            *** Shoppers Park agent will call you for delivery charge and
+            reconfirm your order
           </p>
         </div>
 
@@ -335,6 +347,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
           Template={OrderAlert}
           closeModal={alertStateChangedHandler}
           orderData={orderData}
+          successOrder={successOrderAlert}
         />
       )}
       {alertPayment && (
