@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import CartTableItem from "./CartTableItem";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import authContext from "../../Store/auth-context";
 import cartContext from "../../Store/cart-context";
 
@@ -11,6 +11,7 @@ const ContentCart = ({
   setorderNowPressed,
   setQtyAlert,
 }) => {
+  let history = useHistory();
   const authCtx = useContext(authContext);
   const ctxCart = useContext(cartContext);
   const getCartModal = ctxCart.getCartModel;
@@ -20,13 +21,16 @@ const ContentCart = ({
       evt.preventDefault();
       // alert('Please Select at least one product');
       setalert(true);
+      closeCart();
       return false;
     } else if (authCtx.isLoggedIn !== true) {
       evt.preventDefault();
       setloginPopupModel(true);
       setorderNowPressed(true);
+      closeCart();
     } else {
       closeCart();
+      history.push("/checkout");
     }
   };
   const clearCartHandler = (e) => {
@@ -58,7 +62,10 @@ const ContentCart = ({
             </strong>
           </div>
           <div class="card-select-cross view-pop" onClick={closeCart}>
-            <img src="/contents/assets/images/x-button.png" alt="img" />
+            <i
+              class="fa fa-times pull-right cart-cross-btn"
+              aria-hidden="true"
+            ></i>
           </div>
         </div>
         <div class="cart-body text-center">
@@ -71,7 +78,50 @@ const ContentCart = ({
             </table>
           </div>
         </div>
+
+        <div className="product_items__count__container">
+          <div className="cmn-class-items-calc total__items">
+            <p>Total Items</p>
+            <span>{getCartModal.TotalItems}</span>
+          </div>
+          <div className="cmn-class-items-calc total__ammount">
+            <p>Total Ammount</p>
+            <span>{getCartModal.TotalAmmount.toFixed(2)}tk</span>
+          </div>
+        </div>
         <div class="cart-footer">
+          {/* <div class="card-footer-inner">
+              <Link to={urlCheckoutRoute()}>
+                <button class="cart-cmn-btn" onClick={orderNowHandler}>
+                  Order Now
+                </button>
+              </Link>
+
+              <span class="cart-cmn-btn cart-cmn-btn2">
+                ৳ <span>{getCartContextModel.TotalAmmount.toFixed(2)}</span>
+              </span>
+            </div>
+
+            <a href class="block-btn-card" onClick={clearCartHandler}>
+              <button class="cart-cmn-btn">Clear Cart</button>
+            </a> */}
+
+          <div className="cart-footer__orderNow" onClick={productFound}>
+            <a href>
+              <p>
+                <span>Order Now</span>
+              </p>
+            </a>
+          </div>
+          <div
+            className="cart-footer__orderNow"
+            style={{ background: "#54C495" }}
+            onClick={clearCartHandler}
+          >
+            <p>Clear Cart</p>
+          </div>
+        </div>
+        {/* <div class="cart-footer">
           <div>
             <Link
               to={"/checkout"}
@@ -89,7 +139,7 @@ const ContentCart = ({
           <div className="clear-button btn" onClick={clearCartHandler}>
             <span> Clear Cart</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

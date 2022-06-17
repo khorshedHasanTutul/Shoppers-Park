@@ -10,7 +10,7 @@ import AddressContextProvider from "../../../Store/AddressContextProvider";
 
 const ADDRESS = [{ id: 25 }];
 
-const ProfileBody = () => {
+const ProfileBody = ({ getProfileInfoHttp }) => {
   return (
     <div>
       <Switch>
@@ -18,7 +18,7 @@ const ProfileBody = () => {
           <Redirect to="/profile/order/all" />
         </Route>
         <Route path="/profile/edit" exact>
-          <Profile />
+          <Profile getProfileInformation={getProfileInfoHttp} />
         </Route>
         <Route path="/profile/order" exact>
           <Redirect to="/profile/order/all" />

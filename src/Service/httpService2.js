@@ -1,4 +1,5 @@
 import getToken from "../lib/token";
+import { put } from "./form";
 
 // import { baseUrl as BASE_URL } from "./ImgService";
 export const BASE_URL = "https://localhost:5001";
@@ -195,4 +196,4 @@ export const file = async ({
   return data;
 };
 
-export const httpV2 = { post, get, file, PUT };
+export const httpV2 = { post, get, file, PUT, put };

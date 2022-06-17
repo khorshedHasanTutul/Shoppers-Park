@@ -1,121 +1,202 @@
-import InputControl from "../../utilities/InputControl/InputControl";
-import Button from "../../utilities/Button/Button";
-import Card from '../../utilities/Card/Card';
 import { useEffect, useState } from "react";
-import { http } from "../../../Service/httpService";
-import { endpoints } from "../../../lib/endpoints";
-import Popup from "../../utilities/Popup/Popup";
-import ComplainModalBody from "./ComplainModalBody";
+import PopAlert from "../../utilities/Alert/PopAlert";
+import Suspense from "../../utilities/Suspense/Suspense";
+import Select from "../../utilities/Select/Select";
+import { httpV2 } from "../../../Service/httpService2";
+import { postComplain } from "../../../lib/endpoints";
 
 const Complain = () => {
-  let validityMessageTitle;
-  const [title, settitle] = useState('')
-  const [remarks, setremarks] = useState('')
-  const [titleTouched, settitleTouched] = useState(false)
-  const [remarksTouched, setremarksTouched] = useState(false)
-  const [remarksValidityStatus, setremarksValidityStatus] = useState(false)
-  const [popUpModel, setpopUpModel] = useState(false)
-  const titleChangeHandler=({target})=>{
-    settitle(target.value)
-  }
-  const titleIsTouched=()=>{
-    settitleTouched(true)
-  }
-  const remarksChangeHandler=({target})=>{
-    setremarks(target.value)
-  }
-  const remarksIsTouched=()=>{
-    setremarksTouched(true)
-  }
+  //complain states
+  const [complainIsTouched, setComplainIsTouched] = useState(false);
+  const [complainIsInvalid, setComplainIsInvalid] = useState(false);
+  const [selectedComplain, setSelectedComplain] = useState({});
+  //Remarks validation start
+  const [remark, setRemark] = useState("");
+  const [remarkIsTouched, setRemarkIsTouched] = useState(false);
+  const [remarkIsValid, setRemarkIsValid] = useState(false);
+  //submit state
+  const [clicked, setClicked] = useState(false);
+  //Alert PopUp
+  const [isAlertHidden, setIsAlertHidden] = useState(false);
+  //Loading Snippet
+  const [isLoading, setIsLoading] = useState(false);
+  //respond failed
+  const [isFailedRes, setIsFailedRes] = useState(false);
 
-  const titleLength=title.length!==0;
-  const remarksLength=remarks.length!==0;
+  //object of complain Type
+  const complainList = [
+    {
+      id: 0,
+      name: "Website",
+    },
+    {
+      id: 1,
+      name: "Delivary",
+    },
+    {
+      id: 2,
+      name: "Agent Behaviors",
+    },
+    {
+      id: 3,
+      name: "Products",
+    },
+    {
+      id: 4,
+      name: "Others",
+    },
+  ];
 
-  if(titleTouched && !titleLength){
-    validityMessageTitle="This field is required."
-  }
+  const remarkChangeHandler = ({ target }) => {
+    setRemark(target.value);
+  };
+  const remarkTouchedHandler = () => {
+    setRemarkIsTouched(true);
+  };
+  const complainSelectHandler = (complainList) => {
+    setSelectedComplain(complainList);
+  };
+  const complainBlurHandler = () => {
+    setComplainIsTouched(true);
+  };
+  const closeAlertHandler = () => {
+    setIsAlertHidden((prevState) => !prevState);
+  };
+  const closeResAlerthandler = () => {
+    setIsFailedRes((prevState) => !prevState);
+  };
+
+  const submitButtonHandler = (e) => {
+    e.preventDefault();
+    setClicked(true);
+    if (remark.length > 0 && selectedComplain.name) {
+      //api post request send
+      httpV2.post({
+        url: postComplain,
+        payload: {
+          activityId: "00000000-0000-0000-0000-000000000000",
+          complainType: selectedComplain.id,
+          message: remark,
+        },
+        before: () => {
+          setIsLoading(true);
+        },
+        successed: (data) => {
+          setIsAlertHidden(true);
+          setClicked(false);
+          setRemark("");
+          setRemarkIsValid(false);
+          setRemarkIsTouched(false);
+          setSelectedComplain({});
+          setIsFailedRes(false);
+          setComplainIsTouched(false);
+        },
+        failed: () => {
+          setIsFailedRes(true);
+        },
+        always: () => {
+          setIsLoading(false);
+        },
+      });
+    }
+  };
+
   useEffect(() => {
-    if(remarksTouched && !remarksLength){
-      setremarksValidityStatus(true)
+    if (clicked) {
+      if (
+        (remarkIsTouched && remark.length === 0) ||
+        (!remarkIsTouched && remark.length === 0)
+      ) {
+        setRemarkIsValid(true);
+      } else setRemarkIsValid(false);
+      if (
+        (complainIsTouched && !selectedComplain?.name) ||
+        (!complainIsTouched && !selectedComplain?.name)
+      ) {
+        setComplainIsInvalid(true);
+      } else {
+        setComplainIsInvalid(false);
+      }
     }
-    if(remarksTouched && remarksLength){
-      setremarksValidityStatus(false)
-    }
-  }, [remarksTouched,remarksLength])
-
-  const saveButtonHandler=()=>{
-    if(typeof(validityMessageTitle)==='undefined' && !remarksValidityStatus){
-      http.post({
-        url:endpoints.complainUrl,
-        payload:{
-        ContentTitle: title,
-        Content: remarks,
-        ActivityId: '00000000-0000-0000-0000-000000000000',
-        Remarks: ''
-        },
-        before:()=>{
-          console.log('function start')
-        },
-        successed:(data)=>{
-          settitle('')
-          setremarks('')
-          settitleTouched(false)
-          setremarksValidityStatus(false)
-          setpopUpModel(prevState => !prevState)
-        },
-        failed:()=>{
-          console.log('failed')
-        },
-        always:()=>{
-          console.log("function end")
-        }
-      })
-    }
-  }
-
+  }, [
+    selectedComplain?.name,
+    complainIsTouched,
+    remarkIsTouched,
+    remark.length,
+    clicked,
+  ]);
 
   return (
-    <Card className='mt-8'>
-      <div className="form__control mb-16">
-        <InputControl
-         name={"complain-title"}
-        label={"Title"}
-        error={validityMessageTitle}
-        onChange={titleChangeHandler}
-        onBlur={titleIsTouched}
-        value={title}
-          />
+    <>
+      <div class="submit-compline-main-flex edit-profile-main-flex">
+        <form>
+          <div class="custom-input">
+            <label for="msg">Describe Your Complain</label>
+            <textarea
+              name=""
+              id="msg"
+              value={remark}
+              onChange={remarkChangeHandler}
+              onBlur={remarkTouchedHandler}
+            ></textarea>
+            {remarkIsValid && (
+              <div class="alert alert-error">Text is required.</div>
+            )}
+            {remarkIsTouched && remark.length === 0 && !remarkIsValid && (
+              <div class="alert alert-error">Text is required.</div>
+            )}
+          </div>
+
+          <div className="group-complain_type">
+            <Select
+              label="Select Complain"
+              name="complain"
+              options={complainList || []}
+              onSelect={complainSelectHandler}
+              config={{ searchPath: "name", keyPath: "id", textPath: "name" }}
+              error={
+                complainIsInvalid
+                  ? "Complain Type is required."
+                  : complainIsTouched &&
+                    !selectedComplain.name &&
+                    !complainIsInvalid
+                  ? "Complain Type is required."
+                  : ""
+              }
+              onBlur={complainBlurHandler}
+              selectedOption={selectedComplain}
+            />
+            <div className="complain_button">
+              <button
+                type="submit"
+                onClick={submitButtonHandler}
+                style={{
+                  height: "37px",
+                  width: "100%",
+                  border: "1px solid #df2c8a",
+                  color: "#df2c8a",
+                }}
+              >
+                Send <i class="fa fa-paper-plane" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-      <div className="form__control mb-16">
-        <div className="form__control--text-area h-100p">
-          <label htmlFor="remarks">Remarks</label>
-          <textarea 
-          name="remarks"
-           id="remarks"
-           value={remarks}
-           onChange={remarksChangeHandler}
-           onBlur={remarksIsTouched}
-           ></textarea>
-           {
-             (remarksValidityStatus)&& <div class="alert alert-error">This field is required.</div>
-           }
-          
-        </div>
-      </div>
-      {
-        (popUpModel)&& <Popup title={"Alert"} onClose={setpopUpModel} BodyComponent={ComplainModalBody}/>
-      }
-      <div className="flex justify-end">
-        <Button
-          type="button"
-          text="Send"
-          icon="/contents/assets/images/plane.ea6d3406.svg"
-          buttonClasses={["submit-compline-new primary brick fill rounded-corner flex gc-8 icon-small"]}
-          click={saveButtonHandler}
-          disabled={title.length===0 && remarks.length===0}
+      {isAlertHidden && (
+        <PopAlert
+          content={"Submit Complain Successfully."}
+          closeModal={closeAlertHandler}
         />
-      </div>
-    </Card>
+      )}
+      {isFailedRes && (
+        <PopAlert
+          content={"Something went wrong."}
+          closeModal={closeResAlerthandler}
+        />
+      )}
+      {isLoading && <Suspense />}
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-var data = window.appData;
+var data = window.APP_DATA;
 //getMainCategories
 export const getMainCategories = data[0];
 console.log({ getMainCategories });
