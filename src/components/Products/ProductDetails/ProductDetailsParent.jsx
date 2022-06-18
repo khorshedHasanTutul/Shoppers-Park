@@ -1,49 +1,90 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router';
-import PopUpAlert from '../../utilities/Alert/PopUpAlert';
-import LowerDetails from './LowerPartDetails/LowerDetails';
-import ProductDetailsHeader from './ProductDetailsHeader';
-import ProductDetailsItem from './ProductDetailsItem';
-import RelatedProductes from './RelatedProducts/RelatedProductes';
+import React, { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { GET_PRODUCT_DETAILS } from "../../../lib/endpoints";
+import { httpV2 } from "../../../Service/httpService2";
+import PopUpAlert from "../../utilities/Alert/PopUpAlert";
+import Suspense from "../../utilities/Suspense/Suspense";
+import LowerDetails from "./LowerPartDetails/LowerDetails";
+import ProductDetailsHeader from "./ProductDetailsHeader";
+import ProductDetailsItem from "./ProductDetailsItem";
+import RelatedProductes from "./RelatedProducts/RelatedProductes";
 
 const ProductDetailsParent = () => {
-    const [alert, setalert] = useState(false)
-    const closeModal=()=>{
-        setalert(prevState=>!prevState)
-    }
-    const {id}=useParams();
-    return (
+  const { id } = useParams();
+  const [isGetting, setIsGetting] = useState(true);
+  const [productItemDetails, setProductItemDetails] = useState();
+  const [alert, setalert] = useState(false);
+
+  const closeModal = () => {
+    setalert((prevState) => !prevState);
+  };
+
+  const getProductDetails = useCallback((id) => {
+    httpV2.get({
+      url: GET_PRODUCT_DETAILS + id,
+      before: () => {
+        setIsGetting(true);
+      },
+      successed: (res) => {
+        console.log(res.data);
+        setProductItemDetails(res.data);
+        setIsGetting(false);
+      },
+      failed: () => {
+        console.log("failed");
+      },
+      always: () => {
+        setIsGetting(false);
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+    getProductDetails(id);
+  }, [getProductDetails, id]);
+
+  return (
+    <>
+      <ProductDetailsHeader />
+      {alert && (
+        <PopUpAlert content={"Already in your cart."} closeModal={closeModal} />
+      )}
+      {!isGetting && (
         <>
-            <ProductDetailsHeader />
-            {
-                (alert)&&<PopUpAlert content={'Already in your cart.'} closeModal={closeModal} />
-            }
-            <>
-            <section class="product-details-area">
-                <div class="container">
-                    <div class="product-details-main">
-                        <div class="product-details-inner-flex">
-                            {/* <!-- product-details-left --> */}
-                            <div class="product-details-left">
-                                 {/* <!-- product item details --> */}
-                                <ProductDetailsItem product_id={id} setalert={closeModal}/>
-                                {/* <!-- product item details --> */}
-                                {/* <!-- product desc review information --> */}
-                                <LowerDetails />
-                                {/* <!-- product desc review information --> */}
-                            </div>
-                            {/* <!-- product-details-right --> */}
-                            <div class="product-details-right">
-                                {/* <!-- RELATED PRODUCTS --> */}
-                               <RelatedProductes product_id={id}/>
-                            </div>
-                        </div>
-                    </div>
+          <section class="product-details-area">
+            <div class="container">
+              <div class="product-details-main">
+                <div class="product-details-inner-flex">
+                  {/* <!-- product-details-left --> */}
+                  <div class="product-details-left">
+                    {/* <!-- product item details --> */}
+                    <ProductDetailsItem
+                      product={productItemDetails}
+                      setalert={closeModal}
+                    />
+                    {/* <!-- product item details --> */}
+                    {/* <!-- product desc review information --> */}
+                    <LowerDetails product={productItemDetails} />
+                    {/* <!-- product desc review information --> */}
+                  </div>
+                  {/* <!-- product-details-right --> */}
+                  <div class="product-details-right">
+                    {/* <!-- RELATED PRODUCTS --> */}
+                    {productItemDetails.relatedProducts.length > 0 && (
+                      <RelatedProductes
+                        relatedProducts={productItemDetails?.relatedProducts}
+                      />
+                    )}
+                  </div>
                 </div>
-            </section> 
-            </>
+              </div>
+            </div>
+          </section>
         </>
-    );
+      )}
+      {isGetting && <Suspense />}
+    </>
+  );
 };
 
 export default ProductDetailsParent;

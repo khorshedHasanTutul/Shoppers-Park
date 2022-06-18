@@ -8,6 +8,7 @@
   position: relative;
   border: 1px solid #df2c8a;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 div.pointer.card {
   background: rgb(241, 241, 241);

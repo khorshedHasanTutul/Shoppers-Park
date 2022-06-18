@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { GET_PRODUCTS_BY_CATEGORY } from "../../../lib/endpoints";
 import { httpV2 } from "../../../Service/httpService2";
-import appData from "../../DataSource/appData";
 import PopUpAlert from "../../utilities/Alert/PopUpAlert";
 import Suspense from "../../utilities/Suspense/Suspense";
 import SubSubAllProduct from "./SubSubAllProduct";
@@ -17,6 +16,7 @@ const SubSubProduct = () => {
   const closeModal = () => {
     setalert((prevState) => !prevState);
   };
+
   const getCategories = useCallback((id) => {
     httpV2.get({
       url: GET_PRODUCTS_BY_CATEGORY + id,

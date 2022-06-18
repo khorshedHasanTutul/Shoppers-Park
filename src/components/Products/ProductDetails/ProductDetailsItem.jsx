@@ -8,22 +8,33 @@ import appData from "../../DataSource/appData";
 import { Link } from "react-router-dom";
 import { WishAddedButton } from "../../../Service/CartContent";
 import cartContext from "../../../Store/cart-context";
+import { BASE_URL } from "../../../Service/httpService2";
+import SliderComponent from "../../utilities/Slider/SliderComponent";
+import SmallSliderSingleItem from "./SmallSliderSingleItem";
 
-const ProductDetailsItem = ({ product_id, setalert }) => {
+const ProductDetailsItem = ({ product, setalert }) => {
+  console.log({ product });
   const cartCtx = useContext(cartContext);
   const [count, setCount] = useState(1);
   const cartCtxModal = cartCtx.getCartModel;
-
-  const concatData = appData.categoryProducts;
-  const item = concatData.find((item) => item.Id === product_id);
-  const categoryData = appData.ShopCategory.find(
-    (item2) => item2.categoryId === item.category_id
+  const options = {
+    rewind: true,
+    type: "slide",
+    autoplay: true,
+    rewindSpeed: 500,
+    speed: 500,
+    pauseOnHover: false,
+    perPage: 2,
+    width: "100%",
+  };
+  const smallSliderImages = product?.images;
+  const findPrimaryImage = product?.images.find(
+    (item) => item.isPrimary === true
   );
-  const brandData = BrandData.find((brand) => brand.brand_id === item.brand_id);
 
   const addToCartHandler = (item, e) => {
     e.preventDefault();
-    if (cartCtxModal.Items.find((itemInner) => itemInner.Id === item.Id)) {
+    if (cartCtxModal.Items.find((itemInner) => itemInner.id === product.id)) {
       setalert();
     } else {
       cartCtx.singleProductAdd(item, count);
@@ -44,14 +55,36 @@ const ProductDetailsItem = ({ product_id, setalert }) => {
     <div class="inner-product-details-flex">
       <div class="product-d-left-img">
         <div class="det-img-padding">
-          <img src={item.image} alt="img" />
+          {/* <img src="/contents/assets/images/popUp.jpg" alt="" /> */}
+          {findPrimaryImage === null && (
+            <img src="/contents/assets/images/no_productimg.jpg" alt="img" />
+          )}
+          {findPrimaryImage !== null && (
+            <img
+              src={BASE_URL + findPrimaryImage?.originalImageURL}
+              alt="img"
+            />
+          )}
+        </div>
+        <div class="product-gallery-hover">
+          <div class="splide product-gallery-splide">
+            <div class="splide__track">
+              <SliderComponent
+                Template={SmallSliderSingleItem}
+                options={options}
+                data={smallSliderImages}
+                // imageChangedHandler={imageChangedHandler}
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div class="product-desc-right-content">
         <div class="catagory-overly-main-bg">
           <div class="catagory-product-overly">
-            <h4>{item.Nm}</h4>
+            <h4>{product.name}</h4>
           </div>
+
           <div class="product-review-main">
             <div class="rate">
               <input type="radio" id="star5" name="rate" value="5" />
@@ -79,19 +112,21 @@ const ProductDetailsItem = ({ product_id, setalert }) => {
           </div>
 
           <div class="basket-add">
-            {item.Ds > 0 ? (
+            {product.discountedPrice > 0 ? (
               <span class="item__price item__price--now">
-                ৳{(item.MRP - (item.MRP * item.Ds) / 100).toFixed(2)}
+                ৳{product.currentPrice.toFixed(2)}
               </span>
             ) : (
               <span class="item__price item__price--now">
-                ৳{item.MRP.toFixed(2)}
+                ৳{product.currentPrice.toFixed(2)}
               </span>
             )}
 
-            {item.Ds > 0 ? (
+            {product.discountedPrice > 0 ? (
               <span class="price product-price">
-                <del class="cross_price">৳ {item.MRP.toFixed(2)}</del>
+                <del class="cross_price">
+                  ৳ {product.originalPrice.toFixed(2)}
+                </del>
               </span>
             ) : (
               ""
@@ -101,15 +136,13 @@ const ProductDetailsItem = ({ product_id, setalert }) => {
             <ul>
               <li>
                 Category :
-                <Link to={"/category/" + item.category_id}>
-                  {categoryData.categoryName}
+                <Link to={"/category/"}>
+                  {/* {categoryData.categoryName} */}
                 </Link>
               </li>
               <li>
                 Brand :
-                <Link to={"/brands/" + item.brand_id}>
-                  {brandData.brand_name}
-                </Link>
+                <Link to={"/brands/"}>{/* {brandData.brand_name} */}</Link>
               </li>
             </ul>
           </div>
@@ -144,14 +177,14 @@ const ProductDetailsItem = ({ product_id, setalert }) => {
 
           <div class="pro-add-wish-flex">
             {/* <span onClick={animateCardHandler}> */}
-            <a href onClick={addToCartHandler.bind(this, item)}>
+            <a href onClick={addToCartHandler.bind(this, product)}>
               <div class="btn_cart">
                 <FontAwesomeIcon icon={faShoppingCart} />
                 <h5>Add to Cart</h5>
               </div>
             </a>
             {/* </span> */}
-            <div class="wishlist-btn" onClick={callBack(WishAddedButton, item)}>
+            <div class="wishlist-btn">
               <a href>
                 <i class="fa fa-heart-o" aria-hidden="true"></i>Add to wishlist
               </a>
