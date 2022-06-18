@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import CategorySubItemProductList from "./CategorySubItemProductList";
+import VisibleProductByCategory from "./VisibleProduct/VisibleProductByCategory";
 
-const TotalCategoryItem = ({ children }) => {
-  console.log({ children });
+const TotalCategoryItem = ({ children, products, name }) => {
   const [alert, setalert] = useState(false);
 
   const closeModal = () => {
@@ -14,7 +14,10 @@ const TotalCategoryItem = ({ children }) => {
     return find.length > 0 ? true : false;
   };
 
-  if (children.length === 0 || findEveryChildrenProducts(children) === false) {
+  if (
+    products.length === 0 &&
+    (children.length === 0 || findEveryChildrenProducts(children) === false)
+  ) {
     return (
       <div class="container">
         <div className="pro-not-found-img-subcategory">
@@ -27,6 +30,14 @@ const TotalCategoryItem = ({ children }) => {
           </strong>
         </div>
       </div>
+    );
+  } else if (children.length === 0 && products.length > 0) {
+    return (
+      <VisibleProductByCategory
+        name={name}
+        products={products}
+        setalert={closeModal}
+      />
     );
   } else
     return (

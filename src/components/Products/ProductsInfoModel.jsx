@@ -21,6 +21,8 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
     getReturnObjectData = returnDataAsObjectProperties(item);
   }
 
+  console.log("trandingItem=>", getReturnObjectData);
+
   const addToCartHandler = (item, e) => {
     e.preventDefault();
     cartCtx.storeCartItems(item);
@@ -68,12 +70,13 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
           ) : (
             ""
           )}
-
-          {getReturnObjectData.image === null ? (
-            <img src="/contents/assets/images/no_productimg.jpg" alt="img" />
-          ) : (
-            <img src={`${BASE_URL}${getReturnObjectData.image}`} alt="img" />
-          )}
+          <div className="product-img">
+            {getReturnObjectData.image === null ? (
+              <img src="/contents/assets/images/no_productimg.jpg" alt="img" />
+            ) : (
+              <img src={`${BASE_URL}${getReturnObjectData.image}`} alt="img" />
+            )}
+          </div>
 
           <div class="catagory-overly-main-bg">
             <div class="catagory-product-overly">

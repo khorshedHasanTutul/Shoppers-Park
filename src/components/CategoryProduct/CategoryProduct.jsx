@@ -40,7 +40,11 @@ const CategoryProduct = () => {
             categoryId={categoryProducts.id}
             name={categoryProducts.name}
           />
-          <TotalCategoryItem children={categoryProducts.children} />
+          <TotalCategoryItem
+            children={categoryProducts.children}
+            products={categoryProducts.products}
+            name={categoryProducts.name}
+          />
         </>
       )}
       {isGetting && <Suspense />}

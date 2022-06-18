@@ -17,7 +17,7 @@ const SubCategoryProduct = () => {
     setalert((prevState) => !prevState);
   };
 
-  //get category wise products and children 
+  //get category wise products and children
   const getCategories = useCallback((id) => {
     httpV2.get({
       url: GET_PRODUCTS_BY_CATEGORY + id,
@@ -61,6 +61,8 @@ const SubCategoryProduct = () => {
               <SubCategoryTotalItem
                 children={subCategoryProducts.children}
                 setalert={closeModal}
+                products={subCategoryProducts.products}
+                name={subCategoryProducts.name}
               />
             </div>
           </section>

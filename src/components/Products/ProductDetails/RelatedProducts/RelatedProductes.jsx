@@ -1,12 +1,12 @@
 import React from 'react';
 import RelatedSingleItem from './RelatedSingleItem';
 
-const RelatedProductes = ({product_id}) => {
+const RelatedProductes = ({relatedProducts}) => {
     return (
         <div class="related-product-main">
         <h4>RELATED PRODUCTS</h4>
         {/* <!-- single item --> */}
-       <RelatedSingleItem product_id={product_id}/>
+       <RelatedSingleItem relatedProducts={relatedProducts}/>
     </div>
     );
 };

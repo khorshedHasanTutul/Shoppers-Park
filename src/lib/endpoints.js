@@ -32,6 +32,7 @@ export const getProfileInfo = "/api/v1/Customers";
 export const updateProfileInfo = "/api/v1/Customers";
 export const GET_PROMOTIONAL = "/api/v1/Promotions";
 export const GET_ORDERS = "/api/v1/Orders";
+export const GET_PRODUCT_DETAILS = "/api/v1/Products/";
 
 export const endpoints = {
   login,
