@@ -1,22 +1,27 @@
 import style from "./OrderInvoiceStyle";
 // import logo from "../../../images/sp.jpeg";
 
-
-const OrderInvoice = () => {
-
+const OrderInvoice = ({ orderDetails }) => {
+  let getDate = new Date(orderDetails?.createdAt);
   return (
-    <div className='order-invoice-ea'>
-        <style>
-            {style}
-        </style>
+    <div className="order-invoice-ea">
+      <style>{style}</style>
       <div className="page">
         <div className="custom-row-top">
           <div className="span4">
-            <img src="/contents/assets/images/sp.jpeg" alt="img" className='no-print'/>
-            <img src="/contents/assets/images/sp.jpeg" alt="img" className='print'/>
+            <img
+              src="/contents/assets/images/sp.jpeg"
+              alt="img"
+              className="no-print"
+            />
+            <img
+              src="/contents/assets/images/sp.jpeg"
+              alt="img"
+              className="print"
+            />
             <address>
               <h2>Shopper Perk Ltd</h2>
-              Genetic Plaza, Shop -222, Dhaka 
+              Genetic Plaza, Shop -222, Dhaka
               <br />
               {/* Dhaka City, Dhaka */}
             </address>
@@ -28,25 +33,25 @@ const OrderInvoice = () => {
                   <td className="pull-right">
                     <strong>Name</strong>
                   </td>
-                  <td>Jack Ma</td>
+                  <td>{orderDetails?.address.name}</td>
                 </tr>
                 <tr>
                   <td className="pull-right">
                     <strong>Order ID</strong>
                   </td>
-                  <td>#41824</td>
+                  <td>#{orderDetails?.orderNumber}</td>
                 </tr>
                 <tr>
                   <td className="pull-right">
                     <strong>Mobile</strong>
                   </td>
-                  <td>8801745896321</td>
+                  <td>{orderDetails?.address.phone}</td>
                 </tr>
                 <tr>
                   <td className="pull-right">
                     <strong>Order Date</strong>
                   </td>
-                  <td>10-08-2013</td>
+                  <td>{getDate.toLocaleDateString()}</td>
                 </tr>
                 <tr>
                   <td className="pull-right">
@@ -68,29 +73,24 @@ const OrderInvoice = () => {
                 <tr>
                   <th>sl</th>
                   <th>Product</th>
-                  <th>Description</th>
+                  <th>Price</th>
                   <th>Quantity</th>
                   <th>Discount</th>
                   <th>Amount</th>
                 </tr>
               </thead>
+
               <tbody>
-                <tr>
-                  <td>01</td>
-                  <td>SEO Bronze</td>
-                  <td>www.swaransoft.com</td>
-                  <td>8 Months</td>
-                  <td>0</td>
-                  <td>1000</td>
-                </tr>
-                <tr>
-                  <td>02</td>
-                  <td>SEO Bronze</td>
-                  <td>www.swaransoft.com</td>
-                  <td>8 Months</td>
-                  <td>0</td>
-                  <td>1000</td>
-                </tr>
+                {orderDetails?.products.map((item, index) => (
+                  <tr>
+                    <td>0{index + 1}</td>
+                    <td>{item.displayName}</td>
+                    <td>{item.currentPrice}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.discount}</td>
+                    <td>{item.amount}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -100,39 +100,26 @@ const OrderInvoice = () => {
                 <tr>
                   <td>SubTotal</td>
                   <td className="SubTotal-tab">
-                    <span>1.51</span>
+                    <span>{orderDetails?.orderValue}</span>
                   </td>
                 </tr>
-                <tr>
-                  <td>Rounding Off</td>
-                  <td className="SubTotal-tab">
-                    <span>
-                     <span>-</span>0.51
-                    </span>
-                  </td>
-                </tr>
+
                 <tr>
                   <td>Coupon Discount </td>
                   <td className="SubTotal-tab">
-                    <span>
-                     <span>-</span>55
-                    </span>
+                    <span>{orderDetails?.coupon}</span>
                   </td>
                 </tr>
                 <tr>
                   <td>Total order value</td>
                   <td className="SubTotal-tab">
-                    <span>
-                      1.00
-                    </span>
+                    <span>{orderDetails?.orderValue}</span>
                   </td>
                 </tr>
                 <tr>
-                  <td>Delivery charge (Inside Dhaka)</td>
+                  <td>Delivery charge</td>
                   <td className="SubTotal-tab">
-                    <span>
-                      29
-                    </span>
+                    <span>{orderDetails?.shippingCharge}</span>
                   </td>
                 </tr>
                 <tr>
@@ -140,9 +127,7 @@ const OrderInvoice = () => {
                     <strong>Amount Payable</strong>
                   </td>
                   <td className="SubTotal-tab">
-                    <strong>
-                      30.00
-                    </strong>
+                    <strong>{orderDetails?.payableAmount}</strong>
                   </td>
                 </tr>
               </tbody>
@@ -152,7 +137,9 @@ const OrderInvoice = () => {
 
         <div className="footer-row">
           <div className="cask-rewarded">
-            <span>0 Taka Cashback Rewarded For This Order</span>
+            <span>
+              {orderDetails?.cashback} Taka Cashback Rewarded For This Order
+            </span>
             <p>* N.B: This cashback will be applicable at your next Order</p>
             <h5>Thank You!</h5>
           </div>

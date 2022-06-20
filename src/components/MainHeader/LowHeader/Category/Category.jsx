@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { getMainCategories } from "../../../../Service/DataService";
+import {
+  getCategories,
+  getCategoryDataToObj,
+  getMainCategories,
+} from "../../../../Service/DataService";
 import HeaderLinksitem from "../LowHeaderLinks/HeaderLinksitem";
 import CategoryItem from "./CategoryItem";
 
@@ -49,44 +53,51 @@ const Category = () => {
           <span onClick={toggleClass}>×</span>
         </a>
         <ul>
-          {getMainCategories.map((item, index) => {
-            return (
-              <li class="dropdown">
-                {/* screen size bigger than 991px  allow this  */}
-                {screenWidth > 991 ? (
-                  <>
-                    <a href>
-                      {item[1]}
-                      <i
-                        class="fa fa-angle-down arrow-class"
-                        aria-hidden="true"
-                      ></i>
-                    </a>
-                    <ul class="dropdownmenu mega-menu">
-                      {/* start inner mega menu shop */}
-                      <CategoryItem mainCategoryIndex={index} />
-                    </ul>
-                  </>
-                ) : (
-                  <>
-                    <a href onClick={clickedArrowHandler}>
-                      <span> {item[1]}</span>
-                      <i
-                        class="fa fa-angle-down arrow-class"
-                        aria-hidden="true"
-                      ></i>
-                    </a>
-                    <ul class="dropdownmenu mega-menu">
-                      {/* start inner mega menu shop */}
-                      <CategoryItem
-                        toggleClass={toggleClass}
-                        mainCategoryIndex={index}
-                      />
-                    </ul>
-                  </>
-                )}
-              </li>
-            );
+          {getCategories.map((item, index) => {
+            return item[0].map((catMap) => {
+              const getObjFrom = getCategoryDataToObj(catMap);
+              console.log({ getObjFrom });
+              return (
+                <li class="dropdown">
+                  {/* screen size bigger than 991px  allow this  */}
+                  {screenWidth > 991 ? (
+                    <>
+                      <a href>
+                        {getObjFrom.name}
+                        <i
+                          class="fa fa-angle-down arrow-class"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                      <ul class="dropdownmenu mega-menu">
+                        {/* start inner mega menu shop */}
+                        <CategoryItem
+                          mainCatId={getObjFrom.id}
+                          mainCategoryIndex={index}
+                        />
+                      </ul>
+                    </>
+                  ) : (
+                    <>
+                      <a href onClick={clickedArrowHandler}>
+                        <span> {getObjFrom.name}</span>
+                        <i
+                          class="fa fa-angle-down arrow-class"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                      <ul class="dropdownmenu mega-menu">
+                        {/* start inner mega menu shop */}
+                        <CategoryItem
+                          toggleClass={toggleClass}
+                          mainCategoryIndex={index}
+                        />
+                      </ul>
+                    </>
+                  )}
+                </li>
+              );
+            });
           })}
 
           <HeaderLinksitem toggleClass={toggleClass} />

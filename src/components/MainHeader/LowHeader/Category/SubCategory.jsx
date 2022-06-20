@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { callBack } from "../../../../Service/AppService";
-import { getDropDownCategories } from "../../../../Service/DataService";
+import {
+  getCategories,
+  getCategoryDataToObj,
+  getDropDownCategories,
+} from "../../../../Service/DataService";
 import SubsSubCategoryitem from "./SubsSubCategoryitem";
 
-const SubCategory = ({ categoryItem, toggleClass }) => {
-  const getDropDown = getDropDownCategories(categoryItem);
+const SubCategory = ({ categoryItem, toggleClass, mainCatId }) => {
+  // const getDropDown = getDropDownCategories(categoryItem);
+  const findItems = getCategories[0][2].filter(
+    (item, index) => item[3] === mainCatId
+  );
+  console.log({ findItems }, "hi");
   const [count, setcount] = useState(0);
   const increment = () => {
     setcount(count + 1);
@@ -34,20 +42,21 @@ const SubCategory = ({ categoryItem, toggleClass }) => {
 
   return (
     <ul>
-      {categoryItem.map((subCategoryItem, index) => {
+      {findItems.map((subCategoryItem, index) => {
+        const getObjFrom = getCategoryDataToObj(subCategoryItem);
         return (
           <li>
             {window.innerWidth > 991 ? (
-              <Link to={`/subcategory/${subCategoryItem[0]}`}>
-                {subCategoryItem[1]}
+              <Link to={`/subcategory/${getObjFrom.id}`}>
+                {getObjFrom.name}
                 <i
                   class="fa fa-angle-right sub-menu-arrow-mobile"
                   aria-hidden="true"
                 ></i>
               </Link>
             ) : (
-              <Link to={`/subcategory/${subCategoryItem[0]}`}>
-                <span onClick={toggleClass}>{subCategoryItem[1]}</span>
+              <Link to={`/subcategory/${getObjFrom.id}`}>
+                <span onClick={toggleClass}>{getObjFrom.name}</span>
                 <i
                   class="fa fa-angle-right sub-menu-arrow-mobile"
                   aria-hidden="true"
@@ -61,6 +70,7 @@ const SubCategory = ({ categoryItem, toggleClass }) => {
               subCategoryName={subCategoryItem[1]}
               subCategoryItem={subCategoryItem[2]}
               toggleClass={toggleClass}
+              mainCatId={getObjFrom.id}
             />
           </li>
         );

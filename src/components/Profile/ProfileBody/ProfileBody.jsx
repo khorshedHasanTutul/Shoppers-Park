@@ -7,6 +7,7 @@ import Prescription from "../../Profile/Prescriptions/Prescriptions";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Address from "../../CheckOut/Address";
 import AddressContextProvider from "../../../Store/AddressContextProvider";
+import RequestHistory from "../RequestHistory/RequestHistory";
 
 const ADDRESS = [{ id: 25 }];
 
@@ -26,9 +27,9 @@ const ProfileBody = ({ getProfileInfoHttp }) => {
         <Route path="/profile/order">
           <OrderHistory />
         </Route>
-        {/* <Route path="/profile/request">
-          <Request></Request>
-        </Route> */}
+        <Route path="/profile/request">
+          <RequestHistory />
+        </Route>
         <Route path="/profile/history">
           <Prescription prescriptions={{ id: 1 }}></Prescription>
         </Route>
