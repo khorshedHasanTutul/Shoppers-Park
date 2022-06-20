@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { GET_PRODUCTS_BY_CATEGORY } from "../../../lib/endpoints";
+import ErrorPage from "../../../pages/ErrorPage";
 import { httpV2 } from "../../../Service/httpService2";
 import PopUpAlert from "../../utilities/Alert/PopUpAlert";
 import Suspense from "../../utilities/Suspense/Suspense";
@@ -12,6 +13,7 @@ const SubCategoryProduct = () => {
   const [subCategoryProducts, setSubCategoryProducts] = useState();
   const [isGetting, setIsGetting] = useState(true);
   const [alert, setalert] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const closeModal = () => {
     setalert((prevState) => !prevState);
@@ -28,7 +30,9 @@ const SubCategoryProduct = () => {
         setSubCategoryProducts(res.data);
         setIsGetting(false);
       },
-      failed: () => {},
+      failed: () => {
+        setFailed(true);
+      },
       always: () => {
         setIsGetting(false);
       },
@@ -41,7 +45,7 @@ const SubCategoryProduct = () => {
 
   return (
     <>
-      {!isGetting && (
+      {!isGetting && !failed && (
         <>
           <SubCategoryProductHeader
             subCategoryId={subCategoryProducts.id}
@@ -68,6 +72,7 @@ const SubCategoryProduct = () => {
           </section>
         </>
       )}
+      {failed && <ErrorPage />}
       {isGetting && <Suspense />}
     </>
   );

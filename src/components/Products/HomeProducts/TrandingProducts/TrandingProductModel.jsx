@@ -1,27 +1,38 @@
 import React, { useContext, useRef, useState } from "react";
 import {} from "@fortawesome/free-solid-svg-icons";
-import {
-  returnDataAsObject,
-  returnDataAsObjectProperties,
-} from "../../Service/DataService";
-import cartContext from "../../Store/cart-context";
+import cartContext from "../../../../Store/cart-context";
 import { Link } from "react-router-dom";
-import AnimatedProduct from "../AnimatedProduct/AnimatedProduct";
-import { BASE_URL } from "../../Service/httpService2";
+import { BASE_URL } from "../../../../Service/httpService2";
+import AnimatedProduct from "../../../AnimatedProduct/AnimatedProduct";
 
-const ProductsInfoModel = ({ item, setalert, from }) => {
+const TrandingProductModel = ({ item, setalert, from }) => {
   const [anime, setAnime] = useState(false);
   const cardRef = useRef(null);
   const cartCtx = useContext(cartContext);
   const cartCtxModal = cartCtx.getCartModel;
-  let getReturnObjectData;
-  if (from === "api") {
-    getReturnObjectData = returnDataAsObject(item);
-  } else {
-    getReturnObjectData = returnDataAsObjectProperties(item);
-  }
+  const returnAsObject = (item) => {
+    const productInfo = {
+      id: item[0],
+      name: item[1],
+      displayName: item[2],
+      PackSize: item[3],
+      image: item[4],
+      currentPrice: item[5],
+      discountPrice: item[7],
+      orginalPrice: item[6],
+      stockUnit: item[9],
+      discountedPercentage: item[8],
+      rank: item[10],
 
-  // console.log("trandingItem=>", getReturnObjectData);
+      // Brand_id: item[11],
+      // Unit_id: item[12],
+    };
+    return productInfo;
+  };
+  let getReturnObjectData;
+  getReturnObjectData = returnAsObject(item);
+
+//   console.log("trandingItem=>", getReturnObjectData);
 
   const addToCartHandler = (item, e) => {
     e.preventDefault();
@@ -44,7 +55,7 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
     setAnime(true);
   };
 
-  // console.log({ getReturnObjectData });
+//   console.log({ getReturnObjectData });
 
   return (
     <>
@@ -111,4 +122,4 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
     </>
   );
 };
-export default ProductsInfoModel;
+export default TrandingProductModel;

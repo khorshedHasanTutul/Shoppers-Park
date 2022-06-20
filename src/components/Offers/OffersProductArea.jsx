@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Offers } from "../../Service/AppService";
 import appData from "../DataSource/appData";
+import ProductsInfoModel from "../Products/ProductsInfoModel";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import SliderComponent from "../utilities/Slider/SliderComponent";
-import OffersProductSingleItem from "./OffersProductSingleItem";
 const OffersProductArea = () => {
   const [alert, setalert] = useState(false);
   const closeModal = () => {
@@ -63,15 +63,17 @@ const OffersProductArea = () => {
                   <SliderComponent
                     options={options}
                     data={data}
-                    Template={OffersProductSingleItem}
+                    Template={ProductsInfoModel}
                     setalert={closeModal}
+                    from={"api"}
                   />
                 )}
                 {data.length < 5 &&
                   data.map((item) => (
-                    <OffersProductSingleItem
+                    <ProductsInfoModel
                       item={item}
                       setalert={closeModal}
+                      from={"api"}
                     />
                   ))}
 

@@ -1,11 +1,17 @@
 var data = window.APP_DATA;
 //getMainCategories
-export const getMainCategories = data[0];
-console.log({ getMainCategories });
+export const getCategories = data[0];
+
+export const getCategoryDataToObj = (item) => {
+  return {
+    id: item[0],
+    name: item[1],
+  };
+};
 
 //get dropdownmainCategories
 export const getDropDownMainCategories = () => {
-  return getMainCategories.map((item, index) => item[2]);
+  return getCategories.map((item, index) => item[2]);
 };
 
 //get dropdownmainCategories

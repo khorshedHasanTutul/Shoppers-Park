@@ -82,7 +82,7 @@ const OrderHistoryBody = () => {
           <Route path="/profile/order/cancel">
             <OrderList ordersArray={cancellingOrders} />
           </Route>
-          <Route path="/profile/order/details/:orderId">
+          <Route path="/profile/order/details/:id">
             <OrderDetails />
           </Route>
         </>

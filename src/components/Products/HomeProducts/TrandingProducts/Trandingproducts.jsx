@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   getTrandingDisplayProducts,
-  returnDataAsObjectProperties,
 } from "../../../../Service/DataService";
 import PopUpAlert from "../../../utilities/Alert/PopUpAlert";
 import SliderComponent from "../../../utilities/Slider/SliderComponent";
 import ProductsInfoModel from "../../ProductsInfoModel";
+import TrandingProductModel from "./TrandingProductModel";
 
 const Trandingproducts = () => {
   const getTrandingProducts = getTrandingDisplayProducts;
-
-  // const trandingObjectDataArray = getTrandingProducts.map(function (item) {
-  //   return returnDataAsObjectProperties(item);
-  // });
-  // console.log({ trandingObjectDataArray });
+  console.log({getTrandingProducts})
   const [alert, setalert] = useState(false);
 
   const closeModal = () => {
@@ -68,7 +64,7 @@ const Trandingproducts = () => {
                 <SliderComponent
                   data={getTrandingProducts}
                   options={options}
-                  Template={ProductsInfoModel}
+                  Template={TrandingProductModel}
                   setalert={closeModal}
                 />
               )}
@@ -76,7 +72,7 @@ const Trandingproducts = () => {
               {getTrandingProducts.length <= 5 &&
                 getTrandingProducts.map((item) => {
                   return (
-                    <ProductsInfoModel item={item} setalert={closeModal} />
+                    <TrandingProductModel item={item} setalert={closeModal} />
                   );
                 })}
             </div>

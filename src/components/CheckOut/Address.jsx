@@ -40,6 +40,7 @@ const Address = ({ ProceedToOrderHandler, getAddressCallFromCheckoutP }) => {
   const [isLoading, setIsLoading] = useState(true);
   //asign obj without saving data
   let addressObj = Object.assign({}, storeAddressObj);
+  console.log({ divisionID }, { districtId }, { areaId });
 
   const saveAddresshandler = () => {
     addressObj = Object.assign({}, storeAddressObj);
@@ -57,9 +58,9 @@ const Address = ({ ProceedToOrderHandler, getAddressCallFromCheckoutP }) => {
     if (
       name.length > 0 &&
       phone.length > 0 &&
-      divisionID &&
-      districtId &&
-      areaId &&
+      divisionID !== "00000000-0000-0000-0000-000000000000" &&
+      districtId !== "00000000-0000-0000-0000-000000000000" &&
+      areaId !== "00000000-0000-0000-0000-000000000000" &&
       address
     ) {
       httpV2.post({
@@ -80,7 +81,7 @@ const Address = ({ ProceedToOrderHandler, getAddressCallFromCheckoutP }) => {
         },
         successed: (res) => {
           getAddressHttp();
-          getAddressCallFromCheckoutP();
+          pathname !== "/profile/address" && getAddressCallFromCheckoutP();
         },
         failed: () => {
           console.log("failed");

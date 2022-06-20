@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { storeAddressObj } from "../../../Service/DataService";
 import addressContext from "../../../Store/address-context";
 
-const NameValidation = ({ clicked,setNameP,fixName }) => {
+const NameValidation = ({ clicked, setNameP, fixName }) => {
   const ctxAddress = useContext(addressContext);
   const [name, setName] = useState("");
   const [nameIsTouched, setNameIsTouched] = useState(false);
@@ -35,11 +35,11 @@ const NameValidation = ({ clicked,setNameP,fixName }) => {
   useEffect(() => {
     if (fixName) {
       setName(fixName);
-      setNameP(fixName)
+      setNameP(fixName);
     } else {
       setName("");
     }
-  }, [fixName,setNameP]);
+  }, [fixName, setNameP]);
 
   return (
     <div class="custom-input">
