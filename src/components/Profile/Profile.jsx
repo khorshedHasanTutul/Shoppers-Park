@@ -5,6 +5,7 @@ import Suspense from "../utilities/Suspense/Suspense";
 import "./Profile.css";
 
 const Profile = ({ getProfileInformation }) => {
+  const [invalidImage, setInvalidImage] = useState(false);
   const [clicked, setClicked] = useState(false);
   //name state
   const [name, setName] = useState("");
@@ -31,13 +32,21 @@ const Profile = ({ getProfileInformation }) => {
     setEmail(target.value);
   };
 
-  const fileUploadHandler = (e) => {
-    setFiles(e.target.files[0]);
-    if (!e.target.files || e.target.files.length === 0) {
+  const fileUploadHandler = ({ target }) => {
+    const file = target.files[0];
+    const allowedExtensions = ["jpg", "jpeg", "png"];
+    const subs = file.name.toLowerCase().split(".");
+
+    if (!allowedExtensions.includes(subs[subs.length - 1])) {
+      setInvalidImage(true);
+      return;
+    } else setInvalidImage(false);
+    setFiles(file);
+    if (!target.files || target.files.length === 0) {
       setSelectedFile(undefined);
       return;
     }
-    setSelectedFile(e.target.files[0]);
+    setSelectedFile(file);
   };
 
   //save button handler
@@ -187,6 +196,11 @@ const Profile = ({ getProfileInformation }) => {
                     onChange={fileUploadHandler}
                   />
                   {/* <div class="alert alert-error">Photo is required.</div> */}
+                  {invalidImage && (
+                    <div class="alert alert-error">
+                      Only JPG JPEG PNG format acceptable.
+                    </div>
+                  )}
                 </div>
                 <button
                   type="submit"

@@ -6,16 +6,16 @@ const OrderSubmission = ({ onSubmit }) => {
   const [isAgreed, setIsAgreed] = useState(false);
 
   const submitHandler = () => {
-    if(!isAgreed){
-      alert('Please agree with out terms and condition to request the order');
+    if (!isAgreed) {
+      alert("Please agree with out terms and condition to request the order");
       return;
     }
     onSubmit();
   };
 
   const agreementHandler = () => {
-    setIsAgreed(prevState => !prevState);
-  }
+    setIsAgreed((prevState) => !prevState);
+  };
 
   return (
     <Hightlight

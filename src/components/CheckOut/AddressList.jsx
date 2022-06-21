@@ -27,7 +27,8 @@ const AddressList = ({ addresses }) => {
         );
         return (
           <>
-            {findCtxStoreItem !== undefined && findCtxStoreItem?.name !== null && (
+            {findCtxStoreItem !== undefined &&
+            findCtxStoreItem?.name !== null ? (
               <div
                 class={
                   item.type === activeAddress
@@ -56,8 +57,7 @@ const AddressList = ({ addresses }) => {
                 </p>
                 <p>{findCtxStoreItem?.remarks}</p>
               </div>
-            )}
-            {findCtxStoreItem !== undefined && findCtxStoreItem?.name === null && (
+            ) : (
               <div class="address-home-default-single">
                 <h3>{item.type}</h3>
                 <p>No Address Saved In {item.type} Slot</p>

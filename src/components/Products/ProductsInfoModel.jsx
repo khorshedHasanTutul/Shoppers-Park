@@ -21,6 +21,8 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
     getReturnObjectData = returnDataAsObjectProperties(item);
   }
 
+  console.log("omghaha==>", { getReturnObjectData });
+
   // console.log("trandingItem=>", getReturnObjectData);
 
   const addToCartHandler = (item, e) => {

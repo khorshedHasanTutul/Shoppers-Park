@@ -1,6 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { GET_PRODUCTS_BY_CATEGORY } from "../../../lib/endpoints";
+import {
+  GET_LEVEL4_Products,
+  GET_PRODUCTS_BY_CATEGORY,
+} from "../../../lib/endpoints";
 import ErrorPage from "../../../pages/ErrorPage";
 import { httpV2 } from "../../../Service/httpService2";
 import PopUpAlert from "../../utilities/Alert/PopUpAlert";
@@ -21,7 +24,7 @@ const SubSubProduct = () => {
 
   const getCategories = useCallback((id) => {
     httpV2.get({
-      url: GET_PRODUCTS_BY_CATEGORY + id,
+      url: GET_LEVEL4_Products + id,
       before: () => {
         setIsGetting(true);
       },
@@ -31,6 +34,7 @@ const SubSubProduct = () => {
       },
       failed: () => {
         setFailed(true);
+        setIsGetting(false);
       },
       always: () => {
         setIsGetting(false);

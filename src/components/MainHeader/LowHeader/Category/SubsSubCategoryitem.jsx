@@ -12,13 +12,13 @@ export const SubsSubCategoryitem = ({
   toggleClass,
   mainCatId,
 }) => {
-  const findItems = getCategories[0][3].filter(
+  const findItems = getCategories[3].filter(
     (item, index) => item[4] === mainCatId
   );
   console.log({ findItems }, "hi");
   return (
     <ul class="mega-menu3">
-      <li>
+      {/* <li>
         <Link class="hover-special-view" to={"/subcategory/" + categoryId}>
           <span
             onClick={toggleClass}
@@ -27,7 +27,7 @@ export const SubsSubCategoryitem = ({
             View all {subCategoryName}
           </span>
         </Link>
-      </li>
+      </li> */}
       {findItems.map((item) => {
         /* screen size bigger than 991px  allow this  */
         const getObjFrom = getCategoryDataToObj(item);

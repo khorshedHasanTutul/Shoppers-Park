@@ -32,7 +32,7 @@ const CategoryWiseProduct = ({ item, setalert }) => {
       },
     },
   };
-  console.log('categoryProducts=>',item)
+  console.log("categoryProducts=>", item);
 
   return (
     <>
@@ -61,12 +61,12 @@ const CategoryWiseProduct = ({ item, setalert }) => {
                 item.products.map((item) => (
                   <ProductsInfoModel item={item} setalert={setalert} />
                 ))}
-
             </div>
             <div class="shop-all-offer-btn">
-              <Link to={"/category/" + item.category_id}>
+            {/* to={"/category/" + item.category_id} */}
+              <a href>
                 {"Shop All " + item.categoryName}
-              </Link>
+              </a>
             </div>
           </div>
           {/* <!-- single product catagory main area --> */}

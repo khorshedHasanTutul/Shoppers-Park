@@ -17,7 +17,9 @@ const CartTableItem = ({ data, setQtyAlert }) => {
         <tr class="close">
           <td class="card-title-heading">
             <Link to={"/product/" + item.id}>
-              <span class="SearchProductName SearchFont">{item.displayName}</span>
+              <span class="SearchProductName SearchFont">
+                {item.displayName}
+              </span>
             </Link>
             <br />
             {item.discountPrice > 0 ? (
