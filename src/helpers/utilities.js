@@ -16,3 +16,12 @@ export const humanizeShortDateTime = (enData) => {
 
   return "Error parsing date";
 };
+
+export const goTO = () => {
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 0);
+};
+
+
+

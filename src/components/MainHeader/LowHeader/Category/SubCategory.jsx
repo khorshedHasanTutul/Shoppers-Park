@@ -10,7 +10,7 @@ import SubsSubCategoryitem from "./SubsSubCategoryitem";
 
 const SubCategory = ({ categoryItem, toggleClass, mainCatId }) => {
   // const getDropDown = getDropDownCategories(categoryItem);
-  const findItems = getCategories[0][2].filter(
+  const findItems = getCategories[2].filter(
     (item, index) => item[3] === mainCatId
   );
   console.log({ findItems }, "hi");

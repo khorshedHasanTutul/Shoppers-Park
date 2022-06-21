@@ -79,7 +79,7 @@ const ProductSummary = ({
                 <tr>
                   <td class="cart_product">
                     <Link href="#">
-                      <img src={item.image} alt="img" />
+                      <img src={item?.image} alt="img" />
                     </Link>
                   </td>
                   <td class="cart_description">
@@ -90,16 +90,15 @@ const ProductSummary = ({
                     <br />
                     <small>Company: LPC </small> */}
                   </td>
-                  {item.discountPrice <= 0 && (
+                  {/* {item.discountPrice <= 0 && (
                     <td class="price">
                       <span>৳ {item.currentPrice}</span>
                     </td>
-                  )}
-                  {item.discountPrice > 0 && (
-                    <td class="price">
-                      <span>৳ {item.currentPrice.toFixed(2)}</span>
-                    </td>
-                  )}
+                  )} */}
+
+                  <td class="price">
+                    <span>৳ {item.currentPrice.toFixed(2)}</span>
+                  </td>
 
                   <td class="qty">
                     <div class="input-group product_qty">

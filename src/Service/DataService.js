@@ -3,6 +3,7 @@ var data = window.APP_DATA;
 export const getCategories = data[0];
 
 export const getCategoryDataToObj = (item) => {
+  console.log("hello Item=>", item);
   return {
     id: item[0],
     name: item[1],
@@ -60,13 +61,13 @@ export const returnDataAsObjectProperties = (item) => {
     name: item[1],
     displayName: item[2],
     PackSize: item[3],
-    image: item[5],
-    currentPrice: item[6],
-    discountPrice: item[8],
-    orginalPrice: item[7],
-    stockUnit: item[10],
-    discountedPercentage: item[9],
-    rank: item[11],
+    image: item[4],
+    currentPrice: item[5],
+    discountPrice: item[7],
+    orginalPrice: item[6],
+    stockUnit: item[9],
+    discountedPercentage: item[8],
+    rank: item[10],
 
     // Brand_id: item[11],
     // Unit_id: item[12],

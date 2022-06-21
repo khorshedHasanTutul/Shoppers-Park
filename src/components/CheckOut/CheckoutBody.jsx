@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { goTO } from "../../helpers/utilities";
 import { GET_ADDRESS } from "../../lib/endpoints";
 import { storeAddressObj } from "../../Service/DataService";
 import { httpV2 } from "../../Service/httpService2";
@@ -39,12 +40,14 @@ const CheckoutBody = () => {
     setActiveAddress(false);
     setActivePayment(false);
     getAddressHttp();
+    goTO();
   };
 
   const AddressActiveHandler = () => {
     setActiveProductSummary(false);
     setActiveAddress(true);
     setActivePayment(false);
+    goTO();
   };
 
   const paymentActiveHandler = () => {
@@ -57,6 +60,7 @@ const CheckoutBody = () => {
       setAlert(true);
       //   alert("Please Enter Valid Address!");
     }
+    goTO();
   };
 
   //check whether to go to payment model or not
@@ -75,9 +79,12 @@ const CheckoutBody = () => {
   };
 
   const proceedToAddressHandler = () => {
-    if (findActiveAddress.name !== null) {
-      paymentActiveHandler();
-    } else AddressActiveHandler();
+    if (findActiveAddress === undefined || findActiveAddress?.name === null) {
+      AddressActiveHandler();
+    } else paymentActiveHandler();
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
   };
 
   const ProceedToOrderHandler = () => {
@@ -87,6 +94,9 @@ const CheckoutBody = () => {
       setAlert(true);
       //   alert("Please Enter Valid Address!");
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
   };
 
   const alertStatusChangeHandler = () => {

@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import appData from "../../../DataSource/appData";
+import { BASE_URL } from "../../../../Service/httpService2";
 
 const RelatedSingleItem = ({ relatedProducts }) => {
+  console.log({ relatedProducts });
   return (
     <>
       {relatedProducts.map((item) => (
         <div class="recent-pro-del-flex">
           <Link to={"/product/" + item.id}>
             <div class="product-del-s-img">
-              <img src="/contents/assets/images/blog/b1.jpg" alt="img" />
+              <img src={BASE_URL + item.imageURL} alt="img" />
             </div>
             <div class="product-del-s-content">
               <div class="product-del-s-title">

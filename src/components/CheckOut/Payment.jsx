@@ -12,6 +12,7 @@ import { httpV2 } from "../../Service/httpService2";
 import addressContext from "../../Store/address-context";
 import cartContext from "../../Store/cart-context";
 import PopAlert from "../utilities/Alert/PopAlert";
+import Suspense from "../utilities/Suspense/Suspense";
 import OrderAlert from "./OrderAlert/OrderAlert";
 
 const Payment = ({ addresses, AddressActiveHandler }) => {
@@ -178,7 +179,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
       </div>
       {(getSelectedAddress || storeAddressObj.name.length !== 0) && (
         <Fragment>
-          <h3 class="sip-add" style={{ textAlign: "left" }}>
+          <h3 class="sip-add" style={{ textAlign: "left", marginTop: "10px" }}>
             Shipping Address
           </h3>
           <div
@@ -342,7 +343,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
           </div>
         </div>
       </div>
-      {alert && (
+      {alert && !isLoading && (
         <PopAlert
           Template={OrderAlert}
           closeModal={alertStateChangedHandler}
@@ -350,6 +351,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
           successOrder={successOrderAlert}
         />
       )}
+      {isLoading && <Suspense />}
       {alertPayment && (
         <PopAlert
           closeModal={alertPaymentRadioStateChangeHandler}

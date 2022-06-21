@@ -13,6 +13,7 @@ const CategoryItem = ({
   mainCategoryIndex,
   mainCatId,
 }) => {
+  console.log({ mainCatId });
   const [count, setcount] = useState(0);
   const increment = () => {
     setcount(count + 1);
@@ -21,7 +22,7 @@ const CategoryItem = ({
     setcount(count - 1);
   };
   console.log({ getCategories });
-  const findItems = getCategories[0][1].filter(
+  const findItems = getCategories[1].filter(
     (item, index) => item[2] === mainCatId
   );
   console.log({ findItems });
@@ -71,9 +72,9 @@ const CategoryItem = ({
                   </Link>
                   <ul class="loaded mega-menu mega-menu2">
                     <li class="sd-nav__section-wrapper">
-                      <Link to={"/category/" + getObjFrom.id}>
+                      {/* <Link to={"/category/" + getObjFrom.id}>
                         View all {getObjFrom.name}
-                      </Link>
+                      </Link> */}
                       <SubCategory
                         mainCatId={getObjFrom.id}
                         categoryItem={categoryItem[2]}
@@ -96,11 +97,11 @@ const CategoryItem = ({
                   </Link>
                   <ul class="loaded mega-menu mega-menu2">
                     <li class="sd-nav__section-wrapper">
-                      <Link to={"/category/" + categoryItem[0]}>
+                      {/* <Link to={"/category/" + categoryItem[0]}>
                         <span onClick={toggleClass}>
                           View all {categoryItem[1]}
                         </span>
-                      </Link>
+                      </Link> */}
                       <SubCategory
                         categoryItem={categoryItem[2]}
                         toggleClass={toggleClass}

@@ -42,6 +42,7 @@ const Category = () => {
       decrement();
     }
   };
+  console.log({ getCategories });
 
   return (
     <div>
@@ -53,51 +54,49 @@ const Category = () => {
           <span onClick={toggleClass}>×</span>
         </a>
         <ul>
-          {getCategories.map((item, index) => {
-            return item[0].map((catMap) => {
-              const getObjFrom = getCategoryDataToObj(catMap);
-              console.log({ getObjFrom });
-              return (
-                <li class="dropdown">
-                  {/* screen size bigger than 991px  allow this  */}
-                  {screenWidth > 991 ? (
-                    <>
-                      <a href>
-                        {getObjFrom.name}
-                        <i
-                          class="fa fa-angle-down arrow-class"
-                          aria-hidden="true"
-                        ></i>
-                      </a>
-                      <ul class="dropdownmenu mega-menu">
-                        {/* start inner mega menu shop */}
-                        <CategoryItem
-                          mainCatId={getObjFrom.id}
-                          mainCategoryIndex={index}
-                        />
-                      </ul>
-                    </>
-                  ) : (
-                    <>
-                      <a href onClick={clickedArrowHandler}>
-                        <span> {getObjFrom.name}</span>
-                        <i
-                          class="fa fa-angle-down arrow-class"
-                          aria-hidden="true"
-                        ></i>
-                      </a>
-                      <ul class="dropdownmenu mega-menu">
-                        {/* start inner mega menu shop */}
-                        <CategoryItem
-                          toggleClass={toggleClass}
-                          mainCategoryIndex={index}
-                        />
-                      </ul>
-                    </>
-                  )}
-                </li>
-              );
-            });
+          {getCategories[0].map((catMap) => {
+            const getObjFrom = getCategoryDataToObj(catMap);
+            console.log({ getObjFrom });
+            return (
+              <li class="dropdown">
+                {/* screen size bigger than 991px  allow this  */}
+                {screenWidth > 991 ? (
+                  <>
+                    <a href>
+                      {getObjFrom.name}
+                      <i
+                        class="fa fa-angle-down arrow-class"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <ul class="dropdownmenu mega-menu">
+                      {/* start inner mega menu shop */}
+                      <CategoryItem
+                        mainCatId={getObjFrom.id}
+                        // mainCategoryIndex={index}
+                      />
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <a href onClick={clickedArrowHandler}>
+                      <span> {getObjFrom.name}</span>
+                      <i
+                        class="fa fa-angle-down arrow-class"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <ul class="dropdownmenu mega-menu">
+                      {/* start inner mega menu shop */}
+                      {/* <CategoryItem
+                        toggleClass={toggleClass}
+                        mainCategoryIndex={index}
+                      /> */}
+                    </ul>
+                  </>
+                )}
+              </li>
+            );
           })}
 
           <HeaderLinksitem toggleClass={toggleClass} />
