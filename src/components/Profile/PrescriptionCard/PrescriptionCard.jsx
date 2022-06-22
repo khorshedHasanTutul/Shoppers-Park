@@ -7,7 +7,11 @@ const PrescriptionCard = () => {
   return (
     <Card className="prescription-card flex column justify-between align-center round-corner p-16">
       <div className="img mb-8">
-        <img src="/contents/assets/images/blog/b3.jpg" alt="" className="w-max" />
+        <img
+          src="/contents/assets/images/blog/b3.jpg"
+          alt=""
+          className="w-max"
+        />
       </div>
       <div className="mb-12">
         <Link

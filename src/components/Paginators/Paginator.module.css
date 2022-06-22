@@ -1,0 +1,38 @@
+.paginator ul {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+.paginator ul li {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid rgb(182, 182, 182);
+  border-left: none;
+  color: black;
+}
+.paginator ul li:last-child {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+.paginator ul li:first-child {
+  border-left: 1px solid rgb(182, 182, 182);
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.paginator ul li:hover {
+  background: #df2c8a;
+  color: white;
+  cursor: pointer;
+}
+.paginator ul li.active {
+  background: #df2c8a;
+  color: white;
+}
+.paginator ul li.disabled {
+  background: #f5f6f7;
+  color: #cbcbcb;
+}
+.paginator ul li.disabled:hover {
+  cursor: not-allowed;
+}

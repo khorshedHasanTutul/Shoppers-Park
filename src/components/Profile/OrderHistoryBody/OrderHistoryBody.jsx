@@ -59,7 +59,7 @@ const OrderHistoryBody = () => {
     getAllOrdersHttp();
   }, [getAllOrdersHttp]);
 
-  console.log({ordersArray})
+  console.log({ ordersArray });
   return (
     <div>
       {!isLoading && (
@@ -68,7 +68,7 @@ const OrderHistoryBody = () => {
             <Redirect to="/profile/order/all" />
           </Route>
           <Route path="/profile/order/all">
-            <OrderList ordersArray={ordersArray} />
+            <OrderList ordersArray={ordersArray} getAllOrdersHttp={getAllOrdersHttp} />
           </Route>
           <Route path="/profile/order/confirmed">
             <OrderList ordersArray={confirmedOrders} />

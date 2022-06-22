@@ -10,6 +10,7 @@ const Request = () => {
   const [file, setFile] = useState();
   const [preview, setpreview] = useState();
   const [products, setProducts] = useState([]);
+  const [imageIsInvalid, setImageIsInvalid] = useState(false);
   // const [description, setDescription] = useState('');
 
   const addProductHandler = (product) => {
@@ -27,7 +28,19 @@ const Request = () => {
     inputRef.current.click();
   };
   const fileChangeHandler = ({ target }) => {
-    setFile(target.files[0]);
+    const file = target.files[0];
+    if (!file) return;
+    const allowedExtensions = ["jpg", "jpeg", "png", "pdf", "doc", "docx"];
+
+    const subs = file.name.toLowerCase().split(".");
+
+    if (!allowedExtensions.includes(subs[subs.length - 1])) {
+      setImageIsInvalid(true);
+      target.value = "";
+      return false;
+    } else setImageIsInvalid(false);
+
+    setFile(file);
   };
 
   // const descriptionHandler = ({target}) => {
@@ -108,6 +121,11 @@ const Request = () => {
               type="file"
               onChange={fileChangeHandler}
             />
+            {imageIsInvalid && (
+              <div class="alert alert-error">
+                Only JPG JPEG PNG format acceptable.
+              </div>
+            )}
           </div>
         </div>
 

@@ -85,10 +85,10 @@ const CategoryItem = ({
               ) : (
                 <>
                   <Link
-                    title={categoryItem[1]}
-                    to={"/category/" + categoryItem[0]}
+                    title={getObjFrom.name}
+                    to={"/category/" + getObjFrom.id}
                   >
-                    <span onClick={toggleClass}>{categoryItem[1]}</span>
+                    <span onClick={toggleClass}>{getObjFrom.name}</span>
                     <i
                       class="fa fa-angle-right sub-menu-arrow-right"
                       aria-hidden="true"
@@ -103,9 +103,10 @@ const CategoryItem = ({
                         </span>
                       </Link> */}
                       <SubCategory
-                        categoryItem={categoryItem[2]}
                         toggleClass={toggleClass}
                         indexnum={index}
+                        mainCatId={getObjFrom.id}
+                        categoryItem={categoryItem[2]}
                       />
                     </li>
                   </ul>

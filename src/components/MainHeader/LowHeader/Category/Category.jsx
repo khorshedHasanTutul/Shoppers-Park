@@ -88,10 +88,10 @@ const Category = () => {
                     </a>
                     <ul class="dropdownmenu mega-menu">
                       {/* start inner mega menu shop */}
-                      {/* <CategoryItem
+                      <CategoryItem
                         toggleClass={toggleClass}
-                        mainCategoryIndex={index}
-                      /> */}
+                        mainCatId={getObjFrom.id}
+                      />
                     </ul>
                   </>
                 )}
