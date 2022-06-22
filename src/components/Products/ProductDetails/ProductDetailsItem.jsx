@@ -82,7 +82,7 @@ const ProductDetailsItem = ({ product, setalert }) => {
       <div class="product-desc-right-content">
         <div class="catagory-overly-main-bg">
           <div class="catagory-product-overly">
-            <h4>{product.name}</h4>
+            <h4>{product.displayName}</h4>
           </div>
 
           <div class="product-review-main">
