@@ -8,13 +8,26 @@ const PrescriptionForm = ({ onSubmit }) => {
   const [remarks, setRemarks] = useState("");
   const [file, setFile] = useState();
   const [preview, setpreview] = useState();
+  const [imageIsInvalid, setImageIsInvalid] = useState(false);
 
   const remarksChangeHandler = ({ target }) => {
     setRemarks(target.value.trim());
   };
 
   const fileChangeHandler = ({ target }) => {
-    setFile(target.files[0]);
+    const file = target.files[0];
+    if (!file) return;
+    const allowedExtensions = ["jpg", "jpeg", "png", "pdf", "doc", "docx"];
+
+    const subs = file.name.toLowerCase().split(".");
+
+    if (!allowedExtensions.includes(subs[subs.length - 1])) {
+      setImageIsInvalid(true);
+      target.value = "";
+      return false;
+    } else setImageIsInvalid(false);
+    
+    setFile(file);
   };
   const fileUploadHandler = () => {
     inputRef.current.click();
@@ -70,7 +83,7 @@ const PrescriptionForm = ({ onSubmit }) => {
           </div>
         </div>
       </div>
-      <div className="grid">
+      <div className="grid" style={{marginBottom:"20px"}}>
         <div className="form__control">
           <InputControl
             name={"presription-upload"}
@@ -78,18 +91,12 @@ const PrescriptionForm = ({ onSubmit }) => {
             type="file"
             onChange={fileChangeHandler}
           />
+          {imageIsInvalid && (
+            <div class="alert alert-error">
+              Only JPG JPEG PNG format acceptable.
+            </div>
+          )}
         </div>
-        {/* <div className="form__control">
-          <InputControl
-            name={"presription-title"}
-            label={"Title"}
-            value={title}
-            onChange={titleChangeHandler}
-            onBlur={titleTouchedHandler}
-            // error={(titleIsTouched && title.length===0) && "Title field is required."}
-            placeHolder={(titleIsTouched && title.length===0) && "Title field is required."}
-          />
-        </div> */}
         <div className="form__control">
           <InputControl
             name={"presription-remarks"}

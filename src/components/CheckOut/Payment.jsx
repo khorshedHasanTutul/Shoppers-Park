@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from "react";
 import { useHistory } from "react-router-dom";
+import { goTO } from "../../helpers/utilities";
 import { POST_ORDER, POST_ORDER_PAYMENT } from "../../lib/endpoints";
 import { storeAddressObj } from "../../Service/DataService";
 import { httpV2 } from "../../Service/httpService2";
@@ -79,6 +80,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
   };
 
   const proceedOrderHandler = () => {
+    goTO();
     if (clickedRadio) {
       httpV2.post({
         url: POST_ORDER,

@@ -54,7 +54,8 @@ const SignupNoti = () => {
                 </div>
                 <div class="busket-icon">
                   <FontAwesomeIcon icon={faBell} />
-                  <span>{notiData.length}</span>
+                  {/* number of notifications  */}
+                  {/* <span>{notiData.length}</span> */}
                 </div>
               </a>
               {notification && (

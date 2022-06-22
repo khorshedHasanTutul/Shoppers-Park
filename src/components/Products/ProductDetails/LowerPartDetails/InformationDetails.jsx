@@ -3,7 +3,7 @@ import React from "react";
 const InformationDetails = ({ product }) => {
   console.log({ product });
   return (
-    <div class="tab-content detalis-page-tab-content">
+    <div class="tab-content detalis-page-tab-content" style={{marginTop:0}}>
       {/* <!-- product desc review information --> */}
       <div class="product-i-tab-content">
         <table class="table table-bordered">
@@ -19,7 +19,7 @@ const InformationDetails = ({ product }) => {
             </tr>
             <tr>
               <td>Category</td>
-              <td>{product?.categories.map((item) => item?.name)}</td>
+              <td>{product?.categories.map((item) => item?.name).join(', ')}</td>
             </tr>
             {/* <tr>
               <td>Strength</td>

@@ -38,6 +38,7 @@ export const POST_CONTACT = "/api/v1/Contacts";
 export const GET_LEVEL2_Products = "/api/v1/Categories/L2/";
 export const GET_LEVEL3_Products = "/api/v1/Categories/L3/";
 export const GET_LEVEL4_Products = "/api/v1/Categories/L4/";
+export const CANCLE_ORDER = "/api/v1/Orders/cancel/";
 
 export const endpoints = {
   login,

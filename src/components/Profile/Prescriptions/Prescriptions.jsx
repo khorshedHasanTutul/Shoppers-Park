@@ -17,7 +17,7 @@ const Prescriptions = ({ prescriptions }) => {
   };
 
   const submitHandler = (formData) => {
-    console.log(formData)
+    console.log(formData);
     // http.file({
     //   url:endpoints.uploadProductImage,
     //   payload:{
@@ -40,15 +40,15 @@ const Prescriptions = ({ prescriptions }) => {
     //   }
     // })
     setIsPopupVisible(true);
-  }
+  };
 
   const doneHandler = () => {
     setIsPopupVisible(false);
-  }
+  };
 
   const orderHandler = () => {
-    history.push('/checkout');
-  }
+    history.push("/checkout");
+  };
 
   if (prescriptions.length === 0) {
     return (
@@ -61,7 +61,7 @@ const Prescriptions = ({ prescriptions }) => {
   return (
     <Fragment>
       <div>
-        <PrescriptionForm onSubmit={submitHandler}/>
+        <PrescriptionForm onSubmit={submitHandler} />
 
         <div className="label brick info mb-16">
           <p className="t-14 t-center">
@@ -86,14 +86,8 @@ const Prescriptions = ({ prescriptions }) => {
         )}
       </div>
       {isPopupVisible && (
-        <Popup
-          title="Order Saved"
-          onClose={popupCloseHandler}
-        >
-          <PrescriptionSaved 
-            onDone={doneHandler}
-            onOrder={orderHandler}
-          />
+        <Popup title="Order Saved" onClose={popupCloseHandler}>
+          <PrescriptionSaved onDone={doneHandler} onOrder={orderHandler} />
         </Popup>
       )}
     </Fragment>

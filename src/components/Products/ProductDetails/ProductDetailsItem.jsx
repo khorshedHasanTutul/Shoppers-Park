@@ -16,7 +16,10 @@ const ProductDetailsItem = ({ product, setalert }) => {
   console.log({ product });
   const cartCtx = useContext(cartContext);
   const [count, setCount] = useState(1);
+  const [selectedImageStatus, setSelectedImageStatus] = useState(false);
+  const [selectedImage, setSelectedImage] = useState();
   const cartCtxModal = cartCtx.getCartModel;
+
   const options = {
     rewind: true,
     type: "slide",
@@ -51,6 +54,13 @@ const ProductDetailsItem = ({ product, setalert }) => {
     setCount(target.value);
   };
 
+  const smallSliderImgHandler = (item) => {
+    setSelectedImageStatus(true);
+    setSelectedImage(item)
+    console.log("clicked==>", item);
+  };
+
+  console.log({ product });
   return (
     <div class="inner-product-details-flex">
       <div class="product-d-left-img">
@@ -59,9 +69,15 @@ const ProductDetailsItem = ({ product, setalert }) => {
           {findPrimaryImage === null && (
             <img src="/contents/assets/images/no_productimg.jpg" alt="img" />
           )}
-          {findPrimaryImage !== null && (
+          {findPrimaryImage !== null && !selectedImageStatus && (
             <img
               src={BASE_URL + findPrimaryImage?.originalImageURL}
+              alt="img"
+            />
+          )}
+          {selectedImageStatus && (
+            <img
+              src={BASE_URL + selectedImage?.originalImageURL}
               alt="img"
             />
           )}
@@ -73,7 +89,7 @@ const ProductDetailsItem = ({ product, setalert }) => {
                 Template={SmallSliderSingleItem}
                 options={options}
                 data={smallSliderImages}
-                // imageChangedHandler={imageChangedHandler}
+                imageChangedHandler={smallSliderImgHandler}
               />
             </div>
           </div>
@@ -136,13 +152,12 @@ const ProductDetailsItem = ({ product, setalert }) => {
             <ul>
               <li>
                 Category :
-                <Link to={"/category/"}>
-                  {/* {categoryData.categoryName} */}
-                </Link>
+                <a href>
+                  {product.categories.map((item) => item.name).join(", ")}
+                </a>
               </li>
               <li>
-                Brand :
-                <Link to={"/brands/"}>{/* {brandData.brand_name} */}</Link>
+                Brand :<a href>{product.brand?.name}</a>
               </li>
             </ul>
           </div>
