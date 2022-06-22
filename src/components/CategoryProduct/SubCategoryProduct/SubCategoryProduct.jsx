@@ -44,6 +44,8 @@ const SubCategoryProduct = () => {
     getCategories(id);
   }, [getCategories, id]);
 
+  console.log({ subCategoryProducts });
+
   return (
     <>
       {!isGetting && !failed && (

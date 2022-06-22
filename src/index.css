@@ -408,6 +408,7 @@ input:focus {
   grid-gap: 28px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 20px;
 }
 .single-cash-card-item {
   background: #fff;
@@ -1441,7 +1442,7 @@ input:focus {
 .product-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .single-product-catagory-item:hover .catagory-overly-main-bg {
   background: #e8e8e8;
@@ -4707,8 +4708,9 @@ select::-ms-expand {
   position: sticky;
   height: 100%;
   background: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   min-height: 730px;
+  margin-top: 6px;
 }
 
 .profile .sidebar .profile-sidebar .img.mb-8 {
@@ -5365,6 +5367,7 @@ div.brick.label.default {
 
 .profile .body {
   margin-left: 20px;
+  margin-top: 6px;
 }
 
 .profile-sidebar .t-center .t-14.mb-4 small {

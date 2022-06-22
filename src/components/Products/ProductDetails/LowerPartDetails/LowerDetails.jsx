@@ -25,7 +25,7 @@ const LowerDetails = ({ product }) => {
 
           <ProductDetailsTabs itemOPen={itemOPen} tabsData={tabsData} />
           {tabsData === 0 && <DetailsInfo description={product.description} />}
-          {tabsData === 1 && <InformationDetails product={product}/>}
+          {tabsData === 1 && <InformationDetails product={product} />}
           {tabsData === 2 && <ReviewContent />}
         </div>
       </div>
