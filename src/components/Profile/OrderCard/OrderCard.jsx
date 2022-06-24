@@ -25,7 +25,7 @@ const OrderCard = ({ order, key, getAllOrdersHttp }) => {
   const checkToPermitHandler = () => {
     setVisibleCancleAlert(true);
   };
-  
+
   const cacleOrderHandler = useCallback((orderId) => {
     httpV2.patch({
       url: CANCLE_ORDER + orderId + "/00000000-0000-0000-0000-000000000000",

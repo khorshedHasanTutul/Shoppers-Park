@@ -1425,7 +1425,7 @@ input:focus {
   border-radius: 10px;
   overflow: hidden;
   flex: 0 0 19%;
-  height: 350px;
+  max-height: 350px;
 }
 /* .single-product-catagory-item img {
 	height: 65%;
@@ -1538,6 +1538,7 @@ input:focus {
 }
 .product-catagory-main-flex .shop-all-offer-btn {
   padding-top: 40px;
+  cursor: pointer;
 }
 .product_items__count__container {
   display: flex;

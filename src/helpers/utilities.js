@@ -23,5 +23,13 @@ export const goTO = () => {
   }, 0);
 };
 
+export const paramsUrlGenerator = (params) => {
+  const url = "?";
+  const paramsStrings = [];
 
+  for (const [key, value] of Object.entries(params)) {
+    paramsStrings.push(`${key}=${value}`);
+  }
 
+  return url + paramsStrings.join("&");
+};
