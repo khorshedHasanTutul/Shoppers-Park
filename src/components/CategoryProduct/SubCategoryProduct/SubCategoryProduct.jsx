@@ -44,8 +44,6 @@ const SubCategoryProduct = () => {
     getCategories(id);
   }, [getCategories, id]);
 
-  console.log({ subCategoryProducts });
-
   return (
     <>
       {!isGetting && !failed && (
@@ -68,7 +66,7 @@ const SubCategoryProduct = () => {
               <SubCategoryTotalItem
                 children={subCategoryProducts.children}
                 setalert={closeModal}
-                products={subCategoryProducts.products}
+                subCategoryId={subCategoryProducts.id}
                 name={subCategoryProducts.name}
               />
             </div>

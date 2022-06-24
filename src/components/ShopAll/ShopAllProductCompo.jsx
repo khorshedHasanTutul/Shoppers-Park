@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { paramsUrlGenerator } from "../../../helpers/utilities";
-import { CHILD_PRODUCT_LVL_WISE } from "../../../lib/endpoints";
-import ErrorPage from "../../../pages/ErrorPage";
-import { httpV2 } from "../../../Service/httpService2";
-import Paginator from "../../Paginators/Paginators";
-import ProductsInfoModel from "../../Products/ProductsInfoModel";
-import Suspense from "../../utilities/Suspense/Suspense";
+import { paramsUrlGenerator } from "../../helpers/utilities";
+import {
+  CHILD_PRODUCT_LVL_WISE,
+  GET_DISPLAY_PRODUCTS,
+} from "../../lib/endpoints";
+import ErrorPage from "../../pages/ErrorPage";
+import { httpV2 } from "../../Service/httpService2";
+import Paginator from "../Paginators/Paginators";
+import ProductsInfoModel from "../Products/ProductsInfoModel";
+import Suspense from "../utilities/Suspense/Suspense";
 
-const SubSubAllProduct = ({ subCategoryId, setalert }) => {
+const ShopAllProductCompo = ({ setalert, id }) => {
   const [failed, setFailed] = useState(false);
   const [isGetting, setIsGetting] = useState(true);
 
@@ -27,7 +30,7 @@ const SubSubAllProduct = ({ subCategoryId, setalert }) => {
   const getChildLvlWProduct = useCallback(
     (paramsUrl) => {
       httpV2.get({
-        url: CHILD_PRODUCT_LVL_WISE + "level4/" + subCategoryId + paramsUrl,
+        url: GET_DISPLAY_PRODUCTS + id + paramsUrl,
         before: () => {
           setIsGetting(true);
         },
@@ -49,7 +52,7 @@ const SubSubAllProduct = ({ subCategoryId, setalert }) => {
         },
       });
     },
-    [subCategoryId]
+    [id]
   );
   useEffect(() => {
     const paramsUrl = paramsUrlGenerator(params);
@@ -90,4 +93,4 @@ const SubSubAllProduct = ({ subCategoryId, setalert }) => {
   );
 };
 
-export default SubSubAllProduct;
+export default ShopAllProductCompo;

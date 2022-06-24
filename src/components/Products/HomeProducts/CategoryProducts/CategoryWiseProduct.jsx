@@ -63,10 +63,10 @@ const CategoryWiseProduct = ({ item, setalert }) => {
                 ))}
             </div>
             <div class="shop-all-offer-btn">
-            {/* to={"/category/" + item.category_id} */}
-              <a href>
+              {/* to={"/category/" + item.category_id} */}
+              <Link to={"/shopall/" + item.category_id}>
                 {"Shop All " + item.categoryName}
-              </a>
+              </Link>
             </div>
           </div>
           {/* <!-- single product catagory main area --> */}

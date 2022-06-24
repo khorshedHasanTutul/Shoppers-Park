@@ -15,8 +15,8 @@ import classes from "./Paginator.module.css";
 
 const Paginator = ({
   items,
-  pageItems = 10,
-  startPage = 1,
+  pageItems,
+  startPage,
   onPageChange = (pageNumber) => {
     return pageNumber + 1;
   },

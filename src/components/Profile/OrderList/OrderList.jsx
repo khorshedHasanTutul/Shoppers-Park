@@ -4,18 +4,18 @@ import Paginator from "../../Paginators/Paginators";
 import PopUpAlert from "../../utilities/Alert/PopUpAlert";
 import OrderCard from "../OrderCard/OrderCard";
 
-const OrderList = ({ ordersArray, getAllOrdersHttp }) => {
+const OrderList = ({ ordersArray, getAllOrdersHttp,pageChangeHandler }) => {
   const pageSize = 5;
-  const [pagedOrders, setPagedOrders] = useState([]);
+  // const [pagedOrders, setPagedOrders] = useState([]);
 
-  const pageChangeHandler = (page) => {
-    setPagedOrders(ordersArray.slice((page - 1) * pageSize, page * pageSize));
-    goTO();
-  };
+  // const pageChangeHandler = (page) => {
+  //   setPagedOrders(ordersArray.slice((page - 1) * pageSize, page * pageSize));
+  //   goTO();
+  // };
 
-  useEffect(() => {
-    setPagedOrders(ordersArray.slice(0, pageSize));
-  }, [ordersArray]);
+  // useEffect(() => {
+  //   setPagedOrders(ordersArray.slice(0, pageSize));
+  // }, [ordersArray]);
 
   if (ordersArray === undefined || ordersArray.length === 0) {
     return (
@@ -28,7 +28,7 @@ const OrderList = ({ ordersArray, getAllOrdersHttp }) => {
   return (
     <>
       <div className="tabbed niiceeTabContent profile-tab">
-        {pagedOrders.map((order) => (
+        {ordersArray.map((order) => (
           <OrderCard
             order={order}
             key={order.orderNumber}
@@ -36,7 +36,7 @@ const OrderList = ({ ordersArray, getAllOrdersHttp }) => {
           />
         ))}
 
-        <div className="paginator">
+        <div className="paginator container">
           <Paginator
             items={ordersArray.length}
             pageItems={pageSize}

@@ -19,6 +19,7 @@ export const addressType = {
 };
 
 export const OrderStatus = {
+  All: 6,
   Pending: 0,
   Confirmed: 1,
   Processing: 2,

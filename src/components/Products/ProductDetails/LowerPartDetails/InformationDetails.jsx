@@ -11,11 +11,11 @@ const InformationDetails = ({ product }) => {
           <tbody>
             <tr>
               <td width="200">Name</td>
-              <td>{product.name}</td>
+              <td>{product?.name}</td>
             </tr>
             <tr>
               <td>Packsize</td>
-              <td>{product.packSize}</td>
+              <td>{product?.packSize}</td>
             </tr>
             <tr>
               <td>Category</td>
@@ -27,7 +27,7 @@ const InformationDetails = ({ product }) => {
             </tr> */}
             <tr>
               <td>Unit</td>
-              <td>{product?.unit.name}</td>
+              <td>{product?.unit?.name}</td>
             </tr>
           </tbody>
         </table>

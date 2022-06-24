@@ -36,6 +36,7 @@ const CategoryProduct = () => {
   useEffect(() => {
     getCategories(id);
   }, [getCategories, id]);
+  console.log({ categoryProducts });
 
   return (
     <>
@@ -47,7 +48,7 @@ const CategoryProduct = () => {
           />
           <TotalCategoryItem
             children={categoryProducts.children}
-            products={categoryProducts.products}
+            categoryId={categoryProducts.id}
             name={categoryProducts.name}
           />
         </>
