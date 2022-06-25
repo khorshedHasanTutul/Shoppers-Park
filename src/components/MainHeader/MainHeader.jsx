@@ -8,6 +8,7 @@ import React, {
   useCallback,
 } from "react";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
+import MainTopHeader from "./TopHeader/MainTopHeader";
 
 export const MainHeader = forwardRef((props, stickyNavRef) => {
   const navMidRef = useRef();
@@ -22,13 +23,13 @@ export const MainHeader = forwardRef((props, stickyNavRef) => {
   // this codes exist for the header nav ups & down smoothly
   const handleScroll = useCallback(() => {
     const offset = window.scrollY;
-    const navTopHeight = 23;
-    const span = window.innerWidth <= 1000 ? `10px` : `15px`;
+    const navTopHeight = 34;
+    const span = window.innerWidth <= 1000 ? `4px` : `8px`;
 
     if (offset > navTopHeight) {
       stickyNavRef.current.style.top = `${-navTopHeight}px`;
-      navMidRef.current.style.paddingTop = `10px`;
-      navMidRef.current.style.paddingBottom = `10px`;
+      navMidRef.current.style.paddingTop = `4px`;
+      navMidRef.current.style.paddingBottom = `4px`;
     } else if (offset < navTopHeight) {
       stickyNavRef.current.style.top = `${0}px`;
       navMidRef.current.style.paddingTop = span;
@@ -45,6 +46,7 @@ export const MainHeader = forwardRef((props, stickyNavRef) => {
 
   return (
     <section className={`header-area`} ref={stickyNavRef}>
+      <MainTopHeader />
       <div class="container">
         <div class="header-main-area">
           <TopHeader ref={navTopRef} />

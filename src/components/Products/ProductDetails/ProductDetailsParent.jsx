@@ -46,14 +46,17 @@ const ProductDetailsParent = () => {
     getProductDetails(id);
   }, [getProductDetails, id]);
 
+  console.log({ productItemDetails });
+
   return (
     <>
-      <ProductDetailsHeader />
       {alert && (
         <PopUpAlert content={"Already in your cart."} closeModal={closeModal} />
       )}
       {!isGetting && !failed && (
         <>
+          <ProductDetailsHeader categories={productItemDetails?.categories} />
+
           <section class="product-details-area">
             <div class="container">
               <div class="product-details-main">

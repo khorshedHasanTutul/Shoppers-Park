@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const OrderHistory = () => {
   const [status, setStatus] = useState(6);
-
+  console.log(window.performance.getEntriesByType("navigation"));
   return (
     <div>
       <OrderHistoryHeader setStatus={setStatus} />

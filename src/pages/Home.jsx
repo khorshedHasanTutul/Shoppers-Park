@@ -19,7 +19,7 @@ const Home = () => {
         <Parks />
         <Notice />
         <CategoryProducts wishItemsGet={wishItemsGet}/>
-        <Trandingproducts wishItemsGet={wishItemsGet}/>
+        {/* <Trandingproducts wishItemsGet={wishItemsGet}/> */}
         <SuperDrugBlogs />
         <BrandsSuperDrug />
        

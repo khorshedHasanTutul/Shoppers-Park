@@ -56,7 +56,7 @@ const ProductDetailsItem = ({ product, setalert }) => {
 
   const smallSliderImgHandler = (item) => {
     setSelectedImageStatus(true);
-    setSelectedImage(item)
+    setSelectedImage(item);
     console.log("clicked==>", item);
   };
 
@@ -76,10 +76,7 @@ const ProductDetailsItem = ({ product, setalert }) => {
             />
           )}
           {selectedImageStatus && (
-            <img
-              src={BASE_URL + selectedImage?.originalImageURL}
-              alt="img"
-            />
+            <img src={BASE_URL + selectedImage?.originalImageURL} alt="img" />
           )}
         </div>
         <div class="product-gallery-hover">

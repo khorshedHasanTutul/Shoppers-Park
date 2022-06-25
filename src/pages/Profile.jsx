@@ -25,6 +25,8 @@ const Profile = () => {
     getProfileInfoHttp();
   }, []);
 
+  console.log({profileInfo})
+
   return (
     <div className="container">
       <Page className="profile">

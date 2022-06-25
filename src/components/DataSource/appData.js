@@ -2,7 +2,7 @@ import {
   faFacebookF,
   faYoutube,
   faTwitter,
-  faInstagram,
+  faWhatsappSquare
 } from "@fortawesome/free-brands-svg-icons";
 import { addressType } from "../utilities/dictionaries";
 
@@ -510,9 +510,10 @@ var appData = {
       to: "/youtube",
       icon: faYoutube,
     },
+
     {
-      to: "/instagram",
-      icon: faInstagram,
+      to: "/whatsapp",
+      icon: faWhatsappSquare,
     },
   ],
   BottomPayments: [
