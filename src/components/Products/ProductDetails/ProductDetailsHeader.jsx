@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ProductDetailsHeader = () => {
+const ProductDetailsHeader = ({ categories }) => {
   return (
     <section class="breadcrumb-main-area">
       <div class="container">
@@ -10,9 +10,11 @@ const ProductDetailsHeader = () => {
             <li class="breadcrumb-item">
               <Link to="/">Home</Link>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">
-              Product Details
-            </li>
+            {categories.map((item, index) => (
+              <li class="breadcrumb-item active" aria-current="page">
+                <a href>{item.name}</a>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>

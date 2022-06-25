@@ -79,10 +79,10 @@ const SignupNoti = () => {
             </li>
             <li>
               <div onClick={ModalOpen}>
-                <div className="header-nwl-hover">
-                  <span>Login/SignUp</span>
+              <div className="header-nwl-hover">
+                  <span>Profile</span>
                 </div>
-                <div class="busket-icon">
+                <div class="busket-icon" >
                   <FontAwesomeIcon icon={faUser} />
                 </div>
               </div>

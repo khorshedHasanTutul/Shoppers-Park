@@ -56,7 +56,7 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
             <i class="fa fa-heart-o"></i>
           </a>
         </div>
-
+        <div>
         <Link to={"/product/" + getReturnObjectData.id}>
           {getReturnObjectData.discountPrice > 0 ? (
             <div class="group-price-drag">
@@ -108,6 +108,7 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
             </span>
           </div>
         </Link>
+        </div>
         <AnimatedProduct when={anime} onStop={stopAnime} uiRef={cardRef} />
       </div>
     </>

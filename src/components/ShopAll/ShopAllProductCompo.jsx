@@ -27,7 +27,7 @@ const ShopAllProductCompo = ({ setalert, id }) => {
   const pageChangeHandler = (page) => {
     setParams((prevState) => ({ ...prevState, index: page }));
   };
-  const getChildLvlWProduct = useCallback(
+  const getDisplayCatWiseProduct = useCallback(
     (paramsUrl) => {
       httpV2.get({
         url: GET_DISPLAY_PRODUCTS + id + paramsUrl,
@@ -56,8 +56,8 @@ const ShopAllProductCompo = ({ setalert, id }) => {
   );
   useEffect(() => {
     const paramsUrl = paramsUrlGenerator(params);
-    getChildLvlWProduct(paramsUrl);
-  }, [getChildLvlWProduct, params]);
+    getDisplayCatWiseProduct(paramsUrl);
+  }, [getDisplayCatWiseProduct, params]);
 
   return (
     <>

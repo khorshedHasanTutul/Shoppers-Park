@@ -6,9 +6,10 @@ import { httpV2 } from "../../../Service/httpService2";
 import { GET_ORDERS } from "../../../lib/endpoints";
 import { OrderStatus } from "../../utilities/dictionaries";
 import Suspense from "../../utilities/Suspense/Suspense";
-import { paramsUrlGenerator } from "../../../helpers/utilities";
+import { goTO, paramsUrlGenerator } from "../../../helpers/utilities";
 
 const OrderHistoryBody = ({ status }) => {
+  const [testIndex, setTestIndex] = useState(1);
   const [allOrders, setAllOrders] = useState({
     items: [],
     totalCount: 0,
@@ -18,12 +19,14 @@ const OrderHistoryBody = ({ status }) => {
     index: 1,
     IsDecending: false,
     Status: status,
-    take: 5,
+    take: 10,
   });
   const [isLoading, setIsLoading] = useState(true);
 
   const pageChangeHandler = (page) => {
+    setTestIndex(page);
     setParams((prevState) => ({ ...prevState, index: page }));
+    goTO();
   };
 
   const getAllOrdersHttp = useCallback((paramsUrl) => {
@@ -50,23 +53,15 @@ const OrderHistoryBody = ({ status }) => {
     });
   }, []);
 
-  // useEffect(() => {
-
-  //   console.log(paramsUrlGenerator(params));
-
-  // }, [params]);
-
   useEffect(() => {
-    // setParams((prevState) => ({ ...prevState, Status: status }));
     const paramsUrl = paramsUrlGenerator({
-      index: 1,
+      index: testIndex,
       IsDecending: false,
       Status: status,
-      take: 5,
+      take: 10,
     });
-
     getAllOrdersHttp(paramsUrl);
-  }, [getAllOrdersHttp, status]);
+  }, [getAllOrdersHttp, params, status, testIndex]);
 
   return (
     <div>
@@ -77,27 +72,59 @@ const OrderHistoryBody = ({ status }) => {
           </Route>
           <Route path="/profile/order/all">
             <OrderList
-              ordersArray={allOrders.items}
+              allOrders={allOrders}
+              params={params}
               getAllOrdersHttp={getAllOrdersHttp}
+              pageChangeHandler={pageChangeHandler}
             />
           </Route>
           <Route path="/profile/order/pending">
-            <OrderList ordersArray={allOrders.items} pageChangeHandler={pageChangeHandler} />
+            <OrderList
+              allOrders={allOrders}
+              params={params}
+              getAllOrdersHttp={getAllOrdersHttp}
+              pageChangeHandler={pageChangeHandler}
+            />
           </Route>
           <Route path="/profile/order/confirmed">
-            <OrderList ordersArray={allOrders.items} />
+            <OrderList
+              allOrders={allOrders}
+              params={params}
+              getAllOrdersHttp={getAllOrdersHttp}
+              pageChangeHandler={pageChangeHandler}
+            />
           </Route>
           <Route path="/profile/order/processing">
-            <OrderList ordersArray={allOrders.items} />
+            <OrderList
+              allOrders={allOrders}
+              params={params}
+              getAllOrdersHttp={getAllOrdersHttp}
+              pageChangeHandler={pageChangeHandler}
+            />
           </Route>
           <Route path="/profile/order/delivering">
-            <OrderList ordersArray={allOrders.items} />
+            <OrderList
+              allOrders={allOrders}
+              params={params}
+              getAllOrdersHttp={getAllOrdersHttp}
+              pageChangeHandler={pageChangeHandler}
+            />
           </Route>
           <Route path="/profile/order/delivered">
-            <OrderList ordersArray={allOrders.items} />
+            <OrderList
+              allOrders={allOrders}
+              params={params}
+              getAllOrdersHttp={getAllOrdersHttp}
+              pageChangeHandler={pageChangeHandler}
+            />
           </Route>
           <Route path="/profile/order/cancel">
-            <OrderList ordersArray={allOrders.items} />
+            <OrderList
+              allOrders={allOrders}
+              params={params}
+              getAllOrdersHttp={getAllOrdersHttp}
+              pageChangeHandler={pageChangeHandler}
+            />
           </Route>
           <Route path="/profile/order/details/:id">
             <OrderDetails />

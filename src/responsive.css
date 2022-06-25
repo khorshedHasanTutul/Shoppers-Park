@@ -15,14 +15,18 @@
     max-width: 90%;
   }
   .product-details-inner-flex {
-    display: grid;
+    /* display: grid;
     grid-template-columns: 4fr 1fr;
+    justify-content: space-between; */
+    display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
   .inner-product-details-flex {
-	display: flex;
-	flex-wrap: inherit;
-}
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 @media all and (max-width: 1299px) {
   /*product details add wishlist page css */
@@ -1065,6 +1069,9 @@
   .checkout-main-area .address-btn-group {
     flex-direction: column;
   }
+  .d-flex.al-center{
+    gap: 0;
+  }
 
   .saving-ad-btn {
     margin-top: 15px;
@@ -1125,7 +1132,7 @@
     top: 0px;
   }
   .banner-slider-area {
-    padding-top: 130px;
+    padding-top: 160px !important;
   }
   .single-product-catagory-item {
     margin-bottom: 25px;

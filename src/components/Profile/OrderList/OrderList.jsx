@@ -4,20 +4,13 @@ import Paginator from "../../Paginators/Paginators";
 import PopUpAlert from "../../utilities/Alert/PopUpAlert";
 import OrderCard from "../OrderCard/OrderCard";
 
-const OrderList = ({ ordersArray, getAllOrdersHttp,pageChangeHandler }) => {
-  const pageSize = 5;
-  // const [pagedOrders, setPagedOrders] = useState([]);
-
-  // const pageChangeHandler = (page) => {
-  //   setPagedOrders(ordersArray.slice((page - 1) * pageSize, page * pageSize));
-  //   goTO();
-  // };
-
-  // useEffect(() => {
-  //   setPagedOrders(ordersArray.slice(0, pageSize));
-  // }, [ordersArray]);
-
-  if (ordersArray === undefined || ordersArray.length === 0) {
+const OrderList = ({
+  getAllOrdersHttp,
+  pageChangeHandler,
+  allOrders,
+  params,
+}) => {
+  if (allOrders === undefined || allOrders.items.length === 0) {
     return (
       <div className="brick label info">
         <p className="t-14 t-bold t-center">No Order Found!</p>
@@ -28,18 +21,20 @@ const OrderList = ({ ordersArray, getAllOrdersHttp,pageChangeHandler }) => {
   return (
     <>
       <div className="tabbed niiceeTabContent profile-tab">
-        {ordersArray.map((order) => (
+        {allOrders.items.map((order) => (
           <OrderCard
             order={order}
             key={order.orderNumber}
             getAllOrdersHttp={getAllOrdersHttp}
+            status={params.Status}
           />
         ))}
 
-        <div className="paginator container">
+        <div className="paginator">
           <Paginator
-            items={ordersArray.length}
-            pageItems={pageSize}
+            items={allOrders.totalCount}
+            pageItems={params.take}
+            startPage={params.index}
             onPageChange={pageChangeHandler}
           />
         </div>

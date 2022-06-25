@@ -9,8 +9,6 @@ import Address from "../../CheckOut/Address";
 import AddressContextProvider from "../../../Store/AddressContextProvider";
 import RequestHistory from "../RequestHistory/RequestHistory";
 
-const ADDRESS = [{ id: 25 }];
-
 const ProfileBody = ({ getProfileInfoHttp }) => {
   return (
     <div>

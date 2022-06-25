@@ -1,21 +1,24 @@
 import { useCallback, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { paramsUrlGenerator } from "../../../helpers/utilities";
 import { CANCLE_ORDER } from "../../../lib/endpoints";
 import { BASE_URL, httpV2 } from "../../../Service/httpService2";
 import PopAlert from "../../utilities/Alert/PopAlert";
 import PopUpAlert from "../../utilities/Alert/PopUpAlert";
 import Card from "../../utilities/Card/Card";
+import { OrderStatus } from "../../utilities/dictionaries";
 import Suspense from "../../utilities/Suspense/Suspense";
 import ConfirmationAlert from "./ConfirmationAlert";
 
-const OrderCard = ({ order, key, getAllOrdersHttp }) => {
+const OrderCard = ({ order, key, getAllOrdersHttp, status }) => {
+  let history = useHistory();
+  let { pathname } = useLocation();
   let created_at = new Date(order.createdAt);
   const [visibleCancleAlert, setVisibleCancleAlert] = useState(false);
   const [isAgree, setIsAgree] = useState(false);
   const [goesWrong, setGoesWrong] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  console.log({ isAgree });
-  let history = useHistory();
+
   const viewOrderHandler = () => {
     history.push(`/profile/order/details/${order.id}`);
   };
@@ -33,8 +36,16 @@ const OrderCard = ({ order, key, getAllOrdersHttp }) => {
         setIsLoading(true);
       },
       successed: (res) => {
+        const paramsUrl = paramsUrlGenerator({
+          index: 1,
+          IsDecending: false,
+          Status: status,
+          take: 10,
+        });
+        getAllOrdersHttp(paramsUrl);
         getAllOrdersHttp();
         setIsLoading(false);
+        history.push("/profile/order/all");
       },
       failed: () => {
         setGoesWrong(true);
@@ -47,6 +58,8 @@ const OrderCard = ({ order, key, getAllOrdersHttp }) => {
     if (isAgree) cacleOrderHandler(order.id);
   }, [cacleOrderHandler, isAgree, order.id]);
 
+  console.log({ order });
+
   return (
     <>
       <Card>
@@ -54,18 +67,21 @@ const OrderCard = ({ order, key, getAllOrdersHttp }) => {
           <div className="t-16 t-bold bg-background py-12 px-12 round-corner">
             <div> Order ID #{order.orderNumber}</div>
             <div className="cancel-Order">
-              <div
-                className="cancel-order-button"
-                onClick={checkToPermitHandler}
-              >
-                Cancel Order
-              </div>
+              {pathname !== "/profile/order/cancel" && (
+                <div
+                  className="cancel-order-button"
+                  onClick={checkToPermitHandler}
+                >
+                  Cancel Order
+                </div>
+              )}
+
               <div className="cancel-order-button" onClick={viewOrderHandler}>
                 View Order
               </div>
             </div>
           </div>
-          <div className="p-12">
+          <div className="p-12" onClick={viewOrderHandler}>
             <div className="flex justify-between mb-8">
               <div className="t-14 t-bold t-left">Date</div>
               <div className="t-14 t-right">

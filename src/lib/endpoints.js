@@ -40,7 +40,8 @@ export const GET_LEVEL3_Products = "/api/v1/Categories/L3/";
 export const GET_LEVEL4_Products = "/api/v1/Categories/L4/";
 export const CANCLE_ORDER = "/api/v1/Orders/cancel/";
 export const CHILD_PRODUCT_LVL_WISE = "/api/v1/Products/Category/";
-export const GET_DISPLAY_PRODUCTS = "/api/v1/Products/Category/";
+export const GET_DISPLAY_PRODUCTS = "/api/v1/Products/Display/";
+export const GET_FESTIVAL = "/api/v1/Collections";
 
 export const endpoints = {
   login,

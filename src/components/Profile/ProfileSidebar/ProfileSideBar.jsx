@@ -12,7 +12,11 @@ const ProfileSideBar = ({ profileInfo }) => {
       <div className="profile-user-info flex column justify-center align-center bg-background pt-16">
         <div className="img mb-8">
           {/* <img src={getUserValue.image} alt="" /> */}
-          <img src={BASE_URL + profileInfo?.imageURL} alt="img" />
+          {profileInfo?.imageURL === null ? (
+            <img src="/contents/assets/images/no_productimg.jpg" alt="img" />
+          ) : (
+            <img src={BASE_URL + profileInfo?.imageURL} alt="img" />
+          )}
         </div>
         <div className="t-center">
           <p className="t-14 mb-4">{profileInfo?.name}</p>
@@ -23,7 +27,7 @@ const ProfileSideBar = ({ profileInfo }) => {
             <span>BDT</span>
           </p>
           <p className="t-14 mb-8 t-secondary t-b">
-            <small>Pending Cash:</small> {profileInfo?.dueAmount}
+            <small>My Due:</small> {profileInfo?.dueAmount}
             <span>BDT</span>
           </p>
         </div>

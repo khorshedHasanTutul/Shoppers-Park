@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { GET_FESTIVAL } from "../../lib/endpoints";
 import { ocassionCategory } from "../../Service/AppService";
+import { httpV2 } from "../../Service/httpService2";
 import appData from "../DataSource/appData";
 import ProductsInfoModel from "../Products/ProductsInfoModel";
 import SliderComponent from "../utilities/Slider/SliderComponent";
+import Suspense from "../utilities/Suspense/Suspense";
 
 const FestivalCategoryProduct = ({ setalert }) => {
+  const [isGetting, setIsGetting] = useState(true);
+  const [festival, setFestival] = useState([]);
+  const [error, setError] = useState(false);
   const options = {
     rewind: true,
     type: "loop",
@@ -31,54 +37,83 @@ const FestivalCategoryProduct = ({ setalert }) => {
       },
     },
   };
-  const concatData = appData.categoryProducts;
+  const getCategoryWiseProducts = useCallback(() => {
+    httpV2.get({
+      url: GET_FESTIVAL,
+      before: () => {
+        setIsGetting(true);
+      },
+      successed: (res) => {
+        setFestival(res.data);
+        setIsGetting(false);
+      },
+      failed: () => {
+        setError(true);
+      },
+      always: () => {
+        setIsGetting(false);
+      },
+    });
+  }, []);
+  useEffect(() => {
+    getCategoryWiseProducts();
+  }, []);
   return (
     <>
-      {ocassionCategory.map((item) => (
-        <div class="catagory-main-product-area">
-          {/* <!-- common heading --> */}
-          <div class="hompe-common-title">
-            <h2>{item.category_name}</h2>
-            <div class="my-header-underline"></div>
-          </div>
-          {/* <!-- common heading --> */}
-          {/* <!-- single product catagory main area --> */}
-          <div class="product-catagory-main-flex owl-slider-perk">
-            <div class="product-catagory-inner-flex owl-slider-perk-items">
-              {/* <!-- single item --> */}
-
-              {(item = concatData.filter(
-                (item2) => item2.FestivalCategory_id === item.category_id
-              )).length > 0 && (
+      {!isGetting &&
+        festival.length > 0 &&
+        festival.map((item) => (
+          <div class="catagory-main-product-area">
+            {/* <!-- common heading --> */}
+            <div class="hompe-common-title">
+              <h2>{item.name}</h2>
+              <div class="my-header-underline"></div>
+            </div>
+            {/* <!-- common heading --> */}
+            {/* <!-- single product catagory main area --> */}
+            <div class="product-catagory-main-flex owl-slider-perk">
+              <div class="product-catagory-inner-flex owl-slider-perk-items">
+                {/* <!-- single item --> */}
                 <>
-                  {item.length >= 5 && (
+                  {item.product.length > 5 && (
                     <SliderComponent
                       options={options}
-                      data={item}
+                      data={item.product}
                       Template={ProductsInfoModel}
                       setalert={setalert}
                       from={"api"}
                     />
                   )}
-                  {item.length < 5 &&
-                    item.map((item) => (
+                  {item.product.length <= 5 &&
+                    item.product.map((item2) => (
                       <ProductsInfoModel
-                        item={item}
+                        item={item2}
                         setalert={setalert}
                         from={"api"}
                       />
                     ))}
                 </>
-              )}
 
-              {/* <!-- single item --> */}
-              {/* <!-- next prev --> */}
+                {/* <!-- single item --> */}
+                {/* <!-- next prev --> */}
+              </div>
             </div>
-          </div>
 
-          {/* <!-- single product catagory main area --> */}
+            {/* <!-- single product catagory main area --> */}
+          </div>
+        ))}
+      {!isGetting && festival.length === 0 && (
+        <div className="pro-not-found-img">
+          <strong>
+            {" "}
+            <img
+              src="/contents/assets/images/no-product-found.png"
+              alt=""
+            />{" "}
+          </strong>
         </div>
-      ))}
+      )}
+      {isGetting && <Suspense />}
     </>
   );
 };

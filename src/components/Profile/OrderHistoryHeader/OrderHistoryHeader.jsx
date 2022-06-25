@@ -1,7 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import { OrderStatus } from "../../utilities/dictionaries";
 import "./OrderHistoryHeader.css";
 const OrderHistoryHeader = ({ setStatus }) => {
+  let history = useHistory();
+  // useEffect(() => {
+  //   window.onload(history.push("/profile/order/all"));
+  // }, []);
   return (
     <div className="r-tabs">
       <NavLink
