@@ -4,7 +4,7 @@ import appData from "../DataSource/appData";
 import ProductsInfoModel from "../Products/ProductsInfoModel";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import SliderComponent from "../utilities/Slider/SliderComponent";
-const OffersProductArea = () => {
+const OffersProductArea = ({ item }) => {
   const [alert, setalert] = useState(false);
   const closeModal = () => {
     setalert((prevState) => !prevState);
@@ -51,7 +51,7 @@ const OffersProductArea = () => {
         <div class="catagory-main-product-area">
           {/* <!-- common heading --> */}
           <div class="butifull-heading-title">
-            <h4>{headingArea}</h4>
+            <h4>{item.name}</h4>
           </div>
           {/* <!-- common heading --> */}
           {/* <!-- single product catagory main area --> */}
@@ -59,7 +59,7 @@ const OffersProductArea = () => {
             <div class="product-catagory-main-flex owl-slider-perk">
               <div class="product-catagory-inner-flex owl-slider-perk-items">
                 {/* <!-- single item --> */}
-                {data.length >= 5 && (
+                {item.product.length >= 5 && (
                   <SliderComponent
                     options={options}
                     data={data}
@@ -68,10 +68,10 @@ const OffersProductArea = () => {
                     from={"api"}
                   />
                 )}
-                {data.length < 5 &&
-                  data.map((item) => (
+                {item.product.length < 5 &&
+                  item.product.map((item2) => (
                     <ProductsInfoModel
-                      item={item}
+                      item={item2}
                       setalert={closeModal}
                       from={"api"}
                     />
