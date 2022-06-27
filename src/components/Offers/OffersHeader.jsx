@@ -3,7 +3,7 @@ import { Offers } from "../../Service/AppService";
 import SliderComponent from "../utilities/Slider/SliderComponent";
 import OffersHeaderSliderItem from "./OffersHeaderSliderItem";
 
-const OffersHeader = () => {
+const OffersHeader = ({ banners }) => {
   const options = {
     rewind: true,
     type: "loop",
@@ -30,9 +30,6 @@ const OffersHeader = () => {
       },
     },
   };
-
-  const data = Offers.OffersHeader.SliderInfo;
-
   return (
     <section class="top-offer-slider-area section-padding">
       <div class="container">
@@ -44,7 +41,7 @@ const OffersHeader = () => {
             {/* <!-- single item --> */}
             <SliderComponent
               options={options}
-              data={data}
+              data={banners}
               Template={OffersHeaderSliderItem}
             />
           </div>
