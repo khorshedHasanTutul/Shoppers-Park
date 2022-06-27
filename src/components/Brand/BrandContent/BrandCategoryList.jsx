@@ -1,46 +1,57 @@
-import React from 'react'
-import { BrandData } from '../../../Service/AppService';
-import BrandSingleItem from './BrandSingleItem';
-import BrandSingleNumberItem from './BrandSingleNumberItem';
+import React from "react";
+import { BrandData } from "../../../Service/AppService";
+import BrandSingleItem from "./BrandSingleItem";
+import BrandSingleNumberItem from "./BrandSingleNumberItem";
 
-const BrandCategoryList = ({classAdding}) => {
-    const letters=[];
-    BrandData.forEach(element => {
-        element=element.brand_name.toUpperCase().trim().charAt(0);
-        if(element>='A' && element<='Z')
-        letters.push(element);
-    });
-    const uniqueLetters = [...new Set(letters)];
-    uniqueLetters.sort();
+const BrandCategoryList = ({ brandsPrefix }) => {
+  let items = [];
+  brandsPrefix.forEach((element) => {
+    // console.log(element[1].length);
+    if (
+      element[1].length > 0 &&
+      element[0].toUpperCase() >= "A" &&
+      element[0].toUpperCase() <= "Z"
+    ) {
+      items.push({ char: element[0].toUpperCase(), brands: element[1] });
+    }
+  });
 
+  //   const uniqueLetters = [...new Set(letters)];
+  console.log({ items });
 
-    return (
-        <div class="brandcategorylistsub-main">
-        <div class="brandsubcategories">
-            { 
-                uniqueLetters.map((number)=>(
-                    <>
-                    <a id={'brandSort-'+number} href> </a>
-                    <div class="brandLetterContainer">
-                        <div class="brandLetter">{number}</div>
-                            <ul class="brandLetterLinks">
-                               <BrandSingleItem number={number} />
-                            </ul>
-                    </div>
-                    </>
-                ))   
-            }
-             <a id="brandSort-0-9" href> </a>
+  //   uniqueLetters.sort();
 
-            <div class="brandLetterContainer">
-                <div class="brandLetter">0-9</div>
+  return (
+    <div class="brandcategorylistsub-main">
+      <div class="brandsubcategories">
+        {items.map((item, index) => {
+          console.log({ item });
+          return (
+            <>
+              <a id={"brandSort-" + item.char} href>
+                {" "}
+              </a>
+              <div class="brandLetterContainer">
+                <div class="brandLetter">{item.char}</div>
                 <ul class="brandLetterLinks">
-                       <BrandSingleNumberItem />
+                  <BrandSingleItem brands={item.brands} />
                 </ul>
-            </div>  
-  
+              </div>
+            </>
+          );
+        })}
+        <a id="brandSort-0-9" href>
+          {" "}
+        </a>
+
+        <div class="brandLetterContainer">
+          <div class="brandLetter">0-9</div>
+          <ul class="brandLetterLinks">
+            <BrandSingleNumberItem />
+          </ul>
         </div>
+      </div>
     </div>
-    )
-}
+  );
+};
 export default BrandCategoryList;
