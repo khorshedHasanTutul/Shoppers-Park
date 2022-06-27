@@ -4,7 +4,7 @@ import Alert from "./Alert";
 import BrandAlphabetLinks from "./BrandAlphabetLinks";
 import BrandCategoryList from "./BrandCategoryList";
 
-const BrandBody = () => {
+const BrandBody = ({ brandsPrefix }) => {
   const [foundBrand, setfoundBrand] = useState(false);
   function setfoundData(item) {
     var value = item;
@@ -44,7 +44,7 @@ const BrandBody = () => {
           <BrandAlphabetLinks classAdding={classAdding} />
           {foundBrand && <Alert closeModal={closeModal} />}
         </div>
-        <BrandCategoryList />
+        <BrandCategoryList brandsPrefix={brandsPrefix} />
       </div>
     </section>
   );

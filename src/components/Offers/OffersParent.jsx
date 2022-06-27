@@ -27,6 +27,7 @@ const OffersParent = () => {
       },
     });
   }, []);
+  
   useEffect(() => {
     getTopOffers();
   }, []);
