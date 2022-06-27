@@ -21,7 +21,6 @@ import ProductDetails from "./pages/ProductDetails";
 import Wishlist from "./pages/Wishlist";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
-import Payment from "./pages/Checkout";
 import NewInShop from "./pages/NewInShop";
 import Notifications from "./pages/Notifications";
 import Festival from "./pages/Festival";
@@ -31,6 +30,7 @@ import Preloader from "./components/utilities/Preloader/Preloader";
 import Suspense from "./components/utilities/Suspense/Suspense";
 import { useLocation } from "react-router-dom";
 import ShopAll from "./components/ShopAll/ShopAll";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const location = useLocation();
@@ -116,7 +116,7 @@ function App() {
               <ReturnPolicy />
             </Route>
             <Route path="/checkout">
-              <Payment />
+              <Checkout />
             </Route>
             <Route path="/consultancy">
               <Consultancy />

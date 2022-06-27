@@ -1,6 +1,6 @@
 import React from "react";
-import Parks from "../components/Parks/Parks";
 import CheckoutParent from "../components/CheckOut/CheckoutParent";
+import Parks from "../components/Parks/Parks";
 
 const Checkout = () => {
   return (
