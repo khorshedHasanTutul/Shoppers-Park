@@ -42,6 +42,8 @@ export const CANCLE_ORDER = "/api/v1/Orders/cancel/";
 export const CHILD_PRODUCT_LVL_WISE = "/api/v1/Products/Category/";
 export const GET_DISPLAY_PRODUCTS = "/api/v1/Products/Display/";
 export const GET_FESTIVAL = "/api/v1/Collections";
+export const PRODUCT_REVIEWS = "/api/v1/Reviews";
+export const GET_TOPOFFERS = "/api/v1/AppData/Offer";
 
 export const endpoints = {
   login,

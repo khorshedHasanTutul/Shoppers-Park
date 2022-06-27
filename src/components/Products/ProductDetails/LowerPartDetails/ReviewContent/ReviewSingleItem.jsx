@@ -1,13 +1,14 @@
 import React from "react";
+import { BASE_URL } from "../../../../../Service/httpService2";
 
-const ReviewSingleItem = () => {
+const ReviewSingleItem = ({ item }) => {
   return (
     <div class="cmt-item">
       <div class="cmt-row">
         <div class="col ctr_img">
           <div class="img_container">
             <div class="img_round">
-              <img src="/contents/assets/images/halloween/h1.png" alt="img" />
+              <img src="/contents/assets/images/no_productimg.jpg" alt="img" />
             </div>
           </div>
         </div>
@@ -15,20 +16,17 @@ const ReviewSingleItem = () => {
           <div class="commnet-dettail">
             <div>
               <a href>
-                <strong>Md. Sabbir Rahman</strong>
+                <strong>{item.customerName}</strong>
               </a>
               <div></div>
             </div>
-            <div class="commnet-content">
-              A class medicine store in Bangladesh........ Best wishes for
-              LazzPharma
-            </div>
+            <div class="commnet-content">{item.content}</div>
           </div>
           <div class="comment_event">
             <a class="comment_time col" href>
               <em>21, Apr-2021</em>
             </a>
-            <a class="btn_like" href>
+            {/* <a class="btn_like" href>
               {" "}
               Like{" "}
             </a>
@@ -39,9 +37,9 @@ const ReviewSingleItem = () => {
             <a class="btn_reply" href>
               {" "}
               Reply{" "}
-            </a>
+            </a> */}
           </div>
-          <div class="comment_reply_container"></div>
+          {/* <div class="comment_reply_container"></div> */}
         </div>
       </div>
     </div>
