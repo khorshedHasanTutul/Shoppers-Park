@@ -5,42 +5,12 @@ import ProductsInfoModel from "../Products/ProductsInfoModel";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import SliderComponent from "../utilities/Slider/SliderComponent";
 
-const NewInProduct = () => {
+const NewInProduct = ({ items }) => {
   const [alert, setalert] = useState(false);
   const closeModal = () => {
     setalert((prevState) => !prevState);
   };
-  const options = {
-    rewind: true,
-    type: "loop",
-    autoplay: true,
-    rewindSpeed: 1500,
-    speed: 1000,
-    perPage: 5,
-    width: "100%",
-    breakpoints: {
-      375: {
-        perPage: 2,
-      },
-      575: {
-        perPage: 2,
-      },
-      991: {
-        perPage: 3,
-      },
-      992: {
-        perPage: 5,
-      },
-      1200: {
-        perPage: 5,
-      },
-    },
-  };
-  const concatData = appData.categoryProducts;
-  const date = new Date().getDate();
-  const data = concatData.filter((item) =>
-    item.created_at - date <= 7 ? item : ""
-  );
+
   return (
     <section class="top-new-in-product-area">
       {alert && (
@@ -54,7 +24,7 @@ const NewInProduct = () => {
           <div class="product-catagory-inner-flex owl-slider-perk-items">
             {/* <!-- single item --> */}
 
-            {data.length > 5 && (
+            {/* {
               <SliderComponent
                 options={options}
                 data={data}
@@ -62,15 +32,16 @@ const NewInProduct = () => {
                 setalert={closeModal}
                 from={"api"}
               />
-            )}
-            {data.length <= 5 &&
+            
+            } */}
+            {/* {
               data.map((item) => (
                 <ProductsInfoModel
                   item={item}
                   setalert={closeModal}
                   from={"api"}
                 />
-              ))}
+              ))} */}
             {/* <!-- next prev --> */}
           </div>
         </div>

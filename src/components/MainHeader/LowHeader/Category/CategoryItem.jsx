@@ -48,7 +48,7 @@ const CategoryItem = ({
   return (
     <>
       <li class="sd-nav__item sd-nav__item--level-2" onClick={toggleClass}>
-        <Link title="New In" to="/newinShop">
+        <Link title="New In" to={`/newinShop/${mainCatId}`}>
           New In
         </Link>
       </li>
