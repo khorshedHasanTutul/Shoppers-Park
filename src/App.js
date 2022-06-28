@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { MainHeader } from "./components/MainHeader/MainHeader";
 import { Route, Switch } from "react-router";
 import Home from "./pages/Home";
@@ -31,11 +31,35 @@ import Suspense from "./components/utilities/Suspense/Suspense";
 import { useLocation } from "react-router-dom";
 import ShopAll from "./components/ShopAll/ShopAll";
 import Checkout from "./pages/Checkout";
+import authContext from "./Store/auth-context";
+import { httpV2 } from "./Service/httpService2";
+import { GET_PRODUCT_PROFILE } from "./lib/endpoints";
+import appContext from "./Store/app-context";
 
 function App() {
+  const authCtx = useContext(authContext);
+  const appCtx = useContext(appContext);
+  const [productInfo, setProductInfo] = useState();
   const location = useLocation();
   const headerRef = useRef();
   const mainRef = useRef();
+
+  const getProductProfile = useCallback(() => {
+    httpV2.get({
+      url: GET_PRODUCT_PROFILE,
+      before: () => {},
+      successed: (res) => {
+        setProductInfo(res.data);
+        if (authCtx.isLoggedIn === true) {
+          res.data.wishlisted.map((item) =>
+            appCtx.wishList.storewishItems(item)
+          );
+        }
+      },
+      failed: () => {},
+      always: () => {},
+    });
+  }, []);
 
   useEffect(() => {
     const headerHeight = headerRef.current?.clientHeight;
@@ -45,6 +69,10 @@ function App() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
+
+  useEffect(() => {
+    getProductProfile();
+  }, []);
 
   return (
     <>
