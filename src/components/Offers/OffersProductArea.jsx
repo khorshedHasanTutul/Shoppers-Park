@@ -9,12 +9,12 @@ const OffersProductArea = ({ item }) => {
   const closeModal = () => {
     setalert((prevState) => !prevState);
   };
-  const headingArea = Offers.OffersProductArea.HeaderAreaText;
-  const data = appData.categoryProducts.filter(
-    (item) => item.offer_status === true
-  );
-  data.sort((a, b) => b.Ds - a.Ds);
-  console.log("offersProduct=>", data);
+  // const headingArea = Offers.OffersProductArea.HeaderAreaText;
+  // const data = appData.categoryProducts.filter(
+  //   (item) => item.offer_status === true
+  // );
+  // data.sort((a, b) => b.Ds - a.Ds);
+  // console.log("offersProduct=>", data);
 
   const options = {
     rewind: true,
@@ -42,6 +42,7 @@ const OffersProductArea = ({ item }) => {
       },
     },
   };
+
   return (
     <section class="catagory-product-area">
       {alert && (
@@ -50,9 +51,11 @@ const OffersProductArea = ({ item }) => {
       <div class="container">
         <div class="catagory-main-product-area">
           {/* <!-- common heading --> */}
-          <div class="butifull-heading-title">
-            <h4>{item.name}</h4>
-          </div>
+          {item.product.length !== 0 && (
+            <div class="butifull-heading-title">
+              <h4>{item.name}</h4>
+            </div>
+          )}
           {/* <!-- common heading --> */}
           {/* <!-- single product catagory main area --> */}
           {
@@ -62,7 +65,7 @@ const OffersProductArea = ({ item }) => {
                 {item.product.length >= 5 && (
                   <SliderComponent
                     options={options}
-                    data={data}
+                    data={item}
                     Template={ProductsInfoModel}
                     setalert={closeModal}
                     from={"api"}

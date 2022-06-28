@@ -116,7 +116,7 @@ function App() {
             <Route path="/product/:id">
               <ProductDetails />
             </Route>
-            <Route path="/newinShop">
+            <Route path="/newinShop/:id">
               <NewInShop />
             </Route>
             <Route path="/notification" exact>

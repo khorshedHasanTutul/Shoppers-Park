@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Offers } from "../../Service/AppService";
 
-const OffersImageArea = ({ products }) => {
+const OffersImageArea = ({ products = [] }) => {
+  if (products.length === 0) return;
+
   return (
     <section class="beautifull-offer-area section-padding">
       <div class="container">

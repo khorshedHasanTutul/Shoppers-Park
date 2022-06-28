@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { GET_TOPOFFERS } from "../../lib/endpoints";
+import { GET_TOP_OFFERS } from "../../lib/endpoints";
 import ErrorPage from "../../pages/ErrorPage";
 import { httpV2 } from "../../Service/httpService2";
 import Suspense from "../utilities/Suspense/Suspense";
@@ -13,7 +13,7 @@ const OffersParent = () => {
   const [isLoading, setIsloading] = useState(true);
   const getTopOffers = useCallback(() => {
     httpV2.get({
-      url: GET_TOPOFFERS,
+      url: GET_TOP_OFFERS,
       before: () => {
         setIsloading(true);
       },
@@ -34,7 +34,7 @@ const OffersParent = () => {
   
   useEffect(() => {
     getTopOffers();
-  }, []);
+  }, [getTopOffers]);
 
   return (
     <>
@@ -42,6 +42,7 @@ const OffersParent = () => {
         <>
           <OffersHeader banners={offersTop.banners} />
           <OffersImageArea products={offersTop.products} />
+
           {offersTop.display.map((item) => (
             <OffersProductArea item={item} />
           ))}
