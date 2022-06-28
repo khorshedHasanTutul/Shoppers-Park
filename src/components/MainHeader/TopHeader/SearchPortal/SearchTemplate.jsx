@@ -87,8 +87,11 @@ const SearchTemplate = ({ item, closeSearch, lowerSearchvalue, setalert }) => {
           </Link>
         </div>
 
-        <div class="result-card__details--actions" onClick={addToCartHandler.bind(this, item)}>
-          <button >
+        <div
+          class="result-card__details--actions"
+          onClick={addToCartHandler.bind(this, item)}
+        >
+          <button>
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             <span onClick={animateCardHandler.bind(null, item)}>
               <strong> Add to Cart</strong>

@@ -35,10 +35,23 @@ const MainTopHeader = () => {
                 <li>
                   <Link target="_blank" to={socialLinks.to}>
                     <i class="" aria-hidden="true"></i>
-                    <FontAwesomeIcon icon={socialLinks.icon} style={{fontSize:"1rem"}} />
+                    <FontAwesomeIcon
+                      icon={socialLinks.icon}
+                      style={{ fontSize: "1rem", fill: "white" }}
+                    />
                   </Link>
                 </li>
               ))}
+              <li className="whatsApp-img">
+                <a target="_blank" href="/whatsapp">
+                  <i class="" aria-hidden="true"></i>
+                  <img
+                    src="/contents/assets/images/whats-app.png"
+                    alt="img"
+                    srcset=""
+                  />
+                </a>
+              </li>
             </ul>
           </div>
         </div>

@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { OrderStatus } from "../../utilities/dictionaries";
+import {  ORDER_STATUS } from "../../utilities/dictionaries";
 import "./OrderHistoryHeader.css";
 const OrderHistoryHeader = ({ setStatus }) => {
   let history = useHistory();
@@ -13,7 +12,7 @@ const OrderHistoryHeader = ({ setStatus }) => {
         className="kill-anchore block r-tabs__link"
         to="/profile/order/all"
         onClick={() => {
-          setStatus(OrderStatus.All);
+          setStatus(ORDER_STATUS.ALL);
         }}
       >
         All Orders
@@ -22,7 +21,7 @@ const OrderHistoryHeader = ({ setStatus }) => {
         className="kill-anchore block r-tabs__link"
         to="/profile/order/pending"
         onClick={() => {
-          setStatus(OrderStatus.Pending);
+          setStatus(ORDER_STATUS.PENDING);
         }}
       >
         Pending Orders
@@ -31,7 +30,7 @@ const OrderHistoryHeader = ({ setStatus }) => {
         className="kill-anchore block r-tabs__link"
         to="/profile/order/confirmed"
         onClick={() => {
-          setStatus(OrderStatus.Confirmed);
+          setStatus(ORDER_STATUS.CONFIRMED);
         }}
       >
         Confirmed Orders
@@ -40,7 +39,7 @@ const OrderHistoryHeader = ({ setStatus }) => {
         className="kill-anchore block r-tabs__link"
         to="/profile/order/processing"
         onClick={() => {
-          setStatus(OrderStatus.Processing);
+          setStatus(ORDER_STATUS.PROCESSING);
         }}
       >
         Processing
@@ -49,7 +48,7 @@ const OrderHistoryHeader = ({ setStatus }) => {
         className="kill-anchore block r-tabs__link"
         to="/profile/order/delivering"
         onClick={() => {
-          setStatus(OrderStatus.Delivering);
+          setStatus(ORDER_STATUS.DELIVERING);
         }}
       >
         Delivering
@@ -58,7 +57,7 @@ const OrderHistoryHeader = ({ setStatus }) => {
         className="kill-anchore block r-tabs__link"
         to="/profile/order/delivered"
         onClick={() => {
-          setStatus(OrderStatus.Delivered);
+          setStatus(ORDER_STATUS.DELIVERED);
         }}
       >
         Delivered
@@ -67,7 +66,7 @@ const OrderHistoryHeader = ({ setStatus }) => {
         className="kill-anchore block r-tabs__link"
         to="/profile/order/cancel"
         onClick={() => {
-          setStatus(OrderStatus.Cancelled);
+          setStatus(ORDER_STATUS.CANCELLED);
         }}
       >
         Canceled

@@ -13,7 +13,7 @@ const ProfileSideBar = ({ profileInfo }) => {
         <div className="img mb-8">
           {/* <img src={getUserValue.image} alt="" /> */}
           {profileInfo?.imageURL === null ? (
-            <img src="/contents/assets/images/no_productimg.jpg" alt="img" />
+            <img src="/contents/assets/images/default-user.png" alt="img" />
           ) : (
             <img src={BASE_URL + profileInfo?.imageURL} alt="img" />
           )}

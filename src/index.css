@@ -447,6 +447,9 @@ input:focus {
 .header-area.navShadow .header-bottom-flex {
   padding-top: 0px;
 }
+.whatsApp-img a img {
+	width: 14px;
+}
 .header-top-flex {
   display: flex;
   justify-content: space-between;
@@ -454,8 +457,9 @@ input:focus {
   align-content: center;
 }
 .header-top-logo a img {
-  width: 160px;
-  height: auto;
+	width: 155px;
+	height: auto;
+	margin-top: 1.5px;
 }
 .header-top-left ul > li a svg {
   width: 13px;
@@ -1103,14 +1107,15 @@ input:focus {
 }
 
 .single-product-add {
-  text-align: center;
-  color: #121111;
-  border: 1px solid #ededed;
-  background: #fff;
-  padding: 15px 10px;
-  flex: 0 0 30%;
-  margin: 8px;
-  cursor: pointer;
+	text-align: center;
+	color: #121111;
+	border: 1px solid #ededed;
+	background: #fff;
+	padding: 15px 10px;
+	flex: 0 0 30%;
+	margin: 8px;
+	cursor: pointer;
+	min-height: 37px;
 }
 .pink {
   color: #ee008e;
@@ -1120,7 +1125,7 @@ input:focus {
   font-weight: 700;
 }
 .single-product-add p {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
 }
 
@@ -1470,7 +1475,7 @@ input:focus {
 	color: white;
 	padding: 6px;
 	margin-bottom: 7px;
-	box-shadow: 0 1px 2px rgb(0, 0, 0.2);
+	box-shadow: 0 0px 2px rgb(0, 0, 0.3);
 }
 .header-top-right ul > li {
   width: 35px;
@@ -3391,7 +3396,7 @@ select::-ms-expand {
   text-transform: capitalize;
 }
 .add-product-wishlist-main-page .single-product-catagory-item {
-  margin: 0px 4px 20px 4px;
+  margin: 0;
   flex: 0 0 19.1%;
 }
 .add-product-wishlist-main-page .product-catagory-inner-flex {
@@ -6375,15 +6380,19 @@ div.brick.label.default {
 /* //Notification */
 
 .site-notification {
-  /* display: none; */
-  position: absolute;
-  background: #fff;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  width: 260px;
-  z-index: 99;
-  padding: 10px;
-  top: 55px;
-  left: -165px;
+	/* display: none; */
+	position: absolute;
+	background: #fff;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+	width: 260px;
+	z-index: 99;
+	padding: 10px;
+	top: 55px;
+	left: -165px;
+	max-height: 350px;
+	overflow: hidden;
+	overflow-y: scroll;
+	scrollbar-color: #55C495 white;
 }
 
 /* 14/11/21 css */
