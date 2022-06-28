@@ -43,7 +43,7 @@ const OrderCard = ({ order, key, getAllOrdersHttp, status }) => {
           take: 10,
         });
         getAllOrdersHttp(paramsUrl);
-        getAllOrdersHttp();
+        // getAllOrdersHttp();
         setIsLoading(false);
         history.push("/profile/order/all");
       },

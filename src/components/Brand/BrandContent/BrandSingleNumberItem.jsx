@@ -2,24 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BrandData } from "../../../Service/AppService";
 
-const BrandSingleNumberItem = () => {
-  const data = BrandData.filter(func);
-  function func(item) {
-    item = item.brand_name.toUpperCase().trim().charAt(0);
-    if (item >= "0" && item <= "9") return item;
-  }
+const BrandSingleNumberItem = ({numberItems}) => {
+
 
   return (
     <>
-      {data.map((item) => (
+      {numberItems.map((item) => (
         <li class="brandcat brand-1">
           <div class="brandcatContainer">
             <Link
-              to={"/brands/" + item.brand_id}
+              to="/"
               name="4"
               data-category="sortAllBrands health"
             >
-              <span>{item.brand_name}</span>
+              <span>{item.brands}</span>
             </Link>
           </div>
         </li>

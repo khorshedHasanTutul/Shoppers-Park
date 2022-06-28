@@ -2,7 +2,7 @@ import {
   faFacebookF,
   faYoutube,
   faTwitter,
-  faWhatsappSquare
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import { addressType } from "../utilities/dictionaries";
 
@@ -511,10 +511,10 @@ var appData = {
       icon: faYoutube,
     },
 
-    {
-      to: "/whatsapp",
-      icon: faWhatsappSquare,
-    },
+    // {
+    //   to: "/whatsapp",
+    //   icon: faWhatsapp,
+    // },
   ],
   BottomPayments: [
     {
@@ -557,16 +557,16 @@ var appData = {
     {
       colorText: "Free ",
       Boldtext: "order & collect ",
-      normalText: "and pick up in 30 mins from any Superdrug store*",
+      normalText: "Order online or collect from our store 222, Genetic Plaza.",
     },
     {
       colorText: "Free",
-      Boldtext: "delivery when you spend £25 ",
-      normalText: "or spend £15 for Health Beautycard members!",
+      Boldtext: "Free Delivery over BDT 5000 purchase",
+      normalText: "",
     },
     {
-      colorText: "Available in over 250 stores",
-      Boldtext: "Rapid Same Day Delivery ",
+      colorText: "Fast & Affordable",
+      Boldtext: " Delivery Across the Country ",
       normalText: "",
     },
   ],

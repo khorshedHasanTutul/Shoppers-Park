@@ -3,28 +3,11 @@ import { BrandData } from "../../../Service/AppService";
 import BrandSingleItem from "./BrandSingleItem";
 import BrandSingleNumberItem from "./BrandSingleNumberItem";
 
-const BrandCategoryList = ({ brandsPrefix }) => {
-  let items = [];
-  brandsPrefix.forEach((element) => {
-    // console.log(element[1].length);
-    if (
-      element[1].length > 0 &&
-      element[0].toUpperCase() >= "A" &&
-      element[0].toUpperCase() <= "Z"
-    ) {
-      items.push({ char: element[0].toUpperCase(), brands: element[1] });
-    }
-  });
-
-  //   const uniqueLetters = [...new Set(letters)];
-  console.log({ items });
-
-  //   uniqueLetters.sort();
-
+const BrandCategoryList = ({ charItems,numberItems }) => {
   return (
     <div class="brandcategorylistsub-main">
       <div class="brandsubcategories">
-        {items.map((item, index) => {
+        {charItems.map((item, index) => {
           console.log({ item });
           return (
             <>
@@ -47,7 +30,7 @@ const BrandCategoryList = ({ brandsPrefix }) => {
         <div class="brandLetterContainer">
           <div class="brandLetter">0-9</div>
           <ul class="brandLetterLinks">
-            <BrandSingleNumberItem />
+            <BrandSingleNumberItem numberItems={numberItems} />
           </ul>
         </div>
       </div>

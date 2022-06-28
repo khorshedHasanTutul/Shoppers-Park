@@ -8,6 +8,9 @@
 }
 
 @media all and (max-width: 1439px) {
+  .banner-slider-area .product-add-area {
+    display: block;
+  }
   .site-notification {
     left: -300%;
   }
@@ -1033,6 +1036,9 @@
 }
 
 @media all and (max-width: 700px) {
+  .banner-slider-area .product-add-area {
+    display: none;
+  }
   .prescription-form .grid {
     display: flex !important;
   }
@@ -1069,7 +1075,7 @@
   .checkout-main-area .address-btn-group {
     flex-direction: column;
   }
-  .d-flex.al-center{
+  .d-flex.al-center {
     gap: 0;
   }
 

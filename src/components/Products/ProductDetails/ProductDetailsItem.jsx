@@ -2,23 +2,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BrandData, callBack } from "../../../Service/AppService";
 import appData from "../../DataSource/appData";
 import { Link } from "react-router-dom";
 import { WishAddedButton } from "../../../Service/CartContent";
 import cartContext from "../../../Store/cart-context";
-import { BASE_URL } from "../../../Service/httpService2";
+import { BASE_URL, httpV2 } from "../../../Service/httpService2";
 import SliderComponent from "../../utilities/Slider/SliderComponent";
 import SmallSliderSingleItem from "./SmallSliderSingleItem";
+import appContext from "../../../Store/app-context";
+import { ADD_WISH_ITEM } from "../../../lib/endpoints";
 
 const ProductDetailsItem = ({ product, setalert }) => {
-  console.log({ product });
   const cartCtx = useContext(cartContext);
+  const appCtx = useContext(appContext);
   const [count, setCount] = useState(1);
   const [selectedImageStatus, setSelectedImageStatus] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
   const cartCtxModal = cartCtx.getCartModel;
+  const [visibleSelectWish, setVisibleSelectWish] = useState(false);
+  const getWishItems = appCtx.wishList.getWishItems;
+  const findItem = getWishItems.find((item) => item === product.id);
 
   const options = {
     rewind: true,
@@ -43,6 +48,16 @@ const ProductDetailsItem = ({ product, setalert }) => {
       cartCtx.singleProductAdd(item, count);
     }
   };
+  const addToWishHandler = (item) => {
+    appCtx.wishList.storewishItems(item.id);
+    httpV2.get({
+      url: ADD_WISH_ITEM + item.id,
+      before: () => {},
+      successed: () => {},
+      failed: () => {},
+      always: () => {},
+    });
+  };
 
   const Increment = () => {
     setCount(parseInt(count) + 1);
@@ -59,8 +74,14 @@ const ProductDetailsItem = ({ product, setalert }) => {
     setSelectedImage(item);
     console.log("clicked==>", item);
   };
+  useEffect(() => {
+    if (findItem) {
+      setVisibleSelectWish(true);
+    } else {
+      setVisibleSelectWish(false);
+    }
+  }, [findItem]);
 
-  console.log({ product });
   return (
     <div class="inner-product-details-flex">
       <div class="product-d-left-img">
@@ -196,11 +217,24 @@ const ProductDetailsItem = ({ product, setalert }) => {
               </div>
             </a>
             {/* </span> */}
-            <div class="wishlist-btn">
-              <a href>
-                <i class="fa fa-heart-o" aria-hidden="true"></i>Add to wishlist
-              </a>
-            </div>
+            {!visibleSelectWish && (
+              <div
+                class="wishlist-btn"
+                onClick={addToWishHandler.bind(null, product)}
+              >
+                <a href>
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>Add to
+                  wishlist
+                </a>
+              </div>
+            )}
+            {visibleSelectWish && (
+              <div class="wishlist-btn">
+                <a href>
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>Already Added
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </div>

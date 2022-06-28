@@ -9,17 +9,19 @@ import ScrollToTop from "./pages/ScrollToTop";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import AuthContextProvider from "./Store/AuthContextProvider";
 import CartContextProvider from "./Store/CartContextProvider";
+import AppContextProvider from "./Store/AppContextProvider";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ScrollToTop />
-      <CartContextProvider>
-        <AuthContextProvider>
-        <App />
-      </AuthContextProvider>
-      </CartContextProvider>
-      
+      <AppContextProvider>
+        <CartContextProvider>
+          <AuthContextProvider>
+            <App />
+          </AuthContextProvider>
+        </CartContextProvider>
+      </AppContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
