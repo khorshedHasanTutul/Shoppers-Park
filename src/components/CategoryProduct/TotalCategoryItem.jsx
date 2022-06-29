@@ -64,62 +64,62 @@ const TotalCategoryItem = ({ children, name, categoryId }) => {
     getChildLvlWProduct(paramsUrl);
   }, [getChildLvlWProduct, params]);
 
-  if (children.length === 0 || findEveryChildrenProducts(children) === false) {
-    return (
-      <div class="container">
-        <div className="pro-not-found-img-subcategory">
-          <strong>
-            {" "}
-            <img
-              src="/contents/assets/images/no-product-found.png"
-              alt=""
-            />{" "}
-          </strong>
-        </div>
-      </div>
-    );
-  } else if (children.length === 0 && allProducts.items.length > 0) {
-    return (
-      <>
-        {!isGetting && (
-          <>
-            <VisibleProductByCategory
-              name={name}
-              products={allProducts.items}
-              setalert={closeModal}
-            />
-            <div className="paginator container">
-              <Paginator
-                items={allProducts.totalCount}
-                pageItems={params.take}
-                startPage={params.index}
-                onPageChange={pageChangeHandler}
-              />
-            </div>
-          </>
-        )}
-        {isGetting && <Suspense />}
-      </>
-    );
-  } else
-    return (
-      <section class="catagory-product-area view-all-sub-catagory">
-        {alert && (
-          <PopUpAlert
-            content={"Already in your cart."}
-            closeModal={closeModal}
-          />
-        )}
+  return (
+    <>
+      {/* {isGetting && <Suspense />} */}
+      {!isGetting &&
+      (children.length === 0 ||
+        findEveryChildrenProducts(children) === false) &&
+      allProducts.items.length === 0 ? (
         <div class="container">
-          {children.map((subCategory_item) => (
-            <CategorySubItemProductList
-              subCategory_item={subCategory_item}
-              setalert={closeModal}
-            />
-          ))}
+          <div className="pro-not-found-img-subcategory">
+            <strong>
+              {" "}
+              <img
+                src="/contents/assets/images/no-product-found.png"
+                alt=""
+              />{" "}
+            </strong>
+          </div>
         </div>
-      </section>
-    );
+      ) : !isGetting &&
+        children.length === 0 &&
+        allProducts.items.length > 0 ? (
+        <>
+          <VisibleProductByCategory
+            name={name}
+            products={allProducts.items}
+            setalert={closeModal}
+          />
+          <div className="paginator container">
+            <Paginator
+              items={allProducts.totalCount}
+              pageItems={params.take}
+              startPage={params.index}
+              onPageChange={pageChangeHandler}
+            />
+          </div>
+        </>
+      ) : (
+        <section class="catagory-product-area view-all-sub-catagory">
+          {alert && (
+            <PopUpAlert
+              content={"Already in your cart."}
+              closeModal={closeModal}
+            />
+          )}
+          <div class="container">
+            {children.map((subCategory_item) => (
+              <CategorySubItemProductList
+                subCategory_item={subCategory_item}
+                setalert={closeModal}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+    </>
+  );
 };
 
 export default TotalCategoryItem;

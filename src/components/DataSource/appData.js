@@ -565,8 +565,8 @@ var appData = {
       normalText: "",
     },
     {
-      colorText: "Fast & Affordable",
-      Boldtext: " Delivery Across the Country ",
+      colorText: "Free Delivery",
+      Boldtext: " Free Delivery over BDT 5000 purchase ",
       normalText: "",
     },
   ],

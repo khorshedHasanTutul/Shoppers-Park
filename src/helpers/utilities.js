@@ -33,3 +33,9 @@ export const paramsUrlGenerator = (params) => {
 
   return url + paramsStrings.join("&");
 };
+
+export const transformQuery = (text) => {
+  let url = "?query=";
+  let query = text.split(" ");
+  return url + query.map((item) => item).join("%20");
+};

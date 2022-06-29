@@ -39,6 +39,7 @@ const SignupNoti = () => {
   const authCtx = useContext(authContext);
   const history = useHistory();
   const wishList = appCtx.wishList.getWishItems;
+
   const getNotifications = useCallback(() => {
     httpV2.get({
       url: GET_NOTIFICATIONS,
@@ -56,13 +57,23 @@ const SignupNoti = () => {
   }, []);
 
   const closeNotificationAlert = () => {
-    setVisibleNotification((prevState) => !prevState);
+    if (authCtx.isLoggedIn) {
+      setVisibleNotification((prevState) => !prevState);
+    } else {
+      setModal(true);
+    }
   };
+
   const closeNotifyAlert = () => {
     setVisibleNotification(false);
   };
   const modalCloseHandler = () => {
     setModal(false);
+  };
+  const gotoWishPage = () => {
+    if (authCtx.isLoggedIn) {
+      history.push("/wishlist");
+    } else setModal(true);
   };
 
   const ModalOpen = (e) => {
@@ -94,7 +105,15 @@ const SignupNoti = () => {
                 <div class="busket-icon">
                   <FontAwesomeIcon icon={faBell} />
                   {/* number of notifications  */}
-                  {/* <span>{notiData.length}</span> */}
+                  {appCtx.singleTask.getTotalNotifiaction !== 0 && (
+                    <span>{appCtx.singleTask.getTotalNotifiaction}</span>
+                  )}
+                  {appCtx.singleTask.getTotalNotifiaction > 99 && (
+                    <span>
+                      {99}
+                      <sup>+</sup>
+                    </span>
+                  )}
                 </div>
               </a>
               {visibleNotification && (
@@ -105,7 +124,7 @@ const SignupNoti = () => {
               )}
             </li>
             <li>
-              <Link to="/wishlist">
+              <a href onClick={gotoWishPage}>
                 {/* <div className="header-nwl-hover">
                   <span>Wishlist</span>
                 </div> */}
@@ -113,7 +132,7 @@ const SignupNoti = () => {
                   <FontAwesomeIcon icon={faHeart} />
                   {wishList.length > 0 ? <span>{wishList.length}</span> : ""}
                 </div>
-              </Link>
+              </a>
             </li>
             <li>
               <div onClick={ModalOpen}>
