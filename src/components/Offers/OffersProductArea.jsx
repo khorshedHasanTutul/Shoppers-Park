@@ -5,6 +5,7 @@ import ProductsInfoModel from "../Products/ProductsInfoModel";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import SliderComponent from "../utilities/Slider/SliderComponent";
 const OffersProductArea = ({ item }) => {
+  console.log({item})
   const [alert, setalert] = useState(false);
   const closeModal = () => {
     setalert((prevState) => !prevState);
@@ -65,7 +66,7 @@ const OffersProductArea = ({ item }) => {
                 {item.product.length >= 5 && (
                   <SliderComponent
                     options={options}
-                    data={item}
+                    data={item.product}
                     Template={ProductsInfoModel}
                     setalert={closeModal}
                     from={"api"}
