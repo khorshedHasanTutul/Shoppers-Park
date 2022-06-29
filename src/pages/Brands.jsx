@@ -5,10 +5,12 @@ import Parks from "../components/Parks/Parks";
 import Suspense from "../components/utilities/Suspense/Suspense";
 import { GET_BRANDS } from "../lib/endpoints";
 import { httpV2 } from "../Service/httpService2";
+import GoesWrongPage from "./GoesWrongPage";
 
 const Brands = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [brandsPrefix, setBrandsPrefix] = useState([]);
+  const [failed, setFailed] = useState(false);
 
   const getBanners = useCallback(() => {
     httpV2.get({
@@ -23,6 +25,7 @@ const Brands = () => {
       },
       failed: () => {
         console.log("failed");
+        setFailed(true);
       },
       always: () => {
         setIsLoading(false);
@@ -36,7 +39,7 @@ const Brands = () => {
 
   return (
     <>
-      {!isLoading && (
+      {!isLoading && !failed && (
         <>
           <Parks />
           <BrandHeader />
@@ -44,6 +47,7 @@ const Brands = () => {
         </>
       )}
       {isLoading && <Suspense />}
+      {failed && <GoesWrongPage />}
     </>
   );
 };

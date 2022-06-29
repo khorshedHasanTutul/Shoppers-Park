@@ -3,10 +3,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import React, { useContext, useEffect, useState } from "react";
-import { BrandData, callBack } from "../../../Service/AppService";
-import appData from "../../DataSource/appData";
-import { Link } from "react-router-dom";
-import { WishAddedButton } from "../../../Service/CartContent";
 import cartContext from "../../../Store/cart-context";
 import { BASE_URL, httpV2 } from "../../../Service/httpService2";
 import SliderComponent from "../../utilities/Slider/SliderComponent";
@@ -36,9 +32,11 @@ const ProductDetailsItem = ({ product, setalert }) => {
     width: "100%",
   };
   const smallSliderImages = product?.images;
+
   const findPrimaryImage = product?.images.find(
     (item) => item.isPrimary === true
   );
+  console.log({ findPrimaryImage });
 
   const addToCartHandler = (item, e) => {
     e.preventDefault();
@@ -87,7 +85,7 @@ const ProductDetailsItem = ({ product, setalert }) => {
       <div class="product-d-left-img">
         <div class="det-img-padding">
           {/* <img src="/contents/assets/images/popUp.jpg" alt="" /> */}
-          {findPrimaryImage === null && (
+          {(findPrimaryImage === null || findPrimaryImage === undefined) && (
             <img src="/contents/assets/images/no_productimg.jpg" alt="img" />
           )}
           {findPrimaryImage !== null && !selectedImageStatus && (

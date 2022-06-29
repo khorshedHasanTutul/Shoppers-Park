@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Offers } from "../../Service/AppService";
-import appData from "../DataSource/appData";
 import ProductsInfoModel from "../Products/ProductsInfoModel";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import SliderComponent from "../utilities/Slider/SliderComponent";
 const OffersProductArea = ({ item }) => {
-  console.log({item})
+  console.log({ item });
   const [alert, setalert] = useState(false);
   const closeModal = () => {
     setalert((prevState) => !prevState);

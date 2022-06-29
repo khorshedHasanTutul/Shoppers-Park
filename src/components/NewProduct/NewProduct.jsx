@@ -2,14 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { paramsUrlGenerator } from "../../helpers/utilities";
 import { GET_NEWIN_PRODUCT } from "../../lib/endpoints";
+import ErrorPage from "../../pages/ErrorPage";
 import { httpV2 } from "../../Service/httpService2";
 import Paginator from "../Paginators/Paginators";
 import ProductsInfoModel from "../Products/ProductsInfoModel";
 import Suspense from "../utilities/Suspense/Suspense";
-import NewInBanner from "./NewInBanner";
 import NewinHeader from "./NewinHeader";
-import NewInProduct from "./NewInProduct";
-import NewInShopCategory from "./NewInShopCategory";
 
 const NewProduct = () => {
   const { id } = useParams();
@@ -99,6 +97,7 @@ const NewProduct = () => {
       {/* {!isLoading && newInProduct.length === 0 && (
 
       )} */}
+      {failed && <ErrorPage />}
       {isLoading && <Suspense />}
     </>
   );

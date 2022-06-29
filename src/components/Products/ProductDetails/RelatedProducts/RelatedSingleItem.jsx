@@ -10,7 +10,14 @@ const RelatedSingleItem = ({ relatedProducts }) => {
         <div class="recent-pro-del-flex">
           <Link to={"/product/" + item.id}>
             <div class="product-del-s-img">
-              <img src={BASE_URL + item.imageURL} alt="img" />
+              {item.imageURL === null ? (
+                <img
+                  src="/contents/assets/images/no_productimg.jpg"
+                  alt="img"
+                />
+              ) : (
+                <img src={BASE_URL + item.imageURL} alt="img" />
+              )}
             </div>
             <div class="product-del-s-content">
               <div class="product-del-s-title">

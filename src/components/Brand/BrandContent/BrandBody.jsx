@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BrandData } from "../../../Service/AppService";
 import Alert from "./Alert";
 import BrandAlphabetLinks from "./BrandAlphabetLinks";
 import BrandCategoryList from "./BrandCategoryList";
