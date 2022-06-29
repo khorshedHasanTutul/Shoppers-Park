@@ -1116,6 +1116,9 @@ input:focus {
 	margin: 8px;
 	cursor: pointer;
 	min-height: 37px;
+
+  max-height: 40px;
+  overflow: hidden;
   font-size: 13px;
 }
 .pink {
@@ -2341,7 +2344,7 @@ table td {
   color: #000;
   font-size: 24px;
   width: 50px;
-  height: 40px;
+  height: 38px;
   text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;

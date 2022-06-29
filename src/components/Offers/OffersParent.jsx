@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { GET_TOP_OFFERS } from "../../lib/endpoints";
-import ErrorPage from "../../pages/ErrorPage";
+import GoesWrongPage from "../../pages/GoesWrongPage";
 import { httpV2 } from "../../Service/httpService2";
 import Suspense from "../utilities/Suspense/Suspense";
 import OffersHeader from "./OffersHeader";
@@ -31,7 +31,7 @@ const OffersParent = () => {
       },
     });
   }, []);
-  
+
   useEffect(() => {
     getTopOffers();
   }, [getTopOffers]);
@@ -49,7 +49,7 @@ const OffersParent = () => {
         </>
       )}
       {isLoading && <Suspense />}
-      {failed && <ErrorPage />}
+      {failed && <GoesWrongPage />}
     </>
   );
 };

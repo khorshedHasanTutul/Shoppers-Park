@@ -91,7 +91,7 @@
     padding-bottom: 15px;
   }
   .single-banner-slider {
-    height: inherit;
+    height:inherit;
   }
   .shop-drag-comntent p {
     width: 265px;
@@ -408,10 +408,14 @@
   .single-product-add {
     flex: 0 0 45%;
     margin: 10px;
+    min-height: 55px;
+   
+   
   }
   .single-product-add p {
     font-size: 12px;
     font-weight: 400;
+    overflow:visible;
   }
   .single-product-catagory-item {
     flex: 0 0 31% !important;
@@ -739,6 +743,7 @@
   }
   .product-add-main-flex {
     flex-wrap: wrap;
+    min-height: 37px;
   }
   .product-add-main {
     flex-wrap: wrap;
@@ -1492,7 +1497,7 @@
   }
 }
 
-@media all and (max-width: 413px) {
+@media all and (max-width: 433px) {
   .shop-all-offer-btn > a {
     font-size: 14px;
     padding: 12px 22px;
@@ -1531,7 +1536,7 @@
   .cart-box-inner-view {
     display: block;
     max-width: 100%;
-    width: 100%;
+    width: 270px;
   }
   .cart-body {
     width: 100%;
