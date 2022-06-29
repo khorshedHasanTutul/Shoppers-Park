@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { paramsUrlGenerator } from "../../../../helpers/utilities";
-import { GET_NOTIFICATIONS } from "../../../../lib/endpoints";
+import { GET_NOTIFICATIONS, MARK_UNSEEN } from "../../../../lib/endpoints";
 import GoesWrongPage from "../../../../pages/GoesWrongPage";
 import { httpV2 } from "../../../../Service/httpService2";
 import Paginator from "../../../Paginators/Paginators";
@@ -48,14 +48,27 @@ const SingleNotification = () => {
     });
   }, []);
 
-  // const markAsUnseen = useCallback(()=>{
-  //   httpV2.
-  // })
+  const markAsUnseen = useCallback((paramUrl) => {
+    httpV2.get({
+      url: MARK_UNSEEN + paramUrl,
+      before: () => {},
+      successed: () => {},
+      failed: () => {},
+      always: () => {},
+    });
+  }, []);
 
   useEffect(() => {
     const paramUrl = paramsUrlGenerator(params);
     getNotifications(paramUrl);
   }, [getNotifications, params]);
+
+  useEffect(() => {
+    const paramUrl = allNotifications.items
+      .map((item) => "ids=" + item.id)
+      .join("&");
+    markAsUnseen(paramUrl);
+  }, [allNotifications.items, markAsUnseen]);
 
   return (
     <>

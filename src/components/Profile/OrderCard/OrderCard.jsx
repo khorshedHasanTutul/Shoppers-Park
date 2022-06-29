@@ -93,7 +93,7 @@ const OrderCard = ({ order, key, getAllOrdersHttp, status }) => {
             <div className="flex justify-between mb-8">
               <div className="t-14 t-bold t-left">Status</div>
               <div>
-                <span className="chips brick primay">Pending</span>
+                <span className="chips brick primay">{order.status}</span>
               </div>
             </div>
             <div className="flex justify-between mb-8">

@@ -10,7 +10,7 @@ import React, {
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
 import MainTopHeader from "./TopHeader/MainTopHeader";
 
-export const MainHeader = forwardRef((props, stickyNavRef) => {
+export const MainHeader = forwardRef((props, ref) => {
   const navMidRef = useRef();
   const navTopRef = useRef();
   const [scroll, setScroll] = useState(false);
@@ -27,15 +27,15 @@ export const MainHeader = forwardRef((props, stickyNavRef) => {
     const span = window.innerWidth <= 1000 ? `4px` : `8px`;
 
     if (offset > navTopHeight) {
-      stickyNavRef.current.style.top = `${-navTopHeight}px`;
+      ref.current.style.top = `${-navTopHeight}px`;
       navMidRef.current.style.paddingTop = `4px`;
       navMidRef.current.style.paddingBottom = `4px`;
     } else if (offset < navTopHeight) {
-      stickyNavRef.current.style.top = `${0}px`;
+      ref.current.style.top = `${0}px`;
       navMidRef.current.style.paddingTop = span;
       navMidRef.current.style.paddingBottom = span;
     }
-  }, [stickyNavRef]);
+  }, [ref]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -45,7 +45,7 @@ export const MainHeader = forwardRef((props, stickyNavRef) => {
   }, [handleScroll]);
 
   return (
-    <section className={`header-area`} ref={stickyNavRef}>
+    <section className={`header-area`} ref={ref}>
       <MainTopHeader />
       <div class="container">
         <div class="header-main-area">

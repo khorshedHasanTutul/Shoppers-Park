@@ -14,6 +14,10 @@ const appContext = createContext({
     getWishItems: [],
     removewishItem: (item) => {},
   },
+  singleTask: {
+    storeNotification: (count) => {},
+    getTotalNotifiaction: "",
+  },
 });
 
 export default appContext;

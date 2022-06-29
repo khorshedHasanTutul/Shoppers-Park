@@ -1,18 +1,17 @@
 import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { returnDataAsObject } from "../../../../Service/DataService";
+import { BASE_URL } from "../../../../Service/httpService2";
 import cartContext from "../../../../Store/cart-context";
 import AnimatedProduct from "../../../AnimatedProduct/AnimatedProduct";
-import appData from "../../../DataSource/appData";
 
 const SearchTemplate = ({ item, closeSearch, lowerSearchvalue, setalert }) => {
+  const convertItem = returnDataAsObject(item);
   const cartCtx = useContext(cartContext);
   const cartCtxModal = cartCtx.getCartModel;
 
   const [anime, setAnime] = useState(false);
   const cardRef = useRef(null);
-  const categoryData = appData.ShopCategory.find(
-    (item2) => item2.categoryId === item.category_id
-  );
 
   const addToCartHandler = (item, e) => {
     e.preventDefault();
@@ -20,7 +19,7 @@ const SearchTemplate = ({ item, closeSearch, lowerSearchvalue, setalert }) => {
   };
 
   const animateCardHandler = (item) => {
-    if (cartCtxModal.Items.find((itemInner) => itemInner.Id === item.Id)) {
+    if (cartCtxModal.Items.find((itemInner) => itemInner.id === item.id)) {
       setalert();
     } else {
       animationStartHandler();
@@ -36,23 +35,25 @@ const SearchTemplate = ({ item, closeSearch, lowerSearchvalue, setalert }) => {
 
   const getHTML = () => {
     return {
-      __html: item.Nm.toLowerCase().replace(
-        lowerSearchvalue,
-        `<span class="t-pink">${lowerSearchvalue}</span>`
-      ),
+      __html: convertItem.name
+        .toLowerCase()
+        .replace(
+          lowerSearchvalue,
+          `<span class="t-pink">${lowerSearchvalue}</span>`
+        ),
     };
   };
 
   return (
-    <div class="search-result__items" ref={cardRef}>
+    <div class="search-result__items">
       {/* <!-- search result --> */}
-      <div class="result-card">
+      <div class="result-card" ref={cardRef}>
         <div class="result-card__img">
-          <img src={item.image} alt="product_image" />
+          <img src={BASE_URL + convertItem.image} alt="img" />
         </div>
         <div class="result-card__details">
           <Link
-            to={"/product/" + item.Id}
+            to={"/product/" + convertItem.id}
             class="result-card__details--name"
             onClick={closeSearch}
           >
@@ -60,40 +61,38 @@ const SearchTemplate = ({ item, closeSearch, lowerSearchvalue, setalert }) => {
           </Link>
           <p class="result-card__details--price">
             <span>Price: </span>
-            {item.Ds > 0 ? (
-              <span class="current">
-                ৳{(item.MRP - (item.MRP * item.Ds) / 100).toFixed(2)}
-              </span>
+            {convertItem.discountPrice > 0 ? (
+              <span class="current">৳{convertItem.currentPrice}</span>
             ) : (
-              <span class="current">৳{item.MRP}</span>
+              <span class="current">৳{convertItem.currentPrice}</span>
             )}
 
-            {item.Ds > 0 ? (
+            {convertItem.discountPrice > 0 ? (
               <span class="original">
-                <del class="cross_price">৳ {item.MRP}</del>
+                <del class="cross_price">৳ {convertItem.currentPrice}</del>
               </span>
             ) : (
               ""
             )}
           </p>
-          <Link
-            to={"/category/" + item.category_id}
+          {/* <Link
+            to={"/category/" + convertItem.}
             class="result-card__details--category"
             href
             onClick={closeSearch}
           >
             <span>Category: </span>
             <span class="current">{categoryData.categoryName}</span>
-          </Link>
+          </Link> */}
         </div>
 
         <div
           class="result-card__details--actions"
-          onClick={addToCartHandler.bind(this, item)}
+          onClick={addToCartHandler.bind(this, convertItem)}
         >
           <button>
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            <span onClick={animateCardHandler.bind(null, item)}>
+            <span onClick={animateCardHandler.bind(null, convertItem)}>
               <strong> Add to Cart</strong>
             </span>
           </button>

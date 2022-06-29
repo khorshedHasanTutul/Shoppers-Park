@@ -54,6 +54,7 @@ function App() {
           res.data.wishlisted.map((item) =>
             appCtx.wishList.storewishItems(item)
           );
+          appCtx.singleTask.storeNotification(res.data.notificationCount);
         }
       },
       failed: () => {},

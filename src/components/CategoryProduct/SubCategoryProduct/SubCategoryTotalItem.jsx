@@ -56,47 +56,47 @@ const SubCategoryTotalItem = ({ children, setalert, name, subCategoryId }) => {
     const find = children.filter((item) => item.products.length > 0);
     return find.length > 0 ? true : false;
   };
-
-  if (children.length === 0 || findEveryChildrenProducts(children) === false) {
-    return (
-      <div className="pro-not-found-img-subcategory">
-        <strong>
-          {" "}
-          <img src="/contents/assets/images/no-product-found.png" alt="" />{" "}
-        </strong>
-      </div>
-    );
-  } else if (children.length === 0 && allProducts.items.length > 0) {
-    return (
-      <>
-        {!isGetting && (
-          <>
-            <VisibleProductByCategory
-              name={name}
-              products={allProducts.items}
-              setalert={setalert}
+  return (
+    <>
+      {/* {isGetting && <Suspense />} */}
+      {!isGetting &&
+      (children.length === 0 ||
+        findEveryChildrenProducts(children) === false) &&
+      allProducts.items.length === 0 ? (
+        <div className="pro-not-found-img-subcategory">
+          <strong>
+            {" "}
+            <img
+              src="/contents/assets/images/no-product-found.png"
+              alt=""
+            />{" "}
+          </strong>
+        </div>
+      ) : !isGetting &&
+        children.length === 0 &&
+        allProducts.items.length > 0 ? (
+        <>
+          <VisibleProductByCategory
+            name={name}
+            products={allProducts.items}
+            setalert={setalert}
+          />
+          <div className="paginator container">
+            <Paginator
+              items={allProducts.totalCount}
+              pageItems={params.take}
+              startPage={params.index}
+              onPageChange={pageChangeHandler}
             />
-            <div className="paginator container">
-              <Paginator
-                items={allProducts.totalCount}
-                pageItems={params.take}
-                startPage={params.index}
-                onPageChange={pageChangeHandler}
-              />
-            </div>
-          </>
-        )}
-        {isGetting && <Suspense />}
-      </>
-    );
-  } else
-    return (
-      <>
-        {children.map((item) => (
+          </div>
+        </>
+      ) : (
+        children.map((item) => (
           <SubCategorySubItemList item={item} setalert={setalert} />
-        ))}
-      </>
-    );
+        ))
+      )}
+    </>
+  );
 };
 
 export default SubCategoryTotalItem;
