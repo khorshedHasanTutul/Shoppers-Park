@@ -25,7 +25,7 @@ const NewProduct = () => {
 
   const [params, setParams] = useState({
     Index: 1,
-    Take: 2,
+    Take: 20,
   });
   const closeModal = () => {
     setalert((prevState) => !prevState);
