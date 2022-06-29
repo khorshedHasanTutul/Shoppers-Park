@@ -10,8 +10,12 @@ import AnimatedProduct from "../AnimatedProduct/AnimatedProduct";
 import { BASE_URL, httpV2 } from "../../Service/httpService2";
 import appContext from "../../Store/app-context";
 import { ADD_WISH_ITEM, REMOVE_WISH_ITEM } from "../../lib/endpoints";
+import authContext from "../../Store/auth-context";
+import ModalPOpUp from "../MainHeader/TopHeader/AuthenticationPortal/ModalPOpUp";
 
 const ProductsInfoModel = ({ item, setalert, from }) => {
+  const [loginModal, setLoginModal] = useState(false);
+  const authCtx = useContext(authContext);
   const appCtx = useContext(appContext);
   const [anime, setAnime] = useState(false);
   const cardRef = useRef(null);
@@ -28,7 +32,9 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
   console.log({ getWishItems });
   const findItem = getWishItems.find((item) => item === getReturnObjectData.id);
 
-  console.log({ findItem });
+  const closeLoginModal = () => {
+    setLoginModal((prevState) => !prevState);
+  };
 
   const addToCartHandler = (item, e) => {
     e.preventDefault();
@@ -36,14 +42,16 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
   };
 
   const addToWishHandler = (item) => {
-    appCtx.wishList.storewishItems(item.id);
-    httpV2.get({
-      url: ADD_WISH_ITEM + getReturnObjectData.id,
-      before: () => {},
-      successed: () => {},
-      failed: () => {},
-      always: () => {},
-    });
+    if (authCtx.isLoggedIn === true) {
+      appCtx.wishList.storewishItems(item.id);
+      httpV2.get({
+        url: ADD_WISH_ITEM + getReturnObjectData.id,
+        before: () => {},
+        successed: () => {},
+        failed: () => {},
+        always: () => {},
+      });
+    } else setLoginModal(true);
   };
 
   const removeFromWishHandler = (item) => {
@@ -170,6 +178,7 @@ const ProductsInfoModel = ({ item, setalert, from }) => {
         </div>
         <AnimatedProduct when={anime} onStop={stopAnime} uiRef={cardRef} />
       </div>
+      {loginModal && <ModalPOpUp ModalOpen={closeLoginModal} />}
     </>
   );
 };

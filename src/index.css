@@ -299,7 +299,7 @@ input:focus {
   position: fixed;
   width: 100%;
   transition: 0.8s;
-  z-index: 9;
+  z-index: 11;
   /* padding-bottom: 12px; */
 }
 .edit-profile-main-flex {
@@ -1116,15 +1116,16 @@ input:focus {
 	margin: 8px;
 	cursor: pointer;
 	min-height: 37px;
+
   max-height: 40px;
   overflow: hidden;
-
+  font-size: 13px;
 }
 .pink {
   color: #ee008e;
 }
 .single-product-add strong {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
 }
 .single-product-add p {
@@ -1958,7 +1959,7 @@ input:focus {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 9;
+  z-index: 11;
 }
 .product-gallery-hover {
   border: 1px solid #df2c8a;

@@ -53,6 +53,9 @@ export const REMOVE_WISH_ITEM = "/api/v1/Wishlist/Remove/";
 export const GET_WISH_ITEMS = "/api/v1/Products/wishlist";
 export const GET_PRODUCT_PROFILE = "/api/v1/Products/Profile";
 export const GET_NOTIFICATIONS = "/api/v1/Notifications";
+export const MARK_UNSEEN = "/api/v1/Notifications/MarkAsUnseen?";
+
+export const SEARCH_PRODUCT = "/api/v1/Products/Search";
 
 export const endpoints = {
   login,

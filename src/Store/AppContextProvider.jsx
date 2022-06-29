@@ -3,7 +3,10 @@ import appContext from "./app-context";
 
 const initialWishItem = {
   Items: [],
-  
+};
+
+const initialVariousTask = {
+  noticount: 0,
 };
 
 const initialSearchQuery = {
@@ -11,6 +14,16 @@ const initialSearchQuery = {
 };
 const initialOrder = {
   orderStatus: false,
+};
+
+const variousTaskReducer = (state, action) => {
+  if (action.type === "STORE_NOTIFICATION") {
+    const notiCount = action.count;
+    return {
+      ...state,
+      noticount: notiCount,
+    };
+  }
 };
 
 const wishItemsReducer = (state, action) => {
@@ -52,6 +65,11 @@ const orderReducer = (state, action) => {
 };
 
 const AppContextProvider = ({ children }) => {
+  const [variousTaskState, dispatchVariousTask] = useReducer(
+    variousTaskReducer,
+    initialVariousTask
+  );
+
   const [wishState, dispatchWish] = useReducer(
     wishItemsReducer,
     initialWishItem
@@ -80,6 +98,10 @@ const AppContextProvider = ({ children }) => {
     dispatchOrderStatus({ type: "STATUS_CHANGED_ORDER", isChecked: isChecked });
   };
 
+  const storeNotificationMethod = (count) => {
+    dispatchVariousTask({ type: "STORE_NOTIFICATION", count: count });
+  };
+
   const searchQuery = {
     storeSearchQuery,
     searchQuery: searchQueryState.searchQuery,
@@ -96,10 +118,16 @@ const AppContextProvider = ({ children }) => {
     removewishItem: removeWishItemHandler,
   };
 
+  const singleTaskNeedToStore = {
+    storeNotification: storeNotificationMethod,
+    getTotalNotifiaction: variousTaskState.noticount,
+  };
+
   const context = {
     searchQuery: { ...searchQuery },
     orderCreated: { ...orderCreated },
     wishList: { ...wishItems },
+    singleTask: { ...singleTaskNeedToStore },
   };
 
   return <appContext.Provider value={context}>{children}</appContext.Provider>;
