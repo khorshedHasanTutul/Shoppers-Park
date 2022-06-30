@@ -56,6 +56,7 @@ export const GET_NOTIFICATIONS = "/api/v1/Notifications";
 export const MARK_UNSEEN = "/api/v1/Notifications/MarkAsUnseen?";
 
 export const SEARCH_PRODUCT = "/api/v1/Products/Search";
+export const GET_PRODUCT_UPDATE = "/api/v1/Products/ById?";
 
 export const endpoints = {
   login,

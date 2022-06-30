@@ -1,6 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { useHistory } from "react-router-dom";
 import { goTO } from "../../helpers/utilities";
-import { GET_ADDRESS } from "../../lib/endpoints";
+import { GET_ADDRESS, GET_PRODUCT_UPDATE } from "../../lib/endpoints";
 import { storeAddressObj } from "../../Service/DataService";
 import { httpV2 } from "../../Service/httpService2";
 import addressContext from "../../Store/address-context";
@@ -12,6 +19,7 @@ import Payment from "./Payment";
 import ProductSummary from "./ProductSummary";
 
 const CheckoutBody = () => {
+  let history = useHistory();
   //cart context
   const ctxCart = useContext(cartContext);
   //address context
@@ -25,6 +33,9 @@ const CheckoutBody = () => {
   const [qtyAlert, setQtyAlert] = useState(false);
   //find active type address from context
   const getActiveTypeAddress = ctxAddress.getActiveType;
+  const getCartModel = ctxCart.getCartModel;
+
+  const [updateInfo, setUpdateInfo] = useState();
   //find active address
   const findActiveAddress = addresses?.find(
     (item) => item.typeOfAddress === getActiveTypeAddress.id
@@ -113,19 +124,37 @@ const CheckoutBody = () => {
       url: GET_ADDRESS,
       before: () => {
         setIsLoading(true);
+        const transformQuery = getCartModel.Items.map(
+          (item) => "ids=" + item.id
+        ).join("&");
+        getUpdateProductInfo(transformQuery);
       },
       successed: (res) => {
         setAddresses(res.data);
         setIsLoading(false);
       },
-      failed: () => {},
+      failed: () => {
+        localStorage.removeItem("USER");
+        history.push("/");
+      },
       always: () => {
         setIsLoading(false);
       },
     });
   };
 
-  console.log({ findActiveAddress });
+  const getUpdateProductInfo = useCallback((query) => {
+    httpV2.get({
+      url: GET_PRODUCT_UPDATE + query,
+      before: () => {},
+      successed: (res) => {
+        setUpdateInfo(res.data);
+        ctxCart.updateProductsPrice(res.data);
+      },
+      failed: () => {},
+      always: () => {},
+    });
+  }, []);
 
   useEffect(() => {
     getAddressHttp();

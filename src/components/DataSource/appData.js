@@ -534,22 +534,22 @@ var appData = {
   BottomParkContent: [
     {
       h6: "Free Shipping.",
-      text: "No one rejects, dislikes.",
+      text: "Order BDT 5000 & Get Free Shipping Service.",
       img: "/contents/assets/images/ff1.png",
     },
     {
       h6: "Support.",
-      text: "It has survived not only.",
+      text: "We are waiting for your call..",
       img: "/contents/assets/images/ff2.png",
     },
     {
       h6: "Online Payment.",
-      text: "All the Lorem Ipsum on.",
+      text: "Any kinds of online payment.",
       img: "/contents/assets/images/ff3.png",
     },
     {
       h6: "Fast Delivery.",
-      text: "Many desktop page now.",
+      text: "Same day delivery.",
       img: "/contents/assets/images/ff4.png",
     },
   ],

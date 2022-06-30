@@ -2,7 +2,8 @@ import getToken from "../lib/token";
 import { put } from "./form";
 
 // import { baseUrl as BASE_URL } from "./ImgService";
-export const BASE_URL = "https://localhost:44345";
+
+export const BASE_URL = "https://www.shoppersperk.com";
 
 export const post = async ({
   url,
