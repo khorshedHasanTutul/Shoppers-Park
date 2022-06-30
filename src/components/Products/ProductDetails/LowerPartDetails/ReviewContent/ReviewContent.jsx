@@ -98,6 +98,8 @@ const ReviewContent = () => {
     });
   }, []);
 
+  console.log("allreview=>", allReviews.items);
+
   useEffect(() => {
     if (clicked) {
       if (
