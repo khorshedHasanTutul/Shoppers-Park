@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import teamImg from "../../src/img/professional-man.jpg";
 import appData from "../components/DataSource/appData";
 const AboutStyle = {
   backgroundImage: `url(${
@@ -74,31 +73,37 @@ const About = () => {
             </div> */}
       <div className="bottom-about">
         <div className="container">
-          <div className="container-about"> 
-          <div className="about-container__address">
-            <ul>
-              <li>
-                <i class="fa fa-home" aria-hidden="true"></i>
-                <span>{data.address}</span>
-              </li>
-              <li>
-                <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+          <div className="container-about">
+            <div className="about-container__address">
+              <ul>
+                <li>
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                  <span>{data.address}</span>
+                </li>
+                <li>
+                  <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
 
-                <Link to={"tel:" + data.mobile}>{data.mobile}</Link>
-              </li>
-              <li>
-                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                  <Link to={"tel:" + data.mobile}>{data.mobile}</Link>
+                </li>
+                <li>
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i>
 
-                <Link to={"mailto:" + data.email}>{data.email}</Link>
-              </li>
-            </ul>
-          </div>
+                  <Link to={"mailto:" + data.email}>{data.email}</Link>
+                </li>
+              </ul>
+            </div>
 
-          <div className="about-container__map">
-          <iframe title="Shoppers Park" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.772337199029!2d90.37097871465159!3d23.755496584586908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf536d1cf7bb%3A0x9ba1b02f4265d430!2sGenetic%20Plaza!5e0!3m2!1sen!2sbd!4v1643028415160!5m2!1sen!2sbd" style={{border:"0"}} allowfullscreen="" loading="lazy"></iframe>
+            <div className="about-container__map">
+              <iframe
+                title="Shoppers Park"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.772337199029!2d90.37097871465159!3d23.755496584586908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf536d1cf7bb%3A0x9ba1b02f4265d430!2sGenetic%20Plaza!5e0!3m2!1sen!2sbd!4v1643028415160!5m2!1sen!2sbd"
+                style={{ border: "0" }}
+                allowfullscreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
           </div>
         </div>
-        </div> 
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import { BASE_URL } from "../../../../../Service/httpService2";
 
 const ReviewSingleItem = ({ item }) => {
   return (
@@ -24,7 +23,7 @@ const ReviewSingleItem = ({ item }) => {
           </div>
           <div class="comment_event">
             <a class="comment_time col" href>
-              <em>21, Apr-2021</em>
+              <em>{item.postDate.toString()}</em>
             </a>
             {/* <a class="btn_like" href>
               {" "}

@@ -650,6 +650,9 @@
     display: flex;
     flex-direction: column;
   }
+  .chosse-your-fvt-btn ul > li{
+    width: 100%;
+  }
   .festival-single-product .catagory-main-product-area {
     padding-bottom: 20px;
   }
@@ -1062,6 +1065,16 @@
 }
 
 @media all and (max-width: 575px) {
+  .container-file-button{
+    flex-direction: column;
+  }
+  .container-file-button button{
+    top: -17px !important;
+    left: -21px;
+  }
+  .product-img{
+    height: 120px;
+  }
   .Steps_steps__3SNbF.Steps_wide__2JixU {
     gap: 0.5rem;
   }
@@ -1432,6 +1445,9 @@
   .address-inner-select-item {
     flex-direction: column;
   }
+  .chosse-your-fvt-btn ul > li a {
+    justify-content: center;
+  }
   .address-info-inner-content .address-inner-select-item .custom-input {
     flex: 0 0 100%;
     width: 100%;
@@ -1536,7 +1552,7 @@
   .cart-box-inner-view {
     display: block;
     max-width: 100%;
-    width: 270px;
+    width: 356px;
   }
   .cart-body {
     width: 100%;
@@ -1567,9 +1583,10 @@
   .cart-box-inner-view {
     display: block;
     max-width: 100%;
-    width: 90%;
+    width: 100%;
     float: right;
   }
+  
   .single-product-catagory-item {
     flex: 0 0 44% !important;
   }

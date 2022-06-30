@@ -10,6 +10,7 @@ const Complain = () => {
   const [complainIsTouched, setComplainIsTouched] = useState(false);
   const [complainIsInvalid, setComplainIsInvalid] = useState(false);
   const [selectedComplain, setSelectedComplain] = useState({});
+  
   //Remarks validation start
   const [remark, setRemark] = useState("");
   const [remarkIsTouched, setRemarkIsTouched] = useState(false);
