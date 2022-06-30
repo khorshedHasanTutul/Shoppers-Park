@@ -448,7 +448,7 @@ input:focus {
   padding-top: 0px;
 }
 .whatsApp-img a img {
-	width: 14px;
+  width: 14px;
 }
 .header-top-flex {
   display: flex;
@@ -457,9 +457,9 @@ input:focus {
   align-content: center;
 }
 .header-top-logo a img {
-	width: 155px;
-	height: auto;
-	margin-top: 1.5px;
+  width: 155px;
+  height: auto;
+  margin-top: 1.5px;
 }
 .header-top-left ul > li a svg {
   width: 13px;
@@ -539,11 +539,11 @@ input:focus {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 }
 .header-nwl-hover {
-	position: absolute;
-	left: -2px;
-	bottom: -20px;
-	opacity: 0;
-	visibility: hidden;
+  position: absolute;
+  left: -2px;
+  bottom: -20px;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .singnup-cart > ul > li a:hover .header-nwl-hover {
@@ -1107,15 +1107,15 @@ input:focus {
 }
 
 .single-product-add {
-	text-align: center;
-	color: #121111;
-	border: 1px solid #ededed;
-	background: #fff;
-	padding: 15px 10px;
-	flex: 0 0 30%;
-	margin: 8px;
-	cursor: pointer;
-	min-height: 37px;
+  text-align: center;
+  color: #121111;
+  border: 1px solid #ededed;
+  background: #fff;
+  padding: 15px 10px;
+  flex: 0 0 30%;
+  margin: 8px;
+  cursor: pointer;
+  min-height: 37px;
 
   max-height: 40px;
   overflow: hidden;
@@ -1475,11 +1475,11 @@ input:focus {
   margin-right: 7px;
 }
 .header-top-flex.d-flexx.top-one {
-	background: #df2c8a;
-	color: white;
-	padding: 6px;
-	margin-bottom: 7px;
-	box-shadow: 0 0px 2px rgb(0, 0, 0.3);
+  background: #df2c8a;
+  color: white;
+  padding: 6px;
+  margin-bottom: 7px;
+  box-shadow: 0 0px 2px rgb(0, 0, 0.3);
 }
 .header-top-right ul > li {
   width: 35px;
@@ -1528,17 +1528,17 @@ input:focus {
   padding-top: 10px;
 }
 .catagory-product-overly h4 {
-	font-size: 14px;
-	font-weight: 600;
-	text-overflow: ellipsis;
-	overflow: hidden !important;
-	white-space: pre-line;
-	width: 172px;
-	color: #000;
-	margin: 0 auto;
-	word-wrap: break-word;
-	height: 40px;
-	line-height: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden !important;
+  white-space: pre-line;
+  width: 172px;
+  color: #000;
+  margin: 0 auto;
+  word-wrap: break-word;
+  height: 40px;
+  line-height: 20px;
 }
 
 .basket-add .item__price.item__price--now {
@@ -4115,10 +4115,12 @@ select::-ms-expand {
   flex: 0 0 59%;
 }
 .det-img-padding {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	overflow: hidden;
+	height: 300px;
+	object-fit: contain;
 }
 
 .product-desc-right-content .catagory-product-overly h4 {
@@ -4365,8 +4367,9 @@ select::-ms-expand {
 }
 
 .product-del-s-img > img {
-  width: 75px;
-  height: auto;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 .recent-pro-del-flex > a {
   display: flex;
@@ -4374,7 +4377,10 @@ select::-ms-expand {
   padding-bottom: 20px;
 }
 .product-del-s-img {
-  margin-right: 12px;
+	margin-right: 12px;
+	width: 100px;
+	height: 75px;
+	object-fit: contain;
 }
 .product-del-s-title > h4 {
   font-size: 14px;
@@ -4397,8 +4403,9 @@ select::-ms-expand {
   padding-top: 0;
 }
 .det-img-padding > img {
-  width: 100%;
-  height: auto;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 .btn-red {
   border-radius: 0px 6px 6px 0px;
@@ -4500,6 +4507,14 @@ select::-ms-expand {
 
 .result-card__img img {
   max-width: 100%;
+  height: 100%;
+}
+
+.result-card__img {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  object-fit: contain;
 }
 
 .result-card__details--name {
@@ -4667,9 +4682,10 @@ select::-ms-expand {
 }
 
 .result-card__img {
-  width: 100px;
+	width: 100px;
+	text-align: center;
+	margin: 0 auto;
 }
-
 /* .catagory-main-product-area {
   padding-top: 40px;
 } */
@@ -6384,19 +6400,19 @@ div.brick.label.default {
 /* //Notification */
 
 .site-notification {
-	/* display: none; */
-	position: absolute;
-	background: #fff;
-	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-	width: 260px;
-	z-index: 99;
-	padding: 10px;
-	top: 55px;
-	left: -165px;
-	max-height: 350px;
-	overflow: hidden;
-	overflow-y: scroll;
-	scrollbar-color: #55C495 white;
+  /* display: none; */
+  position: absolute;
+  background: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  width: 260px;
+  z-index: 99;
+  padding: 10px;
+  top: 55px;
+  left: -165px;
+  max-height: 350px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-color: #55c495 white;
 }
 
 /* 14/11/21 css */

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import ProfileBody from "../components/Profile/ProfileBody/ProfileBody";
 import ProfileSideBar from "../components/Profile/ProfileSidebar/ProfileSideBar";
 import Page from "../components/utilities/Page";
@@ -7,6 +8,7 @@ import { httpV2 } from "../Service/httpService2";
 
 const Profile = () => {
   const [profileInfo, setProfileInfo] = useState();
+  let history = useHistory();
   const getProfileInfoHttp = () => {
     httpV2.get({
       url: getProfileInfo,
@@ -16,6 +18,8 @@ const Profile = () => {
       },
       failed: () => {
         console.log("failed");
+        localStorage.removeItem("USER");
+        history.push("/");
       },
       always: () => {},
     });
@@ -25,7 +29,7 @@ const Profile = () => {
     getProfileInfoHttp();
   }, []);
 
-  console.log({profileInfo})
+  console.log({ profileInfo });
 
   return (
     <div className="container">
