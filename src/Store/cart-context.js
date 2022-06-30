@@ -8,5 +8,6 @@ const cartContext = createContext({
   updateQuantity: (item, qty) => {},
   singleProductAdd: (item, qty) => {},
   updateEditableQuantity: (item, qty) => {},
+  updateProductsPrice: (items) => {},
 });
 export default cartContext;

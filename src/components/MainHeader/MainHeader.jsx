@@ -24,12 +24,12 @@ export const MainHeader = forwardRef((props, ref) => {
   const handleScroll = useCallback(() => {
     const offset = window.scrollY;
     const navTopHeight = 34;
-    const span = window.innerWidth <= 1000 ? `4px` : `8px`;
+    const span = window.innerWidth <= 1000 ? `6px` : `8px`;
 
     if (offset > navTopHeight) {
       ref.current.style.top = `${-navTopHeight}px`;
-      navMidRef.current.style.paddingTop = `4px`;
-      navMidRef.current.style.paddingBottom = `4px`;
+      navMidRef.current.style.paddingTop = `10px`;
+      navMidRef.current.style.paddingBottom = `10px`;
     } else if (offset < navTopHeight) {
       ref.current.style.top = `${0}px`;
       navMidRef.current.style.paddingTop = span;

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { paramsUrlGenerator } from "../../../../helpers/utilities";
+import { goTO, paramsUrlGenerator } from "../../../../helpers/utilities";
 import { GET_NOTIFICATIONS, MARK_UNSEEN } from "../../../../lib/endpoints";
 import GoesWrongPage from "../../../../pages/GoesWrongPage";
 import { httpV2 } from "../../../../Service/httpService2";
@@ -22,6 +22,7 @@ const SingleNotification = () => {
   });
   const pageChangeHandler = (page) => {
     setParams((prevState) => ({ ...prevState, Index: page }));
+    goTO();
   };
 
   const getNotifications = useCallback((paramUrl) => {

@@ -268,6 +268,40 @@ const reducer = (state, action) => {
       Items: [],
     };
   }
+
+  if (action.type === "UPDATE_PRODUCT_PRICE") {
+    let CtxItems = [...state.Items];
+    const UpdateCtxItems = CtxItems.map(function (element) {
+      // return console.log(element)
+      const findElement = action.items.find((item) => item.id === element.id);
+      if (findElement.currentPrice !== element.currentPrice) {
+        element.currentPrice = findElement.currentPrice;
+      }
+      // if (findElement.Discount !== element.Ds) {
+      //   element.Ds = findElement.Discount;
+      // }
+      return element;
+    });
+    // console.log({UpdateCtxItems})
+    let totalAmmount = 0;
+    let totalItems = state.TotalItems;
+
+    UpdateCtxItems.forEach((element) => {
+      let mrpPriceOfSingleProduct;
+      if (element.discountedPrice > 0) {
+        mrpPriceOfSingleProduct = calcDiscountAmmount(element);
+      } else {
+        mrpPriceOfSingleProduct = calcAmmount(element);
+      }
+      totalAmmount += mrpPriceOfSingleProduct * element.quantity;
+    });
+    return {
+      ...state,
+      TotalItems: totalItems,
+      TotalAmmount: totalAmmount,
+      Items: UpdateCtxItems,
+    };
+  }
 };
 
 const CartContextProvider = ({ children }) => {
@@ -293,6 +327,9 @@ const CartContextProvider = ({ children }) => {
   const updateEditableQtyhandler = (item, qty) => {
     dispatch({ type: "UPDATE_EDITABLE_QTY", item: item, qty: qty });
   };
+  const updateProductsPriceHandler = (items) => {
+    dispatch({ type: "UPDATE_PRODUCT_PRICE", items: items });
+  };
 
   const context = {
     storeCartItems: storeCartHandler,
@@ -302,6 +339,7 @@ const CartContextProvider = ({ children }) => {
     updateQuantity: QuantityHandler,
     singleProductAdd: addToSingleProductHandler,
     updateEditableQuantity: updateEditableQtyhandler,
+    updateProductsPrice: updateProductsPriceHandler,
   };
 
   return (
