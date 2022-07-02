@@ -1614,6 +1614,14 @@ display: none;
     width: 100%;
     float: right;
   }
+  .cart-footer__orderNow {
+    background: #df2c8a;
+    color: white;
+    padding: 6px;
+    border-radius: 5px;
+    text-align: center;
+    flex: auto;
+}
   
   .single-product-catagory-item {
     flex: 0 0 44% !important;

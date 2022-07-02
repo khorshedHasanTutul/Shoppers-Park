@@ -1948,7 +1948,11 @@ input:focus {
 /**************************************/
 /************ cart view  Area*************/
 /************************************/
-
+/* card size */
+/* .cart-bag.text-center img {
+  height: 43px;
+  width: 50px;
+} */
 .cart-bag.text-center img {
   height: 43px;
   width: 50px;
@@ -1980,7 +1984,7 @@ input:focus {
   /* display: none; */
 }
 
-.cart-box {
+/* .cart-box {
   background: #fff;
   border: 1px solid #ddd;
   border-right-color: rgb(0, 99, 148);
@@ -1991,26 +1995,61 @@ input:focus {
   border-right: none;
   overflow: hidden;
   width: auto;
+} */
+
+
+.cart-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-right-color: rgb(0, 99, 148);
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-radius: 10px 0 0 10px;
+  cursor: pointer;
+  border-right: none;
+  overflow: hidden;
+  width: 87px;
+ 
 }
 
+/* .cart-items {
+  background-color: #df2c8a;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px 0 0 0;
+} */
 .cart-items {
   background-color: #df2c8a;
   padding: 5px 10px;
   color: #fff;
   font-weight: bold;
   border-radius: 10px 0 0 0;
+  font-size: 12px;
 }
+
 .cart-bag {
   margin: 5px 0;
   text-align: center;
 }
-.cart-amount {
+/* .cart-amount {
   background-color: #df2c8a;
   color: #fff;
   border-radius: 0 0 0 10px;
   padding: 5px 11px;
   font-weight: bold;
   overflow: hidden;
+} */
+/*****************card_fix****************/
+.cart-amount {
+  background-color: #df2c8a;
+  color: #fff;
+  border-radius: 0 0 0 10px;
+  padding: 5px;
+  font-weight: bold;
+  overflow: hidden;
+  font-size: 12px;
+  text-align: center;
 }
 
 /******************** card view css ********************/
@@ -4971,6 +5010,7 @@ input::-webkit-calendar-picker-indicator {
   .address-btn-group {
     grid-template-columns: repeat(1, 1fr);
   }
+
 }
 .Card_card__2Phls.mb-16 .address-btn-group button.active {
   border: 2px solid #df2c8a;
@@ -7085,7 +7125,7 @@ div.brick.label.default {
 .checkout-main-tab-information-main .niiceeTabBtn {
   display: flex;
   border-bottom: 3px solid #dddddd;
-  width: 85%;
+  width: 95%;
 }
 .checkout-main-tab-information-main .niiceeTabBtn button.active::after {
   position: absolute;
