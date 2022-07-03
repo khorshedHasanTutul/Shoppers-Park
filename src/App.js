@@ -26,8 +26,6 @@ import Notifications from "./pages/Notifications";
 import Festival from "./pages/Festival";
 import RequestProducts from "./pages/RequestProducts";
 import Consultancy from "./pages/Consultancy";
-import Preloader from "./components/utilities/Preloader/Preloader";
-import Suspense from "./components/utilities/Suspense/Suspense";
 import { useLocation } from "react-router-dom";
 import ShopAll from "./components/ShopAll/ShopAll";
 import Checkout from "./pages/Checkout";

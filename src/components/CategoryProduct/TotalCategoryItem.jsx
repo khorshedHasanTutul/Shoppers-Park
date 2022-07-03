@@ -4,7 +4,6 @@ import { CHILD_PRODUCT_LVL_WISE } from "../../lib/endpoints";
 import { httpV2 } from "../../Service/httpService2";
 import Paginator from "../Paginators/Paginators";
 import PopUpAlert from "../utilities/Alert/PopUpAlert";
-import Suspense from "../utilities/Suspense/Suspense";
 import CategorySubItemProductList from "./CategorySubItemProductList";
 import VisibleProductByCategory from "./VisibleProduct/VisibleProductByCategory";
 

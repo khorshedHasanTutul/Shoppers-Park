@@ -3,10 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { paramsUrlGenerator } from "../../../helpers/utilities";
 import { CANCLE_ORDER } from "../../../lib/endpoints";
 import { BASE_URL, httpV2 } from "../../../Service/httpService2";
-import PopAlert from "../../utilities/Alert/PopAlert";
-import PopUpAlert from "../../utilities/Alert/PopUpAlert";
 import Card from "../../utilities/Card/Card";
-import { OrderStatus } from "../../utilities/dictionaries";
 import Suspense from "../../utilities/Suspense/Suspense";
 import ConfirmationAlert from "./ConfirmationAlert";
 

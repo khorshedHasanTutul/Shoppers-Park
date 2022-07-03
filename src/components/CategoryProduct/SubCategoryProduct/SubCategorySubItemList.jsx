@@ -1,5 +1,4 @@
 import React from "react";
-import appData from "../../DataSource/appData";
 import SubCategoryItem from "./SubCategoryItem";
 
 const SubCategorySubItemList = ({

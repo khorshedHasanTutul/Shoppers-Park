@@ -1,7 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { GET_PRODUCT_UPDATE } from "../../lib/endpoints";
-import { httpV2 } from "../../Service/httpService2";
 import addressContext from "../../Store/address-context";
 import cartContext from "../../Store/cart-context";
 

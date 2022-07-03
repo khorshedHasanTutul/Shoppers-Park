@@ -5,8 +5,6 @@ import { Fragment, useState } from "react";
 import Popup from "../../utilities/Popup/Popup";
 import PrescriptionSaved from "../../Profile/PrescriptionSaved/PrescriptionSaved";
 import { useHistory } from "react-router";
-import { http } from "../../../Service/httpService";
-import { endpoints } from "../../../lib/endpoints";
 
 const Prescriptions = ({ prescriptions }) => {
   const history = useHistory();

@@ -1,5 +1,4 @@
 import React from "react";
-import { BrandData } from "../../../Service/AppService";
 import BrandSingleItem from "./BrandSingleItem";
 import BrandSingleNumberItem from "./BrandSingleNumberItem";
 

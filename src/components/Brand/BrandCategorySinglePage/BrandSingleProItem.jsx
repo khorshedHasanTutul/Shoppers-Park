@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { callBack } from "../../../Service/AppService";
 import {
-  cartAddedButton,
   WishAddedButton,
   WishRemoveItem,
   WishService,

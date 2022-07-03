@@ -1,17 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useParams } from "react-router";
-import {
-  GET_LEVEL4_Products,
-  GET_PRODUCTS_BY_CATEGORY,
-} from "../../../lib/endpoints";
-import ErrorPage from "../../../pages/ErrorPage";
+
 import {
   getCategories,
   getCategoryDataToObj,
 } from "../../../Service/DataService";
-import { httpV2 } from "../../../Service/httpService2";
 import PopUpAlert from "../../utilities/Alert/PopUpAlert";
-import Suspense from "../../utilities/Suspense/Suspense";
 import SubSubAllProduct from "./SubSubAllProduct";
 import SubSubHeader from "./SubSubHeader";
 

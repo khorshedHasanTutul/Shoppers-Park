@@ -1116,7 +1116,6 @@ input:focus {
   margin: 8px;
   cursor: pointer;
   min-height: 37px;
-
   max-height: 40px;
   overflow: hidden;
   font-size: 13px;
@@ -1124,10 +1123,12 @@ input:focus {
 .pink {
   color: #ee008e;
 }
+
 .single-product-add strong {
   font-size: 15px;
   font-weight: 700;
 }
+
 .single-product-add p {
   font-size: 13px;
   font-weight: 400;
