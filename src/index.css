@@ -1608,7 +1608,7 @@ input:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 3px;
+  padding: 5px 8px 0px;
   background: #f1f3f4;
 }
 .cmn-class-items-calc {
@@ -2008,8 +2008,7 @@ input:focus {
   cursor: pointer;
   border-right: none;
   overflow: hidden;
-  width: 87px;
- 
+  min-width: 71px;
 }
 
 /* .cart-items {
@@ -2121,6 +2120,7 @@ input:focus {
   overflow-y: auto;
   height: 400px;
   width: 410px;
+  
 }
 .fa.fa-times.pull-right.cart-cross-btn {
   color: #fff;
@@ -2575,7 +2575,7 @@ a {
 .table > tfoot > tr > th,
 .table > thead > tr > td,
 .table > thead > tr > th {
-  padding: 8px;
+  padding: 6px;
   line-height: 1.42857143;
   vertical-align: middle;
   border-top: 1px solid #ddd;
@@ -7165,3 +7165,5 @@ div.brick.label.default {
 /* #splide01-list > li a img {
 	width: 100px;
 } */
+
+

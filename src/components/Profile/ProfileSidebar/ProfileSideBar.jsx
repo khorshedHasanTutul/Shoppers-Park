@@ -6,7 +6,7 @@ import SideBarLinks from "../SideBarLinks/SideBarLinks";
 const ProfileSideBar = ({ profileInfo }) => {
   const authCtx = useContext(authContext);
   const getUserValue = authCtx.getloginValue;
-  console.log("image", getUserValue.image);
+  console.log("image",getUserValue);
   return (
     <div className="profile-sidebar">
       <div className="profile-user-info flex column justify-center align-center bg-background pt-16">
