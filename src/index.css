@@ -1166,6 +1166,7 @@ input:focus {
 .banner-slider-area {
   padding-top: 134px !important;
   min-height: 730px;
+  position: relative;
 }
 
 .banner-slider-main {
@@ -5505,6 +5506,8 @@ div.brick.label.default {
     display: none !important;
   }
 }
+
+
 
 /* .profile .container {
 	max-width: 1015px;

@@ -128,6 +128,7 @@ const CheckoutBody = () => {
           (item) => "ids=" + item.id
         ).join("&");
         getUpdateProductInfo(transformQuery);
+        
       },
       successed: (res) => {
         setAddresses(res.data);
