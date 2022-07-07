@@ -30,7 +30,11 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  
 }
+
+
 @media all and (max-width: 1299px) {
   /*product details add wishlist page css */
   .product-desc-right-content .catagory-overly-main-bg .btn_cart {
@@ -72,6 +76,7 @@
     display: inline-block;
     margin-bottom: 6px;
   }
+
   .contact-us-address {
     margin-top: 20px;
   }
@@ -135,6 +140,11 @@
     width: 115px;
   }
 
+  .address-info-right-default {
+    display: none;
+
+  }
+
   .banner-inner-product-single {
     flex: 0 0 23%;
   }
@@ -159,6 +169,31 @@
     h4 {
     width: 110px;
   }
+
+  .address-info-inner-flex {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.all-address-save-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.chosse-your-fvt-btn ul li a {
+    background: transparent;
+    color: #df2c8a;
+    display: block;
+    padding: 10px 28px;
+    text-align: center;
+    border: 2px solid #df2c8a;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 5px;
+}
 
   /* blog page css */
 
@@ -312,6 +347,8 @@
   .wishlist-offer.singnup-cart {
     display: none;
   }
+
+  
 
   .nav-icon {
     display: block;
@@ -648,11 +685,11 @@
   }
   .chosse-your-fvt-btn ul {
     display: flex;
-    flex-direction: column;
+  
   }
-  .chosse-your-fvt-btn ul > li{
+  /* .chosse-your-fvt-btn ul > li{
     width: 100%;
-  }
+  } */
   .festival-single-product .catagory-main-product-area {
     padding-bottom: 20px;
   }
@@ -696,16 +733,17 @@
   }
   .profile-sidebar {
     position: relative !important;
-    left: -38px !important;
-    width: 190px !important;
+    /* left: -38px !important; */
   }
   .profile .body {
     margin-left: 0px;
-    width: 75%;
+ 
   }
   .custom-table-row {
     overflow-x: auto;
   }
+
+  
 }
 
 @media all and (max-width: 767px) {
@@ -720,7 +758,7 @@
   }
   .r-tabs__link {
     padding: 0.6em;
-    font-size: 14px;
+    font-size: 12px;
   }
   .custom-table-row {
     overflow-x: auto;
@@ -734,6 +772,20 @@
   .Card_card__UHWzV.undefined .t-14 {
     text-align: left;
   }
+
+  .address-info-inner-content .custom-input input, .address-info-inner-content .custom-input select, #discount_codeSubmit input, .address-info-inner-content .address-textarea textarea {
+    width: calc(100% - 12px);
+    border: 1px solid #ddd;
+    height: 35px;
+    display: block;
+    padding: 0px 10px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    border-radius: 6px;
+}
 
   .main-menu {
     width: 50%;
@@ -764,6 +816,31 @@
   .single-product-catagory-item {
     flex: 0 0 46% !important;
   }
+
+  .address-info-inner-flex {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.all-address-save-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.chosse-your-fvt-btn ul li a {
+    background: transparent;
+    color: #df2c8a;
+    display: block;
+    padding: 10px 28px;
+    text-align: center;
+    border: 2px solid #df2c8a;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 5px;
+}
 
   .shop-way-superdrag-single-item {
     flex: 0 0 48%;
@@ -1032,13 +1109,13 @@
   }
 
   .profile {
-    display: grid !important;
+    display: flex;
   }
-  .profile-sidebar {
+  /* .profile-sidebar {
     position: static;
     left: 0;
     width: inherit;
-  }
+  } */
 
   .new-add-pimg.form__control.mb-16.flex #prescription {
     width: 100%;
@@ -1064,9 +1141,12 @@
     margin-left: 0px;
     width: 100%;
   }
+
+  
+  
 }
 
-@media all and (max-width: 575px) {
+@media all and (max-width: 702px) {
   .container-file-button{
     flex-direction: column;
   }
@@ -1076,6 +1156,14 @@
   }
   .product-img{
     height: 120px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns:  1fr;
+    padding: 0px;
+    gap: 0.65rem;
+    width: 95%;
   }
   .Steps_steps__3SNbF.Steps_wide__2JixU {
     gap: 0.5rem;
@@ -1118,13 +1206,7 @@
   .profile .mt-8 .Card_card__UHWzV div p {
     font-size: 14px;
   }
-  .profile {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  .r-tabs {
-    flex-direction: column;
-  }
+ 
   .order-invoice-ea .custom-row-top {
     align-items: start;
     flex-direction: column;
@@ -1229,6 +1311,28 @@
   .header-middle-search {
     top: 63px;
   }
+
+  .saving-ad-btn button {
+    border: none;
+    background: #df2c8a;
+    display: inline-block;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}  
+
+.location-info {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.address-info {
+  padding: 4px 0 1px 0;
+  font-size: 12px;
+  font-weight: 500;
+}
 
   /* brand page css */
   .brandLetter {
@@ -1352,6 +1456,7 @@
   .address-info-inner-content .address-textarea textarea {
     padding: 0px 0px;
     padding-left: 10px;
+    width: calc(100%);
   }
   .checkout-address-information-main {
     padding: 10px;
@@ -1596,6 +1701,14 @@ display: none;
    
 }
 
+/* .grid-3 {
+  display: grid;
+  grid-template-columns:  1fr;
+  padding: 0px;
+  gap: 0.75rem;
+  width: 95%;
+} */
+
 /* contact us */
 .contact-us-address ul li > i {
   display: inline-block;
@@ -1653,7 +1766,24 @@ display: none;
   border-top: 1px solid #ddd;
 }
 
-
+/* .back-to-top {
+  display: inline-block;
+  background-color: #df2c8a;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 5px;
+  right: 20px;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+  z-index: 30;
+  border-radius: 50px;
+  line-height: 50px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+} */
  
   .catagory-overly-main-bg .btn_cart > h5 {
     font-size: 11px;
@@ -1697,6 +1827,8 @@ display: none;
   .main-menu > ul {
     display: flex !important;
   }
+
+
 }
 
 @media screen and (max-width: 420px){
@@ -1742,6 +1874,37 @@ display: none;
   border-top: 1px solid #ddd;
 } 
 
+
+
+}
+
+@media screen and (max-width: 670px) {
+  .all-address-save-btn {
+    flex-direction: column;
+  }
+  .save-address, .chosse-your-fvt-btn{
+    display: flex;
+    width: 100%;
+  }
+  .save-address button, .chosse-your-fvt-btn > * {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .chosse-your-fvt-btn button {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 422px) {
+  .Select_select__wCuGV label {
+    /* font-weight: 500; */
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+  
 }
 
 

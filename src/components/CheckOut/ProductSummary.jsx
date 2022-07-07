@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import addressContext from "../../Store/address-context";
 import cartContext from "../../Store/cart-context";
@@ -51,8 +51,6 @@ const ProductSummary = ({
       setQty(1);
     }
   };
-
-
 
   //if empty in cart then go to homepage
   useEffect(() => {
@@ -171,45 +169,47 @@ const ProductSummary = ({
           <div class="row-custom">
             {findActiveAddress !== undefined &&
               findActiveAddress?.name !== null && (
-                <div class="shaping-address-saveing-row">
-                  <div class="shapping-address-inner-content">
-                    <div class="location-ad-icon">
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <div class="address-card">
+                  <div className="address-card__info">
+                    <div>
+                      <div class="location-ad-icon">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      </div>
                     </div>
-                    <div class="saving-address-content">
-                      <small>
-                        {findActiveAddress && findActiveAddress.name}
-                      </small>
-                      <small>
-                        {findActiveAddress && findActiveAddress.phone}
-                      </small>
-                      <span>
-                        <aside>
-                          {findActiveAddress &&
-                            findActiveAddress.typeOfAddress === 0 &&
-                            "Home"}
-                          {findActiveAddress &&
-                            findActiveAddress.typeOfAddress === 1 &&
-                            "Office"}
-                          {findActiveAddress &&
-                            findActiveAddress.typeOfAddress === 2 &&
-                            "Home Town"}
-                        </aside>
-                      </span>
-                      <span>
-                        {findActiveAddress && findActiveAddress.email}
-                      </span>
-                      &nbsp;
-                      <span>
+                    <div>
+                      <div className="chip">
                         {findActiveAddress &&
-                          findActiveAddress.province.name +
-                            "-" +
-                            findActiveAddress.district.name +
-                            "-" +
-                            findActiveAddress.upazila.name +
-                            "-" +
-                            findActiveAddress.remarks}
-                      </span>
+                          findActiveAddress.typeOfAddress === 0 &&
+                          "Home"}
+                        {findActiveAddress &&
+                          findActiveAddress.typeOfAddress === 1 &&
+                          "Office"}
+                        {findActiveAddress &&
+                          findActiveAddress.typeOfAddress === 2 &&
+                          "Home Town"}
+                      </div>
+                      <div className="address-info">
+                        <span>
+                          {findActiveAddress &&
+                            [
+                              findActiveAddress.name,
+                              findActiveAddress.phone,
+                              findActiveAddress.email,
+                            ].join(" - ")}
+                        </span>
+                      </div>
+                      <div className="location-info">
+                        <span>
+                          {findActiveAddress &&
+                            findActiveAddress.province.name +
+                              "-" +
+                              findActiveAddress.district.name +
+                              "-" +
+                              findActiveAddress.upazila.name +
+                              "-" +
+                              findActiveAddress.remarks}
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div class="saving-ad-btn" onClick={AddressActiveHandler}>

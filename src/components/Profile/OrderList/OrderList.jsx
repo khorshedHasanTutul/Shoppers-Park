@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-import { goTO } from "../../../helpers/utilities";
 import Paginator from "../../Paginators/Paginators";
-import PopUpAlert from "../../utilities/Alert/PopUpAlert";
 import OrderCard from "../OrderCard/OrderCard";
 
 const OrderList = ({

@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
-import { useHistory } from "react-router-dom";
 import { goTO } from "../../helpers/utilities";
 import { POST_ORDER, POST_ORDER_PAYMENT } from "../../lib/endpoints";
 import { storeAddressObj } from "../../Service/DataService";
@@ -68,7 +67,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
     evt.preventDefault();
     setIsClickedCoupon(true);
     if (cupon.length > 0) {
-      postOrderHttp();
+      postOrderHttp(getSelectedAddress?.id, cupon);
     }
   };
 
@@ -112,13 +111,13 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
     }
   };
 
-  const postOrderHttp = useCallback((id) => {
+  const postOrderHttp = useCallback((id, coupon) => {
     httpV2.post({
       url: POST_ORDER_PAYMENT,
       payload: {
         addressId: id,
         products: products,
-        couponCode: cupon,
+        couponCode: coupon,
       },
       before: () => {
         setIsLoading(true);
@@ -141,7 +140,7 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
   }, []);
 
   useEffect(() => {
-    postOrderHttp(getSelectedAddress?.id);
+    postOrderHttp(getSelectedAddress?.id, cupon);
   }, [getSelectedAddress?.id, postOrderHttp]);
 
   useEffect(() => {
@@ -178,71 +177,66 @@ const Payment = ({ addresses, AddressActiveHandler }) => {
         {isCouponTouched && cupon.length === 0 && !isEmptyCoupon && (
           <div class="alert alert-error">Coupon is empty.</div>
         )}
+        {isClickedCoupon && (
+          <div class="alert alert-error">{paymentData?.couponMessage}</div>
+        )}
       </div>
       {(getSelectedAddress || storeAddressObj.name.length !== 0) && (
         <Fragment>
           <h3 class="sip-add" style={{ textAlign: "left", marginTop: "10px" }}>
             Shipping Address
           </h3>
-          <div
-            class="shaping-address-saveing-row"
-            style={{ marginBottom: "10px" }}
-          >
-            <div class="shapping-address-inner-content">
-              <div class="location-ad-icon">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
+          <div class="address-card" style={{ marginBottom: 20 }}>
+            <div className="address-card__info">
+              <div>
+                <div class="location-ad-icon">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </div>
               </div>
-              <div class="saving-address-content">
-                <small>
-                  {getSelectedAddress
-                    ? getSelectedAddress.name
-                    : storeAddressObj.name}
-                </small>
-                <small>
-                  {getSelectedAddress
-                    ? getSelectedAddress.phone
-                    : storeAddressObj.mobile}
-                </small>
-                <span>
-                  <aside>
-                    {getSelectedAddress &&
-                      getSelectedAddress.typeOfAddress === 0 &&
-                      "Home"}
-                    {getSelectedAddress &&
-                      getSelectedAddress.typeOfAddress === 1 &&
-                      "Office"}
-                    {getSelectedAddress &&
-                      getSelectedAddress.typeOfAddress === 2 &&
-                      "Home Town"}
-                    {!getSelectedAddress && storeAddressObj.type}
-                  </aside>
-                </span>
-                <span>
-                  {getSelectedAddress
-                    ? getSelectedAddress.email
-                    : storeAddressObj.email}
-                </span>
-                &nbsp;
-                <span>
+              <div>
+                <div className="chip">
                   {getSelectedAddress &&
-                    getSelectedAddress.province.name +
-                      "-" +
-                      getSelectedAddress.district.name +
-                      "-" +
-                      getSelectedAddress.upazila.name +
-                      "-" +
-                      getSelectedAddress.remarks}
-                </span>
-                <span>
-                  {!getSelectedAddress &&
-                    storeAddressObj.division.name +
-                      "-" +
-                      storeAddressObj.district.name +
-                      "-" +
-                      storeAddressObj.area.name +
-                      "-" +
-                      storeAddressObj.address}
-                </span>
+                    getSelectedAddress.typeOfAddress === 0 &&
+                    "Home"}
+                  {getSelectedAddress &&
+                    getSelectedAddress.typeOfAddress === 1 &&
+                    "Office"}
+                  {getSelectedAddress &&
+                    getSelectedAddress.typeOfAddress === 2 &&
+                    "Home Town"}
+                </div>
+                <div className="address-info">
+                  <span>
+                    {getSelectedAddress &&
+                      [
+                        getSelectedAddress.name,
+                        getSelectedAddress.phone,
+                        getSelectedAddress.email,
+                      ].join(" - ")}
+                  </span>
+                </div>
+                <div className="location-info">
+                  <span>
+                    {getSelectedAddress &&
+                      getSelectedAddress.province.name +
+                        "-" +
+                        getSelectedAddress.district.name +
+                        "-" +
+                        getSelectedAddress.upazila.name +
+                        "-" +
+                        getSelectedAddress.remarks}
+                  </span>
+                  <span>
+                    {!getSelectedAddress &&
+                      getSelectedAddress.province.name +
+                        "-" +
+                        getSelectedAddress.district.name +
+                        "-" +
+                        getSelectedAddress.upazila.name +
+                        "-" +
+                        getSelectedAddress.remarks}
+                  </span>
+                </div>
               </div>
             </div>
             <div class="saving-ad-btn" onClick={AddressActiveHandler}>

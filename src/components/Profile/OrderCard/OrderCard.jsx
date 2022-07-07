@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { paramsUrlGenerator } from "../../../helpers/utilities";
 import { CANCLE_ORDER } from "../../../lib/endpoints";
-import { BASE_URL, httpV2 } from "../../../Service/httpService2";
+import { httpV2 } from "../../../Service/httpService2";
 import Card from "../../utilities/Card/Card";
 import Suspense from "../../utilities/Suspense/Suspense";
 import ConfirmationAlert from "./ConfirmationAlert";

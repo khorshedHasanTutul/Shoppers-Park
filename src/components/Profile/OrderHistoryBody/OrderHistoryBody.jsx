@@ -1,4 +1,4 @@
-import { Route, Redirect, useParams, useLocation } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import OrderList from "../OrderList/OrderList";
 import OrderDetails from "../OrderDetails/OrderDetails";
 import { useCallback, useEffect, useState } from "react";

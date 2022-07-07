@@ -41,7 +41,7 @@ export const SubsSubCategoryitem = ({
               </li>
             ) : (
               <li>
-                <Link to={"productsSub/" + getObjFrom.id}>
+                <Link to={"/productsSub/" + getObjFrom.id}>
                   <span onClick={toggleClass}>{getObjFrom.name}</span>
                 </Link>
               </li>

@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
 import SearchTemplate from "./SearchTemplate";
 
 const SearchPortal = ({
@@ -10,7 +9,7 @@ const SearchPortal = ({
   isGetting,
   totalSearchProduct,
 }) => {
-  console.log({totalSearchProduct})
+  console.log({ totalSearchProduct });
   return (
     <>
       {visibleSearch && (

@@ -2,7 +2,6 @@ import {
   faFacebookF,
   faYoutube,
   faTwitter,
-  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import { addressType } from "../utilities/dictionaries";
 

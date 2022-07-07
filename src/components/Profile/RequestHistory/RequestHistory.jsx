@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { humanizeShortDateTime } from "../../../helpers/utilities";
 import RequestHistoryAlert from "./RequestHistoryAlert";
 
 const RequestHistory = () => {

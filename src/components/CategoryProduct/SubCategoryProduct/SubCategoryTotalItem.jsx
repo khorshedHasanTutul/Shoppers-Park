@@ -3,7 +3,6 @@ import { paramsUrlGenerator } from "../../../helpers/utilities";
 import { CHILD_PRODUCT_LVL_WISE } from "../../../lib/endpoints";
 import { httpV2 } from "../../../Service/httpService2";
 import Paginator from "../../Paginators/Paginators";
-import Suspense from "../../utilities/Suspense/Suspense";
 import VisibleProductByCategory from "../VisibleProduct/VisibleProductByCategory";
 import SubCategorySubItemList from "./SubCategorySubItemList";
 

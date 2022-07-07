@@ -6,7 +6,6 @@ import { httpV2 } from "../../../../../Service/httpService2";
 import authContext from "../../../../../Store/auth-context";
 import ModalPOpUp from "../../../../MainHeader/TopHeader/AuthenticationPortal/ModalPOpUp";
 import Paginator from "../../../../Paginators/Paginators";
-import Suspense from "../../../../utilities/Suspense/Suspense";
 import ReviewSingleItem from "./ReviewSingleItem";
 
 const ReviewContent = () => {

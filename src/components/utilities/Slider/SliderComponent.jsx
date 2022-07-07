@@ -9,7 +9,7 @@ const SliderComponent = ({
   wishItemsGet,
   setalert,
   from,
-  imageChangedHandler
+  imageChangedHandler,
 }) => {
   return (
     <Splide options={options}>

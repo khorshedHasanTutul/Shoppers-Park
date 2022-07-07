@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { paramsUrlGenerator } from "../../helpers/utilities";
 import {
-  CHILD_PRODUCT_LVL_WISE,
   GET_DISPLAY_PRODUCTS,
 } from "../../lib/endpoints";
 import ErrorPage from "../../pages/ErrorPage";
