@@ -73,6 +73,10 @@ function App() {
     getProductProfile();
   }, []);
 
+  useEffect(() => {
+    localStorage.removeItem("USER");
+  }, []);
+
   return (
     <>
       <div className="App all-wapper-overflow">

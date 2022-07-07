@@ -1,5 +1,5 @@
 const getToken = async () => {
-  let user = localStorage.getItem("USER");
+  let user = localStorage.getItem("USERV1.1");
   if (user) {
     return JSON.parse(user).token;
   }

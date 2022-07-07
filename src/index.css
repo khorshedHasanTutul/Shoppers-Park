@@ -7005,6 +7005,13 @@ div.brick.label.default {
   display: flex;
   justify-content: space-between;
 }
+.order-id{
+  font-size: 14px;
+  white-space: nowrap;
+  margin-top: 5px;
+  
+
+}
 
 .cancel-Order {
   border-radius: 5px;
@@ -7013,14 +7020,18 @@ div.brick.label.default {
   gap: 0.5rem;
 }
 .cancel-order-button {
+   width: 50px;
+  text-align: center;
   font-weight: 500;
   color: #df2c8a;
   background: whitesmoke;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   padding: 6px 12px;
   border-radius: 5px;
   border: 1px solid #df2c8a;
+ 
+
 }
 .clear-button {
   border: 1px solid hotpink;

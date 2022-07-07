@@ -62,19 +62,19 @@ const OrderCard = ({ order, key, getAllOrdersHttp, status }) => {
       <Card>
         <a className="order-card mb-12 kill-anchore block" href>
           <div className="t-16 t-bold bg-background py-12 px-12 round-corner">
-            <div> Order ID #{order.orderNumber}</div>
+            <div className="order-id"> Order ID #{order.orderNumber}</div>
             <div className="cancel-Order">
               {pathname !== "/profile/order/cancel" && (
                 <div
                   className="cancel-order-button"
                   onClick={checkToPermitHandler}
                 >
-                  Cancel Order
+                  Cancel
                 </div>
               )}
 
               <div className="cancel-order-button" onClick={viewOrderHandler}>
-                View Order
+                View
               </div>
             </div>
           </div>
@@ -101,8 +101,15 @@ const OrderCard = ({ order, key, getAllOrdersHttp, status }) => {
               </div>
             </div>
             <div className="ordercard-shippingaddress">
-              <h4 className="t-14 t-bold t-left mb-4">Shipping Address</h4>
-              <aside style={{ fontWeight: "400" }}>
+              <h4
+                style={{ "white-space": "nowrap" }}
+                className="t-14 t-bold t-left mb-4"
+              >
+                Shipping Address
+              </h4>
+              <aside
+                style={{ fontWeight: "400", "font-size": 12, paddingLeft: 10 }}
+              >
                 {order?.address.province.name}-{order?.address.district.name}-
                 {order?.address.upazila.name}-{order?.address.remarks}
               </aside>
