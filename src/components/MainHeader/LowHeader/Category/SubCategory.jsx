@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { callBack } from "../../../../Service/AppService";
 import {
   getCategories,
   getCategoryDataToObj,
-  getDropDownCategories,
 } from "../../../../Service/DataService";
 import SubsSubCategoryitem from "./SubsSubCategoryitem";
 

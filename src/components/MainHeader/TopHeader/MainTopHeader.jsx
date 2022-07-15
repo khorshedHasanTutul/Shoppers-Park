@@ -1,11 +1,11 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import appData from "../../DataSource/appData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MainTopHeader = () => {
+const MainTopHeader = forwardRef((props, ref) => {
   return (
-    <div class="new-header">
+    <div class="new-header" ref={ref}>
       <div class="">
         <div class="header-top-flex d-flexx top-one">
           <div class="header-top-left">
@@ -58,6 +58,6 @@ const MainTopHeader = () => {
       </div>
     </div>
   );
-};
+});
 
 export default MainTopHeader;

@@ -13,6 +13,7 @@ import MainTopHeader from "./TopHeader/MainTopHeader";
 export const MainHeader = forwardRef((props, ref) => {
   const navMidRef = useRef();
   const navTopRef = useRef();
+  const mainToHeaderRef = useRef();
   const [scroll, setScroll] = useState(false);
   const [alertPopUp, setalertPopUp] = useState(false);
   const [popupClasses, setPopupClasses] = useState("main-ads hide");
@@ -23,7 +24,7 @@ export const MainHeader = forwardRef((props, ref) => {
   // this codes exist for the header nav ups & down smoothly
   const handleScroll = useCallback(() => {
     const offset = window.scrollY;
-    const navTopHeight = 34;
+    const navTopHeight = mainToHeaderRef.current.clientHeight + 2; //34;
     const span = window.innerWidth <= 1000 ? `6px` : `8px`;
 
     if (offset > navTopHeight) {
@@ -46,7 +47,7 @@ export const MainHeader = forwardRef((props, ref) => {
 
   return (
     <section className={`header-area`} ref={ref}>
-      <MainTopHeader />
+      <MainTopHeader ref={mainToHeaderRef} />
       <div class="container">
         <div class="header-main-area">
           <TopHeader ref={navTopRef} />

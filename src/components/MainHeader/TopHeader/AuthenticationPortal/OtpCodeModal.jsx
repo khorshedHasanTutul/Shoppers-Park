@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import {
   getOtp,
-  login,
   RESET_PASSWORD,
   userIfExist,
   verifyOtp,

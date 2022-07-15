@@ -2,7 +2,6 @@ import Profile from "../Profile";
 import OrderHistory from "../OrderHistory/OrderHistory";
 import Offers from "../Offers/Offers";
 import Complain from "../Complain/Complain";
-import Request from "../Request/Request";
 import Prescription from "../../Profile/Prescriptions/Prescriptions";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Address from "../../CheckOut/Address";

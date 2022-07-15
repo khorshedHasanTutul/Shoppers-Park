@@ -1,10 +1,9 @@
-import { Route, Redirect, useParams, useLocation } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import OrderList from "../OrderList/OrderList";
 import OrderDetails from "../OrderDetails/OrderDetails";
 import { useCallback, useEffect, useState } from "react";
 import { httpV2 } from "../../../Service/httpService2";
 import { GET_ORDERS } from "../../../lib/endpoints";
-import { OrderStatus } from "../../utilities/dictionaries";
 import Suspense from "../../utilities/Suspense/Suspense";
 import { goTO, paramsUrlGenerator } from "../../../helpers/utilities";
 

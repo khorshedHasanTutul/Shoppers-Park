@@ -10,24 +10,24 @@ const AboutStyle = {
   backgroundRepeat: "no-repeat",
 };
 
-const teamMember = [
-  {
-    tname: "Jak Ma",
-    tdeg: "Web Developer",
-  },
-  {
-    tname: "Json Roy",
-    tdeg: "Web Designer",
-  },
-  {
-    tname: "Watson Roy",
-    tdeg: "Graphic Designer",
-  },
-  {
-    tname: "Thomas Bold",
-    tdeg: "Fullstrack Developer",
-  },
-];
+// const teamMember = [
+//   {
+//     tname: "Jak Ma",
+//     tdeg: "Web Developer",
+//   },
+//   {
+//     tname: "Json Roy",
+//     tdeg: "Web Designer",
+//   },
+//   {
+//     tname: "Watson Roy",
+//     tdeg: "Graphic Designer",
+//   },
+//   {
+//     tname: "Thomas Bold",
+//     tdeg: "Fullstrack Developer",
+//   },
+// ];
 
 const aboutTitle = {
   tname: "About Us",

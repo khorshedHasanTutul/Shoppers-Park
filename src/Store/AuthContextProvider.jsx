@@ -9,7 +9,7 @@ const initialState = () => {
     registration: { phone: "", password: "" },
   };
 
-  let user = localStorage.getItem("USER");
+  let user = localStorage.getItem("USERV1.1");
   let storedUser = {};
   let isLoggedIn = false;
   if (user) {
@@ -27,7 +27,7 @@ const initialState = () => {
 const reducer = (state, action) => {
   if (action.type === "USER_LOGIN") {
     console.log(action.user);
-    localStorage.setItem("USER", JSON.stringify(action.user));
+    localStorage.setItem("USERV1.1", JSON.stringify(action.user));
     return {
       ...state,
       user: action.user,
@@ -35,7 +35,7 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === "USER_LOGOUT") {
-    localStorage.removeItem("USER");
+    localStorage.removeItem("USERV1.1");
     return {
       ...state,
       isLoggedIn: false,

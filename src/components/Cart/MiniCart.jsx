@@ -5,6 +5,11 @@ const MiniCart = ({ openCart }) => {
   const getCartContext = useContext(cartContext);
   const getCartModal = getCartContext.getCartModel;
 
+  const displayAmount = (amount = 0) =>
+    amount % 1 !== 0.0 ? amount.toFixed(2) : parseInt(amount, 10);
+
+  console.log(getCartModal.TotalAmmount.toFixed(2));
+
   return (
     <div class="cart-box view-pop" onClick={openCart}>
       <div class="cart-items text-center">
@@ -17,7 +22,7 @@ const MiniCart = ({ openCart }) => {
       <div class="cart-amount">
         <span>৳ </span>
         <span class="cart-amount-span">
-          {getCartModal.TotalAmmount.toFixed(2)}
+          {displayAmount(getCartModal.TotalAmmount)}
         </span>
       </div>
     </div>

@@ -11,8 +11,6 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Link, useHistory } from "react-router-dom";
 import NotificationList from "./NotificationList";
-import { Notification } from "../../../Service/AppService";
-import { WishService } from "../../../Service/CartContent";
 import ModalPOpUp from "./AuthenticationPortal/ModalPOpUp";
 import authContext from "../../../Store/auth-context";
 import { useOutsideAlerter } from "../../../hooks/useOutsideClickHandler";

@@ -29,7 +29,7 @@ const Profile = () => {
     getProfileInfoHttp();
   }, []);
 
-  console.log({ profileInfo });
+  console.log("ProfileOnfo=>",  profileInfo);
 
   return (
     <div className="container">

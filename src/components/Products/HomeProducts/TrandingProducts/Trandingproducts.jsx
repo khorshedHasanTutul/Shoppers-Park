@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { getTrandingDisplayProducts } from "../../../../Service/DataService";
 import PopUpAlert from "../../../utilities/Alert/PopUpAlert";
 import SliderComponent from "../../../utilities/Slider/SliderComponent";
-import ProductsInfoModel from "../../ProductsInfoModel";
 import TrandingProductModel from "./TrandingProductModel";
 
 const Trandingproducts = () => {

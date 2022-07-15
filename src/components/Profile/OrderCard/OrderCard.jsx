@@ -2,11 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { paramsUrlGenerator } from "../../../helpers/utilities";
 import { CANCLE_ORDER } from "../../../lib/endpoints";
-import { BASE_URL, httpV2 } from "../../../Service/httpService2";
-import PopAlert from "../../utilities/Alert/PopAlert";
-import PopUpAlert from "../../utilities/Alert/PopUpAlert";
+import { httpV2 } from "../../../Service/httpService2";
 import Card from "../../utilities/Card/Card";
-import { OrderStatus } from "../../utilities/dictionaries";
 import Suspense from "../../utilities/Suspense/Suspense";
 import ConfirmationAlert from "./ConfirmationAlert";
 
@@ -65,19 +62,19 @@ const OrderCard = ({ order, key, getAllOrdersHttp, status }) => {
       <Card>
         <a className="order-card mb-12 kill-anchore block" href>
           <div className="t-16 t-bold bg-background py-12 px-12 round-corner">
-            <div> Order ID #{order.orderNumber}</div>
+            <div className="order-id"> Order ID #{order.orderNumber}</div>
             <div className="cancel-Order">
               {pathname !== "/profile/order/cancel" && (
                 <div
                   className="cancel-order-button"
                   onClick={checkToPermitHandler}
                 >
-                  Cancel Order
+                  Cancel
                 </div>
               )}
 
               <div className="cancel-order-button" onClick={viewOrderHandler}>
-                View Order
+                View
               </div>
             </div>
           </div>
@@ -104,8 +101,15 @@ const OrderCard = ({ order, key, getAllOrdersHttp, status }) => {
               </div>
             </div>
             <div className="ordercard-shippingaddress">
-              <h4 className="t-14 t-bold t-left mb-4">Shipping Address</h4>
-              <aside style={{ fontWeight: "400" }}>
+              <h4
+                style={{ "white-space": "nowrap" }}
+                className="t-14 t-bold t-left mb-4"
+              >
+                Shipping Address
+              </h4>
+              <aside
+                style={{ fontWeight: "400", "font-size": 12, paddingLeft: 10 }}
+              >
                 {order?.address.province.name}-{order?.address.district.name}-
                 {order?.address.upazila.name}-{order?.address.remarks}
               </aside>

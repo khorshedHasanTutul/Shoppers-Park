@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { GET_FESTIVAL } from "../../lib/endpoints";
-import { ocassionCategory } from "../../Service/AppService";
 import { httpV2 } from "../../Service/httpService2";
-import appData from "../DataSource/appData";
 import ProductsInfoModel from "../Products/ProductsInfoModel";
 import SliderComponent from "../utilities/Slider/SliderComponent";
 import Suspense from "../utilities/Suspense/Suspense";

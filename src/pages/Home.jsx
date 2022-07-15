@@ -5,7 +5,6 @@ import BrandsSuperDrug from '../components/BrandsSuperDrug/BrandsSuperDrug';
 import Notice from '../components/Notice/Notice';
 import Parks from '../components/Parks/Parks';
 import CategoryProducts from '../components/Products/HomeProducts/CategoryProducts/CategoryProducts';
-import Trandingproducts from '../components/Products/HomeProducts/TrandingProducts/Trandingproducts';
 import SuperDrugBlogs from '../components/SuperDrugBlogs/SuperDrugBlogs';
 import { WishService } from '../Service/CartContent';
 

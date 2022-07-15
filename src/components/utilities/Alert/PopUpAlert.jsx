@@ -1,4 +1,3 @@
-import { faWeight } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 const PopUpAlert = ({ content, closeModal, addingStyle }) => {
