@@ -28,7 +28,7 @@ import RequestProducts from "./pages/RequestProducts";
 import Consultancy from "./pages/Consultancy";
 import { useLocation } from "react-router-dom";
 import ShopAll from "./components/ShopAll/ShopAll";
-import Checkout from "./pages/Checkout";
+import Checkout from "./pages/CheckOut";
 import authContext from "./Store/auth-context";
 import { httpV2 } from "./Service/httpService2";
 import { GET_PRODUCT_PROFILE } from "./lib/endpoints";

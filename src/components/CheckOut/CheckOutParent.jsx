@@ -1,7 +1,7 @@
 import React from "react";
 import AddressContextProvider from "../../Store/AddressContextProvider";
 import CheckoutBody from "./CheckoutBody";
-import CheckoutHeader from "./CheckoutHeader";
+import CheckoutHeader from "./CheckOutHeader";
 
 const CheckoutParent = () => {
   return (

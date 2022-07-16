@@ -1753,7 +1753,7 @@ input:focus {
   height: 100%;
   background: #5b4e36;
   top: 0;
-  right: -60px;
+  right: -30px;
 }
 .support-service-single-item:last-child::after {
   display: none;
