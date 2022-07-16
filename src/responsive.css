@@ -1152,7 +1152,7 @@
   }
   .container-file-button button{
     top: -17px !important;
-    left: -21px;
+    /* left: -21px; */
   }
   .product-img{
     height: 120px;
@@ -1701,6 +1701,20 @@ display: none;
    
 }
 
+.Steps_details__1CSho h5 {
+  font-size: 10px;
+}
+
+/* .order-invoice-ea .table th, .order-invoice-ea .table td {
+  padding: 4px 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+  font-size: 10px !important;
+  font-weight: 400;
+} */
+
 /* .grid-3 {
   display: grid;
   grid-template-columns:  1fr;
@@ -1815,9 +1829,9 @@ display: none;
   .single-product-catagory-item {
     flex: 0 0 44% !important;
   }
-  .Steps_details__1CSho h5 {
+  /* .Steps_details__1CSho h5 {
     display: none;
-  }
+  } */
 }
 
 
@@ -1858,6 +1872,8 @@ display: none;
     
   } */
 
+  
+
  
 }
 
@@ -1876,6 +1892,9 @@ display: none;
 
 
 
+
+
+
 }
 
 @media screen and (max-width: 670px) {
@@ -1888,6 +1907,45 @@ display: none;
   }
   .save-address button, .chosse-your-fvt-btn > * {
     flex: 1;
+  }
+
+  .order-invoice-ea .table th, .order-invoice-ea .table td {
+    padding: 4px 8px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    font-size: 10px !important;
+    font-weight: 400;
+  }
+
+  .edit-profile-main-form.first-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .edit-profile-main-form.second-column {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+  .edit-profile-main-flex > form button {
+    background: transparent;
+    border: 2px solid #df2c8a;
+    border-radius: 5px;
+    color: #df2c8a;
+    cursor: pointer;
+    font-weight: 600;
+    opacity: 1;
+    padding: 4px 15px;
+    transition: 0.5s;
+    width: 50%;
+  }
+
+  .edit-profile-main-form.second-column .image_preview {
+    display: none;
   }
 }
 
