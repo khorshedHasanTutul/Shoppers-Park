@@ -1994,6 +1994,21 @@ display: none;
   white-space: nowrap;
   margin-top: 5px;
 }
+
+
+}
+
+@media screen and (max-width: 375px) {
+  .header-top-left > ul > li > a, .header-top-right > ul > li > a {
+    color: white;
+    font-family: unset;
+    font-size: 10px;
+    font-weight: 400;
+  }
+  
+  .header-top-right ul > li {
+    width: 25px;
+  }
 }
 
 
